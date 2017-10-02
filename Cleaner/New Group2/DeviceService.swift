@@ -8,7 +8,11 @@
 
 import Foundation
 class DeviceService {
-    var totalSize: Double {
+    var freePercent: Double {
+        return self.diskFree / self.totalSize * 100
+    }
+    
+    var totalSize: Double  {
         let totalSize: Double = 0
         let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
         if let dictionary = try? FileManager.default.attributesOfFileSystem(forPath: paths.last!) {

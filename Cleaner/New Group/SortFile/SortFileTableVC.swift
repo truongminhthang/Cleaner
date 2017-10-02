@@ -13,15 +13,21 @@ class SortFileTableVC: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-        
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
-        tableView.delegate = self
-        tableView.dataSource = self
+      registerNotification()
     }
     
+    func registerNotification() {
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadData), name: NSNotification.Name.init("imageArrayUpdate"), object: nil)
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    @objc func reloadData() {
+        tableView.reloadData()
+    }
+   
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

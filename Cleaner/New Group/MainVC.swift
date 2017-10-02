@@ -1,5 +1,5 @@
 //
-//  TheFirstVC.swift
+//  MainVC.swift
 //  Cleaner
 //
 //  Created by Hao on 10/2/17.
@@ -7,7 +7,7 @@
 //
 
 import UIKit
-class TheFirstVC: UIViewController{
+class MainVC: UIViewController{
     
     @IBOutlet weak var speedButton: UIButton!
     @IBOutlet weak var wifiButton: UIButton!
@@ -16,15 +16,21 @@ class TheFirstVC: UIViewController{
     @IBOutlet weak var pieChartView: PieChartView!
     @IBOutlet weak var junkCleanView: UIView!
     @IBOutlet weak var sortFilesView: UIView!
+    
+    @IBOutlet weak var freePercentLabel: UILabel!
+    @IBOutlet weak var freeSpaceLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         let tapGesture = UIGestureRecognizer(target: self, action: #selector(tapOnJunkClean(_:)))
         junkCleanView.addGestureRecognizer(tapGesture)
-        pieChartView.addItem(value: 7, color: UIColor.yellow)
-        pieChartView.addItem(value: 60, color: UIColor.clear)
-        
-  
+        let deviceServices = DeviceService()
+        pieChartView.addItem(value: Float(deviceServices.freePercent), color: UIColor.red)
+        pieChartView.addItem(value: 100 - Float(deviceServices.freePercent) , color: UIColor.clear)
+        freePercentLabel.text = "\(Int(deviceServices.freePercent)) %"
+        let freeSize = ByteCountFormatter.string(fromByteCount: Int64(deviceServices.diskFree), countStyle: .file)
+        freeSpaceLabel.text = "\(freeSize)"
     }
 
     

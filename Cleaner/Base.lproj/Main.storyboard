@@ -14,7 +14,7 @@
         <!--CLEANER-->
         <scene sceneID="zBp-hW-NCm">
             <objects>
-                <viewController id="0ei-QY-2j5" customClass="TheFirstVC" customModule="Cleaner" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="0ei-QY-2j5" customClass="MainVC" customModule="Cleaner" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="SY8-rI-GrI">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -226,6 +226,9 @@
                                                                 <real key="value" value="8"/>
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <outletCollection property="gestureRecognizers" destination="lsc-fk-7MV" appends="YES" id="9gc-Wr-apJ"/>
+                                                        </connections>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DUo-tl-0bt" customClass="View" customModule="Cleaner">
                                                         <rect key="frame" x="167.5" y="0.0" width="147.5" height="137.5"/>
@@ -315,6 +318,8 @@
                     <connections>
                         <outlet property="boostButton" destination="2Kf-dL-awa" id="uD9-x2-v1T"/>
                         <outlet property="clearButton" destination="ecv-NN-vID" id="a9n-da-jKU"/>
+                        <outlet property="freePercentLabel" destination="4Om-aQ-k10" id="sMf-W4-c0E"/>
+                        <outlet property="freeSpaceLabel" destination="2GC-1s-zXd" id="4bq-8I-W7R"/>
                         <outlet property="junkCleanView" destination="DUo-tl-0bt" id="SUX-Xr-X7j"/>
                         <outlet property="pieChartView" destination="V7Q-yp-29V" id="fBa-ar-S7G"/>
                         <outlet property="sortFilesView" destination="YP3-a9-3Zo" id="5ad-EL-XJH"/>
