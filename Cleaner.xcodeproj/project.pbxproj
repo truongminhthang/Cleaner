@@ -19,6 +19,11 @@
 		3F673EE01F8258FB00E0DA07 /* ExtensionPieChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F673EDD1F8258FA00E0DA07 /* ExtensionPieChart.swift */; };
 		3F673EE11F8258FB00E0DA07 /* ExtensionCustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F673EDE1F8258FA00E0DA07 /* ExtensionCustomView.swift */; };
 		3F673EE21F8258FB00E0DA07 /* ExtensionGradientColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F673EDF1F8258FA00E0DA07 /* ExtensionGradientColor.swift */; };
+		845F44691F825A42007AAEDA /* SortFileTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845F44681F825A42007AAEDA /* SortFileTableVC.swift */; };
+		845F446C1F825A60007AAEDA /* DeviceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845F446A1F825A60007AAEDA /* DeviceService.swift */; };
+		845F446D1F825A60007AAEDA /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845F446B1F825A60007AAEDA /* DataService.swift */; };
+		845F446F1F825A70007AAEDA /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845F446E1F825A70007AAEDA /* TableViewCell.swift */; };
+		848DC6CB1F825BD300C53BBE /* SortFileTableVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 845F44671F825A1B007AAEDA /* SortFileTableVC.storyboard */; };
 		FF0E307A1F8214FF006CCBA9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0E30791F8214FF006CCBA9 /* ViewController.swift */; };
 		FF0E307F1F8214FF006CCBA9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FF0E307E1F8214FF006CCBA9 /* Assets.xcassets */; };
 		FF0E30821F8214FF006CCBA9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF0E30801F8214FF006CCBA9 /* LaunchScreen.storyboard */; };
@@ -56,6 +61,11 @@
 		3F673EDD1F8258FA00E0DA07 /* ExtensionPieChart.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtensionPieChart.swift; sourceTree = "<group>"; };
 		3F673EDE1F8258FA00E0DA07 /* ExtensionCustomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtensionCustomView.swift; sourceTree = "<group>"; };
 		3F673EDF1F8258FA00E0DA07 /* ExtensionGradientColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtensionGradientColor.swift; sourceTree = "<group>"; };
+		845F44671F825A1B007AAEDA /* SortFileTableVC.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = SortFileTableVC.storyboard; path = Base.lproj/SortFileTableVC.storyboard; sourceTree = "<group>"; };
+		845F44681F825A42007AAEDA /* SortFileTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortFileTableVC.swift; sourceTree = "<group>"; };
+		845F446A1F825A60007AAEDA /* DeviceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceService.swift; sourceTree = "<group>"; };
+		845F446B1F825A60007AAEDA /* DataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
+		845F446E1F825A70007AAEDA /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		FF0E30741F8214FF006CCBA9 /* Cleaner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cleaner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF0E30791F8214FF006CCBA9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		FF0E307E1F8214FF006CCBA9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -118,19 +128,24 @@
 			isa = PBXGroup;
 			children = (
 				3F673EDB1F8258AB00E0DA07 /* AppDelegate.swift */,
+				845F446B1F825A60007AAEDA /* DataService.swift */,
+				845F446A1F825A60007AAEDA /* DeviceService.swift */,
 				3F673EDE1F8258FA00E0DA07 /* ExtensionCustomView.swift */,
 				3F673EDF1F8258FA00E0DA07 /* ExtensionGradientColor.swift */,
 				3F673EDD1F8258FA00E0DA07 /* ExtensionPieChart.swift */,
+				845F446E1F825A70007AAEDA /* TableViewCell.swift */,
 				3F673E9B1F82556700E0DA07 /* Main.storyboard */,
 				FF0E30791F8214FF006CCBA9 /* ViewController.swift */,
 				FF0E307E1F8214FF006CCBA9 /* Assets.xcassets */,
 				3F673ED71F8255DC00E0DA07 /* BoostMemory.storyboard */,
+				845F44671F825A1B007AAEDA /* SortFileTableVC.storyboard */,
 				FF0E30801F8214FF006CCBA9 /* LaunchScreen.storyboard */,
 				FF0E30831F8214FF006CCBA9 /* Info.plist */,
 				3F673E901F8254CC00E0DA07 /* BoostVC.swift */,
 				3F673E8F1F8254CC00E0DA07 /* JunkCleanVC.swift */,
 				3F673E921F8254CC00E0DA07 /* SortFilesVC.swift */,
 				3F673E911F8254CC00E0DA07 /* TheFirstVC.swift */,
+				845F44681F825A42007AAEDA /* SortFileTableVC.swift */,
 				3F673E971F8254DB00E0DA07 /* Button.swift */,
 				3F673E981F8254DB00E0DA07 /* View.swift */,
 			);
@@ -262,6 +277,7 @@
 				3F673ED91F82560600E0DA07 /* Main.storyboard in Resources */,
 				3F673EDA1F82560900E0DA07 /* BoostMemory.storyboard in Resources */,
 				FF0E30821F8214FF006CCBA9 /* LaunchScreen.storyboard in Resources */,
+				848DC6CB1F825BD300C53BBE /* SortFileTableVC.storyboard in Resources */,
 				FF0E307F1F8214FF006CCBA9 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -287,15 +303,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				845F446F1F825A70007AAEDA /* TableViewCell.swift in Sources */,
 				3F673EDC1F8258AB00E0DA07 /* AppDelegate.swift in Sources */,
+				845F446D1F825A60007AAEDA /* DataService.swift in Sources */,
 				FF0E307A1F8214FF006CCBA9 /* ViewController.swift in Sources */,
 				3F673E941F8254CC00E0DA07 /* BoostVC.swift in Sources */,
 				3F673EE11F8258FB00E0DA07 /* ExtensionCustomView.swift in Sources */,
 				3F673E931F8254CC00E0DA07 /* JunkCleanVC.swift in Sources */,
 				3F673EE21F8258FB00E0DA07 /* ExtensionGradientColor.swift in Sources */,
 				3F673E961F8254CC00E0DA07 /* SortFilesVC.swift in Sources */,
+				845F44691F825A42007AAEDA /* SortFileTableVC.swift in Sources */,
 				3F673E991F8254DC00E0DA07 /* Button.swift in Sources */,
 				3F673E951F8254CC00E0DA07 /* TheFirstVC.swift in Sources */,
+				845F446C1F825A60007AAEDA /* DeviceService.swift in Sources */,
 				3F673E9A1F8254DC00E0DA07 /* View.swift in Sources */,
 				3F673EE01F8258FB00E0DA07 /* ExtensionPieChart.swift in Sources */,
 			);

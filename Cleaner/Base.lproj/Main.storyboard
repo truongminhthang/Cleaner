@@ -226,9 +226,6 @@
                                                                 <real key="value" value="8"/>
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
-                                                        <connections>
-                                                            <outletCollection property="gestureRecognizers" destination="lsc-fk-7MV" appends="YES" id="Ff1-m5-LEE"/>
-                                                        </connections>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DUo-tl-0bt" customClass="View" customModule="Cleaner">
                                                         <rect key="frame" x="167.5" y="0.0" width="147.5" height="137.5"/>
@@ -335,9 +332,7 @@
                 </tapGestureRecognizer>
                 <tapGestureRecognizer id="lsc-fk-7MV">
                     <connections>
-                        <segue destination="1K4-I4-DJ1" kind="show" id="muV-Xn-IGi">
-                            <nil key="action"/>
-                        </segue>
+                        <segue destination="aMI-Ue-dIp" kind="show" id="ABW-ot-wY0"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>
@@ -400,6 +395,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZPo-90-UgJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4610" y="-305"/>
+        </scene>
+        <!--SortFileTableVC-->
+        <scene sceneID="zJR-lR-FLL">
+            <objects>
+                <viewControllerPlaceholder storyboardName="SortFileTableVC" referencedIdentifier="SortFileTableVC" id="aMI-Ue-dIp" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eoH-q0-9s4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3742" y="45"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="nbe-t3-PiD">
