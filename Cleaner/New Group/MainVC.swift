@@ -26,8 +26,8 @@ class MainVC: UIViewController{
         let tapGesture = UIGestureRecognizer(target: self, action: #selector(tapOnJunkClean(_:)))
         junkCleanView.addGestureRecognizer(tapGesture)
         let deviceServices = DeviceService()
-        pieChartView.addItem(value: Float(deviceServices.freePercent), color: UIColor.red)
-        pieChartView.addItem(value: 100 - Float(deviceServices.freePercent) , color: UIColor.clear)
+        pieChartView.addItem(value: 100 - Float(deviceServices.freePercent) , color: UIColor.red)
+        pieChartView.addItem(value: Float(deviceServices.freePercent) , color: UIColor.clear)
         freePercentLabel.text = "\(Int(deviceServices.freePercent)) %"
         let freeSize = ByteCountFormatter.string(fromByteCount: Int64(deviceServices.diskFree), countStyle: .file)
         freeSpaceLabel.text = "\(freeSize)"

@@ -8,12 +8,17 @@
 
 import UIKit
 import Foundation
+import Photos
 class SortFileTableVC: UITableViewController {
     
+    @IBOutlet weak var freeDiskLabel: UILabel!
+    @IBOutlet var headerView: UIView!
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-      registerNotification()
+        registerNotification()
+        DataService.shared.updateImageArray()
+      
     }
     
     func registerNotification() {
@@ -39,19 +44,29 @@ class SortFileTableVC: UITableViewController {
         // #warning Incomplete implementation, return the number of sections
         return 1
     }
-  
+//
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        
+
         return 100
     }
-    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-       // guard  let free = DeviceService().diskFree else { fatalError()}
-      let free = DeviceService().diskFree
-        let freeSize = ByteCountFormatter.string(fromByteCount: Int64(free), countStyle: .file)
+//    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+//       // guard  let free = DeviceService().diskFree else { fatalError()}
+//      let free = DeviceService().diskFree
+//        let freeSize = ByteCountFormatter.string(fromByteCount: Int64(free), countStyle: .file)
+//
+//        return "\(freeSize)  available"
+//    }
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let view = UIView()
+        view.addSubview(headerView)
+       let deviceServices = DeviceService()
+        let freeSize = ByteCountFormatter.string(fromByteCount: Int64(deviceServices.diskFree), countStyle: .file)
         
-        return "\(freeSize)  available"
+       var myStringArr = freeSize.components(separatedBy: " ")
+        let numbers: String = myStringArr[0]
+        freeDiskLabel.text = numbers
+       return view
     }
-    
   
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -62,14 +77,13 @@ class SortFileTableVC: UITableViewController {
     
      override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
      let cell = tableView.dequeueReusableCell(withIdentifier: "photoCell", for: indexPath) as! TableViewCell
-        cell.photoImageView.image = DataService.shared.imageArray[indexPath.row]
-        let sizeByte = (DataService.shared.imageSize[indexPath.row])
+        cell.photoImageView.image = DataService.shared.imageArray[indexPath.row].image
+        let sizeByte = (DataService.shared.imageArray[indexPath.row].size)
         let imageSize = ByteCountFormatter.string(fromByteCount: Int64(sizeByte), countStyle: .file)
         cell.sizeLabel.text = "\(imageSize)"
         cell.typeLabel.text = " Photo"
      return cell
      }
     
-    
- 
+  
 }
