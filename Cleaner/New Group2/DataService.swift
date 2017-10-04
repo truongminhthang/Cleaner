@@ -15,9 +15,9 @@ import os.log
 class DataService {
     static let shared: DataService = DataService()
 
-    private var _imageArray: [(image:UIImage, size: Double)]?
+    private var _imageArray: [(image:UIImage, size: Double, type: String)]?
     
-    var imageArray: [(image:UIImage, size: Double)] {
+    var imageArray: [(image:UIImage, size: Double, type: String)] {
         set {
             _imageArray = newValue
         }
@@ -57,7 +57,7 @@ class DataService {
             print("You have no Photos !")
             return
         }
-        _imageArray = Array(repeating:(image:UIImage(), size: 0.0), count: fetchResult.count)
+        _imageArray = Array(repeating:(image:UIImage(), size: 0.0, type: ""), count: fetchResult.count)
         let assetArray = fetchResult.objects(at: IndexSet(0...(fetchResult.count - 1)))
         for (index, asset) in assetArray.enumerated() {
          
@@ -68,6 +68,7 @@ class DataService {
                 }
                 self._imageArray?[index].image = aImage
                 
+                
             })
             if asset.duration == 0 {
                 PHCachingImageManager.default().requestImageData(for: asset, options: requestOption, resultHandler: { (data, string, orientation, dictionary) in
@@ -75,6 +76,7 @@ class DataService {
                         return
                     }
                     self._imageArray?[index].size =  Double(data!.count)
+                    self._imageArray?[index].type = "image"
                     
                 })
             } else {
@@ -84,6 +86,8 @@ class DataService {
                     if let url = (avasset as? AVURLAsset)?.url {
                         if let data = try? Data(contentsOf:url) {
                             self._imageArray?[index].size =  Double(data.count)
+                            self._imageArray?[index].type = "video"
+                            
                         }
                     }
                 })
