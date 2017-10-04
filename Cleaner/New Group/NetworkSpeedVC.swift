@@ -1,18 +1,18 @@
 //
-//  JunkCleanVC.swift
+//  NetworkSpeedVC.swift
 //  Cleaner
 //
-//  Created by Hao on 10/2/17.
+//  Created by Luyen on 10/4/17.
 //  Copyright © 2017 BaBaBiBo. All rights reserved.
 //
 
 import UIKit
 
-class JunkCleanVC: UIViewController {
+class NetworkSpeedVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         // Do any additional setup after loading the view.
     }
 
@@ -31,7 +31,5 @@ class JunkCleanVC: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
-    @IBAction func dismissToVC(_ sender: UIButton) {
-        dismiss(animated: true, completion: nil)
-    }
+
 }

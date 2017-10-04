@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="5zy-zj-1m6">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--WIFI-->
+        <scene sceneID="CdG-zg-puy">
+            <objects>
+                <viewController storyboardIdentifier="Wifi" useStoryboardIdentifierAsRestorationIdentifier="YES" id="RfC-BI-sl6" customClass="Wifi" customModule="Cleaner" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Oz2-3O-vzC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Ellipse-1" translatesAutoresizingMaskIntoConstraints="NO" id="yQI-VI-eL7" userLabel="ellip">
+                                <rect key="frame" x="0.0" y="58" width="375" height="11"/>
+                            </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rMR-Ui-Xkv" userLabel="Bigger Circle" customClass="View" customModule="Cleaner" customModuleProvider="target">
+                                <rect key="frame" x="56" y="182" width="262.5" height="262.5"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fL3-UB-2El" userLabel="Middle Circle" customClass="View" customModule="Cleaner" customModuleProvider="target">
+                                        <rect key="frame" x="16" y="16.5" width="231" height="231"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BeY-ns-iCR" userLabel="Smaller Circle" customClass="View" customModule="Cleaner" customModuleProvider="target">
+                                                <rect key="frame" x="12" y="12" width="207.5" height="207.5"/>
+                                                <color key="backgroundColor" red="0.93831068277359009" green="0.52755045890808105" blue="0.53005272150039673" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="BeY-ns-iCR" secondAttribute="height" multiplier="1:1" id="0EH-ZZ-Fci"/>
+                                                </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                        <real key="value" value="2"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="-1"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                        <color key="value" red="0.93831068279999996" green="0.52755045889999996" blue="0.53005272150000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </view>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="bottom" spacing="22" translatesAutoresizingMaskIntoConstraints="NO" id="Ibn-Mw-IKx" userLabel="Big Stack">
+                                                <rect key="frame" x="77.5" y="62.5" width="76.5" height="106.5"/>
+                                                <subviews>
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wifi" translatesAutoresizingMaskIntoConstraints="NO" id="oK3-eS-wCz">
+                                                        <rect key="frame" x="0.0" y="0.0" width="76.5" height="30"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                    </imageView>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="uMd-OH-KBx">
+                                                        <rect key="frame" x="0.0" y="52" width="76.5" height="54.5"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WIFI" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yS7-g8-UEz">
+                                                                <rect key="frame" x="10.5" y="0.0" width="55.5" height="32.5"/>
+                                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="27"/>
+                                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DETECTION" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KDE-Zy-n1b">
+                                                                <rect key="frame" x="0.0" y="37.5" width="76.5" height="17"/>
+                                                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="14"/>
+                                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                        </subviews>
+                                                    </stackView>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstItem="oK3-eS-wCz" firstAttribute="width" secondItem="uMd-OH-KBx" secondAttribute="width" id="D7o-Sx-szo"/>
+                                                </constraints>
+                                            </stackView>
+                                        </subviews>
+                                        <color key="backgroundColor" red="0.99959295989999997" green="0.82827109099999996" blue="0.83094799519999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstItem="BeY-ns-iCR" firstAttribute="width" secondItem="fL3-UB-2El" secondAttribute="width" multiplier="4.5/5" id="AXO-dh-md8"/>
+                                            <constraint firstItem="BeY-ns-iCR" firstAttribute="centerX" secondItem="fL3-UB-2El" secondAttribute="centerX" id="Now-B5-uzL"/>
+                                            <constraint firstAttribute="width" secondItem="fL3-UB-2El" secondAttribute="height" multiplier="1:1" id="Sis-bo-pp4"/>
+                                            <constraint firstItem="Ibn-Mw-IKx" firstAttribute="centerX" secondItem="fL3-UB-2El" secondAttribute="centerX" id="cAK-oo-U9p"/>
+                                            <constraint firstItem="BeY-ns-iCR" firstAttribute="centerY" secondItem="fL3-UB-2El" secondAttribute="centerY" id="gB9-fD-hmf"/>
+                                            <constraint firstItem="Ibn-Mw-IKx" firstAttribute="centerY" secondItem="fL3-UB-2El" secondAttribute="centerY" id="v4H-4d-chc"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                <real key="value" value="2"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                <color key="value" red="0.99959295989999997" green="0.82827109099999996" blue="0.83094799519999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="-1"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="fL3-UB-2El" firstAttribute="centerY" secondItem="rMR-Ui-Xkv" secondAttribute="centerY" id="3dG-Ke-xq4"/>
+                                    <constraint firstAttribute="width" secondItem="rMR-Ui-Xkv" secondAttribute="height" multiplier="1:1" id="6JX-bA-QVS"/>
+                                    <constraint firstItem="fL3-UB-2El" firstAttribute="width" secondItem="rMR-Ui-Xkv" secondAttribute="width" multiplier="4.4/5" id="6U8-5h-dqD"/>
+                                    <constraint firstItem="fL3-UB-2El" firstAttribute="centerX" secondItem="rMR-Ui-Xkv" secondAttribute="centerX" id="QIy-4a-zmi"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="2"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="-1"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="lac-Su-MKj" userLabel="Stack View Bigger">
+                                <rect key="frame" x="104" y="462.5" width="168" height="86"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="deY-7H-sTp" customClass="Button" customModule="Cleaner" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="168" height="45"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="27"/>
+                                        <state key="normal" title="SCAN">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                <real key="value" value="2"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="-1"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </button>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="4Px-EF-MOQ">
+                                        <rect key="frame" x="0.0" y="57" width="168" height="29"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CHECK WIFI CONNECTED DEVICES" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="erh-Uq-AiM">
+                                                <rect key="frame" x="0.0" y="0.0" width="168" height="12"/>
+                                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="10"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TO FIND OUT INTRUDERS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oh1-wQ-klO">
+                                                <rect key="frame" x="22.5" y="17" width="123.5" height="12"/>
+                                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="10"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="deY-7H-sTp" firstAttribute="width" secondItem="lac-Su-MKj" secondAttribute="width" id="TFH-g4-ams"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.99959295989999997" green="0.82827109099999996" blue="0.83094799519999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="yQI-VI-eL7" firstAttribute="height" secondItem="Oz2-3O-vzC" secondAttribute="height" multiplier="1/60" id="9D9-vw-LwB"/>
+                            <constraint firstItem="lac-Su-MKj" firstAttribute="centerY" secondItem="Oz2-3O-vzC" secondAttribute="centerY" multiplier="5/3.3" id="B4z-AP-Jgm"/>
+                            <constraint firstItem="yQI-VI-eL7" firstAttribute="top" secondItem="W3m-xd-dAB" secondAttribute="top" constant="-6" id="Fok-V5-8Rv"/>
+                            <constraint firstItem="yQI-VI-eL7" firstAttribute="leading" secondItem="W3m-xd-dAB" secondAttribute="leading" id="GJ5-9Y-uzG"/>
+                            <constraint firstItem="rMR-Ui-Xkv" firstAttribute="width" secondItem="Oz2-3O-vzC" secondAttribute="width" multiplier="3.5/5" id="NVv-sJ-vgZ"/>
+                            <constraint firstItem="yQI-VI-eL7" firstAttribute="trailing" secondItem="W3m-xd-dAB" secondAttribute="trailing" id="UbL-ck-Teu"/>
+                            <constraint firstItem="rMR-Ui-Xkv" firstAttribute="centerX" secondItem="Oz2-3O-vzC" secondAttribute="centerX" id="WRu-Bf-Kyn"/>
+                            <constraint firstItem="lac-Su-MKj" firstAttribute="centerX" secondItem="Oz2-3O-vzC" secondAttribute="centerX" id="xIb-Gf-Q8U"/>
+                            <constraint firstItem="rMR-Ui-Xkv" firstAttribute="centerY" secondItem="Oz2-3O-vzC" secondAttribute="centerY" multiplier="4.7/5" id="xjV-Ft-KNv"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="W3m-xd-dAB"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="WIFI" id="56X-WZ-Cgy"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1ZR-oV-SMo" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="252" y="-54.422788605697157"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Mfw-Ez-kAC">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="5zy-zj-1m6" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="qUK-bd-olf">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.93831068277359009" green="0.52755045890808105" blue="0.53005272150039673" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="RfC-BI-sl6" kind="relationship" relationship="rootViewController" id="jkr-IQ-0JX"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9UU-DX-rhJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-519" y="-54"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="Ellipse-1" width="1242" height="34"/>
+        <image name="wifi" width="30" height="30"/>
+    </resources>
+</document>

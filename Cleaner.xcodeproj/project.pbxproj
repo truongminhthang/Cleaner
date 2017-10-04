@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3B220D1F1F8483DE00782306 /* Wifi.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B220D1D1F8483BC00782306 /* Wifi.storyboard */; };
+		3B220D211F8487B100782306 /* NetworkSpeedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B220D201F8487B100782306 /* NetworkSpeedVC.swift */; };
+		3B26F6951F83711A0073D9ED /* NetworkSpeed.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B26F6941F83711A0073D9ED /* NetworkSpeed.storyboard */; };
+		3BB9AECE1F83379A00884EDD /* JunkClean.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3BB9AECC1F83379A00884EDD /* JunkClean.storyboard */; };
+		3BB9AED21F833CF200884EDD /* WifiVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB9AED11F833CF200884EDD /* WifiVC.swift */; };
 		3F673E931F8254CC00E0DA07 /* JunkCleanVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F673E8F1F8254CC00E0DA07 /* JunkCleanVC.swift */; };
 		3F673E941F8254CC00E0DA07 /* BoostVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F673E901F8254CC00E0DA07 /* BoostVC.swift */; };
 		3F673E951F8254CC00E0DA07 /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F673E911F8254CC00E0DA07 /* MainVC.swift */; };
@@ -48,6 +53,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3B220D1E1F8483BC00782306 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Wifi.storyboard; sourceTree = "<group>"; };
+		3B220D201F8487B100782306 /* NetworkSpeedVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkSpeedVC.swift; sourceTree = "<group>"; };
+		3B26F6941F83711A0073D9ED /* NetworkSpeed.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NetworkSpeed.storyboard; sourceTree = "<group>"; };
+		3BB9AECD1F83379A00884EDD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Cleaner/Base.lproj/JunkClean.storyboard; sourceTree = "<group>"; };
+		3BB9AED11F833CF200884EDD /* WifiVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WifiVC.swift; sourceTree = "<group>"; };
 		3F673E8F1F8254CC00E0DA07 /* JunkCleanVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JunkCleanVC.swift; sourceTree = "<group>"; };
 		3F673E901F8254CC00E0DA07 /* BoostVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoostVC.swift; sourceTree = "<group>"; };
 		3F673E911F8254CC00E0DA07 /* MainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVC.swift; sourceTree = "<group>"; };
@@ -109,6 +119,8 @@
 				3F673E8F1F8254CC00E0DA07 /* JunkCleanVC.swift */,
 				3F673E921F8254CC00E0DA07 /* SortFilesVC.swift */,
 				3F673E911F8254CC00E0DA07 /* MainVC.swift */,
+				3BB9AED11F833CF200884EDD /* WifiVC.swift */,
+				3B220D201F8487B100782306 /* NetworkSpeedVC.swift */,
 				3B508FC31F82652B00A15E62 /* SortFile */,
 			);
 			name = ViewControllers;
@@ -131,10 +143,13 @@
 		3B508FC21F82650C00A15E62 /* Storyboard */ = {
 			isa = PBXGroup;
 			children = (
+				3B220D1D1F8483BC00782306 /* Wifi.storyboard */,
 				3F673E9B1F82556700E0DA07 /* Main.storyboard */,
+				3B26F6941F83711A0073D9ED /* NetworkSpeed.storyboard */,
 				3F673ED71F8255DC00E0DA07 /* BoostMemory.storyboard */,
 				845F44671F825A1B007AAEDA /* SortFileTableVC.storyboard */,
 				FF0E30801F8214FF006CCBA9 /* LaunchScreen.storyboard */,
+				3BB9AECC1F83379A00884EDD /* JunkClean.storyboard */,
 			);
 			name = Storyboard;
 			sourceTree = "<group>";
@@ -315,7 +330,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				3F673ED91F82560600E0DA07 /* Main.storyboard in Resources */,
+				3B26F6951F83711A0073D9ED /* NetworkSpeed.storyboard in Resources */,
 				3F673EDA1F82560900E0DA07 /* BoostMemory.storyboard in Resources */,
+				3B220D1F1F8483DE00782306 /* Wifi.storyboard in Resources */,
+				3BB9AECE1F83379A00884EDD /* JunkClean.storyboard in Resources */,
 				FF0E30821F8214FF006CCBA9 /* LaunchScreen.storyboard in Resources */,
 				848DC6CB1F825BD300C53BBE /* SortFileTableVC.storyboard in Resources */,
 				FF0E307F1F8214FF006CCBA9 /* Assets.xcassets in Resources */,
@@ -346,7 +364,9 @@
 				845F446F1F825A70007AAEDA /* TableViewCell.swift in Sources */,
 				3F673EDC1F8258AB00E0DA07 /* AppDelegate.swift in Sources */,
 				845F446D1F825A60007AAEDA /* DataService.swift in Sources */,
+				3B220D211F8487B100782306 /* NetworkSpeedVC.swift in Sources */,
 				3F673E941F8254CC00E0DA07 /* BoostVC.swift in Sources */,
+				3BB9AED21F833CF200884EDD /* WifiVC.swift in Sources */,
 				3F673EE11F8258FB00E0DA07 /* CustomView.swift in Sources */,
 				3F673E931F8254CC00E0DA07 /* JunkCleanVC.swift in Sources */,
 				3F673EE21F8258FB00E0DA07 /* GradientColorView.swift in Sources */,
@@ -392,6 +412,22 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		3B220D1D1F8483BC00782306 /* Wifi.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3B220D1E1F8483BC00782306 /* Base */,
+			);
+			name = Wifi.storyboard;
+			sourceTree = "<group>";
+		};
+		3BB9AECC1F83379A00884EDD /* JunkClean.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3BB9AECD1F83379A00884EDD /* Base */,
+			);
+			name = JunkClean.storyboard;
+			sourceTree = "<group>";
+		};
 		3F673E9B1F82556700E0DA07 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (

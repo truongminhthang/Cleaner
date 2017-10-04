@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--JUNK CLEAN-->
+        <scene sceneID="snJ-wI-Zv3">
+            <objects>
+                <viewController storyboardIdentifier="vc" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Xm1-wN-ZrA" customClass="JunkCleanVC" customModule="Cleaner" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="dKr-y3-yAk">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UzQ-dE-3nk" userLabel="Bigger Circle" customClass="View" customModule="Cleaner" customModuleProvider="target">
+                                <rect key="frame" x="53.5" y="183.5" width="268" height="268"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EzI-gT-yaN" userLabel="Middle circle" customClass="View" customModule="Cleaner" customModuleProvider="target">
+                                        <rect key="frame" x="20" y="20" width="228" height="228"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sCN-Ed-Hmt" userLabel="Smaller Circle" customClass="View" customModule="Cleaner" customModuleProvider="target">
+                                                <rect key="frame" x="20" y="20" width="188" height="188"/>
+                                                <subviews>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="IdU-sA-URB">
+                                                        <rect key="frame" x="48.5" y="45" width="91.5" height="98"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="106.9" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="COP-54-j0L">
+                                                                <rect key="frame" x="0.0" y="0.0" width="91.5" height="41"/>
+                                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="34"/>
+                                                                <color key="textColor" red="1" green="0.11121391899999999" blue="0.063787128849999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Available" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tTz-sM-bJ1">
+                                                                <rect key="frame" x="0.0" y="49" width="91.5" height="20.5"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                <color key="textColor" red="1" green="0.11121391899999999" blue="0.063787128849999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="space" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E6S-xo-Sbe">
+                                                                <rect key="frame" x="0.0" y="77.5" width="91.5" height="20.5"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                <color key="textColor" red="1" green="0.1187502725" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                        </subviews>
+                                                    </stackView>
+                                                </subviews>
+                                                <color key="backgroundColor" red="0.99959295989999997" green="0.82827109099999996" blue="0.83094799519999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstItem="IdU-sA-URB" firstAttribute="centerY" secondItem="sCN-Ed-Hmt" secondAttribute="centerY" id="3qa-Jk-obe"/>
+                                                    <constraint firstItem="IdU-sA-URB" firstAttribute="centerX" secondItem="sCN-Ed-Hmt" secondAttribute="centerX" id="M4G-mT-lcF"/>
+                                                    <constraint firstAttribute="width" secondItem="sCN-Ed-Hmt" secondAttribute="height" multiplier="1:1" id="uvB-vW-oqW"/>
+                                                </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="-1"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </view>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="EzI-gT-yaN" secondAttribute="height" multiplier="1:1" id="1oh-op-e5Q"/>
+                                            <constraint firstItem="sCN-Ed-Hmt" firstAttribute="centerY" secondItem="EzI-gT-yaN" secondAttribute="centerY" id="4dU-Za-ixY"/>
+                                            <constraint firstItem="sCN-Ed-Hmt" firstAttribute="leading" secondItem="EzI-gT-yaN" secondAttribute="leading" multiplier="5/6" constant="20" symbolic="YES" id="qYR-mG-a1N"/>
+                                            <constraint firstItem="sCN-Ed-Hmt" firstAttribute="centerX" secondItem="EzI-gT-yaN" secondAttribute="centerX" id="rNI-G3-jZd"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="-1"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" red="0.99959295989999997" green="0.82827109099999996" blue="0.83094799519999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="UzQ-dE-3nk" secondAttribute="height" multiplier="1:1" id="3Gc-w0-sgO"/>
+                                    <constraint firstItem="EzI-gT-yaN" firstAttribute="centerX" secondItem="UzQ-dE-3nk" secondAttribute="centerX" id="Sgp-A4-SGF"/>
+                                    <constraint firstItem="EzI-gT-yaN" firstAttribute="centerY" secondItem="UzQ-dE-3nk" secondAttribute="centerY" id="iED-A0-i0h"/>
+                                    <constraint firstItem="EzI-gT-yaN" firstAttribute="leading" secondItem="UzQ-dE-3nk" secondAttribute="leading" multiplier="6/7" constant="20" symbolic="YES" id="iut-6L-fOm"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="-1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="7UA-QN-JEG" userLabel="Stack View Big">
+                                <rect key="frame" x="52.5" y="542.5" width="270.5" height="82"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" alignment="bottom" translatesAutoresizingMaskIntoConstraints="NO" id="dMj-Fo-VzT" userLabel="Stack View small">
+                                        <rect key="frame" x="0.0" y="0.0" width="270.5" height="25"/>
+                                        <subviews>
+                                            <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I2n-hs-g2u" customClass="Button" customModule="Cleaner" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="22" height="25"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="22" id="Ss1-5F-3JR"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="24"/>
+                                                <state key="normal" title="!">
+                                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                        <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                        <real key="value" value="1"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="3"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  Clean up the application cache " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h9s-cN-WvO">
+                                                <rect key="frame" x="22" y="0.0" width="248.5" height="25"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="25" id="c7f-uc-eOd"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="I2n-hs-g2u" firstAttribute="height" secondItem="h9s-cN-WvO" secondAttribute="height" id="j5b-BX-dgJ"/>
+                                        </constraints>
+                                    </stackView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qnv-j9-cvj" customClass="Button" customModule="Cleaner" customModuleProvider="target">
+                                        <rect key="frame" x="22.5" y="40" width="225.5" height="42"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="25"/>
+                                        <state key="normal" title="CLEAN">
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                <real key="value" value="2"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="-1"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="Qnv-j9-cvj" firstAttribute="width" secondItem="dMj-Fo-VzT" secondAttribute="width" multiplier="5/6" id="Mv0-KW-orE"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.99959295989999997" green="0.82827109099999996" blue="0.83094799519999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="UzQ-dE-3nk" firstAttribute="centerX" secondItem="dKr-y3-yAk" secondAttribute="centerX" id="86L-Xv-mis"/>
+                            <constraint firstItem="UzQ-dE-3nk" firstAttribute="width" secondItem="yQE-sq-Xzw" secondAttribute="width" multiplier="3/4.2" id="JyK-yR-8et"/>
+                            <constraint firstItem="7UA-QN-JEG" firstAttribute="centerX" secondItem="dKr-y3-yAk" secondAttribute="centerX" id="Xy7-5b-MED"/>
+                            <constraint firstItem="7UA-QN-JEG" firstAttribute="centerY" secondItem="dKr-y3-yAk" secondAttribute="centerY" multiplier="7/4" id="a0t-nD-E6T"/>
+                            <constraint firstItem="UzQ-dE-3nk" firstAttribute="centerY" secondItem="dKr-y3-yAk" secondAttribute="centerY" multiplier="3/3.15" id="s0m-AC-Ndq"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="yQE-sq-Xzw"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="JUNK CLEAN" id="oGU-QO-oKo"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZPo-90-UgJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4820.5" y="-305.5"/>
+        </scene>
+    </scenes>
+</document>

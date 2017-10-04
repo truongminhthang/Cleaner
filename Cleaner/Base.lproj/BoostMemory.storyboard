@@ -8,10 +8,11 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--BoostVC-->
+        <!--BOOST MEMORY-->
         <scene sceneID="ssv-QS-mW8">
             <objects>
                 <tableViewController storyboardIdentifier="BoostVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="TI9-Uk-hSz" customClass="BoostVC" customModule="Cleaner" sceneMemberID="viewController">
@@ -34,6 +35,9 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="310"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Ellipse-1" translatesAutoresizingMaskIntoConstraints="NO" id="QpC-JH-mkG" userLabel="ellip">
+                                                    <rect key="frame" x="0.0" y="-4" width="375" height="10.5"/>
+                                                </imageView>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MFL-cN-giw" userLabel="Circle bigger" customClass="View" customModule="Cleaner" customModuleProvider="target">
                                                     <rect key="frame" x="75" y="86" width="224" height="224"/>
                                                     <subviews>
@@ -124,7 +128,11 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="MFL-cN-giw" firstAttribute="leading" secondItem="q0q-od-B1T" secondAttribute="leading" constant="75" id="58J-Vj-LjH"/>
+                                                <constraint firstItem="QpC-JH-mkG" firstAttribute="height" secondItem="q0q-od-B1T" secondAttribute="height" multiplier="1/30" id="5en-lj-YWC"/>
                                                 <constraint firstItem="MFL-cN-giw" firstAttribute="bottom" secondItem="q0q-od-B1T" secondAttribute="bottom" id="GuK-MA-8o9"/>
+                                                <constraint firstAttribute="trailing" secondItem="QpC-JH-mkG" secondAttribute="trailing" id="JNW-A4-LdG"/>
+                                                <constraint firstItem="QpC-JH-mkG" firstAttribute="top" secondItem="q0q-od-B1T" secondAttribute="top" constant="-4" id="hhj-TR-VbE"/>
+                                                <constraint firstItem="QpC-JH-mkG" firstAttribute="leading" secondItem="q0q-od-B1T" secondAttribute="leading" id="kOu-OE-aGG"/>
                                                 <constraint firstItem="MFL-cN-giw" firstAttribute="centerX" secondItem="q0q-od-B1T" secondAttribute="centerX" id="rE5-RM-kQB"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -382,12 +390,36 @@
                             <outlet property="delegate" destination="TI9-Uk-hSz" id="Dgy-BW-2cl"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" largeTitleDisplayMode="always" id="dJk-tf-gTg"/>
+                    <navigationItem key="navigationItem" title="BOOST MEMORY" largeTitleDisplayMode="always" id="dJk-tf-gTg"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="w5R-16-IYz" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="0Ay-yu-G4F" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1880.8" y="144.3778110944528"/>
+            <point key="canvasLocation" x="2220" y="144.3778110944528"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="jhH-bp-eTx">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Bat-O2-b0D" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="2QX-En-4hR">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="TI9-Uk-hSz" kind="relationship" relationship="rootViewController" id="8dH-MO-Hao"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IBk-kl-7X5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1473" y="144"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Ellipse-1" width="1242" height="34"/>
+    </resources>
 </document>
