@@ -16,9 +16,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     static var shared = {
         return UIApplication.shared.delegate as! AppDelegate
     }()
+    
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        _ = DataService.shared.imageArray
         return true
     }
 
