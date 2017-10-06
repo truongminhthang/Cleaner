@@ -4,6 +4,7 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
@@ -14,7 +15,7 @@
         <!--NETWORK SPEED-->
         <scene sceneID="h5j-BW-0qd">
             <objects>
-                <viewController storyboardIdentifier="NetworkSpeedVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="3cy-CJ-l27" customClass="NetworkSpeedVC" customModule="Cleaner" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="NetworkSpeedVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="3cy-CJ-l27" customClass="NetworkSpeedVC" customModule="Cleaner" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="LbU-5d-2xH">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -53,7 +54,7 @@
                                         </constraints>
                                     </imageView>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="kim" translatesAutoresizingMaskIntoConstraints="NO" id="Kts-aV-G9Y">
-                                        <rect key="frame" x="47" y="100" width="74" height="54"/>
+                                        <rect key="frame" x="47" y="105" width="65" height="49"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
                                 </subviews>

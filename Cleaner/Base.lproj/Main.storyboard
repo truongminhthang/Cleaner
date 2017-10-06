@@ -427,10 +427,10 @@
             </objects>
             <point key="canvasLocation" x="2726" y="-428"/>
         </scene>
-        <!--vc-->
+        <!--JunkCleanVC-->
         <scene sceneID="3Kq-cU-1bv">
             <objects>
-                <viewControllerPlaceholder storyboardIdentifier="vc" storyboardName="JunkClean" referencedIdentifier="vc" id="hh3-Q2-k8X" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardName="JunkClean" referencedIdentifier="JunkCleanVC" id="hh3-Q2-k8X" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5id-3t-6ea" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4608.8000000000002" y="-305.39730134932535"/>

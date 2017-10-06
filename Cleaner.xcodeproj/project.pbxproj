@@ -8,27 +8,27 @@
 
 /* Begin PBXBuildFile section */
 		3B220D1F1F8483DE00782306 /* Wifi.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B220D1D1F8483BC00782306 /* Wifi.storyboard */; };
-		3B220D211F8487B100782306 /* NetworkSpeedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B220D201F8487B100782306 /* NetworkSpeedVC.swift */; };
-		3B26F6951F83711A0073D9ED /* NetworkSpeed.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B26F6941F83711A0073D9ED /* NetworkSpeed.storyboard */; };
-		3BB9AECE1F83379A00884EDD /* JunkClean.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3BB9AECC1F83379A00884EDD /* JunkClean.storyboard */; };
-		3BB9AED21F833CF200884EDD /* WifiVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB9AED11F833CF200884EDD /* WifiVC.swift */; };
-		3F673E931F8254CC00E0DA07 /* JunkCleanVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F673E8F1F8254CC00E0DA07 /* JunkCleanVC.swift */; };
-		3F673E941F8254CC00E0DA07 /* BoostVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F673E901F8254CC00E0DA07 /* BoostVC.swift */; };
-		3F673E951F8254CC00E0DA07 /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F673E911F8254CC00E0DA07 /* MainVC.swift */; };
-		3F673E961F8254CC00E0DA07 /* SortFilesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F673E921F8254CC00E0DA07 /* SortFilesVC.swift */; };
-		3F673E991F8254DC00E0DA07 /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F673E971F8254DB00E0DA07 /* Button.swift */; };
-		3F673E9A1F8254DC00E0DA07 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F673E981F8254DB00E0DA07 /* View.swift */; };
+		3B2A437D1F87781C0053A89B /* BoostMemory.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B2A43771F87781C0053A89B /* BoostMemory.storyboard */; };
+		3B2A437E1F87781C0053A89B /* NetworkSpeed.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B2A43791F87781C0053A89B /* NetworkSpeed.storyboard */; };
+		3B2A437F1F87781C0053A89B /* SortFileTableVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B2A437B1F87781C0053A89B /* SortFileTableVC.storyboard */; };
+		3B2A43911F877A010053A89B /* DataServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2A438D1F8779CF0053A89B /* DataServices.swift */; };
+		3B2A43921F877B5A0053A89B /* BoostVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2A43851F8779080053A89B /* BoostVC.swift */; };
+		3B2A43931F877B5F0053A89B /* JunkCleanVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2A43821F8779080053A89B /* JunkCleanVC.swift */; };
+		3B2A43941F877B5F0053A89B /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2A43801F8779080053A89B /* MainVC.swift */; };
+		3B2A43951F877B5F0053A89B /* NetworkSpeedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2A43831F8779080053A89B /* NetworkSpeedVC.swift */; };
+		3B2A43961F877B5F0053A89B /* SortFilesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2A43811F8779080053A89B /* SortFilesVC.swift */; };
+		3B2A43971F877B5F0053A89B /* WifiVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2A43841F8779080053A89B /* WifiVC.swift */; };
+		3B2A43981F877B640053A89B /* SortFileTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2A43871F87790F0053A89B /* SortFileTableVC.swift */; };
+		3B2A43991F877B640053A89B /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2A43861F87790F0053A89B /* TableViewCell.swift */; };
+		3B2A439A1F877B670053A89B /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2A438C1F8779870053A89B /* Button.swift */; };
+		3B2A439B1F877B670053A89B /* CustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2A43881F8779870053A89B /* CustomView.swift */; };
+		3B2A439C1F877B670053A89B /* GradientColorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2A438B1F8779870053A89B /* GradientColorView.swift */; };
+		3B2A439D1F877B670053A89B /* PieChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2A43891F8779870053A89B /* PieChartView.swift */; };
+		3B2A439E1F877B670053A89B /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2A438A1F8779870053A89B /* View.swift */; };
+		3B2A439F1F877B7C0053A89B /* DeviceServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2A438E1F8779CF0053A89B /* DeviceServices.swift */; };
+		3B2A43A01F877BCD0053A89B /* JunkClean.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B2A438F1F8779E60053A89B /* JunkClean.storyboard */; };
 		3F673ED91F82560600E0DA07 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F673E9B1F82556700E0DA07 /* Main.storyboard */; };
-		3F673EDA1F82560900E0DA07 /* BoostMemory.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F673ED71F8255DC00E0DA07 /* BoostMemory.storyboard */; };
 		3F673EDC1F8258AB00E0DA07 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F673EDB1F8258AB00E0DA07 /* AppDelegate.swift */; };
-		3F673EE01F8258FB00E0DA07 /* PieChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F673EDD1F8258FA00E0DA07 /* PieChartView.swift */; };
-		3F673EE11F8258FB00E0DA07 /* CustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F673EDE1F8258FA00E0DA07 /* CustomView.swift */; };
-		3F673EE21F8258FB00E0DA07 /* GradientColorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F673EDF1F8258FA00E0DA07 /* GradientColorView.swift */; };
-		845F44691F825A42007AAEDA /* SortFileTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845F44681F825A42007AAEDA /* SortFileTableVC.swift */; };
-		845F446C1F825A60007AAEDA /* DeviceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845F446A1F825A60007AAEDA /* DeviceService.swift */; };
-		845F446D1F825A60007AAEDA /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845F446B1F825A60007AAEDA /* DataService.swift */; };
-		845F446F1F825A70007AAEDA /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845F446E1F825A70007AAEDA /* TableViewCell.swift */; };
-		848DC6CB1F825BD300C53BBE /* SortFileTableVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 845F44671F825A1B007AAEDA /* SortFileTableVC.storyboard */; };
 		FF0E307F1F8214FF006CCBA9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FF0E307E1F8214FF006CCBA9 /* Assets.xcassets */; };
 		FF0E30821F8214FF006CCBA9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF0E30801F8214FF006CCBA9 /* LaunchScreen.storyboard */; };
 		FF0E308D1F8214FF006CCBA9 /* CleanerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0E308C1F8214FF006CCBA9 /* CleanerTests.swift */; };
@@ -54,27 +54,27 @@
 
 /* Begin PBXFileReference section */
 		3B220D1E1F8483BC00782306 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Wifi.storyboard; sourceTree = "<group>"; };
-		3B220D201F8487B100782306 /* NetworkSpeedVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkSpeedVC.swift; sourceTree = "<group>"; };
-		3B26F6941F83711A0073D9ED /* NetworkSpeed.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NetworkSpeed.storyboard; sourceTree = "<group>"; };
-		3BB9AECD1F83379A00884EDD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Cleaner/Base.lproj/JunkClean.storyboard; sourceTree = "<group>"; };
-		3BB9AED11F833CF200884EDD /* WifiVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WifiVC.swift; sourceTree = "<group>"; };
-		3F673E8F1F8254CC00E0DA07 /* JunkCleanVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JunkCleanVC.swift; sourceTree = "<group>"; };
-		3F673E901F8254CC00E0DA07 /* BoostVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoostVC.swift; sourceTree = "<group>"; };
-		3F673E911F8254CC00E0DA07 /* MainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVC.swift; sourceTree = "<group>"; };
-		3F673E921F8254CC00E0DA07 /* SortFilesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortFilesVC.swift; sourceTree = "<group>"; };
-		3F673E971F8254DB00E0DA07 /* Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
-		3F673E981F8254DB00E0DA07 /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
+		3B2A43781F87781C0053A89B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/BoostMemory.storyboard; sourceTree = "<group>"; };
+		3B2A437A1F87781C0053A89B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/NetworkSpeed.storyboard; sourceTree = "<group>"; };
+		3B2A437C1F87781C0053A89B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/SortFileTableVC.storyboard; sourceTree = "<group>"; };
+		3B2A43801F8779080053A89B /* MainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MainVC.swift; path = Cleaner/ViewControllers/MainVC.swift; sourceTree = SOURCE_ROOT; };
+		3B2A43811F8779080053A89B /* SortFilesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SortFilesVC.swift; path = Cleaner/ViewControllers/SortFilesVC.swift; sourceTree = SOURCE_ROOT; };
+		3B2A43821F8779080053A89B /* JunkCleanVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = JunkCleanVC.swift; path = Cleaner/ViewControllers/JunkCleanVC.swift; sourceTree = SOURCE_ROOT; };
+		3B2A43831F8779080053A89B /* NetworkSpeedVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NetworkSpeedVC.swift; path = Cleaner/ViewControllers/NetworkSpeedVC.swift; sourceTree = SOURCE_ROOT; };
+		3B2A43841F8779080053A89B /* WifiVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = WifiVC.swift; path = Cleaner/ViewControllers/WifiVC.swift; sourceTree = SOURCE_ROOT; };
+		3B2A43851F8779080053A89B /* BoostVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BoostVC.swift; path = Cleaner/ViewControllers/BoostVC.swift; sourceTree = SOURCE_ROOT; };
+		3B2A43861F87790F0053A89B /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TableViewCell.swift; path = Cleaner/ViewControllers/SortFile/TableViewCell.swift; sourceTree = SOURCE_ROOT; };
+		3B2A43871F87790F0053A89B /* SortFileTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SortFileTableVC.swift; path = Cleaner/ViewControllers/SortFile/SortFileTableVC.swift; sourceTree = SOURCE_ROOT; };
+		3B2A43881F8779870053A89B /* CustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CustomView.swift; path = Cleaner/CustomViews/CustomView.swift; sourceTree = SOURCE_ROOT; };
+		3B2A43891F8779870053A89B /* PieChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PieChartView.swift; path = Cleaner/CustomViews/PieChartView.swift; sourceTree = SOURCE_ROOT; };
+		3B2A438A1F8779870053A89B /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = View.swift; path = Cleaner/CustomViews/View.swift; sourceTree = SOURCE_ROOT; };
+		3B2A438B1F8779870053A89B /* GradientColorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GradientColorView.swift; path = Cleaner/CustomViews/GradientColorView.swift; sourceTree = SOURCE_ROOT; };
+		3B2A438C1F8779870053A89B /* Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Button.swift; path = Cleaner/CustomViews/Button.swift; sourceTree = SOURCE_ROOT; };
+		3B2A438D1F8779CF0053A89B /* DataServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DataServices.swift; path = Cleaner/Services/DataServices.swift; sourceTree = SOURCE_ROOT; };
+		3B2A438E1F8779CF0053A89B /* DeviceServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DeviceServices.swift; path = Cleaner/Services/DeviceServices.swift; sourceTree = SOURCE_ROOT; };
+		3B2A43901F8779E60053A89B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/JunkClean.storyboard; sourceTree = "<group>"; };
 		3F673E9C1F82556700E0DA07 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		3F673ED81F8255DC00E0DA07 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/BoostMemory.storyboard; sourceTree = "<group>"; };
 		3F673EDB1F8258AB00E0DA07 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		3F673EDD1F8258FA00E0DA07 /* PieChartView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PieChartView.swift; sourceTree = "<group>"; };
-		3F673EDE1F8258FA00E0DA07 /* CustomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomView.swift; sourceTree = "<group>"; };
-		3F673EDF1F8258FA00E0DA07 /* GradientColorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientColorView.swift; sourceTree = "<group>"; };
-		845F44671F825A1B007AAEDA /* SortFileTableVC.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SortFileTableVC.storyboard; sourceTree = "<group>"; };
-		845F44681F825A42007AAEDA /* SortFileTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortFileTableVC.swift; sourceTree = "<group>"; };
-		845F446A1F825A60007AAEDA /* DeviceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceService.swift; sourceTree = "<group>"; };
-		845F446B1F825A60007AAEDA /* DataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
-		845F446E1F825A70007AAEDA /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		FF0E30741F8214FF006CCBA9 /* Cleaner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cleaner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF0E307E1F8214FF006CCBA9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FF0E30811F8214FF006CCBA9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -115,12 +115,12 @@
 		3B508FC01F8264BE00A15E62 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				3F673E901F8254CC00E0DA07 /* BoostVC.swift */,
-				3F673E8F1F8254CC00E0DA07 /* JunkCleanVC.swift */,
-				3F673E921F8254CC00E0DA07 /* SortFilesVC.swift */,
-				3F673E911F8254CC00E0DA07 /* MainVC.swift */,
-				3BB9AED11F833CF200884EDD /* WifiVC.swift */,
-				3B220D201F8487B100782306 /* NetworkSpeedVC.swift */,
+				3B2A43851F8779080053A89B /* BoostVC.swift */,
+				3B2A43821F8779080053A89B /* JunkCleanVC.swift */,
+				3B2A43801F8779080053A89B /* MainVC.swift */,
+				3B2A43831F8779080053A89B /* NetworkSpeedVC.swift */,
+				3B2A43811F8779080053A89B /* SortFilesVC.swift */,
+				3B2A43841F8779080053A89B /* WifiVC.swift */,
 				3B508FC31F82652B00A15E62 /* SortFile */,
 			);
 			name = ViewControllers;
@@ -130,11 +130,11 @@
 		3B508FC11F8264EF00A15E62 /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
-				3F673EDE1F8258FA00E0DA07 /* CustomView.swift */,
-				3F673EDF1F8258FA00E0DA07 /* GradientColorView.swift */,
-				3F673EDD1F8258FA00E0DA07 /* PieChartView.swift */,
-				3F673E971F8254DB00E0DA07 /* Button.swift */,
-				3F673E981F8254DB00E0DA07 /* View.swift */,
+				3B2A438C1F8779870053A89B /* Button.swift */,
+				3B2A43881F8779870053A89B /* CustomView.swift */,
+				3B2A438B1F8779870053A89B /* GradientColorView.swift */,
+				3B2A43891F8779870053A89B /* PieChartView.swift */,
+				3B2A438A1F8779870053A89B /* View.swift */,
 			);
 			name = CustomViews;
 			path = "New Group1";
@@ -143,13 +143,13 @@
 		3B508FC21F82650C00A15E62 /* Storyboard */ = {
 			isa = PBXGroup;
 			children = (
+				3B2A43771F87781C0053A89B /* BoostMemory.storyboard */,
+				3B2A43791F87781C0053A89B /* NetworkSpeed.storyboard */,
+				3B2A437B1F87781C0053A89B /* SortFileTableVC.storyboard */,
 				3B220D1D1F8483BC00782306 /* Wifi.storyboard */,
 				3F673E9B1F82556700E0DA07 /* Main.storyboard */,
-				3B26F6941F83711A0073D9ED /* NetworkSpeed.storyboard */,
-				3F673ED71F8255DC00E0DA07 /* BoostMemory.storyboard */,
-				845F44671F825A1B007AAEDA /* SortFileTableVC.storyboard */,
 				FF0E30801F8214FF006CCBA9 /* LaunchScreen.storyboard */,
-				3BB9AECC1F83379A00884EDD /* JunkClean.storyboard */,
+				3B2A438F1F8779E60053A89B /* JunkClean.storyboard */,
 			);
 			name = Storyboard;
 			sourceTree = "<group>";
@@ -157,8 +157,8 @@
 		3B508FC31F82652B00A15E62 /* SortFile */ = {
 			isa = PBXGroup;
 			children = (
-				845F44681F825A42007AAEDA /* SortFileTableVC.swift */,
-				845F446E1F825A70007AAEDA /* TableViewCell.swift */,
+				3B2A43871F87790F0053A89B /* SortFileTableVC.swift */,
+				3B2A43861F87790F0053A89B /* TableViewCell.swift */,
 			);
 			path = SortFile;
 			sourceTree = "<group>";
@@ -166,8 +166,8 @@
 		3B508FC41F82654A00A15E62 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				845F446B1F825A60007AAEDA /* DataService.swift */,
-				845F446A1F825A60007AAEDA /* DeviceService.swift */,
+				3B2A438D1F8779CF0053A89B /* DataServices.swift */,
+				3B2A438E1F8779CF0053A89B /* DeviceServices.swift */,
 			);
 			name = Services;
 			path = "New Group2";
@@ -330,12 +330,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				3F673ED91F82560600E0DA07 /* Main.storyboard in Resources */,
-				3B26F6951F83711A0073D9ED /* NetworkSpeed.storyboard in Resources */,
-				3F673EDA1F82560900E0DA07 /* BoostMemory.storyboard in Resources */,
 				3B220D1F1F8483DE00782306 /* Wifi.storyboard in Resources */,
-				3BB9AECE1F83379A00884EDD /* JunkClean.storyboard in Resources */,
+				3B2A437F1F87781C0053A89B /* SortFileTableVC.storyboard in Resources */,
+				3B2A437E1F87781C0053A89B /* NetworkSpeed.storyboard in Resources */,
+				3B2A437D1F87781C0053A89B /* BoostMemory.storyboard in Resources */,
 				FF0E30821F8214FF006CCBA9 /* LaunchScreen.storyboard in Resources */,
-				848DC6CB1F825BD300C53BBE /* SortFileTableVC.storyboard in Resources */,
+				3B2A43A01F877BCD0053A89B /* JunkClean.storyboard in Resources */,
 				FF0E307F1F8214FF006CCBA9 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -361,22 +361,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				845F446F1F825A70007AAEDA /* TableViewCell.swift in Sources */,
+				3B2A439D1F877B670053A89B /* PieChartView.swift in Sources */,
+				3B2A43961F877B5F0053A89B /* SortFilesVC.swift in Sources */,
+				3B2A439E1F877B670053A89B /* View.swift in Sources */,
+				3B2A43931F877B5F0053A89B /* JunkCleanVC.swift in Sources */,
+				3B2A439C1F877B670053A89B /* GradientColorView.swift in Sources */,
+				3B2A43941F877B5F0053A89B /* MainVC.swift in Sources */,
 				3F673EDC1F8258AB00E0DA07 /* AppDelegate.swift in Sources */,
-				845F446D1F825A60007AAEDA /* DataService.swift in Sources */,
-				3B220D211F8487B100782306 /* NetworkSpeedVC.swift in Sources */,
-				3F673E941F8254CC00E0DA07 /* BoostVC.swift in Sources */,
-				3BB9AED21F833CF200884EDD /* WifiVC.swift in Sources */,
-				3F673EE11F8258FB00E0DA07 /* CustomView.swift in Sources */,
-				3F673E931F8254CC00E0DA07 /* JunkCleanVC.swift in Sources */,
-				3F673EE21F8258FB00E0DA07 /* GradientColorView.swift in Sources */,
-				3F673E961F8254CC00E0DA07 /* SortFilesVC.swift in Sources */,
-				845F44691F825A42007AAEDA /* SortFileTableVC.swift in Sources */,
-				3F673E991F8254DC00E0DA07 /* Button.swift in Sources */,
-				3F673E951F8254CC00E0DA07 /* MainVC.swift in Sources */,
-				845F446C1F825A60007AAEDA /* DeviceService.swift in Sources */,
-				3F673E9A1F8254DC00E0DA07 /* View.swift in Sources */,
-				3F673EE01F8258FB00E0DA07 /* PieChartView.swift in Sources */,
+				3B2A43911F877A010053A89B /* DataServices.swift in Sources */,
+				3B2A43991F877B640053A89B /* TableViewCell.swift in Sources */,
+				3B2A43921F877B5A0053A89B /* BoostVC.swift in Sources */,
+				3B2A43951F877B5F0053A89B /* NetworkSpeedVC.swift in Sources */,
+				3B2A43981F877B640053A89B /* SortFileTableVC.swift in Sources */,
+				3B2A439B1F877B670053A89B /* CustomView.swift in Sources */,
+				3B2A43971F877B5F0053A89B /* WifiVC.swift in Sources */,
+				3B2A439A1F877B670053A89B /* Button.swift in Sources */,
+				3B2A439F1F877B7C0053A89B /* DeviceServices.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -420,10 +420,34 @@
 			name = Wifi.storyboard;
 			sourceTree = "<group>";
 		};
-		3BB9AECC1F83379A00884EDD /* JunkClean.storyboard */ = {
+		3B2A43771F87781C0053A89B /* BoostMemory.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				3BB9AECD1F83379A00884EDD /* Base */,
+				3B2A43781F87781C0053A89B /* Base */,
+			);
+			name = BoostMemory.storyboard;
+			sourceTree = "<group>";
+		};
+		3B2A43791F87781C0053A89B /* NetworkSpeed.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3B2A437A1F87781C0053A89B /* Base */,
+			);
+			name = NetworkSpeed.storyboard;
+			sourceTree = "<group>";
+		};
+		3B2A437B1F87781C0053A89B /* SortFileTableVC.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3B2A437C1F87781C0053A89B /* Base */,
+			);
+			name = SortFileTableVC.storyboard;
+			sourceTree = "<group>";
+		};
+		3B2A438F1F8779E60053A89B /* JunkClean.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3B2A43901F8779E60053A89B /* Base */,
 			);
 			name = JunkClean.storyboard;
 			sourceTree = "<group>";
@@ -434,14 +458,6 @@
 				3F673E9C1F82556700E0DA07 /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		3F673ED71F8255DC00E0DA07 /* BoostMemory.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				3F673ED81F8255DC00E0DA07 /* Base */,
-			);
-			name = BoostMemory.storyboard;
 			sourceTree = "<group>";
 		};
 		FF0E30801F8214FF006CCBA9 /* LaunchScreen.storyboard */ = {

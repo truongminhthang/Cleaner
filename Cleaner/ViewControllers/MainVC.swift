@@ -25,7 +25,7 @@ class MainVC: UIViewController{
         // Do any additional setup after loading the view, typically from a nib.
         let tapGesture = UIGestureRecognizer(target: self, action: #selector(tapOnJunkClean(_:)))
         junkCleanView.addGestureRecognizer(tapGesture)
-        let deviceServices = DeviceService()
+        let deviceServices = DeviceServices()
         pieChartView.addItem(value: 100 - Float(deviceServices.freePercent) , color: UIColor.red)
         pieChartView.addItem(value: Float(deviceServices.freePercent) , color: UIColor.clear)
         freePercentLabel.text = "\(Int(deviceServices.freePercent)) %"

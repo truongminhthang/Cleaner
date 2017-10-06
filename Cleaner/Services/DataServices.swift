@@ -1,5 +1,5 @@
 //
-//  DataService.swift
+//  DataServices.swift
 //  disk
 //
 //  Created by Quốc Đạt on 28.09.17.
@@ -12,8 +12,8 @@ import Photos
 import os.log
 
 
-class DataService {
-    static let shared: DataService = DataService()
+class DataServices {
+    static let shared: DataServices = DataServices()
 
     private var _imageArray: [(image:UIImage, size: Double, type: String)]?
     

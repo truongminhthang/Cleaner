@@ -8,7 +8,7 @@
 
 import UIKit
 
-class Wifi: UIViewController {
+class WifiVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class BoostVC: UITableViewController {
+class BoostVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

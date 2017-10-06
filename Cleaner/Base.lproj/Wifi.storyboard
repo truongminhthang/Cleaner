@@ -4,6 +4,7 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
@@ -14,7 +15,7 @@
         <!--WIFI-->
         <scene sceneID="CdG-zg-puy">
             <objects>
-                <viewController storyboardIdentifier="Wifi" useStoryboardIdentifierAsRestorationIdentifier="YES" id="RfC-BI-sl6" customClass="Wifi" customModule="Cleaner" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Wifi" useStoryboardIdentifierAsRestorationIdentifier="YES" id="RfC-BI-sl6" customClass="WifiVC" customModule="Cleaner" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Oz2-3O-vzC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

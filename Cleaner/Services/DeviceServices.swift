@@ -1,5 +1,5 @@
 //
-//  DeviceService.swift
+//  DeviceServices.swift
 //  disk
 //
 //  Created by Quốc Đạt on 29.09.17.
@@ -7,7 +7,7 @@
 //
 
 import Foundation
-class DeviceService {
+class DeviceServices {
     var freePercent: Double {
         return self.diskFree / self.totalSize * 100
     }

@@ -17,7 +17,7 @@ class SortFileTableVC: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         registerNotification()
-        DataService.shared.updateImageArray()
+        DataServices.shared.updateImageArray()
       
     }
     
@@ -49,17 +49,11 @@ class SortFileTableVC: UITableViewController {
 
         return 100
     }
-//    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-//       // guard  let free = DeviceService().diskFree else { fatalError()}
-//      let free = DeviceService().diskFree
-//        let freeSize = ByteCountFormatter.string(fromByteCount: Int64(free), countStyle: .file)
-//
-//        return "\(freeSize)  available"
-//    }
+
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let view = UIView()
         view.addSubview(headerView)
-       let deviceServices = DeviceService()
+       let deviceServices = DeviceServices()
         let freeSize = ByteCountFormatter.string(fromByteCount: Int64(deviceServices.diskFree), countStyle: .file)
         
        var myStringArr = freeSize.components(separatedBy: " ")
@@ -71,18 +65,18 @@ class SortFileTableVC: UITableViewController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return DataService.shared.imageArray.count
+        return DataServices.shared.imageArray.count
     }
     
     
      override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
      let cell = tableView.dequeueReusableCell(withIdentifier: "photoCell", for: indexPath) as! TableViewCell
-        cell.photoImageView.image = DataService.shared.imageArray[indexPath.row].image
-        let sizeByte = (DataService.shared.imageArray[indexPath.row].size)
+        cell.photoImageView.image = DataServices.shared.imageArray[indexPath.row].image
+        let sizeByte = (DataServices.shared.imageArray[indexPath.row].size)
         let imageSize = ByteCountFormatter.string(fromByteCount: Int64(sizeByte), countStyle: .file)
         cell.sizeLabel.text = "\(imageSize) >"
         
-        if DataService.shared.imageArray[indexPath.row].type == "video" {
+        if DataServices.shared.imageArray[indexPath.row].type == "video" {
             cell.typeLabel.text = "📹 Video "
             cell.typeLabel.textColor = #colorLiteral(red: 0, green: 0.5898008943, blue: 1, alpha: 1)
             cell.sizeLabel.textColor = #colorLiteral(red: 0, green: 0.5898008943, blue: 1, alpha: 1)
