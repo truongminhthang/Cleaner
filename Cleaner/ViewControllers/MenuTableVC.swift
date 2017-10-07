@@ -1,15 +1,16 @@
 //
-//  SortFilesVC.swift
+//  MenuTableVC.swift
 //  Cleaner
 //
-//  Created by Hao on 10/2/17.
+//  Created by Hao on 10/7/17.
 //  Copyright © 2017 BaBaBiBo. All rights reserved.
 //
 
 import UIKit
 
-class SortFilesVC: UIViewController {
+class MenuTableVC: UITableViewController {
 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -31,8 +32,8 @@ class SortFilesVC: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
-
-    @IBAction func dismissFirstVC(_ sender: UIButton) {
-        dismiss(animated: true, completion: nil)
+    @IBAction func closeSideMenu() {
+        NotificationCenter.default.post(name: notificationKey, object: nil)
     }
+
 }

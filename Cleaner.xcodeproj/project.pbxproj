@@ -14,20 +14,22 @@
 		3B2A43911F877A010053A89B /* DataServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2A438D1F8779CF0053A89B /* DataServices.swift */; };
 		3B2A43921F877B5A0053A89B /* BoostVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2A43851F8779080053A89B /* BoostVC.swift */; };
 		3B2A43931F877B5F0053A89B /* JunkCleanVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2A43821F8779080053A89B /* JunkCleanVC.swift */; };
-		3B2A43941F877B5F0053A89B /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2A43801F8779080053A89B /* MainVC.swift */; };
+		3B2A43941F877B5F0053A89B /* DashboardVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2A43801F8779080053A89B /* DashboardVC.swift */; };
 		3B2A43951F877B5F0053A89B /* NetworkSpeedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2A43831F8779080053A89B /* NetworkSpeedVC.swift */; };
-		3B2A43961F877B5F0053A89B /* SortFilesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2A43811F8779080053A89B /* SortFilesVC.swift */; };
 		3B2A43971F877B5F0053A89B /* WifiVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2A43841F8779080053A89B /* WifiVC.swift */; };
 		3B2A43981F877B640053A89B /* SortFileTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2A43871F87790F0053A89B /* SortFileTableVC.swift */; };
 		3B2A43991F877B640053A89B /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2A43861F87790F0053A89B /* TableViewCell.swift */; };
-		3B2A439A1F877B670053A89B /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2A438C1F8779870053A89B /* Button.swift */; };
 		3B2A439B1F877B670053A89B /* CustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2A43881F8779870053A89B /* CustomView.swift */; };
 		3B2A439C1F877B670053A89B /* GradientColorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2A438B1F8779870053A89B /* GradientColorView.swift */; };
 		3B2A439D1F877B670053A89B /* PieChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2A43891F8779870053A89B /* PieChartView.swift */; };
 		3B2A439E1F877B670053A89B /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2A438A1F8779870053A89B /* View.swift */; };
 		3B2A439F1F877B7C0053A89B /* DeviceServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2A438E1F8779CF0053A89B /* DeviceServices.swift */; };
 		3B2A43A01F877BCD0053A89B /* JunkClean.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B2A438F1F8779E60053A89B /* JunkClean.storyboard */; };
-		3F673ED91F82560600E0DA07 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F673E9B1F82556700E0DA07 /* Main.storyboard */; };
+		3F30D7241F8885DF00C28CA2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F30D7231F8885D900C28CA2 /* Main.storyboard */; };
+		3F30D7271F88866C00C28CA2 /* MenuTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F30D7251F88866C00C28CA2 /* MenuTableVC.swift */; };
+		3F30D7281F88866C00C28CA2 /* ContainerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F30D7261F88866C00C28CA2 /* ContainerVC.swift */; };
+		3F30D72B1F88880700C28CA2 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F30D72A1F88880700C28CA2 /* Constants.swift */; };
+		3F673ED91F82560600E0DA07 /* Dashboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F673E9B1F82556700E0DA07 /* Dashboard.storyboard */; };
 		3F673EDC1F8258AB00E0DA07 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F673EDB1F8258AB00E0DA07 /* AppDelegate.swift */; };
 		FF0E307F1F8214FF006CCBA9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FF0E307E1F8214FF006CCBA9 /* Assets.xcassets */; };
 		FF0E30821F8214FF006CCBA9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF0E30801F8214FF006CCBA9 /* LaunchScreen.storyboard */; };
@@ -57,8 +59,7 @@
 		3B2A43781F87781C0053A89B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/BoostMemory.storyboard; sourceTree = "<group>"; };
 		3B2A437A1F87781C0053A89B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/NetworkSpeed.storyboard; sourceTree = "<group>"; };
 		3B2A437C1F87781C0053A89B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/SortFileTableVC.storyboard; sourceTree = "<group>"; };
-		3B2A43801F8779080053A89B /* MainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MainVC.swift; path = Cleaner/ViewControllers/MainVC.swift; sourceTree = SOURCE_ROOT; };
-		3B2A43811F8779080053A89B /* SortFilesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SortFilesVC.swift; path = Cleaner/ViewControllers/SortFilesVC.swift; sourceTree = SOURCE_ROOT; };
+		3B2A43801F8779080053A89B /* DashboardVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DashboardVC.swift; path = Cleaner/ViewControllers/DashboardVC.swift; sourceTree = SOURCE_ROOT; };
 		3B2A43821F8779080053A89B /* JunkCleanVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = JunkCleanVC.swift; path = Cleaner/ViewControllers/JunkCleanVC.swift; sourceTree = SOURCE_ROOT; };
 		3B2A43831F8779080053A89B /* NetworkSpeedVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NetworkSpeedVC.swift; path = Cleaner/ViewControllers/NetworkSpeedVC.swift; sourceTree = SOURCE_ROOT; };
 		3B2A43841F8779080053A89B /* WifiVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = WifiVC.swift; path = Cleaner/ViewControllers/WifiVC.swift; sourceTree = SOURCE_ROOT; };
@@ -69,11 +70,14 @@
 		3B2A43891F8779870053A89B /* PieChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PieChartView.swift; path = Cleaner/CustomViews/PieChartView.swift; sourceTree = SOURCE_ROOT; };
 		3B2A438A1F8779870053A89B /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = View.swift; path = Cleaner/CustomViews/View.swift; sourceTree = SOURCE_ROOT; };
 		3B2A438B1F8779870053A89B /* GradientColorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GradientColorView.swift; path = Cleaner/CustomViews/GradientColorView.swift; sourceTree = SOURCE_ROOT; };
-		3B2A438C1F8779870053A89B /* Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Button.swift; path = Cleaner/CustomViews/Button.swift; sourceTree = SOURCE_ROOT; };
 		3B2A438D1F8779CF0053A89B /* DataServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DataServices.swift; path = Cleaner/Services/DataServices.swift; sourceTree = SOURCE_ROOT; };
 		3B2A438E1F8779CF0053A89B /* DeviceServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DeviceServices.swift; path = Cleaner/Services/DeviceServices.swift; sourceTree = SOURCE_ROOT; };
 		3B2A43901F8779E60053A89B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/JunkClean.storyboard; sourceTree = "<group>"; };
-		3F673E9C1F82556700E0DA07 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		3F30D7231F8885D900C28CA2 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		3F30D7251F88866C00C28CA2 /* MenuTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTableVC.swift; sourceTree = "<group>"; };
+		3F30D7261F88866C00C28CA2 /* ContainerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerVC.swift; sourceTree = "<group>"; };
+		3F30D72A1F88880700C28CA2 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		3F673E9C1F82556700E0DA07 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Dashboard.storyboard; sourceTree = "<group>"; };
 		3F673EDB1F8258AB00E0DA07 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FF0E30741F8214FF006CCBA9 /* Cleaner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cleaner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF0E307E1F8214FF006CCBA9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -117,20 +121,19 @@
 			children = (
 				3B2A43851F8779080053A89B /* BoostVC.swift */,
 				3B2A43821F8779080053A89B /* JunkCleanVC.swift */,
-				3B2A43801F8779080053A89B /* MainVC.swift */,
+				3B2A43801F8779080053A89B /* DashboardVC.swift */,
 				3B2A43831F8779080053A89B /* NetworkSpeedVC.swift */,
-				3B2A43811F8779080053A89B /* SortFilesVC.swift */,
 				3B2A43841F8779080053A89B /* WifiVC.swift */,
+				3F30D7261F88866C00C28CA2 /* ContainerVC.swift */,
+				3F30D7251F88866C00C28CA2 /* MenuTableVC.swift */,
 				3B508FC31F82652B00A15E62 /* SortFile */,
 			);
-			name = ViewControllers;
-			path = "New Group";
+			path = ViewControllers;
 			sourceTree = "<group>";
 		};
 		3B508FC11F8264EF00A15E62 /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
-				3B2A438C1F8779870053A89B /* Button.swift */,
 				3B2A43881F8779870053A89B /* CustomView.swift */,
 				3B2A438B1F8779870053A89B /* GradientColorView.swift */,
 				3B2A43891F8779870053A89B /* PieChartView.swift */,
@@ -142,11 +145,12 @@
 		3B508FC21F82650C00A15E62 /* Storyboard */ = {
 			isa = PBXGroup;
 			children = (
+				3F30D7231F8885D900C28CA2 /* Main.storyboard */,
 				3B2A43771F87781C0053A89B /* BoostMemory.storyboard */,
 				3B2A43791F87781C0053A89B /* NetworkSpeed.storyboard */,
 				3B2A437B1F87781C0053A89B /* SortFileTableVC.storyboard */,
 				3B220D1D1F8483BC00782306 /* Wifi.storyboard */,
-				3F673E9B1F82556700E0DA07 /* Main.storyboard */,
+				3F673E9B1F82556700E0DA07 /* Dashboard.storyboard */,
 				FF0E30801F8214FF006CCBA9 /* LaunchScreen.storyboard */,
 				3B2A438F1F8779E60053A89B /* JunkClean.storyboard */,
 			);
@@ -170,6 +174,14 @@
 				3B2A438E1F8779CF0053A89B /* DeviceServices.swift */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		3F30D7291F8887E100C28CA2 /* SupportFiles */ = {
+			isa = PBXGroup;
+			children = (
+				3F30D72A1F88880700C28CA2 /* Constants.swift */,
+			);
+			name = SupportFiles;
 			sourceTree = "<group>";
 		};
 		FF0E306B1F8214FF006CCBA9 = {
@@ -202,6 +214,7 @@
 				FF0E30831F8214FF006CCBA9 /* Info.plist */,
 				3B508FC01F8264BE00A15E62 /* ViewControllers */,
 				3B508FC11F8264EF00A15E62 /* CustomViews */,
+				3F30D7291F8887E100C28CA2 /* SupportFiles */,
 			);
 			path = Cleaner;
 			sourceTree = "<group>";
@@ -328,12 +341,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3F673ED91F82560600E0DA07 /* Main.storyboard in Resources */,
+				3F673ED91F82560600E0DA07 /* Dashboard.storyboard in Resources */,
 				3B220D1F1F8483DE00782306 /* Wifi.storyboard in Resources */,
 				3B2A437F1F87781C0053A89B /* SortFileTableVC.storyboard in Resources */,
 				3B2A437E1F87781C0053A89B /* NetworkSpeed.storyboard in Resources */,
 				3B2A437D1F87781C0053A89B /* BoostMemory.storyboard in Resources */,
 				FF0E30821F8214FF006CCBA9 /* LaunchScreen.storyboard in Resources */,
+				3F30D7241F8885DF00C28CA2 /* Main.storyboard in Resources */,
 				3B2A43A01F877BCD0053A89B /* JunkClean.storyboard in Resources */,
 				FF0E307F1F8214FF006CCBA9 /* Assets.xcassets in Resources */,
 			);
@@ -361,21 +375,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				3B2A439D1F877B670053A89B /* PieChartView.swift in Sources */,
-				3B2A43961F877B5F0053A89B /* SortFilesVC.swift in Sources */,
 				3B2A439E1F877B670053A89B /* View.swift in Sources */,
 				3B2A43931F877B5F0053A89B /* JunkCleanVC.swift in Sources */,
 				3B2A439C1F877B670053A89B /* GradientColorView.swift in Sources */,
-				3B2A43941F877B5F0053A89B /* MainVC.swift in Sources */,
+				3B2A43941F877B5F0053A89B /* DashboardVC.swift in Sources */,
 				3F673EDC1F8258AB00E0DA07 /* AppDelegate.swift in Sources */,
 				3B2A43911F877A010053A89B /* DataServices.swift in Sources */,
+				3F30D72B1F88880700C28CA2 /* Constants.swift in Sources */,
+				3F30D7281F88866C00C28CA2 /* ContainerVC.swift in Sources */,
 				3B2A43991F877B640053A89B /* TableViewCell.swift in Sources */,
 				3B2A43921F877B5A0053A89B /* BoostVC.swift in Sources */,
 				3B2A43951F877B5F0053A89B /* NetworkSpeedVC.swift in Sources */,
 				3B2A43981F877B640053A89B /* SortFileTableVC.swift in Sources */,
 				3B2A439B1F877B670053A89B /* CustomView.swift in Sources */,
 				3B2A43971F877B5F0053A89B /* WifiVC.swift in Sources */,
-				3B2A439A1F877B670053A89B /* Button.swift in Sources */,
 				3B2A439F1F877B7C0053A89B /* DeviceServices.swift in Sources */,
+				3F30D7271F88866C00C28CA2 /* MenuTableVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -451,12 +466,12 @@
 			name = JunkClean.storyboard;
 			sourceTree = "<group>";
 		};
-		3F673E9B1F82556700E0DA07 /* Main.storyboard */ = {
+		3F673E9B1F82556700E0DA07 /* Dashboard.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				3F673E9C1F82556700E0DA07 /* Base */,
 			);
-			name = Main.storyboard;
+			name = Dashboard.storyboard;
 			sourceTree = "<group>";
 		};
 		FF0E30801F8214FF006CCBA9 /* LaunchScreen.storyboard */ = {
@@ -581,11 +596,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 33YWV4B47P;
+				DEVELOPMENT_TEAM = Z9S7H83RUG;
 				INFOPLIST_FILE = Cleaner/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = BaBaBiBo.Cleaner;
+				PRODUCT_BUNDLE_IDENTIFIER = sampleCleanerbig0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -596,11 +611,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 33YWV4B47P;
+				DEVELOPMENT_TEAM = Z9S7H83RUG;
 				INFOPLIST_FILE = Cleaner/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = BaBaBiBo.Cleaner;
+				PRODUCT_BUNDLE_IDENTIFIER = sampleCleanerbig0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
