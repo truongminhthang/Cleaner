@@ -136,8 +136,7 @@
 				3B2A43891F8779870053A89B /* PieChartView.swift */,
 				3B2A438A1F8779870053A89B /* View.swift */,
 			);
-			name = CustomViews;
-			path = "New Group1";
+			path = CustomViews;
 			sourceTree = "<group>";
 		};
 		3B508FC21F82650C00A15E62 /* Storyboard */ = {
@@ -160,7 +159,8 @@
 				3B2A43871F87790F0053A89B /* SortFileTableVC.swift */,
 				3B2A43861F87790F0053A89B /* TableViewCell.swift */,
 			);
-			path = SortFile;
+			name = SortFile;
+			path = ../ViewControllers/SortFile;
 			sourceTree = "<group>";
 		};
 		3B508FC41F82654A00A15E62 /* Services */ = {
@@ -169,8 +169,7 @@
 				3B2A438D1F8779CF0053A89B /* DataServices.swift */,
 				3B2A438E1F8779CF0053A89B /* DeviceServices.swift */,
 			);
-			name = Services;
-			path = "New Group2";
+			path = Services;
 			sourceTree = "<group>";
 		};
 		FF0E306B1F8214FF006CCBA9 = {
