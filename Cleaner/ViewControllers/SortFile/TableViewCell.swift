@@ -13,6 +13,7 @@ class TableViewCell: UITableViewCell {
     @IBOutlet weak var typeLabel: UILabel!
     @IBOutlet weak var sizeLabel: UILabel!
     @IBOutlet weak var photoImageView: UIImageView!
+     @IBOutlet weak var typeImageView: UIImageView!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

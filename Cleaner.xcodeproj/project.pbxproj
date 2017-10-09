@@ -31,6 +31,19 @@
 		3F30D72B1F88880700C28CA2 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F30D72A1F88880700C28CA2 /* Constants.swift */; };
 		3F673ED91F82560600E0DA07 /* Dashboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F673E9B1F82556700E0DA07 /* Dashboard.storyboard */; };
 		3F673EDC1F8258AB00E0DA07 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F673EDB1F8258AB00E0DA07 /* AppDelegate.swift */; };
+		8475E72E1F88B5D200F34CFC /* data.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8475E7141F88B5D200F34CFC /* data.plist */; };
+		8475E72F1F88B5D200F34CFC /* MacFinder.m in Sources */ = {isa = PBXBuildFile; fileRef = 8475E7181F88B5D200F34CFC /* MacFinder.m */; };
+		8475E7301F88B5D200F34CFC /* SimplePing.m in Sources */ = {isa = PBXBuildFile; fileRef = 8475E71F1F88B5D200F34CFC /* SimplePing.m */; };
+		8475E7311F88B5D200F34CFC /* LANProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 8475E7221F88B5D200F34CFC /* LANProperties.m */; };
+		8475E7321F88B5D200F34CFC /* MACOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 8475E7241F88B5D200F34CFC /* MACOperation.m */; };
+		8475E7331F88B5D200F34CFC /* MMLANScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 8475E7261F88B5D200F34CFC /* MMLANScanner.m */; };
+		8475E7341F88B5D200F34CFC /* NetworkCalculator.m in Sources */ = {isa = PBXBuildFile; fileRef = 8475E7281F88B5D200F34CFC /* NetworkCalculator.m */; };
+		8475E7351F88B5D200F34CFC /* PingOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 8475E72A1F88B5D200F34CFC /* PingOperation.m */; };
+		8475E7361F88B5D200F34CFC /* MMDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 8475E72D1F88B5D200F34CFC /* MMDevice.m */; };
+		8475E73A1F88B7BB00F34CFC /* WifiScanResultVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8475E7391F88B7BA00F34CFC /* WifiScanResultVC.swift */; };
+		8475E73C1F88B7CC00F34CFC /* WifiScanResultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8475E73B1F88B7CC00F34CFC /* WifiScanResultTableViewCell.swift */; };
+		8475E73E1F88B8B400F34CFC /* NetworkScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8475E73D1F88B8B300F34CFC /* NetworkScanner.swift */; };
+		84E39D791F8C3CD9004B77F3 /* ViewControllerHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E39D781F8C3CD9004B77F3 /* ViewControllerHelper.swift */; };
 		FF0E307F1F8214FF006CCBA9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FF0E307E1F8214FF006CCBA9 /* Assets.xcassets */; };
 		FF0E30821F8214FF006CCBA9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF0E30801F8214FF006CCBA9 /* LaunchScreen.storyboard */; };
 		FF0E308D1F8214FF006CCBA9 /* CleanerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0E308C1F8214FF006CCBA9 /* CleanerTests.swift */; };
@@ -62,7 +75,7 @@
 		3B2A43801F8779080053A89B /* DashboardVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DashboardVC.swift; path = Cleaner/ViewControllers/DashboardVC.swift; sourceTree = SOURCE_ROOT; };
 		3B2A43821F8779080053A89B /* JunkCleanVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = JunkCleanVC.swift; path = Cleaner/ViewControllers/JunkCleanVC.swift; sourceTree = SOURCE_ROOT; };
 		3B2A43831F8779080053A89B /* NetworkSpeedVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NetworkSpeedVC.swift; path = Cleaner/ViewControllers/NetworkSpeedVC.swift; sourceTree = SOURCE_ROOT; };
-		3B2A43841F8779080053A89B /* WifiVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = WifiVC.swift; path = Cleaner/ViewControllers/WifiVC.swift; sourceTree = SOURCE_ROOT; };
+		3B2A43841F8779080053A89B /* WifiVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = WifiVC.swift; path = Cleaner/ViewControllers/WifiScan/WifiVC.swift; sourceTree = SOURCE_ROOT; };
 		3B2A43851F8779080053A89B /* BoostVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BoostVC.swift; path = Cleaner/ViewControllers/BoostVC.swift; sourceTree = SOURCE_ROOT; };
 		3B2A43861F87790F0053A89B /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TableViewCell.swift; path = Cleaner/ViewControllers/SortFile/TableViewCell.swift; sourceTree = SOURCE_ROOT; };
 		3B2A43871F87790F0053A89B /* SortFileTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SortFileTableVC.swift; path = Cleaner/ViewControllers/SortFile/SortFileTableVC.swift; sourceTree = SOURCE_ROOT; };
@@ -79,6 +92,31 @@
 		3F30D72A1F88880700C28CA2 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		3F673E9C1F82556700E0DA07 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Dashboard.storyboard; sourceTree = "<group>"; };
 		3F673EDB1F8258AB00E0DA07 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		8475E7141F88B5D200F34CFC /* data.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = data.plist; sourceTree = "<group>"; };
+		8475E7171F88B5D200F34CFC /* MacFinder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MacFinder.h; sourceTree = "<group>"; };
+		8475E7181F88B5D200F34CFC /* MacFinder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MacFinder.m; sourceTree = "<group>"; };
+		8475E71A1F88B5D200F34CFC /* if_arp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = if_arp.h; sourceTree = "<group>"; };
+		8475E71B1F88B5D200F34CFC /* if_ether.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = if_ether.h; sourceTree = "<group>"; };
+		8475E71C1F88B5D200F34CFC /* route.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = route.h; sourceTree = "<group>"; };
+		8475E71E1F88B5D200F34CFC /* SimplePing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimplePing.h; sourceTree = "<group>"; };
+		8475E71F1F88B5D200F34CFC /* SimplePing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimplePing.m; sourceTree = "<group>"; };
+		8475E7211F88B5D200F34CFC /* LANProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LANProperties.h; sourceTree = "<group>"; };
+		8475E7221F88B5D200F34CFC /* LANProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LANProperties.m; sourceTree = "<group>"; };
+		8475E7231F88B5D200F34CFC /* MACOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MACOperation.h; sourceTree = "<group>"; };
+		8475E7241F88B5D200F34CFC /* MACOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MACOperation.m; sourceTree = "<group>"; };
+		8475E7251F88B5D200F34CFC /* MMLANScanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMLANScanner.h; sourceTree = "<group>"; };
+		8475E7261F88B5D200F34CFC /* MMLANScanner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMLANScanner.m; sourceTree = "<group>"; };
+		8475E7271F88B5D200F34CFC /* NetworkCalculator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkCalculator.h; sourceTree = "<group>"; };
+		8475E7281F88B5D200F34CFC /* NetworkCalculator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkCalculator.m; sourceTree = "<group>"; };
+		8475E7291F88B5D200F34CFC /* PingOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PingOperation.h; sourceTree = "<group>"; };
+		8475E72A1F88B5D200F34CFC /* PingOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PingOperation.m; sourceTree = "<group>"; };
+		8475E72C1F88B5D200F34CFC /* MMDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMDevice.h; sourceTree = "<group>"; };
+		8475E72D1F88B5D200F34CFC /* MMDevice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMDevice.m; sourceTree = "<group>"; };
+		8475E7371F88B65600F34CFC /* BridingHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BridingHeader.h; sourceTree = "<group>"; };
+		8475E7391F88B7BA00F34CFC /* WifiScanResultVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WifiScanResultVC.swift; sourceTree = "<group>"; };
+		8475E73B1F88B7CC00F34CFC /* WifiScanResultTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WifiScanResultTableViewCell.swift; sourceTree = "<group>"; };
+		8475E73D1F88B8B300F34CFC /* NetworkScanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkScanner.swift; sourceTree = "<group>"; };
+		84E39D781F8C3CD9004B77F3 /* ViewControllerHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerHelper.swift; sourceTree = "<group>"; };
 		FF0E30741F8214FF006CCBA9 /* Cleaner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cleaner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF0E307E1F8214FF006CCBA9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FF0E30811F8214FF006CCBA9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -123,9 +161,9 @@
 				3B2A43821F8779080053A89B /* JunkCleanVC.swift */,
 				3B2A43801F8779080053A89B /* DashboardVC.swift */,
 				3B2A43831F8779080053A89B /* NetworkSpeedVC.swift */,
-				3B2A43841F8779080053A89B /* WifiVC.swift */,
 				3F30D7261F88866C00C28CA2 /* ContainerVC.swift */,
 				3F30D7251F88866C00C28CA2 /* MenuTableVC.swift */,
+				8475E7381F88B79B00F34CFC /* WifiScan */,
 				3B508FC31F82652B00A15E62 /* SortFile */,
 			);
 			path = ViewControllers;
@@ -180,8 +218,111 @@
 			isa = PBXGroup;
 			children = (
 				3F30D72A1F88880700C28CA2 /* Constants.swift */,
+				84E39D781F8C3CD9004B77F3 /* ViewControllerHelper.swift */,
 			);
 			name = SupportFiles;
+			sourceTree = "<group>";
+		};
+		8475E7111F88B5D200F34CFC /* FrameWorks */ = {
+			isa = PBXGroup;
+			children = (
+				8475E7121F88B5D200F34CFC /* MMLanScan */,
+			);
+			path = FrameWorks;
+			sourceTree = "<group>";
+		};
+		8475E7121F88B5D200F34CFC /* MMLanScan */ = {
+			isa = PBXGroup;
+			children = (
+				8475E7131F88B5D200F34CFC /* Data */,
+				8475E7151F88B5D200F34CFC /* External Libs */,
+				8475E7201F88B5D200F34CFC /* Misc */,
+				8475E72B1F88B5D200F34CFC /* Objects */,
+			);
+			path = MMLanScan;
+			sourceTree = "<group>";
+		};
+		8475E7131F88B5D200F34CFC /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				8475E7141F88B5D200F34CFC /* data.plist */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		8475E7151F88B5D200F34CFC /* External Libs */ = {
+			isa = PBXGroup;
+			children = (
+				8475E7161F88B5D200F34CFC /* MacFinder */,
+				8475E71D1F88B5D200F34CFC /* SimplePing */,
+			);
+			path = "External Libs";
+			sourceTree = "<group>";
+		};
+		8475E7161F88B5D200F34CFC /* MacFinder */ = {
+			isa = PBXGroup;
+			children = (
+				8475E7171F88B5D200F34CFC /* MacFinder.h */,
+				8475E7181F88B5D200F34CFC /* MacFinder.m */,
+				8475E7191F88B5D200F34CFC /* Network Headers */,
+			);
+			path = MacFinder;
+			sourceTree = "<group>";
+		};
+		8475E7191F88B5D200F34CFC /* Network Headers */ = {
+			isa = PBXGroup;
+			children = (
+				8475E71A1F88B5D200F34CFC /* if_arp.h */,
+				8475E71B1F88B5D200F34CFC /* if_ether.h */,
+				8475E71C1F88B5D200F34CFC /* route.h */,
+			);
+			path = "Network Headers";
+			sourceTree = "<group>";
+		};
+		8475E71D1F88B5D200F34CFC /* SimplePing */ = {
+			isa = PBXGroup;
+			children = (
+				8475E71E1F88B5D200F34CFC /* SimplePing.h */,
+				8475E71F1F88B5D200F34CFC /* SimplePing.m */,
+			);
+			path = SimplePing;
+			sourceTree = "<group>";
+		};
+		8475E7201F88B5D200F34CFC /* Misc */ = {
+			isa = PBXGroup;
+			children = (
+				8475E7211F88B5D200F34CFC /* LANProperties.h */,
+				8475E7221F88B5D200F34CFC /* LANProperties.m */,
+				8475E7231F88B5D200F34CFC /* MACOperation.h */,
+				8475E7241F88B5D200F34CFC /* MACOperation.m */,
+				8475E7251F88B5D200F34CFC /* MMLANScanner.h */,
+				8475E7261F88B5D200F34CFC /* MMLANScanner.m */,
+				8475E7271F88B5D200F34CFC /* NetworkCalculator.h */,
+				8475E7281F88B5D200F34CFC /* NetworkCalculator.m */,
+				8475E7291F88B5D200F34CFC /* PingOperation.h */,
+				8475E72A1F88B5D200F34CFC /* PingOperation.m */,
+			);
+			path = Misc;
+			sourceTree = "<group>";
+		};
+		8475E72B1F88B5D200F34CFC /* Objects */ = {
+			isa = PBXGroup;
+			children = (
+				8475E72C1F88B5D200F34CFC /* MMDevice.h */,
+				8475E72D1F88B5D200F34CFC /* MMDevice.m */,
+			);
+			path = Objects;
+			sourceTree = "<group>";
+		};
+		8475E7381F88B79B00F34CFC /* WifiScan */ = {
+			isa = PBXGroup;
+			children = (
+				3B2A43841F8779080053A89B /* WifiVC.swift */,
+				8475E7391F88B7BA00F34CFC /* WifiScanResultVC.swift */,
+				8475E73D1F88B8B300F34CFC /* NetworkScanner.swift */,
+				8475E73B1F88B7CC00F34CFC /* WifiScanResultTableViewCell.swift */,
+			);
+			path = WifiScan;
 			sourceTree = "<group>";
 		};
 		FF0E306B1F8214FF006CCBA9 = {
@@ -207,6 +348,7 @@
 		FF0E30761F8214FF006CCBA9 /* Cleaner */ = {
 			isa = PBXGroup;
 			children = (
+				8475E7111F88B5D200F34CFC /* FrameWorks */,
 				3F673EDB1F8258AB00E0DA07 /* AppDelegate.swift */,
 				3B508FC41F82654A00A15E62 /* Services */,
 				3B508FC21F82650C00A15E62 /* Storyboard */,
@@ -215,6 +357,7 @@
 				3B508FC01F8264BE00A15E62 /* ViewControllers */,
 				3B508FC11F8264EF00A15E62 /* CustomViews */,
 				3F30D7291F8887E100C28CA2 /* SupportFiles */,
+				8475E7371F88B65600F34CFC /* BridingHeader.h */,
 			);
 			path = Cleaner;
 			sourceTree = "<group>";
@@ -349,6 +492,7 @@
 				FF0E30821F8214FF006CCBA9 /* LaunchScreen.storyboard in Resources */,
 				3F30D7241F8885DF00C28CA2 /* Main.storyboard in Resources */,
 				3B2A43A01F877BCD0053A89B /* JunkClean.storyboard in Resources */,
+				8475E72E1F88B5D200F34CFC /* data.plist in Resources */,
 				FF0E307F1F8214FF006CCBA9 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -374,20 +518,32 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8475E73C1F88B7CC00F34CFC /* WifiScanResultTableViewCell.swift in Sources */,
 				3B2A439D1F877B670053A89B /* PieChartView.swift in Sources */,
 				3B2A439E1F877B670053A89B /* View.swift in Sources */,
 				3B2A43931F877B5F0053A89B /* JunkCleanVC.swift in Sources */,
 				3B2A439C1F877B670053A89B /* GradientColorView.swift in Sources */,
 				3B2A43941F877B5F0053A89B /* DashboardVC.swift in Sources */,
+				8475E7301F88B5D200F34CFC /* SimplePing.m in Sources */,
+				8475E7331F88B5D200F34CFC /* MMLANScanner.m in Sources */,
 				3F673EDC1F8258AB00E0DA07 /* AppDelegate.swift in Sources */,
 				3B2A43911F877A010053A89B /* DataServices.swift in Sources */,
+				8475E7361F88B5D200F34CFC /* MMDevice.m in Sources */,
 				3F30D72B1F88880700C28CA2 /* Constants.swift in Sources */,
 				3F30D7281F88866C00C28CA2 /* ContainerVC.swift in Sources */,
+				84E39D791F8C3CD9004B77F3 /* ViewControllerHelper.swift in Sources */,
+				8475E7311F88B5D200F34CFC /* LANProperties.m in Sources */,
+				8475E73A1F88B7BB00F34CFC /* WifiScanResultVC.swift in Sources */,
 				3B2A43991F877B640053A89B /* TableViewCell.swift in Sources */,
+				8475E7321F88B5D200F34CFC /* MACOperation.m in Sources */,
 				3B2A43921F877B5A0053A89B /* BoostVC.swift in Sources */,
 				3B2A43951F877B5F0053A89B /* NetworkSpeedVC.swift in Sources */,
+				8475E73E1F88B8B400F34CFC /* NetworkScanner.swift in Sources */,
 				3B2A43981F877B640053A89B /* SortFileTableVC.swift in Sources */,
+				8475E7351F88B5D200F34CFC /* PingOperation.m in Sources */,
+				8475E72F1F88B5D200F34CFC /* MacFinder.m in Sources */,
 				3B2A439B1F877B670053A89B /* CustomView.swift in Sources */,
+				8475E7341F88B5D200F34CFC /* NetworkCalculator.m in Sources */,
 				3B2A43971F877B5F0053A89B /* WifiVC.swift in Sources */,
 				3B2A439F1F877B7C0053A89B /* DeviceServices.swift in Sources */,
 				3F30D7271F88866C00C28CA2 /* MenuTableVC.swift in Sources */,
@@ -538,6 +694,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OBJC_BRIDGING_HEADER = Cleaner/BridingHeader.h;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -587,6 +744,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = Cleaner/BridingHeader.h;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -596,11 +754,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = Z9S7H83RUG;
+				DEVELOPMENT_TEAM = 33YWV4B47P;
 				INFOPLIST_FILE = Cleaner/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = sampleCleanerbig0;
+				PRODUCT_BUNDLE_IDENTIFIER = cleaner;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -611,11 +769,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = Z9S7H83RUG;
+				DEVELOPMENT_TEAM = 33YWV4B47P;
 				INFOPLIST_FILE = Cleaner/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = sampleCleanerbig0;
+				PRODUCT_BUNDLE_IDENTIFIER = cleaner;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

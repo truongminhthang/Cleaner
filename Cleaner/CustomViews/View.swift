@@ -30,6 +30,16 @@ class Button: UIButton {
     }
 }
 
+@IBDesignable class ImageViewBorder: UIImageView {
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        if cornerRadius == -1 {
+            self.layer.cornerRadius = self.bounds.width < self.bounds.height ? self.bounds.width * 0.5 : self.bounds.height * 0.5
+        }
+    }
+}
+
+
 
 fileprivate class Keys {
     static let TOP_BORDER = "top-border"
@@ -115,6 +125,25 @@ extension UIView {
         }
         set {
             layer.shadowRadius = newValue
+        }
+    }
+    
+    @IBInspectable var bottomBorderWidth: CGFloat {
+        get {
+            return 0.0   // Just to satisfy property
+        }
+        set {
+            let border = UIView()
+            border.backgroundColor = UIColor.white
+            border.frame = CGRect(x: 0.0, y: bounds.size.height, width: bounds.size.width, height: newValue)
+            border.translatesAutoresizingMaskIntoConstraints = false
+            border.tag = 100
+            self.addSubview(border)
+            let views = ["line": border]
+            
+            let metrics = ["lineWidth": newValue]
+            addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "|[line]|", options: [], metrics: nil, views: views))
+            addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[line(==lineWidth)]|", options: [], metrics: metrics, views: views))
         }
     }
     

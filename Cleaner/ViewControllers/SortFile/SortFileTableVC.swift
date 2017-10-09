@@ -74,17 +74,19 @@ class SortFileTableVC: UITableViewController {
         cell.photoImageView.image = DataServices.shared.imageArray[indexPath.row].image
         let sizeByte = (DataServices.shared.imageArray[indexPath.row].size)
         let imageSize = ByteCountFormatter.string(fromByteCount: Int64(sizeByte), countStyle: .file)
-        cell.sizeLabel.text = "\(imageSize) >"
+        cell.sizeLabel.text = "\(imageSize)"
         
         if DataServices.shared.imageArray[indexPath.row].type == "video" {
-            cell.typeLabel.text = "📹 Video "
+            cell.typeLabel.text = " Video "
             cell.typeLabel.textColor = #colorLiteral(red: 0, green: 0.5898008943, blue: 1, alpha: 1)
             cell.sizeLabel.textColor = #colorLiteral(red: 0, green: 0.5898008943, blue: 1, alpha: 1)
+            cell.typeImageView.image = #imageLiteral(resourceName: "video")
         } else {
-             cell.typeLabel.text = "📷 Photo "
-            cell.typeLabel.textColor = #colorLiteral(red: 0.4354409575, green: 0.8154750466, blue: 0.2247968912, alpha: 1)
-            cell.sizeLabel.textColor = #colorLiteral(red: 0.4354409575, green: 0.8154750466, blue: 0.2247968912, alpha: 1)
             
+             cell.typeLabel.text =  "Photo "
+            cell.typeLabel.textColor = #colorLiteral(red: 0.3568627451, green: 0.7411764706, blue: 0.168627451, alpha: 1)
+            cell.sizeLabel.textColor = #colorLiteral(red: 0.3568627451, green: 0.7411764706, blue: 0.168627451, alpha: 1)
+            cell.typeImageView.image = #imageLiteral(resourceName: "Image")
         }
      return cell
      }

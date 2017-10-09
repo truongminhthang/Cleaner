@@ -15,7 +15,7 @@
         <!--ContainerVC-->
         <scene sceneID="2b6-c5-9jn">
             <objects>
-                <viewController id="6yL-Hf-nyy" customClass="ContainerVC" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="6yL-Hf-nyy" customClass="ContainerVC" customModule="Cleaner" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="1gW-Cc-Y1x">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

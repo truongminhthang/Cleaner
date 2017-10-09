@@ -4,7 +4,6 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -26,24 +25,24 @@
                             <color key="backgroundColor" red="0.94917863609999997" green="0.7692083716" blue="0.77964895960000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </view>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="photoCell" rowHeight="90" id="Dy2-fq-NWO" customClass="TableViewCell" customModule="Cleaner" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="photoCell" editingAccessoryType="disclosureIndicator" rowHeight="90" id="Dy2-fq-NWO" customClass="TableViewCell" customModule="Cleaner" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="90"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Dy2-fq-NWO" id="0kn-1F-PKP">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="90"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="342" height="90"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Vd9-on-jNS">
-                                            <rect key="frame" x="8" y="0.0" width="90" height="90"/>
+                                            <rect key="frame" x="8" y="10.5" width="70" height="70.5"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="90" id="cUN-7k-ycY"/>
-                                                <constraint firstAttribute="width" constant="90" id="yWX-sF-kxQ"/>
+                                                <constraint firstAttribute="height" constant="70" id="cUN-7k-ycY"/>
+                                                <constraint firstAttribute="width" constant="70" id="yWX-sF-kxQ"/>
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gnx-Ag-O1U">
-                                            <rect key="frame" x="121" y="32" width="50" height="26"/>
+                                            <rect key="frame" x="124" y="32" width="50" height="26"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="21"/>
-                                            <color key="textColor" red="0.49048161506652832" green="0.90563923120498657" blue="0.11420545727014542" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="textColor" red="0.35686274509803922" green="0.74117647058823533" blue="0.16862745098039217" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="color" keyPath="imageLabelColor">
@@ -51,28 +50,44 @@
                                                 </userDefinedRuntimeAttribute>
                                             </userDefinedRuntimeAttributes>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="73o-JD-YFl">
-                                            <rect key="frame" x="317" y="32" width="50" height="26"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="73o-JD-YFl">
+                                            <rect key="frame" x="284" y="32" width="50" height="26"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                             <color key="textColor" red="0.40916907787322998" green="0.76304703950881958" blue="0.10624640434980392" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="sti-kt-a0b">
+                                            <rect key="frame" x="86" y="30" width="30" height="26"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="30" id="Tmh-js-7yU"/>
+                                                <constraint firstAttribute="height" constant="26" id="dId-JP-bjb"/>
+                                            </constraints>
+                                        </imageView>
                                     </subviews>
                                     <color key="backgroundColor" red="0.94527655839920044" green="0.76529973745346069" blue="0.77573329210281372" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
-                                        <constraint firstAttribute="bottomMargin" secondItem="gnx-Ag-O1U" secondAttribute="bottom" constant="23.5" id="4Zw-pV-Z8S"/>
+                                        <constraint firstItem="gnx-Ag-O1U" firstAttribute="leading" secondItem="sti-kt-a0b" secondAttribute="trailing" constant="8" id="4fx-6n-7S2"/>
+                                        <constraint firstItem="gnx-Ag-O1U" firstAttribute="top" secondItem="0kn-1F-PKP" secondAttribute="topMargin" constant="24" id="6oR-Da-5Ca"/>
                                         <constraint firstItem="73o-JD-YFl" firstAttribute="trailing" secondItem="0kn-1F-PKP" secondAttribute="trailingMargin" id="7L5-Ta-ABx"/>
-                                        <constraint firstItem="gnx-Ag-O1U" firstAttribute="top" secondItem="0kn-1F-PKP" secondAttribute="topMargin" constant="24" id="BEg-M3-UqR"/>
+                                        <constraint firstItem="73o-JD-YFl" firstAttribute="baseline" secondItem="gnx-Ag-O1U" secondAttribute="baseline" id="JBZ-i3-aSD"/>
+                                        <constraint firstItem="sti-kt-a0b" firstAttribute="top" secondItem="0kn-1F-PKP" secondAttribute="topMargin" constant="22" id="LW0-rb-lEh"/>
+                                        <constraint firstItem="sti-kt-a0b" firstAttribute="leading" secondItem="Vd9-on-jNS" secondAttribute="trailing" constant="8" id="UIG-jF-oY8"/>
                                         <constraint firstItem="Vd9-on-jNS" firstAttribute="leading" secondItem="0kn-1F-PKP" secondAttribute="leading" constant="8" id="Ua2-EI-V79"/>
-                                        <constraint firstItem="gnx-Ag-O1U" firstAttribute="leading" secondItem="Vd9-on-jNS" secondAttribute="trailing" constant="23" id="VXq-g9-foC"/>
-                                        <constraint firstItem="73o-JD-YFl" firstAttribute="baseline" secondItem="gnx-Ag-O1U" secondAttribute="baseline" id="YzQ-z7-kBt"/>
-                                        <constraint firstAttribute="bottom" secondItem="Vd9-on-jNS" secondAttribute="bottom" id="Z7F-ug-CQ9"/>
+                                        <constraint firstAttribute="bottom" secondItem="Vd9-on-jNS" secondAttribute="bottom" constant="9" id="Z7F-ug-CQ9"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="gnx-Ag-O1U" secondAttribute="bottom" constant="24" id="ngl-Zz-8It"/>
                                     </constraints>
                                 </tableViewCellContentView>
-                                <color key="backgroundColor" red="0.9365198016166687" green="0.53027892112731934" blue="0.52608883380889893" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.94527655840000002" green="0.76529973750000002" blue="0.77573329209999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="tintColor" red="0.40916907787322998" green="0.76304703950881958" blue="0.10624640434980392" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="bottomBorderWidth">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <outlet property="photoImageView" destination="Vd9-on-jNS" id="62U-H1-3E3"/>
                                     <outlet property="sizeLabel" destination="73o-JD-YFl" id="Jx3-xx-g85"/>
+                                    <outlet property="typeImageView" destination="sti-kt-a0b" id="d8f-DT-YZz"/>
                                     <outlet property="typeLabel" destination="gnx-Ag-O1U" id="ucp-Oe-Lk9"/>
                                 </connections>
                             </tableViewCell>
@@ -128,7 +143,7 @@
                     <viewLayoutGuide key="safeArea" id="HMQ-yo-e1i"/>
                 </view>
             </objects>
-            <point key="canvasLocation" x="1161" y="133"/>
+            <point key="canvasLocation" x="1160.8" y="132.68365817091455"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="9E6-Zs-uwi">
