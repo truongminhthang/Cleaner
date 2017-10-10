@@ -48,6 +48,7 @@
 		FF0E30821F8214FF006CCBA9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF0E30801F8214FF006CCBA9 /* LaunchScreen.storyboard */; };
 		FF0E308D1F8214FF006CCBA9 /* CleanerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0E308C1F8214FF006CCBA9 /* CleanerTests.swift */; };
 		FF0E30981F8214FF006CCBA9 /* CleanerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0E30971F8214FF006CCBA9 /* CleanerUITests.swift */; };
+		FFD68E411F8CCEED00B1AC9A /* UrlExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD68E401F8CCEED00B1AC9A /* UrlExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -127,6 +128,7 @@
 		FF0E30931F8214FF006CCBA9 /* CleanerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CleanerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF0E30971F8214FF006CCBA9 /* CleanerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CleanerUITests.swift; sourceTree = "<group>"; };
 		FF0E30991F8214FF006CCBA9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FFD68E401F8CCEED00B1AC9A /* UrlExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrlExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -217,6 +219,7 @@
 		3F30D7291F8887E100C28CA2 /* SupportFiles */ = {
 			isa = PBXGroup;
 			children = (
+				FFD68E401F8CCEED00B1AC9A /* UrlExtension.swift */,
 				3F30D72A1F88880700C28CA2 /* Constants.swift */,
 				84E39D781F8C3CD9004B77F3 /* ViewControllerHelper.swift */,
 			);
@@ -545,6 +548,7 @@
 				3B2A439B1F877B670053A89B /* CustomView.swift in Sources */,
 				8475E7341F88B5D200F34CFC /* NetworkCalculator.m in Sources */,
 				3B2A43971F877B5F0053A89B /* WifiVC.swift in Sources */,
+				FFD68E411F8CCEED00B1AC9A /* UrlExtension.swift in Sources */,
 				3B2A439F1F877B7C0053A89B /* DeviceServices.swift in Sources */,
 				3F30D7271F88866C00C28CA2 /* MenuTableVC.swift in Sources */,
 			);
@@ -754,11 +758,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 33YWV4B47P;
+				DEVELOPMENT_TEAM = 56AJJ634ZU;
 				INFOPLIST_FILE = Cleaner/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = cleaner;
+				PRODUCT_BUNDLE_IDENTIFIER = bababibo.Cleaner;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -769,11 +773,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 33YWV4B47P;
+				DEVELOPMENT_TEAM = 56AJJ634ZU;
 				INFOPLIST_FILE = Cleaner/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = cleaner;
+				PRODUCT_BUNDLE_IDENTIFIER = bababibo.Cleaner;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

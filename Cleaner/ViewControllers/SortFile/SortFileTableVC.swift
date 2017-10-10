@@ -17,20 +17,33 @@ class SortFileTableVC: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         registerNotification()
-        DataServices.shared.updateImageArray()
-      
+        requestAuthorizationIfNeed()
+    }
+    
+    func requestAuthorizationIfNeed() {
+        PHPhotoLibrary.requestAuthorization { (status) in
+            switch status {
+            case .authorized:
+                if DataServices.shared.imageArray.count == 0 {
+                    DataServices.shared.updateImageArray()
+                }
+            default: return
+            
+            }
+        }
     }
     
     func registerNotification() {
         NotificationCenter.default.addObserver(self, selector: #selector(reloadData), name: NSNotification.Name.init("imageArrayUpdate"), object: nil)
     }
-    
     deinit {
         NotificationCenter.default.removeObserver(self)
     }
     
     @objc func reloadData() {
-        tableView.reloadData()
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
     }
    
     override func didReceiveMemoryWarning() {
@@ -73,8 +86,12 @@ class SortFileTableVC: UITableViewController {
      let cell = tableView.dequeueReusableCell(withIdentifier: "photoCell", for: indexPath) as! TableViewCell
         cell.photoImageView.image = DataServices.shared.imageArray[indexPath.row].image
         let sizeByte = (DataServices.shared.imageArray[indexPath.row].size)
-        let imageSize = ByteCountFormatter.string(fromByteCount: Int64(sizeByte), countStyle: .file)
-        cell.sizeLabel.text = "\(imageSize)"
+        if sizeByte == 0 {
+            cell.sizeLabel.text = "Calculating"
+        } else {
+            let imageSize = ByteCountFormatter.string(fromByteCount: Int64(sizeByte), countStyle: .file)
+            cell.sizeLabel.text = "\(imageSize)"
+        }
         
         if DataServices.shared.imageArray[indexPath.row].type == "video" {
             cell.typeLabel.text = " Video "
