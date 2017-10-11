@@ -44,6 +44,7 @@
 		8475E73C1F88B7CC00F34CFC /* WifiScanResultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8475E73B1F88B7CC00F34CFC /* WifiScanResultTableViewCell.swift */; };
 		8475E73E1F88B8B400F34CFC /* NetworkScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8475E73D1F88B8B300F34CFC /* NetworkScanner.swift */; };
 		84E39D791F8C3CD9004B77F3 /* ViewControllerHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E39D781F8C3CD9004B77F3 /* ViewControllerHelper.swift */; };
+		84FE32D41F8D99A300132318 /* DetailImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FE32D31F8D99A300132318 /* DetailImage.swift */; };
 		FF0E307F1F8214FF006CCBA9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FF0E307E1F8214FF006CCBA9 /* Assets.xcassets */; };
 		FF0E30821F8214FF006CCBA9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF0E30801F8214FF006CCBA9 /* LaunchScreen.storyboard */; };
 		FF0E308D1F8214FF006CCBA9 /* CleanerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0E308C1F8214FF006CCBA9 /* CleanerTests.swift */; };
@@ -117,6 +118,7 @@
 		8475E73B1F88B7CC00F34CFC /* WifiScanResultTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WifiScanResultTableViewCell.swift; sourceTree = "<group>"; };
 		8475E73D1F88B8B300F34CFC /* NetworkScanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkScanner.swift; sourceTree = "<group>"; };
 		84E39D781F8C3CD9004B77F3 /* ViewControllerHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerHelper.swift; sourceTree = "<group>"; };
+		84FE32D31F8D99A300132318 /* DetailImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DetailImage.swift; path = Cleaner/ViewControllers/SortFile/DetailImage.swift; sourceTree = SOURCE_ROOT; };
 		FF0E30741F8214FF006CCBA9 /* Cleaner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cleaner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF0E307E1F8214FF006CCBA9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FF0E30811F8214FF006CCBA9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -198,6 +200,7 @@
 		3B508FC31F82652B00A15E62 /* SortFile */ = {
 			isa = PBXGroup;
 			children = (
+				84FE32D31F8D99A300132318 /* DetailImage.swift */,
 				3B2A43871F87790F0053A89B /* SortFileTableVC.swift */,
 				3B2A43861F87790F0053A89B /* TableViewCell.swift */,
 			);
@@ -538,6 +541,7 @@
 				8475E7321F88B5D200F34CFC /* MACOperation.m in Sources */,
 				3B2A43921F877B5A0053A89B /* BoostVC.swift in Sources */,
 				3B2A43951F877B5F0053A89B /* NetworkSpeedVC.swift in Sources */,
+				84FE32D41F8D99A300132318 /* DetailImage.swift in Sources */,
 				8475E73E1F88B8B400F34CFC /* NetworkScanner.swift in Sources */,
 				3B2A43981F877B640053A89B /* SortFileTableVC.swift in Sources */,
 				8475E7351F88B5D200F34CFC /* PingOperation.m in Sources */,

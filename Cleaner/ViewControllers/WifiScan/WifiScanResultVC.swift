@@ -10,11 +10,9 @@ import UIKit
 import Foundation
 
 class WifiScanResultVC: UIViewController, UITableViewDataSource, UITableViewDelegate, NetworkScannerDelegate  {
+   
+    @IBOutlet weak var spinner: UIActivityIndicatorView!
 
-    
-    
-    
-    
     @IBOutlet weak var resultLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
     var networkScanner: NetworkScanner!
@@ -28,7 +26,7 @@ class WifiScanResultVC: UIViewController, UITableViewDataSource, UITableViewDele
         self.networkScanner.scan()
         //Add observers to monitor specific values on networkScanner. On change of those values MainVC UI will be updated
         self.addObserversForKVO()
-        
+        self.spinner.startAnimating()
     }
     
     override func didReceiveMemoryWarning() {
@@ -53,7 +51,7 @@ class WifiScanResultVC: UIViewController, UITableViewDataSource, UITableViewDele
     
     
     @IBAction func reScan(_ sender: UIButton) {
-        
+        self.spinner.startAnimating()
         self.networkScanner.scan()
     }
     
@@ -62,6 +60,8 @@ class WifiScanResultVC: UIViewController, UITableViewDataSource, UITableViewDele
     func networkScannerIPSearchFinished() {
         showAlert(vc: self, title: "Scan Finished", message: "Number of devices connected to the Local Area Network : \(self.networkScanner.connectedDevices.count)")
         resultLabel.text = "There are \(self.networkScanner.connectedDevices.count) connected to  \( self.networkScanner.ssidName ) "
+        self.spinner.stopAnimating()
+        self.spinner.hidesWhenStopped = true
     }
     
     func networkScannerIPSearchCancelled() {

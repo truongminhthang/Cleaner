@@ -224,6 +224,21 @@
                                 <rect key="frame" x="0.0" y="182" width="375" height="485"/>
                                 <color key="backgroundColor" red="0.97346121070000002" green="0.82357507939999997" blue="0.82939440009999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="sectionIndexBackgroundColor" red="0.97346121070000002" green="0.82357507939999997" blue="0.82939440009999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <view key="tableFooterView" contentMode="scaleToFill" id="EzP-TV-7rj">
+                                    <rect key="frame" x="0.0" y="101" width="375" height="93"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <subviews>
+                                        <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="5hs-EN-uAU" userLabel="spinner">
+                                            <rect key="frame" x="178" y="37" width="20" height="20"/>
+                                            <color key="color" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </activityIndicatorView>
+                                    </subviews>
+                                    <color key="backgroundColor" red="0.97363299131393433" green="0.82302659749984741" blue="0.82567816972732544" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <constraints>
+                                        <constraint firstItem="5hs-EN-uAU" firstAttribute="centerY" secondItem="EzP-TV-7rj" secondAttribute="centerY" id="00Z-xu-bT3"/>
+                                        <constraint firstItem="5hs-EN-uAU" firstAttribute="centerX" secondItem="EzP-TV-7rj" secondAttribute="centerX" id="YYa-o5-raZ"/>
+                                    </constraints>
+                                </view>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="DeviceCell" rowHeight="73" id="Mi1-DC-INf" customClass="WifiScanResultTableViewCell" customModule="Cleaner" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="73"/>
@@ -344,12 +359,13 @@
                     </view>
                     <connections>
                         <outlet property="resultLabel" destination="R59-vO-lG0" id="DSE-dZ-hLQ"/>
+                        <outlet property="spinner" destination="5hs-EN-uAU" id="qHq-YG-cHP"/>
                         <outlet property="tableView" destination="QvS-Yv-PiJ" id="EV4-9j-Ex5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pkV-bG-fFy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1188" y="-63.418290854572717"/>
+            <point key="canvasLocation" x="1187.5" y="-63.5"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Mfw-Ez-kAC">

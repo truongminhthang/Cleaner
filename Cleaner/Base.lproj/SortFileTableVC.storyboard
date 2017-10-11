@@ -89,6 +89,7 @@
                                     <outlet property="sizeLabel" destination="73o-JD-YFl" id="Jx3-xx-g85"/>
                                     <outlet property="typeImageView" destination="sti-kt-a0b" id="d8f-DT-YZz"/>
                                     <outlet property="typeLabel" destination="gnx-Ag-O1U" id="ucp-Oe-Lk9"/>
+                                    <segue destination="yNm-jL-XCT" kind="show" id="Bar-3y-9b1"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -145,20 +146,80 @@
             </objects>
             <point key="canvasLocation" x="1160.8" y="132.68365817091455"/>
         </scene>
-        <!--View Controller-->
+        <!--Images-->
         <scene sceneID="9E6-Zs-uwi">
             <objects>
-                <viewController id="yNm-jL-XCT" sceneMemberID="viewController">
+                <viewController title="Images" id="yNm-jL-XCT" customClass="DetailImage" customModule="Cleaner" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Gu5-EU-1Tp">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="OTj-Bh-492">
+                                <rect key="frame" x="0.0" y="557" width="375" height="110"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mEH-wC-10A">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="30"/>
+                                        <color key="backgroundColor" red="0.94527655839920044" green="0.76529973745346069" blue="0.77573329210281372" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="UAo-Oo-MTw"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7oC-Kj-Trz">
+                                        <rect key="frame" x="0.0" y="30" width="375" height="30"/>
+                                        <color key="backgroundColor" red="0.94527655839920044" green="0.76529973745346069" blue="0.77573329210281372" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="vY5-BT-gwb"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" multipleTouchEnabled="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S7x-1i-hjf">
+                                        <rect key="frame" x="0.0" y="60" width="375" height="50"/>
+                                        <color key="backgroundColor" red="0.94917863607406616" green="0.76920837163925171" blue="0.77964895963668823" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="MD4-p2-616"/>
+                                        </constraints>
+                                        <state key="normal" title="DELETE!"/>
+                                        <connections>
+                                            <action selector="deleteButton:" destination="yNm-jL-XCT" eventType="touchUpInside" id="WHU-10-cnr"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zN5-Gg-nkU">
+                                <rect key="frame" x="0.0" y="64" width="375" height="494"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="494" id="Zjc-y2-vXw"/>
+                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="375" id="qxE-yn-Foy"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.94527655840000002" green="0.76529973750000002" blue="0.77573329209999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="zN5-Gg-nkU" firstAttribute="top" secondItem="Gu5-EU-1Tp" secondAttribute="top" constant="64" id="OjJ-7B-uC3"/>
+                            <constraint firstItem="zN5-Gg-nkU" firstAttribute="leading" secondItem="loW-x4-q3g" secondAttribute="leading" id="Z7m-bA-orK"/>
+                            <constraint firstItem="loW-x4-q3g" firstAttribute="bottom" secondItem="OTj-Bh-492" secondAttribute="bottom" id="adr-5q-kfR"/>
+                            <constraint firstItem="zN5-Gg-nkU" firstAttribute="trailing" secondItem="loW-x4-q3g" secondAttribute="trailing" id="bHD-a7-ZlS"/>
+                            <constraint firstItem="OTj-Bh-492" firstAttribute="leading" secondItem="loW-x4-q3g" secondAttribute="leading" id="kYM-l9-Z8O"/>
+                            <constraint firstItem="loW-x4-q3g" firstAttribute="trailing" secondItem="OTj-Bh-492" secondAttribute="trailing" id="wEu-Zx-NEJ"/>
+                            <constraint firstItem="loW-x4-q3g" firstAttribute="bottom" secondItem="zN5-Gg-nkU" secondAttribute="bottom" constant="109" id="zxs-WV-zxL"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="loW-x4-q3g"/>
                     </view>
+                    <connections>
+                        <outlet property="creationDayLabel" destination="7oC-Kj-Trz" id="wCH-ia-uPN"/>
+                        <outlet property="detailImageView" destination="zN5-Gg-nkU" id="Cs2-oo-dgb"/>
+                        <outlet property="hightForImageView" destination="Zjc-y2-vXw" id="Rvw-6h-BiP"/>
+                        <outlet property="sizeLabel" destination="mEH-wC-10A" id="l2K-BQ-Kwx"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PtP-Ec-fE1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2030" y="133"/>
+            <point key="canvasLocation" x="1960.8" y="132.68365817091455"/>
         </scene>
     </scenes>
 </document>
