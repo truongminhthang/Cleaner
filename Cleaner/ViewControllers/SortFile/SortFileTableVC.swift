@@ -107,8 +107,9 @@ class SortFileTableVC: UITableViewController {
         }
      return cell
      }
-    
 
-
-    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        DataServices.shared.indexPathInSelectedRow = indexPath.row
+    }
+  
 }

@@ -14,7 +14,7 @@ import os.log
 
 class DataServices {
     static let shared: DataServices = DataServices()
-    
+      var indexPathInSelectedRow: Int = 0
     private var _imageArray: [(image:UIImage, size: Double, type: String)]?
     
     var imageArray: [(image:UIImage, size: Double, type: String)] {
@@ -53,6 +53,7 @@ class DataServices {
         }()
         
         let fetchResult: PHFetchResult = PHAsset.fetchAssets(with: fetchOption)
+        
         guard fetchResult.count > 0 else {
             print("You have no Photos !")
             return
@@ -61,7 +62,7 @@ class DataServices {
         let assetArray = fetchResult.objects(at: IndexSet(0...(fetchResult.count - 1)))
         DispatchQueue.global(qos: .utility).async {
             for (index, asset) in assetArray.enumerated() {
-                    PHCachingImageManager.default().requestImage(for: asset, targetSize: CGSize(width: 90, height: 90), contentMode:.aspectFill, options: requestOption, resultHandler: { (image, dictionary) in
+                    PHCachingImageManager.default().requestImage(for: asset, targetSize: CGSize(width: 375, height: 494), contentMode:.aspectFill, options: requestOption, resultHandler: { (image, dictionary) in
                         
                         guard let aImage = image, dictionary != nil else {
                             return
@@ -89,7 +90,6 @@ class DataServices {
                             })
                         }
                     })
-               
             }
             
             DispatchQueue.main.async {
@@ -102,52 +102,7 @@ class DataServices {
 
         
     }
-    //    func fetchVideos() {
-    //        let requestOption : PHImageRequestOptions = {
-    //            let requestOptions = PHImageRequestOptions()
-    //            requestOptions.isSynchronous = true
-    //            requestOptions.deliveryMode = .highQualityFormat
-    //            return requestOptions
-    //        }()
-    //
-    //        let fetchOption: PHFetchOptions = {
-    //            let fetchOptions = PHFetchOptions()
-    //            fetchOptions.sortDescriptors =  [NSSortDescriptor(key: "creationDate", ascending: false)]
-    //            return fetchOptions
-    //        }()
-    //
-    //        let fetchResult: PHFetchResult = PHAsset.fetchAssets(with: .video , options: fetchOption)
-    //        guard fetchResult.count > 0 else {
-    //            print("You have no Video !")
-    //            return
-    //        }
-    //
-    //        _videosArray = Array(repeating:(image:UIImage(), size: 0.0), count: fetchResult.count)
-    //        let assetArray = fetchResult.objects(at: IndexSet(0...(fetchResult.count - 1)))
-    //        for (index, asset) in assetArray.enumerated() {
-    //            PHCachingImageManager.default().requestImage(for: asset, targetSize: CGSize(width: 90, height: 90), contentMode:.aspectFill, options: requestOption, resultHandler: { (image,  dictionary) in
-    //
-    //                guard let avideo = image, dictionary != nil else {
-    //                    return
-    //                }
-    //           //     self._imageArray?[index].image = avideo
-    //                self._videosArray?[index].image = avideo
-    //
-    //            })
-    //
-    //            PHCachingImageManager.default().requestImageData(for: asset, options: requestOption, resultHandler: { (data, string, orientation, dictionary) in
-    //                guard data != nil else {
-    //                    return
-    //                }
-    //                self._videosArray?[index].size = Double(data!.count)
-    //
-    //
-    //            })
-    //        }
-    //
-    //        _videosArray?.sort(by: {$0.size > $1.size})
-    //        NotificationCenter.default.post(name: NSNotification.Name.init("imageArrayUpdate"), object: nil)
-    //    }
+   
     
 }
 

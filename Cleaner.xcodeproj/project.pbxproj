@@ -31,6 +31,8 @@
 		3F30D72B1F88880700C28CA2 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F30D72A1F88880700C28CA2 /* Constants.swift */; };
 		3F673ED91F82560600E0DA07 /* Dashboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F673E9B1F82556700E0DA07 /* Dashboard.storyboard */; };
 		3F673EDC1F8258AB00E0DA07 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F673EDB1F8258AB00E0DA07 /* AppDelegate.swift */; };
+		842C54FD1F8DD226006F2B16 /* DetailImageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842C54FC1F8DD226006F2B16 /* DetailImageVC.swift */; };
+		842C54FE1F8DD35E006F2B16 /* DataServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2A438D1F8779CF0053A89B /* DataServices.swift */; };
 		8475E72E1F88B5D200F34CFC /* data.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8475E7141F88B5D200F34CFC /* data.plist */; };
 		8475E72F1F88B5D200F34CFC /* MacFinder.m in Sources */ = {isa = PBXBuildFile; fileRef = 8475E7181F88B5D200F34CFC /* MacFinder.m */; };
 		8475E7301F88B5D200F34CFC /* SimplePing.m in Sources */ = {isa = PBXBuildFile; fileRef = 8475E71F1F88B5D200F34CFC /* SimplePing.m */; };
@@ -93,6 +95,7 @@
 		3F30D72A1F88880700C28CA2 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		3F673E9C1F82556700E0DA07 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Dashboard.storyboard; sourceTree = "<group>"; };
 		3F673EDB1F8258AB00E0DA07 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		842C54FC1F8DD226006F2B16 /* DetailImageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DetailImageVC.swift; path = ../../../../../../Desktop/cloner2/Cleaner/ViewControllers/SortFile/DetailImageVC.swift; sourceTree = "<group>"; };
 		8475E7141F88B5D200F34CFC /* data.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = data.plist; sourceTree = "<group>"; };
 		8475E7171F88B5D200F34CFC /* MacFinder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MacFinder.h; sourceTree = "<group>"; };
 		8475E7181F88B5D200F34CFC /* MacFinder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MacFinder.m; sourceTree = "<group>"; };
@@ -200,6 +203,7 @@
 		3B508FC31F82652B00A15E62 /* SortFile */ = {
 			isa = PBXGroup;
 			children = (
+				842C54FC1F8DD226006F2B16 /* DetailImageVC.swift */,
 				3B2A43871F87790F0053A89B /* SortFileTableVC.swift */,
 				3B2A43861F87790F0053A89B /* TableViewCell.swift */,
 			);
@@ -546,6 +550,7 @@
 				8475E7351F88B5D200F34CFC /* PingOperation.m in Sources */,
 				8475E72F1F88B5D200F34CFC /* MacFinder.m in Sources */,
 				3B2A439B1F877B670053A89B /* CustomView.swift in Sources */,
+				842C54FD1F8DD226006F2B16 /* DetailImageVC.swift in Sources */,
 				8475E7341F88B5D200F34CFC /* NetworkCalculator.m in Sources */,
 				3B2A43971F877B5F0053A89B /* WifiVC.swift in Sources */,
 				FFD68E411F8CCEED00B1AC9A /* UrlExtension.swift in Sources */,
@@ -559,6 +564,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FF0E308D1F8214FF006CCBA9 /* CleanerTests.swift in Sources */,
+				842C54FE1F8DD35E006F2B16 /* DataServices.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -758,7 +764,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 56AJJ634ZU;
+				DEVELOPMENT_TEAM = 33YWV4B47P;
 				INFOPLIST_FILE = Cleaner/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -773,7 +779,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 56AJJ634ZU;
+				DEVELOPMENT_TEAM = 33YWV4B47P;
 				INFOPLIST_FILE = Cleaner/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
