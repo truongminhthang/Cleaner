@@ -31,7 +31,6 @@
 		3F30D72B1F88880700C28CA2 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F30D72A1F88880700C28CA2 /* Constants.swift */; };
 		3F673ED91F82560600E0DA07 /* Dashboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F673E9B1F82556700E0DA07 /* Dashboard.storyboard */; };
 		3F673EDC1F8258AB00E0DA07 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F673EDB1F8258AB00E0DA07 /* AppDelegate.swift */; };
-		842C54FD1F8DD226006F2B16 /* DetailImageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842C54FC1F8DD226006F2B16 /* DetailImageVC.swift */; };
 		842C54FE1F8DD35E006F2B16 /* DataServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2A438D1F8779CF0053A89B /* DataServices.swift */; };
 		8475E72E1F88B5D200F34CFC /* data.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8475E7141F88B5D200F34CFC /* data.plist */; };
 		8475E72F1F88B5D200F34CFC /* MacFinder.m in Sources */ = {isa = PBXBuildFile; fileRef = 8475E7181F88B5D200F34CFC /* MacFinder.m */; };
@@ -45,6 +44,7 @@
 		8475E73A1F88B7BB00F34CFC /* WifiScanResultVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8475E7391F88B7BA00F34CFC /* WifiScanResultVC.swift */; };
 		8475E73C1F88B7CC00F34CFC /* WifiScanResultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8475E73B1F88B7CC00F34CFC /* WifiScanResultTableViewCell.swift */; };
 		8475E73E1F88B8B400F34CFC /* NetworkScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8475E73D1F88B8B300F34CFC /* NetworkScanner.swift */; };
+		8498CDB41F9186EF00118C98 /* DetailImageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8498CDB31F9186EF00118C98 /* DetailImageVC.swift */; };
 		84E39D791F8C3CD9004B77F3 /* ViewControllerHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E39D781F8C3CD9004B77F3 /* ViewControllerHelper.swift */; };
 		FF0E307F1F8214FF006CCBA9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FF0E307E1F8214FF006CCBA9 /* Assets.xcassets */; };
 		FF0E30821F8214FF006CCBA9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF0E30801F8214FF006CCBA9 /* LaunchScreen.storyboard */; };
@@ -95,7 +95,6 @@
 		3F30D72A1F88880700C28CA2 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		3F673E9C1F82556700E0DA07 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Dashboard.storyboard; sourceTree = "<group>"; };
 		3F673EDB1F8258AB00E0DA07 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		842C54FC1F8DD226006F2B16 /* DetailImageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DetailImageVC.swift; path = ../../../../../../Desktop/cloner2/Cleaner/ViewControllers/SortFile/DetailImageVC.swift; sourceTree = "<group>"; };
 		8475E7141F88B5D200F34CFC /* data.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = data.plist; sourceTree = "<group>"; };
 		8475E7171F88B5D200F34CFC /* MacFinder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MacFinder.h; sourceTree = "<group>"; };
 		8475E7181F88B5D200F34CFC /* MacFinder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MacFinder.m; sourceTree = "<group>"; };
@@ -120,6 +119,7 @@
 		8475E7391F88B7BA00F34CFC /* WifiScanResultVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WifiScanResultVC.swift; sourceTree = "<group>"; };
 		8475E73B1F88B7CC00F34CFC /* WifiScanResultTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WifiScanResultTableViewCell.swift; sourceTree = "<group>"; };
 		8475E73D1F88B8B300F34CFC /* NetworkScanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkScanner.swift; sourceTree = "<group>"; };
+		8498CDB31F9186EF00118C98 /* DetailImageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailImageVC.swift; sourceTree = "<group>"; };
 		84E39D781F8C3CD9004B77F3 /* ViewControllerHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerHelper.swift; sourceTree = "<group>"; };
 		FF0E30741F8214FF006CCBA9 /* Cleaner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cleaner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF0E307E1F8214FF006CCBA9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -203,7 +203,7 @@
 		3B508FC31F82652B00A15E62 /* SortFile */ = {
 			isa = PBXGroup;
 			children = (
-				842C54FC1F8DD226006F2B16 /* DetailImageVC.swift */,
+				8498CDB31F9186EF00118C98 /* DetailImageVC.swift */,
 				3B2A43871F87790F0053A89B /* SortFileTableVC.swift */,
 				3B2A43861F87790F0053A89B /* TableViewCell.swift */,
 			);
@@ -531,6 +531,7 @@
 				3B2A43931F877B5F0053A89B /* JunkCleanVC.swift in Sources */,
 				3B2A439C1F877B670053A89B /* GradientColorView.swift in Sources */,
 				3B2A43941F877B5F0053A89B /* DashboardVC.swift in Sources */,
+				8498CDB41F9186EF00118C98 /* DetailImageVC.swift in Sources */,
 				8475E7301F88B5D200F34CFC /* SimplePing.m in Sources */,
 				8475E7331F88B5D200F34CFC /* MMLANScanner.m in Sources */,
 				3F673EDC1F8258AB00E0DA07 /* AppDelegate.swift in Sources */,
@@ -550,7 +551,6 @@
 				8475E7351F88B5D200F34CFC /* PingOperation.m in Sources */,
 				8475E72F1F88B5D200F34CFC /* MacFinder.m in Sources */,
 				3B2A439B1F877B670053A89B /* CustomView.swift in Sources */,
-				842C54FD1F8DD226006F2B16 /* DetailImageVC.swift in Sources */,
 				8475E7341F88B5D200F34CFC /* NetworkCalculator.m in Sources */,
 				3B2A43971F877B5F0053A89B /* WifiVC.swift in Sources */,
 				FFD68E411F8CCEED00B1AC9A /* UrlExtension.swift in Sources */,
