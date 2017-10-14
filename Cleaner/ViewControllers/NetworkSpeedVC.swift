@@ -9,10 +9,14 @@
 import UIKit
 
 class NetworkSpeedVC: UIViewController {
-
+    let startTime = Date()
+    @IBOutlet weak var downloadAVGLabel: UILabel!
+    @IBOutlet weak var uploadAVGLabel: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        let backgroundSessionConfiguration = URLSessionConfiguration.background(withIdentifier: "backgroundSession")
+        NetworkServices.shared.backgroundSession = Foundation.URLSession(configuration: backgroundSessionConfiguration, delegate: self, delegateQueue: OperationQueue.main)
+        
         // Do any additional setup after loading the view.
     }
 
@@ -32,4 +36,11 @@ class NetworkSpeedVC: UIViewController {
     }
     */
 
+    @IBAction func clickAndStart(_ sender: UIButton) {
+        let queue = DispatchQueue.init(label: "LB")
+        queue.sync {
+             NetworkServices.shared.downloadImageView()
+        }
+              self.uploadImage()
+    }
 }
