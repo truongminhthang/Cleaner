@@ -2,45 +2,50 @@
 //  NetworkSpeedVC.swift
 //  Cleaner
 //
-//  Created by Luyen on 10/4/17.
+//  Created by Hao on 10/15/17.
 //  Copyright © 2017 BaBaBiBo. All rights reserved.
 //
 
+
 import UIKit
 
-class NetworkSpeedVC: UIViewController {
+
+class NetworkSpeedVC: UIViewController ,SimplePingDelegate{
     let startTime = Date()
     @IBOutlet weak var downloadAVGLabel: UILabel!
     @IBOutlet weak var uploadAVGLabel: UILabel!
+    @IBOutlet weak var pingLabel: UILabel!
+    let pingInterval: TimeInterval = 3
+    let timeoutIntertval: TimeInterval = 4
     override func viewDidLoad() {
         super.viewDidLoad()
-        let backgroundSessionConfiguration = URLSessionConfiguration.background(withIdentifier: "backgroundSession")
-        NetworkServices.shared.backgroundSession = Foundation.URLSession(configuration: backgroundSessionConfiguration, delegate: self, delegateQueue: OperationQueue.main)
+         NetworkServices.shared.taskDownload()
+        registerNotification()
         
-        // Do any additional setup after loading the view.
     }
-
+    func registerNotification() {
+        NotificationCenter.default.addObserver(self, selector: #selector(updateLabel), name: notificationKey2, object: nil)
+        
+    }
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    @objc func updateLabel() {
+     self.downloadAVGLabel.text =   NetworkServices.shared.timeDownload
+       self.uploadAVGLabel.text = NetworkServices.shared.timeUpload
+       
     }
-    */
-
     @IBAction func clickAndStart(_ sender: UIButton) {
-        let queue = DispatchQueue.init(label: "LB")
-        queue.sync {
-             NetworkServices.shared.downloadImageView()
+        SimplePingClient.pingHostname(hostname: "192.168.1.1") { latency in
+            self.pingLabel.text = "\(latency ?? "--") ms"
+            print("Your latency is \(latency ?? "unknown")")
         }
-              self.uploadImage()
+       NetworkServices.shared.downloadImageView()
     }
 }
+
+

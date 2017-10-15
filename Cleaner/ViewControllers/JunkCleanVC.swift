@@ -12,7 +12,7 @@ class JunkCleanVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+       
         // Do any additional setup after loading the view.
     }
 
@@ -35,3 +35,4 @@ class JunkCleanVC: UIViewController {
         dismiss(animated: true, completion: nil)
     }
 }
+

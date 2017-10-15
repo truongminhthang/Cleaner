@@ -17,6 +17,5 @@ class UnitDataRate: Dimension {
         return .megabitPerSecond
     }
 }
-//let speed = Measurement(value: 100, unit: UnitDataRate.megabitPerSecond)
-//let speedInKpbs = speed.converted(to: .kilobitPerSecond)
+
 

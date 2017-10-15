@@ -38,7 +38,7 @@ static const float PING_TIMEOUT = 1;
     if (self) {
         self.name = ip;
         _ipStr= ip;
-        _simplePing = [SimplePing simplePingWithHostName:ip];
+        
         _simplePing.delegate = self;
         _result = result;
         _isExecuting = NO;

@@ -16,5 +16,6 @@
 #import "MACOperation.h"
 #import "MacFinder.h"
 #import "MMDevice.h"
+#import "SimplePing.h"
 
 #endif /* BridingHeader_h */

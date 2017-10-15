@@ -19,7 +19,6 @@ class ContainerVC: UIViewController {
             UIView.animate(withDuration: 0.35, animations: {
                 self.view.layoutIfNeeded() })
             { (isSuccess) in
-                
             }
         }
     }

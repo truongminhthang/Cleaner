@@ -8,66 +8,97 @@
 
 import Foundation
 import UIKit
-class NetworkServices {
-    static let shared: NetworkServices  = NetworkServices()
+class NetworkServices: NSObject {
+    static let shared: NetworkServices = NetworkServices()
     var downloadTask: URLSessionDownloadTask!
     var backgroundSession: URLSession!
-    private var _imageViewI: UIImage?
-    var imageViewI: UIImage {
-        get{
-            if _imageViewI == nil {
-                downloadImageView()
+   
+    var startTime1 = Date()
+    var startTime2 = Date()
+    
+ 
+    private var _timeDownload: String?
+    var timeDownload:String {
+        get {
+            if _timeDownload == nil {
             }
-            return _imageViewI ?? UIImage()
+            return _timeDownload ?? ""
         }
-        set
-        {
-            _imageViewI = newValue
+        set{
+            _timeDownload = newValue
+        }
+    }
+    private var _timeUpload: String?
+    var timeUpload:String {
+        get {
+            if _timeUpload == nil {
+            }
+            return _timeUpload ?? ""
+        }
+        set{
+            _timeUpload = newValue
         }
     }
     
-    
+    func taskDownload() {
+        let backgroundSessionConfiguration = URLSessionConfiguration.background(withIdentifier: "backgroundSession")
+        backgroundSession = Foundation.URLSession(configuration: backgroundSessionConfiguration, delegate: self, delegateQueue: OperationQueue.main)
+        
+    }
+
     func downloadImageView() {
-        let url = URL(string: "https://upload.wikimedia.org/wikipedia/commons/1/16/AsterNovi-belgii-flower-1mb.jpg")
+        let url = URL(string: "http://www.nasa.gov/sites/default/files/wave_earth_mosaic_3.jpg")
         downloadTask = backgroundSession.downloadTask(with: url!)
         downloadTask.resume()
         
         let session = URLSession.shared
+        let startTimeDownload = Date()
+        startTime1 = startTimeDownload
         let task = session.dataTask(with: url!) {  data, response, error in
             guard
-                let data = data , error == nil,
-                let imageView = UIImage(data: data)
+                let _ = data , error == nil
                 else { return }
-            DispatchQueue.main.async {
-                self._imageViewI = imageView
-                NotificationCenter.default.post(name: Notification.Name.init("imageView"), object: nil)
+            
+            defer {
+                self.delayWithSeconds(4) {
+                    self.uploadImage()
+                }
             }
         }
         task.resume()
+    }
+    func delayWithSeconds(_ seconds: Double, completion: @escaping () -> ()) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + seconds , execute: {
+          completion()
+        })
     }
     func uploadImage() {
         
         let imageData = UIImageJPEGRepresentation(UIImage(named: "AsterNovi-belgii-flower-1mb")!, 1)
         if(imageData == nil ) { return }
-        let uploadScriptUrl = URL(string:"http://www.swiftdeveloperblog.com/http-post-example-script/")
+        let uploadScriptUrl = URL(string:"https://api.imgur.com/3/image")
         var request = URLRequest(url: uploadScriptUrl!)
         request.httpMethod = "POST"
-       request.setValue("Keep-Alive", forHTTPHeaderField: "Connection")
+        request.setValue("Keep-Alive", forHTTPHeaderField: "Connection")
+       
         let configuration = URLSessionConfiguration.default
-        let session = URLSession(configuration: configuration, delegate: self as? URLSessionDelegate, delegateQueue: OperationQueue.main)
+        let session = URLSession(configuration: configuration, delegate: self, delegateQueue: OperationQueue.main)
+            let startTimeUpload = Date()
+            startTime2 = startTimeUpload
         let task = session.uploadTask(with: request, from: imageData ) { data, response, error in
-                        guard error == nil && data != nil else {
-                            return
-                        }
-                    }
-                    task.resume()
-        NotificationCenter.default.post(name: Notification.Name.init("uploadData") , object: nil)
+            guard error == nil && data != nil else {
+                return
+            }
+        
+           
+        }
+        task.resume()
     }
 }
 
 
 
-extension NetworkSpeedVC: URLSessionDownloadDelegate {
+extension NetworkServices: URLSessionDownloadDelegate {
     func urlSession(_ session: URLSession,
                     downloadTask: URLSessionDownloadTask,
                     didFinishDownloadingTo location: URL) {
@@ -77,21 +108,22 @@ extension NetworkSpeedVC: URLSessionDownloadDelegate {
     func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask,
                     didWriteData bytesWritten: Int64, totalBytesWritten: Int64,
                     totalBytesExpectedToWrite: Int64) {
-        let timeUseDownload =  CGFloat(Date().timeIntervalSince(startTime))
-        print(timeUseDownload)
-        let speedDownLoad = (CGFloat(totalBytesWritten) / 1000000)/timeUseDownload * 8
+        
+        let endTimeUpload = CGFloat(Date().timeIntervalSince(startTime1))
+        print("timedownload \(endTimeUpload)")
+        let speedDownLoad = (CGFloat(totalBytesWritten) / 1000000)/endTimeUpload * 8
+        print(totalBytesWritten)
         let speedConvertStr = String(format: "%.2f", speedDownLoad)
-       
+        
         let speedConvert = Measurement(value: Double(speedConvertStr)!, unit: UnitDataRate.megabitPerSecond)
-         print(speedConvert)
+        print(speedConvert)
         let defaulte = Measurement(value: 1, unit: UnitDataRate.megabitPerSecond)
         if defaulte > speedConvert {
-            self.downloadAVGLabel.text = "\(speedConvert.converted(to: UnitDataRate.kilobitPerSecond))"
+            self._timeDownload = "\(speedConvert.converted(to: UnitDataRate.kilobitPerSecond))"
         } else {
-            self.downloadAVGLabel.text = "\(speedConvert.converted(to: UnitDataRate.megabitPerSecond))"
+            self._timeDownload = "\(speedConvert.converted(to: UnitDataRate.megabitPerSecond))"
         }
-      
-        
+        NotificationCenter.default.post(name: notificationKey2, object: nil)
     }
     func urlSession(_ session: URLSession,
                     task: URLSessionTask,
@@ -104,38 +136,25 @@ extension NetworkSpeedVC: URLSessionDownloadDelegate {
         }
     }
 }
-extension NetworkSpeedVC : URLSessionTaskDelegate {
+extension NetworkServices : URLSessionTaskDelegate {
     
     func urlSession(_ session: URLSession, task: URLSessionTask, didSendBodyData bytesSent: Int64, totalBytesSent: Int64, totalBytesExpectedToSend: Int64) {
-        NetworkServices.shared.uploadImage()
-        let timeUseUploat = CGFloat(Date().timeIntervalSince(startTime))
-        let upLoadSpeed = (CGFloat(totalBytesSent) / 1000000 ) / timeUseUploat * 8
+        
+        let endTime =  CGFloat(Date().timeIntervalSince(startTime2))
+        let upLoadSpeed = (CGFloat(totalBytesSent) / 1000000 ) / endTime * 8
         let speedConvertStrU = String(format: "%.2f", upLoadSpeed)
         
         let speedConvertU = Measurement(value: Double(speedConvertStrU)!, unit: UnitDataRate.megabitPerSecond)
-        print(speedConvertU)
+        print("timeupload \(endTime)")
         let defaulte = Measurement(value: 1, unit: UnitDataRate.megabitPerSecond)
         if defaulte > speedConvertU {
-            self.uploadAVGLabel.text = "\(speedConvertU.converted(to: UnitDataRate.kilobitPerSecond))"
+            self._timeUpload = "\(speedConvertU.converted(to: UnitDataRate.kilobitPerSecond))"
         } else {
-            self.uploadAVGLabel.text = "\(speedConvertU.converted(to: UnitDataRate.megabitPerSecond))"
+            self._timeUpload = "\(speedConvertU.converted(to: UnitDataRate.megabitPerSecond))"
         }
+        NotificationCenter.default.post(name: notificationKey2, object: nil)
     }
-    func uploadImage() {
-        
-        let imageData = UIImageJPEGRepresentation(UIImage(named: "AsterNovi-belgii-flower-1mb")!, 1)
-        if(imageData == nil ) { return }
-        let uploadScriptUrl = URL(string:"http://www.swiftdeveloperblog.com/http-post-example-script/")
-        var request = URLRequest(url: uploadScriptUrl!)
-        request.httpMethod = "POST"
-        request.setValue("Keep-Alive", forHTTPHeaderField: "Connection")
-        let configuration = URLSessionConfiguration.default
-        let session = URLSession(configuration: configuration, delegate: self , delegateQueue: OperationQueue.main)
-        let task = session.uploadTask(with: request, from: imageData ) { data, response, error in
-            guard error == nil && data != nil else {
-                return
-            }
-        }
-        task.resume()
-    }
+    
 }
+
+
