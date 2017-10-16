@@ -63,6 +63,7 @@ class NetworkServices: NSObject {
                 self.delayWithSeconds(4) {
                     self.uploadImage()
                 }
+               
             }
         }
         task.resume()

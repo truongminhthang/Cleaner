@@ -32,16 +32,12 @@
 		3F30D7281F88866C00C28CA2 /* ContainerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F30D7261F88866C00C28CA2 /* ContainerVC.swift */; };
 		3F30D72B1F88880700C28CA2 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F30D72A1F88880700C28CA2 /* Constants.swift */; };
 		3F661ECB1F9424EE00E030E4 /* DeviceServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F661ECA1F9424E700E030E4 /* DeviceServices.swift */; };
-		3F661ECC1F9424F000E030E4 /* DeviceServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F661ECA1F9424E700E030E4 /* DeviceServices.swift */; };
-		3F661ECD1F9424F600E030E4 /* NetworkServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F223BF91F91A13C0075911F /* NetworkServices.swift */; };
-		3F661ECE1F9424FD00E030E4 /* ExtensionPing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7852DF1F9390810044F1A0 /* ExtensionPing.swift */; };
 		3F661FA71F94356B00E030E4 /* SystemEye.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F661FA61F94354B00E030E4 /* SystemEye.framework */; };
 		3F661FA81F94356B00E030E4 /* SystemEye.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3F661FA61F94354B00E030E4 /* SystemEye.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		3F673ED91F82560600E0DA07 /* Dashboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F673E9B1F82556700E0DA07 /* Dashboard.storyboard */; };
 		3F673EDC1F8258AB00E0DA07 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F673EDB1F8258AB00E0DA07 /* AppDelegate.swift */; };
 		3F7852E01F9390810044F1A0 /* ExtensionPing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7852DF1F9390810044F1A0 /* ExtensionPing.swift */; };
 		3F7852EB1F939DC60044F1A0 /* SimplePing.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F7852E61F939BB60044F1A0 /* SimplePing.m */; };
-		842C54FE1F8DD35E006F2B16 /* DataServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2A438D1F8779CF0053A89B /* DataServices.swift */; };
 		8475E72E1F88B5D200F34CFC /* data.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8475E7141F88B5D200F34CFC /* data.plist */; };
 		8475E72F1F88B5D200F34CFC /* MacFinder.m in Sources */ = {isa = PBXBuildFile; fileRef = 8475E7181F88B5D200F34CFC /* MacFinder.m */; };
 		8475E7311F88B5D200F34CFC /* LANProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 8475E7221F88B5D200F34CFC /* LANProperties.m */; };
@@ -789,10 +785,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				FF0E308D1F8214FF006CCBA9 /* CleanerTests.swift in Sources */,
-				842C54FE1F8DD35E006F2B16 /* DataServices.swift in Sources */,
-				3F661ECD1F9424F600E030E4 /* NetworkServices.swift in Sources */,
-				3F661ECE1F9424FD00E030E4 /* ExtensionPing.swift in Sources */,
-				3F661ECC1F9424F000E030E4 /* DeviceServices.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

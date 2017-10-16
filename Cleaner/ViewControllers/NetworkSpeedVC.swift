@@ -12,7 +12,8 @@ import UIKit
 
 class NetworkSpeedVC: UIViewController ,SimplePingDelegate{
     let startTime = Date()
-   
+    
+    @IBOutlet weak var speedButton: Button!
     @IBOutlet weak var biggestCircle: GaugeView!
     @IBOutlet weak var downloadAVGLabel: UILabel!
     @IBOutlet weak var uploadAVGLabel: UILabel!
@@ -21,10 +22,17 @@ class NetworkSpeedVC: UIViewController ,SimplePingDelegate{
     let timeoutIntertval: TimeInterval = 4
     override func viewDidLoad() {
         super.viewDidLoad()
-         NetworkServices.shared.taskDownload()
-        registerNotification()
        
+        NetworkServices.shared.taskDownload()
+        speedButton.isUserInteractionEnabled = true
+        registerNotification()
         
+        
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        uploadAVGLabel.text = "--.--"
+        downloadAVGLabel.text = "--.--"
     }
     func registerNotification() {
         NotificationCenter.default.addObserver(self, selector: #selector(updateLabel), name: notificationKey2, object: nil)
@@ -38,17 +46,19 @@ class NetworkSpeedVC: UIViewController ,SimplePingDelegate{
         // Dispose of any resources that can be recreated.
     }
     @objc func updateLabel() {
-     self.downloadAVGLabel.text =   NetworkServices.shared.timeDownload
-       self.uploadAVGLabel.text = NetworkServices.shared.timeUpload
-       
+        self.downloadAVGLabel.text =  NetworkServices.shared.timeDownload
+        self.uploadAVGLabel.text = NetworkServices.shared.timeUpload
+        
     }
     @IBAction func clickAndStart(_ sender: UIButton) {
-    
+        
         SimplePingClient.pingHostname(hostname: "192.168.1.1") { latency in
             self.pingLabel.text = "\(latency ?? "--") ms"
             print("Your latency is \(latency ?? "unknown")")
         }
-       NetworkServices.shared.downloadImageView()
+        NetworkServices.shared.downloadImageView()
+        speedButton.isUserInteractionEnabled = false
+        
         
     }
     
