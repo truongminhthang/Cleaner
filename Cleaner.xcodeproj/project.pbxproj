@@ -34,6 +34,8 @@
 		3F661ECC1F9424F000E030E4 /* DeviceServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F661ECA1F9424E700E030E4 /* DeviceServices.swift */; };
 		3F661ECD1F9424F600E030E4 /* NetworkServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F223BF91F91A13C0075911F /* NetworkServices.swift */; };
 		3F661ECE1F9424FD00E030E4 /* ExtensionPing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7852DF1F9390810044F1A0 /* ExtensionPing.swift */; };
+		3F661FA71F94356B00E030E4 /* SystemEye.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F661FA61F94354B00E030E4 /* SystemEye.framework */; };
+		3F661FA81F94356B00E030E4 /* SystemEye.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3F661FA61F94354B00E030E4 /* SystemEye.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		3F673ED91F82560600E0DA07 /* Dashboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F673E9B1F82556700E0DA07 /* Dashboard.storyboard */; };
 		3F673EDC1F8258AB00E0DA07 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F673EDB1F8258AB00E0DA07 /* AppDelegate.swift */; };
 		3F7852E01F9390810044F1A0 /* ExtensionPing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7852DF1F9390810044F1A0 /* ExtensionPing.swift */; };
@@ -60,6 +62,34 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		3F661FA11F94354B00E030E4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3F661F881F94354B00E030E4 /* SystemEye.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 607FACD01AFB9204008FA782;
+			remoteInfo = SystemEye_Example;
+		};
+		3F661FA31F94354B00E030E4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3F661F881F94354B00E030E4 /* SystemEye.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 607FACE51AFB9204008FA782;
+			remoteInfo = SystemEye_Tests;
+		};
+		3F661FA51F94354B00E030E4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3F661F881F94354B00E030E4 /* SystemEye.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9E24FACB1E8132CA001AD0D7;
+			remoteInfo = SystemEye;
+		};
+		3F661FA91F94356B00E030E4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3F661F881F94354B00E030E4 /* SystemEye.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 9E24FACA1E8132CA001AD0D7;
+			remoteInfo = SystemEye;
+		};
 		FF0E30891F8214FF006CCBA9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = FF0E306C1F8214FF006CCBA9 /* Project object */;
@@ -83,6 +113,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				3F661FA81F94356B00E030E4 /* SystemEye.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -114,6 +145,33 @@
 		3F30D7261F88866C00C28CA2 /* ContainerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerVC.swift; sourceTree = "<group>"; };
 		3F30D72A1F88880700C28CA2 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		3F661ECA1F9424E700E030E4 /* DeviceServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceServices.swift; sourceTree = "<group>"; };
+		3F661F791F94354B00E030E4 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		3F661F7A1F94354B00E030E4 /* .swift-version */ = {isa = PBXFileReference; lastKnownFileType = text; path = ".swift-version"; sourceTree = "<group>"; };
+		3F661F7C1F94354B00E030E4 /* Podfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
+		3F661F7D1F94354B00E030E4 /* Podfile.lock */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile.lock; sourceTree = "<group>"; };
+		3F661F7F1F94354B00E030E4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		3F661F811F94354B00E030E4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		3F661F831F94354B00E030E4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		3F661F841F94354B00E030E4 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		3F661F851F94354B00E030E4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3F661F861F94354B00E030E4 /* SystemEye.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SystemEye.h; sourceTree = "<group>"; };
+		3F661F871F94354B00E030E4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		3F661F881F94354B00E030E4 /* SystemEye.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = SystemEye.xcodeproj; sourceTree = "<group>"; };
+		3F661F8B1F94354B00E030E4 /* SystemEye.xcworkspace */ = {isa = PBXFileReference; lastKnownFileType = wrapper.workspace; path = SystemEye.xcworkspace; sourceTree = "<group>"; };
+		3F661F8D1F94354B00E030E4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3F661F8E1F94354B00E030E4 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
+		3F661F8F1F94354B00E030E4 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		3F661F901F94354B00E030E4 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		3F661F931F94354B00E030E4 /* CPU.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CPU.swift; sourceTree = "<group>"; };
+		3F661F941F94354B00E030E4 /* FPS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FPS.swift; sourceTree = "<group>"; };
+		3F661F951F94354B00E030E4 /* Hardware.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hardware.swift; sourceTree = "<group>"; };
+		3F661F961F94354B00E030E4 /* Memory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Memory.swift; sourceTree = "<group>"; };
+		3F661F971F94354B00E030E4 /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
+		3F661F981F94354B00E030E4 /* NetworkFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkFlow.swift; sourceTree = "<group>"; };
+		3F661F9A1F94354B00E030E4 /* NetObjc.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NetObjc.h; sourceTree = "<group>"; };
+		3F661F9B1F94354B00E030E4 /* NetObjc.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NetObjc.m; sourceTree = "<group>"; };
+		3F661F9C1F94354B00E030E4 /* System.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = System.swift; sourceTree = "<group>"; };
+		3F661F9D1F94354B00E030E4 /* SystemEye.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; path = SystemEye.podspec; sourceTree = "<group>"; };
 		3F673E9C1F82556700E0DA07 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Dashboard.storyboard; sourceTree = "<group>"; };
 		3F673EDB1F8258AB00E0DA07 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3F7852DF1F9390810044F1A0 /* ExtensionPing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionPing.swift; sourceTree = "<group>"; };
@@ -161,6 +219,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3F661FA71F94356B00E030E4 /* SystemEye.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -262,9 +321,103 @@
 			path = Network;
 			sourceTree = "<group>";
 		};
+		3F661F781F94354B00E030E4 /* SystemEye-master */ = {
+			isa = PBXGroup;
+			children = (
+				3F661F791F94354B00E030E4 /* .gitignore */,
+				3F661F7A1F94354B00E030E4 /* .swift-version */,
+				3F661F7B1F94354B00E030E4 /* Example */,
+				3F661F8F1F94354B00E030E4 /* LICENSE */,
+				3F661F901F94354B00E030E4 /* README.md */,
+				3F661F911F94354B00E030E4 /* SystemEye */,
+				3F661F9D1F94354B00E030E4 /* SystemEye.podspec */,
+			);
+			name = "SystemEye-master";
+			path = "../../../../SystemEye-master";
+			sourceTree = "<group>";
+		};
+		3F661F7B1F94354B00E030E4 /* Example */ = {
+			isa = PBXGroup;
+			children = (
+				3F661F7C1F94354B00E030E4 /* Podfile */,
+				3F661F7D1F94354B00E030E4 /* Podfile.lock */,
+				3F661F7E1F94354B00E030E4 /* SystemEye */,
+				3F661F881F94354B00E030E4 /* SystemEye.xcodeproj */,
+				3F661F8B1F94354B00E030E4 /* SystemEye.xcworkspace */,
+				3F661F8C1F94354B00E030E4 /* Tests */,
+			);
+			path = Example;
+			sourceTree = "<group>";
+		};
+		3F661F7E1F94354B00E030E4 /* SystemEye */ = {
+			isa = PBXGroup;
+			children = (
+				3F661F7F1F94354B00E030E4 /* AppDelegate.swift */,
+				3F661F801F94354B00E030E4 /* LaunchScreen.xib */,
+				3F661F821F94354B00E030E4 /* Main.storyboard */,
+				3F661F841F94354B00E030E4 /* Images.xcassets */,
+				3F661F851F94354B00E030E4 /* Info.plist */,
+				3F661F861F94354B00E030E4 /* SystemEye.h */,
+				3F661F871F94354B00E030E4 /* ViewController.swift */,
+			);
+			path = SystemEye;
+			sourceTree = "<group>";
+		};
+		3F661F891F94354B00E030E4 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3F661FA21F94354B00E030E4 /* SystemEye_Example.app */,
+				3F661FA41F94354B00E030E4 /* SystemEye_Tests.xctest */,
+				3F661FA61F94354B00E030E4 /* SystemEye.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		3F661F8C1F94354B00E030E4 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				3F661F8D1F94354B00E030E4 /* Info.plist */,
+				3F661F8E1F94354B00E030E4 /* Tests.swift */,
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
+		3F661F911F94354B00E030E4 /* SystemEye */ = {
+			isa = PBXGroup;
+			children = (
+				3F661F921F94354B00E030E4 /* Classes */,
+			);
+			path = SystemEye;
+			sourceTree = "<group>";
+		};
+		3F661F921F94354B00E030E4 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				3F661F931F94354B00E030E4 /* CPU.swift */,
+				3F661F941F94354B00E030E4 /* FPS.swift */,
+				3F661F951F94354B00E030E4 /* Hardware.swift */,
+				3F661F961F94354B00E030E4 /* Memory.swift */,
+				3F661F971F94354B00E030E4 /* Network.swift */,
+				3F661F981F94354B00E030E4 /* NetworkFlow.swift */,
+				3F661F991F94354B00E030E4 /* OCBridge */,
+				3F661F9C1F94354B00E030E4 /* System.swift */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		3F661F991F94354B00E030E4 /* OCBridge */ = {
+			isa = PBXGroup;
+			children = (
+				3F661F9A1F94354B00E030E4 /* NetObjc.h */,
+				3F661F9B1F94354B00E030E4 /* NetObjc.m */,
+			);
+			path = OCBridge;
+			sourceTree = "<group>";
+		};
 		8475E7111F88B5D200F34CFC /* FrameWorks */ = {
 			isa = PBXGroup;
 			children = (
+				3F661F781F94354B00E030E4 /* SystemEye-master */,
 				8475E7121F88B5D200F34CFC /* MMLanScan */,
 			);
 			path = FrameWorks;
@@ -435,6 +588,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				3F661FAA1F94356B00E030E4 /* PBXTargetDependency */,
 			);
 			name = Cleaner;
 			productName = Cleaner;
@@ -511,6 +665,12 @@
 			mainGroup = FF0E306B1F8214FF006CCBA9;
 			productRefGroup = FF0E30751F8214FF006CCBA9 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 3F661F891F94354B00E030E4 /* Products */;
+					ProjectRef = 3F661F881F94354B00E030E4 /* SystemEye.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				FF0E30731F8214FF006CCBA9 /* Cleaner */,
@@ -519,6 +679,30 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		3F661FA21F94354B00E030E4 /* SystemEye_Example.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = SystemEye_Example.app;
+			remoteRef = 3F661FA11F94354B00E030E4 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		3F661FA41F94354B00E030E4 /* SystemEye_Tests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = SystemEye_Tests.xctest;
+			remoteRef = 3F661FA31F94354B00E030E4 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		3F661FA61F94354B00E030E4 /* SystemEye.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = SystemEye.framework;
+			remoteRef = 3F661FA51F94354B00E030E4 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		FF0E30721F8214FF006CCBA9 /* Resources */ = {
@@ -619,6 +803,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		3F661FAA1F94356B00E030E4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = SystemEye;
+			targetProxy = 3F661FA91F94356B00E030E4 /* PBXContainerItemProxy */;
+		};
 		FF0E308A1F8214FF006CCBA9 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = FF0E30731F8214FF006CCBA9 /* Cleaner */;
@@ -670,6 +859,22 @@
 				3B2A43901F8779E60053A89B /* Base */,
 			);
 			name = JunkClean.storyboard;
+			sourceTree = "<group>";
+		};
+		3F661F801F94354B00E030E4 /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3F661F811F94354B00E030E4 /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+		3F661F821F94354B00E030E4 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3F661F831F94354B00E030E4 /* Base */,
+			);
+			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 		3F673E9B1F82556700E0DA07 /* Dashboard.storyboard */ = {
