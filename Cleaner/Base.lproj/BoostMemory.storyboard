@@ -20,7 +20,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Ellipse-1" translatesAutoresizingMaskIntoConstraints="NO" id="4jc-dY-FYR" userLabel="ellip">
-                                <rect key="frame" x="0.0" y="59" width="375" height="10"/>
+                                <rect key="frame" x="0.0" y="59" width="375" height="11"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Iwy-Iy-lCg" userLabel="Biggest Circle" customClass="View" customModule="Cleaner" customModuleProvider="target">
                                 <rect key="frame" x="77" y="176" width="221" height="221"/>

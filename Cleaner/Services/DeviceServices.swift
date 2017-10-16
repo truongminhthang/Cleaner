@@ -7,9 +7,14 @@
 //
 
 import Foundation
+import SystemEye
 class DeviceServices {
-    var freePercent: Double {
+   static let shared : DeviceServices = DeviceServices()
+    var diskFreePercent: Double {
         return self.diskFree / self.totalSize * 100
+    }
+    var diskUsedPercent: Double {
+        return 100 - self.diskFreePercent
     }
     
     var totalSize: Double  {
@@ -36,7 +41,24 @@ class DeviceServices {
         }
       return totaldisk
     }
-  
     
+    var memoryFreePercent :Double {
+        return memoryFreeSize/Memory.systemUsage().total * 100
+    }
+    
+    var memoryUsedPercent:Double {
+        return memoryUsedSize/Memory.systemUsage().total * 100
+    }
+    
+    
+    var memoryFreeSize: Double {
+        return (Memory.systemUsage().free + Memory.systemUsage().inactive)
+    }
+    var memoryUsedSize: Double {
+        return (Memory.systemUsage().active + Memory.systemUsage().compressed + Memory.systemUsage().wired)
+    }
+    var cpuUsedSize:Double {
+        return CPU.applicationUsage()
+    }
    
 }

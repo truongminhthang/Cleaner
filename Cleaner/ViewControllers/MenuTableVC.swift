@@ -9,12 +9,19 @@
 import UIKit
 
 class MenuTableVC: UITableViewController {
-
+    @IBOutlet weak var memoryLabel: UILabel!
     
+    @IBOutlet weak var storageLabel: UILabel!
+    
+    @IBOutlet weak var cpuLabel: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        let convertUsed = String(format: "%.1f", DeviceServices.shared.memoryUsedPercent)
+        memoryLabel.text = "\(convertUsed) %"
+        let convertStorage = String(format: "%.1f", DeviceServices.shared.diskUsedPercent)
+        storageLabel.text = "\(convertStorage) %"
+         let convertCPU = String(format: "%.1f", DeviceServices.shared.cpuUsedSize)
+        cpuLabel.text = "\(convertCPU) %"
     }
 
     override func didReceiveMemoryWarning() {
@@ -32,8 +39,10 @@ class MenuTableVC: UITableViewController {
         // Pass the selected object to the new view controller.
     }
     */
+   
     @IBAction func closeSideMenu() {
         NotificationCenter.default.post(name: notificationKey, object: nil)
+        tableView.reloadData()
     }
 
 }

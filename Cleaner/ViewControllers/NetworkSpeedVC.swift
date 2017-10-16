@@ -12,6 +12,8 @@ import UIKit
 
 class NetworkSpeedVC: UIViewController ,SimplePingDelegate{
     let startTime = Date()
+   
+    @IBOutlet weak var biggestCircle: GaugeView!
     @IBOutlet weak var downloadAVGLabel: UILabel!
     @IBOutlet weak var uploadAVGLabel: UILabel!
     @IBOutlet weak var pingLabel: UILabel!
@@ -21,6 +23,7 @@ class NetworkSpeedVC: UIViewController ,SimplePingDelegate{
         super.viewDidLoad()
          NetworkServices.shared.taskDownload()
         registerNotification()
+       
         
     }
     func registerNotification() {
@@ -40,12 +43,15 @@ class NetworkSpeedVC: UIViewController ,SimplePingDelegate{
        
     }
     @IBAction func clickAndStart(_ sender: UIButton) {
+    
         SimplePingClient.pingHostname(hostname: "192.168.1.1") { latency in
             self.pingLabel.text = "\(latency ?? "--") ms"
             print("Your latency is \(latency ?? "unknown")")
         }
        NetworkServices.shared.downloadImageView()
+        
     }
+    
 }
 
 

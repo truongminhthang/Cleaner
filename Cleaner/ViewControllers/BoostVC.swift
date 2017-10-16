@@ -30,18 +30,14 @@ class BoostVC: UIViewController {
     }
     
     @IBAction func clickAndRunBoost(_ sender: UIButton) {
-        let meroryUsed = (Memory.systemUsage().active + Memory.systemUsage().compressed + Memory.systemUsage().wired)
-        let memoryFree = (Memory.systemUsage().free + Memory.systemUsage().inactive)
-        let percentUsed = meroryUsed/Memory.systemUsage().total * 100
-        let percentFree = memoryFree/Memory.systemUsage().total * 100
-        let used = String(format: "%.1f", percentFree)
-        let free = String(format: "%.1f", percentUsed)
-        self.memoryUsedLabel.text = ByteCountFormatter.string(fromByteCount: Int64(meroryUsed), countStyle: .file)
-        self.memoryFreeLabel.text = ByteCountFormatter.string(fromByteCount: Int64(memoryFree), countStyle: .file)
-        self.percentMUsed.text = "\(free) %"
-        self.percentMemoryUsed.text = "\(used) %"
         
-        self.percentMemoryFree.text = "\(free)"
+        self.memoryUsedLabel.text = ByteCountFormatter.string(fromByteCount: Int64(DeviceServices.shared.memoryUsedSize), countStyle: .file)
+        self.memoryFreeLabel.text = ByteCountFormatter.string(fromByteCount: Int64(DeviceServices.shared.memoryFreeSize), countStyle: .file)
+        let convertUsed = String(format: "%.1f", DeviceServices.shared.memoryUsedPercent)
+        let convertFree = String(format: "%.1f", DeviceServices.shared.memoryFreePercent)
+        self.percentMUsed.text = "\(convertUsed) %"
+        self.percentMemoryUsed.text = "\(convertFree) %"
+        self.percentMemoryFree.text = "\(convertUsed)"
     }
     
 }
