@@ -10,16 +10,16 @@ import UIKit
 
 class ContainerVC: UIViewController {
     
+    @IBOutlet weak var coverButtonOL: UIButton!
     @IBOutlet weak var sideMenu: UIView!
     @IBOutlet weak var leftSideMenuConstraint: NSLayoutConstraint!
     var isSideMenuOpen: Bool = true {
         didSet{ 
             self.leftSideMenuConstraint.constant = self.isSideMenuOpen ? -30 : -self.sideMenu.bounds.width
-            
+            self.coverButtonOL.isEnabled = self.isSideMenuOpen ? true : false
             UIView.animate(withDuration: 0.35, animations: {
                 self.view.layoutIfNeeded() })
             { (isSuccess) in
-                
             }
         }
     }
@@ -48,6 +48,9 @@ class ContainerVC: UIViewController {
     }
     deinit {
         NotificationCenter.default.removeObserver(self)
+    }
+    @IBAction func coverButton(_ sender: UIButton) {
+        NotificationCenter.default.post(name: notificationKey, object: nil)
     }
     /*
      // MARK: - Navigation

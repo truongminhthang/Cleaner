@@ -22,9 +22,9 @@ class MainVC: UIViewController{
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         let deviceServices = DeviceServices()
-        pieChartView.addItem(value: 100 - Float(deviceServices.freePercent) , color: UIColor.red)
-        pieChartView.addItem(value: Float(deviceServices.freePercent) , color: UIColor.clear)
-        freePercentLabel.text = "\(Int(deviceServices.freePercent)) %"
+        pieChartView.addItem(value: 100 - Float(deviceServices.diskFreePercent) , color: UIColor.red)
+        pieChartView.addItem(value: Float(deviceServices.diskFreePercent) , color: UIColor.clear)
+        freePercentLabel.text = "\(Int(deviceServices.diskFreePercent)) %"
         let freeSize = ByteCountFormatter.string(fromByteCount: Int64(deviceServices.diskFree), countStyle: .file)
         freeSpaceLabel.text = "\(freeSize)"
     }

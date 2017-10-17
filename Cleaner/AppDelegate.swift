@@ -8,9 +8,10 @@
 
 import UIKit
 import Photos
+import UserNotifications
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDelegate {
 
     var window: UIWindow?
 
@@ -21,15 +22,46 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        UIApplication.shared.statusBarStyle = .default
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]){ (allowed, error) in
+            UNUserNotificationCenter.current().delegate = self
+            self.scheduleNotification()
+        }
         _ = DataServices.shared.fetchResult
         return true
+    }
+    
+    func scheduleNotification() {
+        var date = DateComponents()
+        date.year = date.year
+        date.month = date.month
+        date.day = date.day
+        date.hour = 15
+        date.minute = 29
+        date.timeZone = NSTimeZone.system
+        
+        let trigger = UNCalendarNotificationTrigger(dateMatching: date, repeats: true)
+        let content = UNMutableNotificationContent()
+        content.title = "Schedule Notification"
+        content.body = "Notification everyday "
+        content.sound = UNNotificationSound.default()
+        content.badge = 1
+        
+        let request = UNNotificationRequest(identifier: "textNotification", content: content, trigger: trigger)
+        UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+        UNUserNotificationCenter.current().add(request) {(error) in
+            if let error = error {
+                print("error: \(error)")
+            }
+        }
+        
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
     }
-
+    
     func applicationDidEnterBackground(_ application: UIApplication) {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
