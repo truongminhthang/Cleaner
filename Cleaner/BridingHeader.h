@@ -17,5 +17,6 @@
 #import "MacFinder.h"
 #import "MMDevice.h"
 #import "SimplePing.h"
+#import "NetObjc.h"
 
 #endif /* BridingHeader_h */
