@@ -8,5 +8,16 @@
 
 import Foundation
 
-let notificationKey = Notification.Name.init("mykey")
-let notificationKey2 = Notification.Name.init("mykey2")
+struct NotificationName {
+    static let updateDownloadSpeed = Notification.Name.init("updateDownloadSpeed")
+    static let updateUploadSpeed = Notification.Name.init("updateUploadSpeed")
+    static let didFinishTestDownload = Notification.Name.init("didFinishTestDownload")
+    static let didFinishTestUpload = Notification.Name.init("didFinishTestUpload")
+
+
+
+    static let toggleMenu = Notification.Name.init("toggleMenu")
+
+
+}
+

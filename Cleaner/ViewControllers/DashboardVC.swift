@@ -39,7 +39,7 @@ class MainVC: UIViewController{
     }
     
     @IBAction func openSideMenu(_ sender: UIBarButtonItem) {
-        NotificationCenter.default.post(name: notificationKey, object: nil)
+        NotificationCenter.default.post(name: NotificationName.toggleMenu, object: nil)
     }
     
     

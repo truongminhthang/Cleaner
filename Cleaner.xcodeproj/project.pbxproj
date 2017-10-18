@@ -26,7 +26,6 @@
 		3B2A43A01F877BCD0053A89B /* JunkClean.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B2A438F1F8779E60053A89B /* JunkClean.storyboard */; };
 		3F223BFA1F91A13C0075911F /* NetworkServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F223BF91F91A13C0075911F /* NetworkServices.swift */; };
 		3F2241D01F91FE220075911F /* ConvertMpbs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F223BFD1F91A7810075911F /* ConvertMpbs.swift */; };
-		3F245E2F1F94670800BEFC70 /* gaugeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F245E2E1F94670800BEFC70 /* gaugeView.swift */; };
 		3F30D7241F8885DF00C28CA2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F30D7231F8885D900C28CA2 /* Main.storyboard */; };
 		3F30D7271F88866C00C28CA2 /* MenuTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F30D7251F88866C00C28CA2 /* MenuTableVC.swift */; };
 		3F30D7281F88866C00C28CA2 /* ContainerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F30D7261F88866C00C28CA2 /* ContainerVC.swift */; };
@@ -123,7 +122,6 @@
 		3F20C9ED1F95E8DD00DD46BD /* System.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = System.swift; sourceTree = "<group>"; };
 		3F223BF91F91A13C0075911F /* NetworkServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServices.swift; sourceTree = "<group>"; };
 		3F223BFD1F91A7810075911F /* ConvertMpbs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ConvertMpbs.swift; path = Cleaner/CustomViews/ConvertMpbs.swift; sourceTree = SOURCE_ROOT; };
-		3F245E2E1F94670800BEFC70 /* gaugeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = gaugeView.swift; sourceTree = "<group>"; };
 		3F30D7231F8885D900C28CA2 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		3F30D7251F88866C00C28CA2 /* MenuTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTableVC.swift; sourceTree = "<group>"; };
 		3F30D7261F88866C00C28CA2 /* ContainerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerVC.swift; sourceTree = "<group>"; };
@@ -305,7 +303,6 @@
 			isa = PBXGroup;
 			children = (
 				3F7852DF1F9390810044F1A0 /* ExtensionPing.swift */,
-				3F245E2E1F94670800BEFC70 /* gaugeView.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -649,7 +646,6 @@
 				3F7852EB1F939DC60044F1A0 /* SimplePing.m in Sources */,
 				3B2A43971F877B5F0053A89B /* WifiVC.swift in Sources */,
 				FFD68E411F8CCEED00B1AC9A /* UrlExtension.swift in Sources */,
-				3F245E2F1F94670800BEFC70 /* gaugeView.swift in Sources */,
 				3F30D7271F88866C00C28CA2 /* MenuTableVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -859,11 +855,11 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = Z9S7H83RUG;
+				DEVELOPMENT_TEAM = 56AJJ634ZU;
 				INFOPLIST_FILE = Cleaner/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = bababibo.cleaner1014;
+				PRODUCT_BUNDLE_IDENTIFIER = bababibo.cleaner;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -875,11 +871,11 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = Z9S7H83RUG;
+				DEVELOPMENT_TEAM = 56AJJ634ZU;
 				INFOPLIST_FILE = Cleaner/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = bababibo.cleaner1014;
+				PRODUCT_BUNDLE_IDENTIFIER = bababibo.cleaner;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

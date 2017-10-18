@@ -44,13 +44,13 @@ class ContainerVC: UIViewController {
     
     
     func registerNotification() {
-        NotificationCenter.default.addObserver(self, selector: #selector(backButton(_:)), name: notificationKey, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(backButton(_:)), name: NotificationName.toggleMenu, object: nil)
     }
     deinit {
         NotificationCenter.default.removeObserver(self)
     }
     @IBAction func coverButton(_ sender: UIButton) {
-        NotificationCenter.default.post(name: notificationKey, object: nil)
+        NotificationCenter.default.post(name: NotificationName.toggleMenu, object: nil)
     }
     /*
      // MARK: - Navigation
