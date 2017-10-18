@@ -219,7 +219,7 @@
                     <navigationItem key="navigationItem" title="NETWORK SPEED" id="yjK-Sv-Npc"/>
                     <connections>
                         <outlet property="downloadAVGLabel" destination="NEg-Tz-MMq" id="hOJ-4d-t2T"/>
-                        <outlet property="indictorView" destination="wc4-tt-Fng" id="2Cc-fm-cvV"/>
+                        <outlet property="indictorView" destination="wc4-tt-Fng" id="emv-Q7-awK"/>
                         <outlet property="pingLabel" destination="zJG-Gc-Y1V" id="ndU-kV-rQ1"/>
                         <outlet property="speedButton" destination="srn-lN-48o" id="fab-ch-72w"/>
                         <outlet property="uploadAVGLabel" destination="0CJ-Ql-i3u" id="Wun-ER-4Lo"/>

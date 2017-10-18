@@ -125,7 +125,7 @@ class NetworkSpeedVC: UIViewController ,SimplePingDelegate{
     
     @objc private func resetIndicator() {
         guard currentIndicatorDegree != 0 else {return}
-        UIView.animate(withDuration: 0.1, delay: 0, options: .curveEaseInOut, animations: {
+        UIView.animate(withDuration: 0.25, delay: 0, options: .curveEaseInOut, animations: {
             self.indictorView.transform = CGAffineTransform(rotationAngle: CGFloat(0))
         },  completion: nil)
         speedButton.isEnabled = true
