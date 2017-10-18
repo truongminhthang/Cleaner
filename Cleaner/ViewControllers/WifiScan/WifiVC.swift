@@ -10,13 +10,8 @@ import UIKit
 
 class WifiVC: UIViewController  {
     
-  
-    
-
-    
-    
-
     override func viewDidLoad() {
+        GoogleAdMob.sharedInstance.initializeBannerView()
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
