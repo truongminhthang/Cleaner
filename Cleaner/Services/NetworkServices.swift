@@ -8,92 +8,79 @@
 
 import Foundation
 import UIKit
+import os.log
 class NetworkServices: NSObject {
-    static let shared: NetworkServices = NetworkServices()
-    var downloadTask: URLSessionDownloadTask!
-    var backgroundSession: URLSession!
-   
-    var startTime1 = Date()
-    var startTime2 = Date()
+    let url = URL(string: "http://download.thinkbroadband.com/5MB.zip")
     
- 
-    private var _timeDownload: String?
-    var timeDownload:String {
-        get {
-            if _timeDownload == nil {
-            }
-            return _timeDownload ?? ""
-        }
-        set{
-            _timeDownload = newValue
-        }
-    }
-    private var _timeUpload: String?
-    var timeUpload:String {
-        get {
-            if _timeUpload == nil {
-            }
-            return _timeUpload ?? ""
-        }
-        set{
-            _timeUpload = newValue
-        }
-    }
-    
-    func taskDownload() {
+    static let shared : NetworkServices = NetworkServices()
+    private override init() {
+        super.init()
         let backgroundSessionConfiguration = URLSessionConfiguration.background(withIdentifier: "backgroundSession")
-        backgroundSession = Foundation.URLSession(configuration: backgroundSessionConfiguration, delegate: self, delegateQueue: OperationQueue.main)
-        
+        backgroundSession = URLSession(configuration: backgroundSessionConfiguration, delegate: self, delegateQueue: OperationQueue.main)
     }
-
-    func downloadImageView() {
-        let url = URL(string: "http://www.nasa.gov/sites/default/files/wave_earth_mosaic_3.jpg")
-        downloadTask = backgroundSession.downloadTask(with: url!)
-        downloadTask.resume()
-        
-        let session = URLSession.shared
-        let startTimeDownload = Date()
-        startTime1 = startTimeDownload
-        let task = session.dataTask(with: url!) {  data, response, error in
-            guard
-                let _ = data , error == nil
-                else { return }
-            
-            defer {
-                self.delayWithSeconds(4) {
-                    self.uploadImage()
-                }
-               
-            }
+    static var sessionNumber = 0
+    var downloadTask: URLSessionDownloadTask?
+    var uploadTask: URLSessionUploadTask?
+    var backgroundSession: URLSession!
+    
+    private var downloadStartTime = Date()
+    private var uploadStartTime = Date()
+    var downloadSpeed : Float = 0.0
+    var downloadSpeedDisplayedString : String = "_:__" {
+        didSet {
+            NotificationCenter.default.post(name: notificationKey2, object: nil)
         }
-        task.resume()
     }
-    func delayWithSeconds(_ seconds: Double, completion: @escaping () -> ()) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + seconds , execute: {
-          completion()
-        })
+    
+    var uploadSpeed: Float = 0.0
+    var uploadSpeedDisplayedString : String = "_:__" {
+        didSet {
+            NotificationCenter.default.post(name: notificationKey2, object: nil)
+        }
     }
-    func uploadImage() {
+    
+    func convertSpeedToDisplayedString(speed: Float) -> String {
+        let speedConvert = String(format: "%.2f", speed)
+        let speedConvertString = Measurement(value: Double(speedConvert)!, unit: UnitDataRate.megabitPerSecond)
+        let defaulte = Measurement(value: 1, unit: UnitDataRate.megabitPerSecond)
+        let max = Measurement(value: 1000, unit: UnitDataRate.megabitPerSecond)
+        if speedConvertString < defaulte {
+            return "\(speedConvertString.converted(to: UnitDataRate.kilobitPerSecond))"
+        } else if speedConvertString > max {
+            return "\(speedConvertString.converted(to: UnitDataRate.gigabitPerSecond))"
+        } else {
+            return "\(speedConvertString.converted(to: UnitDataRate.megabitPerSecond))"
+        }
+    }
+    
+    func startCheck() {
+        uploadSpeed = 0.0
+        downloadSpeed = 0.0
+        downloadSpeedDisplayedString = "_:__"
+        uploadSpeedDisplayedString = "_:__"
+        downloadImageView()
+    }
+    
+    
+    private func downloadImageView() {
+        downloadStartTime = Date()
+        downloadTask = backgroundSession.downloadTask(with: url!)
+        downloadTask?.resume()
+    }
+    
+    private func uploadImage() {
         
-        let imageData = UIImageJPEGRepresentation(UIImage(named: "AsterNovi-belgii-flower-1mb")!, 1)
-        if(imageData == nil ) { return }
-        let uploadScriptUrl = URL(string:"https://api.imgur.com/3/image")
+        guard let imageData = UIImageJPEGRepresentation(UIImage(named: "AsterNovi-belgii-flower-1mb")!, 1) else {return }
+        let uploadScriptUrl = URL(string:"http://swiftdeveloperblog.com/http-post-example-script/")
         var request = URLRequest(url: uploadScriptUrl!)
         request.httpMethod = "POST"
         request.setValue("Keep-Alive", forHTTPHeaderField: "Connection")
-       
+        
         let configuration = URLSessionConfiguration.default
         let session = URLSession(configuration: configuration, delegate: self, delegateQueue: OperationQueue.main)
-            let startTimeUpload = Date()
-            startTime2 = startTimeUpload
-        let task = session.uploadTask(with: request, from: imageData ) { data, response, error in
-            guard error == nil && data != nil else {
-                return
-            }
-        
-           
-        }
-        task.resume()
+        uploadTask = session.uploadTask(with: request, from: imageData)
+        uploadStartTime = Date()
+        uploadTask?.resume()
     }
 }
 
@@ -109,51 +96,36 @@ extension NetworkServices: URLSessionDownloadDelegate {
     func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask,
                     didWriteData bytesWritten: Int64, totalBytesWritten: Int64,
                     totalBytesExpectedToWrite: Int64) {
-        
-        let endTimeUpload = CGFloat(Date().timeIntervalSince(startTime1))
-        print("timedownload \(endTimeUpload)")
-        let speedDownLoad = (CGFloat(totalBytesWritten) / 1000000)/endTimeUpload * 8
-        print(totalBytesWritten)
-        let speedConvertStr = String(format: "%.2f", speedDownLoad)
-        
-        let speedConvert = Measurement(value: Double(speedConvertStr)!, unit: UnitDataRate.megabitPerSecond)
-        print(speedConvert)
-        let defaulte = Measurement(value: 1, unit: UnitDataRate.megabitPerSecond)
-        if defaulte > speedConvert {
-            self._timeDownload = "\(speedConvert.converted(to: UnitDataRate.kilobitPerSecond))"
-        } else {
-            self._timeDownload = "\(speedConvert.converted(to: UnitDataRate.megabitPerSecond))"
-        }
-        NotificationCenter.default.post(name: notificationKey2, object: nil)
+        let downloadDuration = Float(Date().timeIntervalSince(downloadStartTime))
+        self.downloadSpeed =  Float(totalBytesWritten / 1000000) / downloadDuration * 8
+        self.downloadSpeedDisplayedString = self.convertSpeedToDisplayedString(speed: self.downloadSpeed)
     }
+    
     func urlSession(_ session: URLSession,
                     task: URLSessionTask,
                     didCompleteWithError error: Error?){
-        NetworkServices.shared.downloadTask = nil
-        if (error != nil) {
+        guard error == nil else {
             print(error!.localizedDescription)
-        }else{
-            print("The task finished transferring data successfully")
+            return
         }
+        os_log("did Complete With no error", log: OSLog.default, type: .info)
+        if task is URLSessionDownloadTask {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 4 , execute: {[unowned self] in
+                self.uploadImage()
+            })
+        }
+        
     }
 }
+
 extension NetworkServices : URLSessionTaskDelegate {
     
     func urlSession(_ session: URLSession, task: URLSessionTask, didSendBodyData bytesSent: Int64, totalBytesSent: Int64, totalBytesExpectedToSend: Int64) {
-        
-        let endTime =  CGFloat(Date().timeIntervalSince(startTime2))
-        let upLoadSpeed = (CGFloat(totalBytesSent) / 1000000 ) / endTime * 8
-        let speedConvertStrU = String(format: "%.2f", upLoadSpeed)
-        
-        let speedConvertU = Measurement(value: Double(speedConvertStrU)!, unit: UnitDataRate.megabitPerSecond)
-        print("timeupload \(endTime)")
-        let defaulte = Measurement(value: 1, unit: UnitDataRate.megabitPerSecond)
-        if defaulte > speedConvertU {
-            self._timeUpload = "\(speedConvertU.converted(to: UnitDataRate.kilobitPerSecond))"
-        } else {
-            self._timeUpload = "\(speedConvertU.converted(to: UnitDataRate.megabitPerSecond))"
+        let uploadDuration =  Float(Date().timeIntervalSince(uploadStartTime))
+        DispatchQueue.main.async {[unowned self] in
+            self.uploadSpeed = Float(totalBytesSent / 1000000)/uploadDuration * 8
+            self.uploadSpeedDisplayedString = self.convertSpeedToDisplayedString(speed: self.uploadSpeed)
         }
-        NotificationCenter.default.post(name: notificationKey2, object: nil)
     }
     
 }

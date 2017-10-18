@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import SystemEye
+
 class DeviceServices {
    static let shared : DeviceServices = DeviceServices()
     var diskFreePercent: Double {

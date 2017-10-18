@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import SystemEye
 
 class BoostVC: UIViewController {
     
