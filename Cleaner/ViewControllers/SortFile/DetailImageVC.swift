@@ -18,6 +18,7 @@ class DetailImageVC: UIViewController {
     fileprivate var playerLayer: AVPlayerLayer!
     fileprivate var playerLooper: AVPlayerLooper?
     fileprivate var isPlayingHint = false
+    fileprivate let imageManager = PHCachingImageManager()
     
     fileprivate lazy var formatIdentifier = Bundle.main.bundleIdentifier!
     fileprivate let formatVersion = "1.0"
@@ -46,24 +47,39 @@ class DetailImageVC: UIViewController {
     }
     
     func updateContent() {
-        switch asset.playbackStyle {
-        case .unsupported:
-            let alertController = UIAlertController(title: NSLocalizedString("Unsupported Format", comment:""), message: nil, preferredStyle: .alert)
-            alertController.addAction(UIAlertAction(title: NSLocalizedString("Ok", comment: ""), style: .default, handler: nil))
-            self.present(alertController, animated: true, completion: nil)
-            
-        case .image:
-            displayImage()
-            
-        case .video:
-           playVideo()
-        case .videoLooping:
-          playVideo()
-        case .imageAnimated:
-            break
-        case .livePhoto:
-            break
+        if #available(iOS 11.0, *) {
+            switch asset.playbackStyle {
+            case .unsupported:
+                let alertController = UIAlertController(title: NSLocalizedString("Unsupported Format", comment:""), message: nil, preferredStyle: .alert)
+                alertController.addAction(UIAlertAction(title: NSLocalizedString("Ok", comment: ""), style: .default, handler: nil))
+                self.present(alertController, animated: true, completion: nil)
+                
+            case .image:
+                displayImage()
+                
+            case .video:
+                playVideo()
+            case .videoLooping:
+                playVideo()
+            case .imageAnimated:
+                break
+            case .livePhoto:
+                break
+            }
+        } else {
+            switch asset.mediaType {
+            case .image:
+                displayImage()
+            case .video:
+                playVideo()
+                
+            case .unknown:
+                break
+            case .audio:
+                break
+            }
         }
+      
     }
     
     func displayImage() {
@@ -85,6 +101,20 @@ class DetailImageVC: UIViewController {
                                                 self.detailImageView.image = image
         })
         
+        imageManager.requestImageData(for: asset!, options: nil, resultHandler: { (data, string, orientation, dictionary) in
+            guard data != nil else {
+                return
+            }
+            self.sizeLabel.text = ByteCountFormatter.string(fromByteCount: Int64(data!.count), countStyle: .file )
+            
+            let date = self.asset.creationDate
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "dd MMMM , yyyy"
+            let creationDate = dateFormatter.string(from: (date)!)
+            
+            self.creationDayLabel.text = creationDate
+        })
+        
     }
     
     func playVideo() {
@@ -101,25 +131,47 @@ class DetailImageVC: UIViewController {
                     
                     // Create an AVPlayer and AVPlayerLayer with the AVPlayerItem.
                     let player: AVPlayer
-                    if self.asset.playbackStyle == .videoLooping {
-                        let queuePlayer = AVQueuePlayer(playerItem: playerItem)
-                        self.playerLooper = AVPlayerLooper(player: queuePlayer, templateItem: playerItem!)
-                        player = queuePlayer
+                    if #available(iOS 11.0, *) {
+                        if self.asset.playbackStyle == .videoLooping {
+                            let queuePlayer = AVQueuePlayer(playerItem: playerItem)
+                            self.playerLooper = AVPlayerLooper(player: queuePlayer, templateItem: playerItem!)
+                            player = queuePlayer
+                        } else {
+                            player = AVPlayer(playerItem: playerItem)
+                        }
+                        let playerLayer = AVPlayerLayer(player: player)
+                        
+                        // Configure the AVPlayerLayer and add it to the view.
+                        playerLayer.videoGravity = AVLayerVideoGravity.resizeAspect
+                        playerLayer.frame = self.detailImageView.frame
+                        self.view.layer.addSublayer(playerLayer)
+                        
+                        player.play()
+                        
+                        // Refer to the player layer so we can remove it later.
+                        self.playerLayer = playerLayer
                     } else {
-                        player = AVPlayer(playerItem: playerItem)
+                        if self.asset.mediaType == .video {
+                            let queuePlayer = AVQueuePlayer(playerItem: playerItem)
+                            self.playerLooper = AVPlayerLooper(player: queuePlayer, templateItem: playerItem!)
+                            player = queuePlayer
+                        } else {
+                            player = AVPlayer(playerItem: playerItem)
+                        }
+                        let playerLayer = AVPlayerLayer(player: player)
+                        
+                        // Configure the AVPlayerLayer and add it to the view.
+                        playerLayer.videoGravity = AVLayerVideoGravity.resizeAspect
+                        playerLayer.frame = self.detailImageView.frame
+                        self.view.layer.addSublayer(playerLayer)
+                        
+                        player.play()
+                        
+                        // Refer to the player layer so we can remove it later.
+                        self.playerLayer = playerLayer
                     }
                     
-                    let playerLayer = AVPlayerLayer(player: player)
                     
-                    // Configure the AVPlayerLayer and add it to the view.
-                    playerLayer.videoGravity = AVLayerVideoGravity.resizeAspect
-                    playerLayer.frame = self.detailImageView.frame
-                    self.view.layer.addSublayer(playerLayer)
-                    
-                    player.play()
-                    
-                    // Refer to the player layer so we can remove it later.
-                    self.playerLayer = playerLayer
                 }
             })
           

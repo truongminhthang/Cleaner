@@ -25,10 +25,12 @@ class WifiScanResultVC: UIViewController, UITableViewDataSource, UITableViewDele
         
         //Init networkScanner. networkScanner is responsible for providing the business logic of the MainVC (MVVM)
         self.networkScanner = NetworkScanner(delegate:self)
+        self.spinner.startAnimating()
         self.networkScanner.scan()
+        
         //Add observers to monitor specific values on networkScanner. On change of those values MainVC UI will be updated
         self.addObserversForKVO()
-        self.spinner.startAnimating()
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -55,6 +57,7 @@ class WifiScanResultVC: UIViewController, UITableViewDataSource, UITableViewDele
     @IBAction func reScan(_ sender: UIButton) {
         
         self.networkScanner.scan()
+        self.spinner.isHidden = false
         self.spinner.startAnimating()
     }
     
@@ -73,6 +76,9 @@ class WifiScanResultVC: UIViewController, UITableViewDataSource, UITableViewDele
     
     func networkScannerIPSearchFailed() {
         showAlert(vc: self, title: "Failed to scan", message: "Please make sure that you are connected to a WiFi before starting LAN Scan")
+        networkScanner.stop()
+        self.spinner.stopAnimating()
+        self.spinner.hidesWhenStopped = true
     }
     
     // -MARK: -Table View DataSource

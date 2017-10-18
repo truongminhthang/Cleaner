@@ -4,6 +4,7 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -48,14 +49,17 @@
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="bottom" spacing="22" translatesAutoresizingMaskIntoConstraints="NO" id="Ibn-Mw-IKx" userLabel="Big Stack">
-                                                <rect key="frame" x="77.5" y="62.5" width="76.5" height="106.5"/>
+                                                <rect key="frame" x="77.5" y="47.5" width="76.5" height="136.5"/>
                                                 <subviews>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wifi" translatesAutoresizingMaskIntoConstraints="NO" id="oK3-eS-wCz">
-                                                        <rect key="frame" x="0.0" y="0.0" width="76.5" height="30"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="76.5" height="60"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="60" id="Yej-AO-fop"/>
+                                                        </constraints>
                                                     </imageView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="uMd-OH-KBx">
-                                                        <rect key="frame" x="0.0" y="52" width="76.5" height="54.5"/>
+                                                        <rect key="frame" x="0.0" y="82" width="76.5" height="54.5"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WIFI" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yS7-g8-UEz">
                                                                 <rect key="frame" x="10.5" y="0.0" width="55.5" height="32.5"/>
@@ -290,7 +294,7 @@
                                                                 <constraint firstItem="dLb-zY-2sS" firstAttribute="height" secondItem="bS1-NO-cdX" secondAttribute="height" id="hYo-SI-BPU"/>
                                                             </constraints>
                                                         </stackView>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Xy-AL-QaA" customClass="Button" customModule="Cleaner" customModuleProvider="target">
+                                                        <button opaque="NO" multipleTouchEnabled="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Xy-AL-QaA" customClass="Button" customModule="Cleaner" customModuleProvider="target">
                                                             <rect key="frame" x="289" y="15" width="70" height="30"/>
                                                             <color key="backgroundColor" red="0.94935342629999997" green="0.66648316230000004" blue="0.63561293659999996" alpha="1" colorSpace="calibratedRGB"/>
                                                             <constraints>

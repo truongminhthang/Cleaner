@@ -23,6 +23,7 @@ class SortFileTableVC: UITableViewController {
     var assetCollection = DataServices.shared.assetCollection
     var asset: PHAsset!
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         //    registerNotification()
@@ -126,10 +127,16 @@ class SortFileTableVC: UITableViewController {
                     return
                 }
                 cell.sizeLabel.text = ByteCountFormatter.string(fromByteCount: Int64(data!.count), countStyle: .file )
-                cell.typeLabel.text = "📷 Photo "
-                cell.typeLabel.textColor = #colorLiteral(red: 0.4354409575, green: 0.8154750466, blue: 0.2247968912, alpha: 1)
-                cell.sizeLabel.textColor = #colorLiteral(red: 0.4354409575, green: 0.8154750466, blue: 0.2247968912, alpha: 1)
+                cell.typeLabel.text =  "Photo "
+                cell.typeLabel.textColor = #colorLiteral(red: 0.3568627451, green: 0.7411764706, blue: 0.168627451, alpha: 1)
+                cell.sizeLabel.textColor = #colorLiteral(red: 0.3568627451, green: 0.7411764706, blue: 0.168627451, alpha: 1)
+                cell.typeImageView.image = #imageLiteral(resourceName: "Image")
             })
+        } else {
+            cell.typeLabel.text = " Video "
+            cell.typeLabel.textColor = #colorLiteral(red: 0, green: 0.5898008943, blue: 1, alpha: 1)
+            cell.sizeLabel.textColor = #colorLiteral(red: 0, green: 0.5898008943, blue: 1, alpha: 1)
+            cell.typeImageView.image = #imageLiteral(resourceName: "video")
         }
         
         return cell
@@ -142,8 +149,27 @@ class SortFileTableVC: UITableViewController {
         
         if let indexPath = tableView?.indexPath(for: cell) {
             destination.asset = fetchResult?.object(at: indexPath.item)
+    
         }
         destination.assetCollection = assetCollection
+    }
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        let asset = self.fetchResult?.object(at: indexPath.item)
+        let completion = { (success: Bool, error: Error?) -> Void in
+            if success {
+                DispatchQueue.main.sync {
+                    tableView.reloadData()
+                }
+               
+            } else {
+                print("can't remove asset: \(String(describing: error))")
+            }
+        }
+        PHPhotoLibrary.shared().performChanges({
+            PHAssetChangeRequest.deleteAssets([asset!] as NSArray)
+        }, completionHandler: completion)
+        
     }
   
 }
@@ -163,11 +189,18 @@ extension SortFileTableVC : PHPhotoLibraryChangeObserver {
             if changes.hasIncrementalChanges {
                 // If we have incremental diffs, animate them in the collection view.
                 guard let tableView = self.tableView else { fatalError() }
-                tableView.performBatchUpdates({
+                if #available(iOS 11.0, *) {
+                    tableView.performBatchUpdates({
+                        if let removed = changes.removedIndexes, !removed.isEmpty {
+                            tableView.deleteRows(at: removed.map({ IndexPath(item: $0, section: 0) }), with: .automatic)
+                        }
+
+                    })
+                } else {
                     if let removed = changes.removedIndexes, !removed.isEmpty {
                         tableView.deleteRows(at: removed.map({ IndexPath(item: $0, section: 0) }), with: .automatic)
                     }
-                })
+                }
             } else {
                 // Reload the collection view if incremental diffs are not available.
                 tableView!.reloadData()
