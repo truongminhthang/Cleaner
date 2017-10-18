@@ -63,7 +63,7 @@ class GoogleAdMob:NSObject, GADInterstitialDelegate, GADBannerViewDelegate {
             self.bannerView.adUnitID = GoogleAdsUnitID.strBannerAdsID
             self.bannerView.rootViewController = UIApplication.shared.keyWindow?.rootViewController
             self.bannerView.delegate = self
-            self.bannerView.backgroundColor = .gray
+            self.bannerView.backgroundColor = UIColor.clear
             self.bannerView.load(GADRequest())
             UIApplication.shared.keyWindow?.addSubview(bannerView)
         }

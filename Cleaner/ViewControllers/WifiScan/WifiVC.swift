@@ -11,10 +11,13 @@ import UIKit
 class WifiVC: UIViewController  {
     
     override func viewDidLoad() {
-        GoogleAdMob.sharedInstance.initializeBannerView()
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        GoogleAdMob.sharedInstance.initializeBannerView()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        GoogleAdMob.sharedInstance.hideBannerView()
     }
 
     override func didReceiveMemoryWarning() {
