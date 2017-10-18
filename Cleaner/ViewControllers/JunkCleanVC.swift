@@ -10,9 +10,10 @@ import UIKit
 
 class JunkCleanVC: UIViewController {
 
+    @IBOutlet weak var freeDiskLabel: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
-       
+        self.freeDiskLabel.text  = ByteCountFormatter.string(fromByteCount: Int64(DeviceServices.shared.diskFree), countStyle: .file)
         // Do any additional setup after loading the view.
     }
 

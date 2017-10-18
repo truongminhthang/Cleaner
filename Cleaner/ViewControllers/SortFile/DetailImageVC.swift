@@ -43,7 +43,7 @@ class DetailImageVC: UIViewController {
     var targetSize: CGSize {
         let scale = UIScreen.main.scale
         return CGSize(width: detailImageView.bounds.width * scale,
-                      height: detailImageView.bounds.height * scale)
+                      height: detailImageView.bounds.height * scale )
     }
     
     func updateContent() {
@@ -176,6 +176,19 @@ class DetailImageVC: UIViewController {
             })
           
         }
+        imageManager.requestImageData(for: asset!, options: nil, resultHandler: { (data, string, orientation, dictionary) in
+            guard data != nil else {
+                return
+            }
+            self.sizeLabel.text = ByteCountFormatter.string(fromByteCount: Int64(data!.count), countStyle: .file )
+            
+            let date = self.asset.creationDate
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "dd MMMM , yyyy"
+            let creationDate = dateFormatter.string(from: (date)!)
+            
+            self.creationDayLabel.text = creationDate
+        })
     }
     
     

@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import GoogleMobileAds
 class BoostVC: UIViewController {
     
     @IBOutlet weak var percentMemoryUsed: UILabel!
@@ -19,7 +19,17 @@ class BoostVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         // Do any additional setup after loading the view, typically from a nib.
+        let freeMemoryPercent  = String(format: "%.1f", DeviceServices.shared.memoryFreePercent)
+        self.percentMemoryFree.text = freeMemoryPercent
+        self.percentMUsed.text = "\(freeMemoryPercent) %"
+         let usedMemoryPercent  = String(format: "%.1f", DeviceServices.shared.memoryUsedPercent)
+        self.percentMemoryUsed.text = "\(usedMemoryPercent) %"
+        
+        self.memoryFreeLabel.text = ByteCountFormatter.string(fromByteCount: Int64(DeviceServices.shared.memoryFreeSize), countStyle: .file)
+        self.memoryUsedLabel.text = ByteCountFormatter.string(fromByteCount: Int64(DeviceServices.shared.memoryUsedSize), countStyle: .file)
+
         
     }
     
@@ -30,13 +40,7 @@ class BoostVC: UIViewController {
     
     @IBAction func clickAndRunBoost(_ sender: UIButton) {
         
-        self.memoryUsedLabel.text = ByteCountFormatter.string(fromByteCount: Int64(DeviceServices.shared.memoryUsedSize), countStyle: .file)
-        self.memoryFreeLabel.text = ByteCountFormatter.string(fromByteCount: Int64(DeviceServices.shared.memoryFreeSize), countStyle: .file)
-        let convertUsed = String(format: "%.1f", DeviceServices.shared.memoryUsedPercent)
-        let convertFree = String(format: "%.1f", DeviceServices.shared.memoryFreePercent)
-        self.percentMUsed.text = "\(convertUsed) %"
-        self.percentMemoryUsed.text = "\(convertFree) %"
-        self.percentMemoryFree.text = "\(convertUsed)"
+        
     }
     
 }

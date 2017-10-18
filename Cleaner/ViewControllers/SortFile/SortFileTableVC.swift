@@ -30,10 +30,10 @@ class SortFileTableVC: UITableViewController {
    //     requestAuthorizationIfNeed()
       PHPhotoLibrary.shared().register(self )
         
-      
+      	
      //   if fetchResult == nil {
             let allPhotosOptions = PHFetchOptions()
-            allPhotosOptions.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: true)]
+            allPhotosOptions.sortDescriptors = [NSSortDescriptor(key: "pixelWidth", ascending: true)]
             fetchResult = PHAsset.fetchAssets(with: allPhotosOptions)
      //   }
 
