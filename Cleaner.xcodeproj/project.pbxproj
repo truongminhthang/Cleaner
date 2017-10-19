@@ -26,6 +26,7 @@
 		3B2A43A01F877BCD0053A89B /* JunkClean.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B2A438F1F8779E60053A89B /* JunkClean.storyboard */; };
 		3BA937631F973BFF002AA152 /* GoogleMobileAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BA937621F973BFF002AA152 /* GoogleMobileAds.framework */; };
 		3BA937651F973DA7002AA152 /* GoogleAdsMob.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA937641F973DA7002AA152 /* GoogleAdsMob.swift */; };
+		3BB71E301F9857B000263DF5 /* SystemServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB71E2F1F9857B000263DF5 /* SystemServices.swift */; };
 		3F223BFA1F91A13C0075911F /* NetworkServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F223BF91F91A13C0075911F /* NetworkServices.swift */; };
 		3F2241D01F91FE220075911F /* ConvertMpbs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F223BFD1F91A7810075911F /* ConvertMpbs.swift */; };
 		3F30D7241F8885DF00C28CA2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F30D7231F8885D900C28CA2 /* Main.storyboard */; };
@@ -116,6 +117,7 @@
 		3B2A43901F8779E60053A89B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/JunkClean.storyboard; sourceTree = "<group>"; };
 		3BA937621F973BFF002AA152 /* GoogleMobileAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMobileAds.framework; path = Cleaner/GoogleMobileAds.framework; sourceTree = "<group>"; };
 		3BA937641F973DA7002AA152 /* GoogleAdsMob.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleAdsMob.swift; sourceTree = "<group>"; };
+		3BB71E2F1F9857B000263DF5 /* SystemServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemServices.swift; sourceTree = "<group>"; };
 		3F20C9E41F95E8DD00DD46BD /* CPU.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CPU.swift; sourceTree = "<group>"; };
 		3F20C9E51F95E8DD00DD46BD /* FPS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FPS.swift; sourceTree = "<group>"; };
 		3F20C9E61F95E8DD00DD46BD /* Hardware.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hardware.swift; sourceTree = "<group>"; };
@@ -258,6 +260,7 @@
 			children = (
 				3B2A438D1F8779CF0053A89B /* DataServices.swift */,
 				3F661ECA1F9424E700E030E4 /* DeviceServices.swift */,
+				3BB71E2F1F9857B000263DF5 /* SystemServices.swift */,
 				3F223BF91F91A13C0075911F /* NetworkServices.swift */,
 			);
 			path = Services;
@@ -642,6 +645,7 @@
 				3B2A43941F877B5F0053A89B /* DashboardVC.swift in Sources */,
 				8498CDB41F9186EF00118C98 /* DetailImageVC.swift in Sources */,
 				8475E7331F88B5D200F34CFC /* MMLANScanner.m in Sources */,
+				3BB71E301F9857B000263DF5 /* SystemServices.swift in Sources */,
 				3F673EDC1F8258AB00E0DA07 /* AppDelegate.swift in Sources */,
 				3B2A43911F877A010053A89B /* DataServices.swift in Sources */,
 				8475E7361F88B5D200F34CFC /* MMDevice.m in Sources */,
