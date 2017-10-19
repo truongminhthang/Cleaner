@@ -8,6 +8,7 @@
 
 import UIKit
 import Foundation
+import GoogleMobileAds
 
 class WifiScanResultVC: UIViewController, UITableViewDataSource, UITableViewDelegate, NetworkScannerDelegate  {
 
@@ -20,18 +21,26 @@ class WifiScanResultVC: UIViewController, UITableViewDataSource, UITableViewDele
     var networkScanner: NetworkScanner!
     private var myContext = 0
     
+    @IBOutlet weak var adsView: UIView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        //Init networkScanner. networkScanner is responsible for providing the business logic of the MainVC (MVVM)
+      //  GoogleAdMob.sharedInstance.initializeBannerView()
+      //  adsView.addSubview(GoogleAdMob.sharedInstance.bannerView)
+  
         self.networkScanner = NetworkScanner(delegate:self)
         self.spinner.startAnimating()
         self.networkScanner.scan()
         
-        //Add observers to monitor specific values on networkScanner. On change of those values MainVC UI will be updated
+
         self.addObserversForKVO()
+
+        
         
     }
+//    override func viewWillDisappear(_ animated: Bool) {
+//        super.viewWillDisappear(animated)
+//        GoogleAdMob.sharedInstance.hideBannerView()
+//    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

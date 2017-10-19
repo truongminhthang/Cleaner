@@ -19,7 +19,8 @@ class BoostVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+         GoogleAdMob.sharedInstance.initializeBannerView()
+
         // Do any additional setup after loading the view, typically from a nib.
         let freeMemoryPercent  = String(format: "%.1f", DeviceServices.shared.memoryFreePercent)
         self.percentMemoryFree.text = freeMemoryPercent
@@ -36,6 +37,11 @@ class BoostVC: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+         GoogleAdMob.sharedInstance.hideBannerView()
+       
     }
     
     @IBAction func clickAndRunBoost(_ sender: UIButton) {

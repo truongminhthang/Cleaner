@@ -189,6 +189,7 @@ class DetailImageVC: UIViewController {
             
             self.creationDayLabel.text = creationDate
         })
+  
     }
     
     

@@ -32,13 +32,13 @@ static const float PING_TIMEOUT = 1;
 }
 
 -(instancetype)initWithIPToPing:(NSString*)ip andCompletionHandler:(nullable void (^)(NSError  * _Nullable error, NSString  * _Nonnull ip))result;{
-
+    
     self = [super init];
     
     if (self) {
         self.name = ip;
         _ipStr= ip;
-        
+        _simplePing = [SimplePing simplePingWithHostName:ip];
         _simplePing.delegate = self;
         _result = result;
         _isExecuting = NO;
@@ -49,7 +49,7 @@ static const float PING_TIMEOUT = 1;
 };
 
 -(void)start {
-
+    
     if ([self isCancelled]) {
         [self willChangeValueForKey:@"isFinished"];
         _isFinished = YES;
@@ -77,7 +77,7 @@ static const float PING_TIMEOUT = 1;
     while (!_stopRunLoop && [runLoop runMode: NSDefaultRunLoopMode beforeDate:loopUntil]) {
         loopUntil = [NSDate dateWithTimeIntervalSinceNow:updateInterval];
     }
-
+    
 }
 -(void)ping {
     [self.simplePing start];
@@ -100,7 +100,7 @@ static const float PING_TIMEOUT = 1;
 }
 
 -(void)finish {
-
+    
     //Removes timer from the NSRunLoop
     [_keepAliveTimer invalidate];
     _keepAliveTimer = nil;
@@ -140,7 +140,7 @@ static const float PING_TIMEOUT = 1;
 }
 
 - (void)simplePing:(SimplePing *)pinger didFailWithError:(NSError *)error {
-  
+    
     [pingTimer invalidate];
     errorMessage = error;
     [self finishedPing];
@@ -154,7 +154,7 @@ static const float PING_TIMEOUT = 1;
 }
 
 - (void)simplePing:(SimplePing *)pinger didReceivePingResponsePacket:(NSData *)packet {
-   
+    
     [pingTimer invalidate];
     [self finishedPing];
 }
@@ -171,3 +171,4 @@ static const float PING_TIMEOUT = 1;
 }
 
 @end
+
