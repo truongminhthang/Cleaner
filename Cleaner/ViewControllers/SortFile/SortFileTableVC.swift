@@ -27,47 +27,28 @@ class SortFileTableVC: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         //    registerNotification()
-   //     requestAuthorizationIfNeed()
-      PHPhotoLibrary.shared().register(self )
+        //     requestAuthorizationIfNeed()
+        PHPhotoLibrary.shared().register(self )
         
-      	
-     //   if fetchResult == nil {
-            let allPhotosOptions = PHFetchOptions()
-            allPhotosOptions.sortDescriptors = [NSSortDescriptor(key: "pixelWidth", ascending: true)]
-            fetchResult = PHAsset.fetchAssets(with: allPhotosOptions)
-     //   }
-
+        
+        //   if fetchResult == nil {
+        let allPhotosOptions = PHFetchOptions()
+        allPhotosOptions.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: true)]
+        fetchResult = PHAsset.fetchAssets(with: allPhotosOptions)
+        //   }
+        
     }
     deinit {
         PHPhotoLibrary.shared().unregisterChangeObserver(self )
     }
-    
-//    func requestAuthorizationIfNeed() {
-//        PHPhotoLibrary.requestAuthorization { (status) in
-//            switch status {
-//            case .authorized:
-////                if DataServices.shared.fetchResult.count == 0 {
-////             //       DataServices.shared.updateImageArray()
-////                }
-//            default: return
-//
-//            }
-//        }
-//    }
-    
-//    func registerNotification() {
-//        NotificationCenter.default.addObserver(self, selector: #selector(reloadData), name: NSNotification.Name.init("imageArrayUpdate"), object: nil)
-//    }
-//    deinit {
-//        NotificationCenter.default.removeObserver(self)
-//    }
+
     
     @objc func reloadData() {
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }
     }
-   
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -80,24 +61,24 @@ class SortFileTableVC: UITableViewController {
         // #warning Incomplete implementation, return the number of sections
         return 1
     }
-//
+    //
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-
+        
         return 100
     }
-
+    
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let view = UIView()
         view.addSubview(headerView)
-       let deviceServices = DeviceServices()
+        let deviceServices = DeviceServices()
         let freeSize = ByteCountFormatter.string(fromByteCount: Int64(deviceServices.diskFree), countStyle: .file)
         
-       var myStringArr = freeSize.components(separatedBy: " ")
+        var myStringArr = freeSize.components(separatedBy: " ")
         let numbers: String = myStringArr[0]
         freeDiskLabel.text = numbers
-       return view
+        return view
     }
-  
+    
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
@@ -105,13 +86,13 @@ class SortFileTableVC: UITableViewController {
     }
     
     
-     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let asset = fetchResult?.object(at: indexPath.item)
         
         // Dequeue a GridViewCell.
-         let cell = tableView.dequeueReusableCell(withIdentifier: "photoCell", for: indexPath) as! TableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "photoCell", for: indexPath) as! TableViewCell
         
-         
+        
         // Request an image for the asset from the PHCachingImageManager.
         cell.representedAssetIdentifier = asset?.localIdentifier
         imageManager.requestImage(for: asset!, targetSize: CGSize(width: 400, height: 400), contentMode: .aspectFill, options: nil, resultHandler: { image, _ in
@@ -120,24 +101,41 @@ class SortFileTableVC: UITableViewController {
                 cell.photoImageView.image = image
             }
         })
+        
+        
         if asset?.duration == 0 {
             cell.representedAssetIdentifier = asset?.localIdentifier
             imageManager.requestImageData(for: asset!, options: nil, resultHandler: { (data, string, orientation, dictionary) in
-                guard data != nil else {
-                    return
-                }
+                
+                guard data != nil else {return}
                 cell.sizeLabel.text = ByteCountFormatter.string(fromByteCount: Int64(data!.count), countStyle: .file )
                 cell.typeLabel.text =  "Photo "
                 cell.typeLabel.textColor = #colorLiteral(red: 0.3568627451, green: 0.7411764706, blue: 0.168627451, alpha: 1)
                 cell.sizeLabel.textColor = #colorLiteral(red: 0.3568627451, green: 0.7411764706, blue: 0.168627451, alpha: 1)
-                cell.typeImageView.image = #imageLiteral(resourceName: "Image")
+                cell.typeImageView.image = #imageLiteral(resourceName: "Camera")
             })
         } else {
-            cell.typeLabel.text = " Video "
-            cell.typeLabel.textColor = #colorLiteral(red: 0, green: 0.5898008943, blue: 1, alpha: 1)
-            cell.sizeLabel.textColor = #colorLiteral(red: 0, green: 0.5898008943, blue: 1, alpha: 1)
-            cell.typeImageView.image = #imageLiteral(resourceName: "video")
+            let videoRequestOptions = PHVideoRequestOptions()
+            videoRequestOptions.version = .original
+            PHCachingImageManager.default().requestAVAsset(forVideo: asset!, options: videoRequestOptions, resultHandler: { (avasset, audioMix, diction) in
+                if let url = (avasset as? AVURLAsset)?.url {
+                    if let data = try? Data(contentsOf:url) {
+                        DispatchQueue.main.sync {
+                            cell.sizeLabel.text = ByteCountFormatter.string(fromByteCount: Int64(data.count), countStyle: .file )
+                            cell.typeLabel.text = " Video "
+                            cell.typeLabel.textColor = #colorLiteral(red: 0, green: 0.5898008943, blue: 1, alpha: 1)
+                            cell.sizeLabel.textColor = #colorLiteral(red: 0, green: 0.5898008943, blue: 1, alpha: 1)
+                            cell.typeImageView.image = #imageLiteral(resourceName: "video")
+                        }
+                    
+                    }
+                }
+            })
+
+        
+            
         }
+        
         
         return cell
     }
@@ -149,7 +147,7 @@ class SortFileTableVC: UITableViewController {
         
         if let indexPath = tableView?.indexPath(for: cell) {
             destination.asset = fetchResult?.object(at: indexPath.item)
-    
+            
         }
         destination.assetCollection = assetCollection
     }
@@ -161,7 +159,7 @@ class SortFileTableVC: UITableViewController {
                 DispatchQueue.main.sync {
                     tableView.reloadData()
                 }
-               
+                
             } else {
                 print("can't remove asset: \(String(describing: error))")
             }
@@ -171,7 +169,7 @@ class SortFileTableVC: UITableViewController {
         }, completionHandler: completion)
         
     }
-  
+    
 }
 
 // MARK: PHPhotoLibraryChangeObserver
@@ -194,7 +192,7 @@ extension SortFileTableVC : PHPhotoLibraryChangeObserver {
                         if let removed = changes.removedIndexes, !removed.isEmpty {
                             tableView.deleteRows(at: removed.map({ IndexPath(item: $0, section: 0) }), with: .automatic)
                         }
-
+                        
                     })
                 } else {
                     if let removed = changes.removedIndexes, !removed.isEmpty {
@@ -205,7 +203,7 @@ extension SortFileTableVC : PHPhotoLibraryChangeObserver {
                 // Reload the collection view if incremental diffs are not available.
                 tableView!.reloadData()
             }
-      
+            
         }
     }
 }
