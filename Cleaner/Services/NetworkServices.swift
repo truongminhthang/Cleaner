@@ -9,15 +9,23 @@
 import Foundation
 import UIKit
 import os.log
+public typealias PingClientCallback = (String?)->()
 class NetworkServices: NSObject {
     let url = URL(string: "http://download.thinkbroadband.com/5MB.zip")
     
     static let shared : NetworkServices = NetworkServices()
+    // Init
     private override init() {
         super.init()
         let backgroundSessionConfiguration = URLSessionConfiguration.background(withIdentifier: "backgroundSession")
         backgroundSession = URLSession(configuration: backgroundSessionConfiguration, delegate: self, delegateQueue: OperationQueue.main)
     }
+    // Properties ping
+    fileprivate var resultCallback: PingClientCallback?
+    fileprivate var pingClinet: Ping?
+    fileprivate var dateReference: Date?
+
+    // Properties url session
     static var sessionNumber = 0
     var downloadTask: URLSessionDownloadTask?
     var uploadTask: URLSessionUploadTask?
@@ -39,6 +47,8 @@ class NetworkServices: NSObject {
    
     var isDownloading: Bool = false
     var isUploading: Bool = false
+    
+    // Download
     func startDownload() {
         uploadSpeed = 0.0
         downloadSpeed = 0.0
@@ -51,6 +61,7 @@ class NetworkServices: NSObject {
         downloadTask?.resume()
     }
     
+    // Upload
     func startUpload() {
         
         guard let imageData = UIImageJPEGRepresentation(UIImage(named: "AsterNovi-belgii-flower-1mb")!, 1) else {return }
@@ -65,10 +76,20 @@ class NetworkServices: NSObject {
         uploadStartTime = Date()
         uploadTask?.resume()
     }
+    
+    // Ping
+    public static func pingHostname(hostname: String, andResultCallback callback: PingClientCallback?) {
+        shared.pingHostname(hostname: hostname, andResultCallback: callback)
+    }
+    
+    public func pingHostname(hostname: String, andResultCallback callback:  PingClientCallback?) {
+        resultCallback = callback
+        pingClinet = Ping(hostName: hostname)
+        pingClinet?.delegate = self
+        pingClinet?.start()
+    }
 }
-
-
-
+// MARK: - URLSessionDownloadDelegate
 extension NetworkServices: URLSessionDownloadDelegate {
     func urlSession(_ session: URLSession,
                     downloadTask: URLSessionDownloadTask,
@@ -100,7 +121,7 @@ extension NetworkServices: URLSessionDownloadDelegate {
         
     }
 }
-
+// MARK: - URLSessionTaskDelegate
 extension NetworkServices : URLSessionTaskDelegate {
     
     func urlSession(_ session: URLSession, task: URLSessionTask, didSendBodyData bytesSent: Int64, totalBytesSent: Int64, totalBytesExpectedToSend: Int64) {
@@ -110,6 +131,39 @@ extension NetworkServices : URLSessionTaskDelegate {
         }
     }
     
+}
+// MARK: - PingDelegate
+extension NetworkServices: PingDelegate {
+    public func ping(_ pinger: Ping, didSendPacket packet: Data, sequenceNumber: UInt16){
+        dateReference = Date()
+    }
+
+    public func ping(_ pinger: Ping, didStartWithAddress address: Data) {
+        pinger.send(with: nil)
+    }
+
+    public func ping(_ pinger: Ping, didFailWithError error: Error) {
+        resultCallback?(nil)
+    }
+
+    public func ping(_ pinger: Ping, didReceiveUnexpectedPacket packet: Data) {
+        pinger.stop()
+        resultCallback?(nil)
+    }
+
+    public func ping(_ pinger: Ping, didReceivePingResponsePacket packet: Data, sequenceNumber: UInt16) {
+        pinger.stop()
+        guard let dateReference = dateReference else { return }
+
+        //timeIntervalSinceDate returns seconds, so we convert to milis
+        let latency = Date().timeIntervalSince(dateReference) * 1000
+        resultCallback?(String(format: "%.f", latency))
+    }
+
+    public func ping(_ pinger: Ping, didFailToSendPacket packet: Data, sequenceNumber: UInt16, error: Error) {
+        pinger.stop()
+        resultCallback?(nil)
+    }
 }
 
 
