@@ -45,6 +45,29 @@ class GoogleAdMob:NSObject, GADInterstitialDelegate, GADBannerViewDelegate {
         self.isInitializeBannerView = true
         self.createBannerView()
     }
+    func initTopBannerView() {
+        self.isInitializeBannerView = true
+        if UIApplication.shared.keyWindow?.rootViewController == nil {
+            
+            NSObject.cancelPreviousPerformRequests(withTarget: self, selector: #selector(createBannerView), object: nil)
+            self.perform(#selector(createBannerView), with: nil, afterDelay: 0.5)
+        } else {
+            
+            isBannerViewDisplay = true
+            bannerView = GADBannerView(frame: CGRect(
+                x:0 ,
+                y: 102  ,
+                width: 375   ,
+                height: 80 ))
+            self.bannerView.adUnitID = GoogleAdsUnitID.strBannerAdsID
+            self.bannerView.rootViewController = UIApplication.shared.keyWindow?.rootViewController
+            self.bannerView.delegate = self
+            self.bannerView.backgroundColor = UIColor.clear
+            self.bannerView.load(GADRequest())
+            UIApplication.shared.keyWindow?.addSubview(bannerView)
+        }
+
+    }
     @objc private func createBannerView() {
         
         print("GoogleAdMob : create")

@@ -33,9 +33,16 @@ class WifiScanResultVC: UIViewController, UITableViewDataSource, UITableViewDele
         
 
         self.addObserversForKVO()
+        GoogleAdMob.sharedInstance.hideBannerView()
+        GoogleAdMob.sharedInstance.initializeBannerView()
+        GoogleAdMob.sharedInstance.initTopBannerView()
 
         
         
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        GoogleAdMob.sharedInstance.hideBannerView()
     }
 //    override func viewWillDisappear(_ animated: Bool) {
 //        super.viewWillDisappear(animated)

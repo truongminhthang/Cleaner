@@ -8,6 +8,7 @@
 
 import UIKit
 import Photos
+import AVKit
 class DetailImageVC: UIViewController {
     var assetCollection: PHAssetCollection!
     var asset: PHAsset!
@@ -23,12 +24,34 @@ class DetailImageVC: UIViewController {
     fileprivate lazy var formatIdentifier = Bundle.main.bundleIdentifier!
     fileprivate let formatVersion = "1.0"
     fileprivate lazy var ciContext = CIContext()
-    
+    lazy var pauseButton: UIButton = {
+        let button = UIButton(type: .system)
+        let image = UIImage(named: "pause")
+        button.setImage(image, for: .normal)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.tintColor = UIColor.white
+        button.addTarget(self, action: #selector(pause), for: .touchUpInside)
+       
+        return button
+    }()
+    var isPlaying = false
+    @objc func pause(){
+        if isPlaying {
+        playerLayer.player?.pause()
+        pauseButton.setImage(UIImage(named: "play"), for: .normal)
+        } else {
+         playerLayer.player?.play()
+        pauseButton.setImage(UIImage(named: "pause"), for: .normal)
+        }
+        
+        isPlaying = !isPlaying
+        
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
-      
+        
         PHPhotoLibrary.shared().register(self)
-       
+        
         updateContent()
     }
     
@@ -79,7 +102,7 @@ class DetailImageVC: UIViewController {
                 break
             }
         }
-      
+        
     }
     
     func displayImage() {
@@ -97,6 +120,8 @@ class DetailImageVC: UIViewController {
                                                 guard let image = image else { return }
                                                 
                                                 // Now that we have the image, show it.
+                                                self.detailImageView.autoresizingMask = [.flexibleWidth, .flexibleHeight, .flexibleLeftMargin, .flexibleRightMargin, .flexibleTopMargin, .flexibleBottomMargin]
+                                                self.detailImageView.contentMode = UIViewContentMode.scaleAspectFit
                                                 
                                                 self.detailImageView.image = image
         })
@@ -124,7 +149,7 @@ class DetailImageVC: UIViewController {
             let options = PHVideoRequestOptions()
             options.isNetworkAccessAllowed = true
             options.deliveryMode = .automatic
-            
+           
             PHImageManager.default().requestPlayerItem(forVideo: asset, options: options, resultHandler: { playerItem, _ in
                 DispatchQueue.main.sync {
                     guard self.playerLayer == nil && playerItem != nil else { return }
@@ -145,11 +170,17 @@ class DetailImageVC: UIViewController {
                         playerLayer.videoGravity = AVLayerVideoGravity.resizeAspect
                         playerLayer.frame = self.detailImageView.frame
                         self.view.layer.addSublayer(playerLayer)
+                        self.view.addSubview(self.pauseButton)
                         
+                        self.pauseButton.centerXAnchor.constraint(equalTo: self.detailImageView.layoutMarginsGuide.centerXAnchor ).isActive = true
+                        self.pauseButton.centerYAnchor.constraint(equalTo: self.detailImageView.layoutMarginsGuide.centerYAnchor ).isActive = true
+                        self.pauseButton.widthAnchor.constraint(equalToConstant: 60).isActive = true
+                        self.pauseButton.heightAnchor.constraint(equalToConstant: 60).isActive = true
                         player.play()
                         
                         // Refer to the player layer so we can remove it later.
                         self.playerLayer = playerLayer
+                        self.isPlaying = true
                     } else {
                         if self.asset.mediaType == .video {
                             let queuePlayer = AVQueuePlayer(playerItem: playerItem)
@@ -164,32 +195,45 @@ class DetailImageVC: UIViewController {
                         playerLayer.videoGravity = AVLayerVideoGravity.resizeAspect
                         playerLayer.frame = self.detailImageView.frame
                         self.view.layer.addSublayer(playerLayer)
+                        self.view.addSubview(self.pauseButton)
                         
+                        self.pauseButton.centerXAnchor.constraint(equalTo: self.view.layoutMarginsGuide.centerXAnchor ).isActive = true
+                        self.pauseButton.centerYAnchor.constraint(equalTo: self.view.layoutMarginsGuide.centerYAnchor ).isActive = true
+                        self.pauseButton.widthAnchor.constraint(equalToConstant: 60).isActive = true
+                        self.pauseButton.heightAnchor.constraint(equalToConstant: 60).isActive = true
                         player.play()
                         
                         // Refer to the player layer so we can remove it later.
                         self.playerLayer = playerLayer
+                        self.isPlaying = true
                     }
                     
                     
                 }
             })
-          
+            
         }
-        imageManager.requestImageData(for: asset!, options: nil, resultHandler: { (data, string, orientation, dictionary) in
-            guard data != nil else {
-                return
-            }
-            self.sizeLabel.text = ByteCountFormatter.string(fromByteCount: Int64(data!.count), countStyle: .file )
+        if asset?.duration != 0 {
             
-            let date = self.asset.creationDate
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "dd MMMM , yyyy"
-            let creationDate = dateFormatter.string(from: (date)!)
-            
-            self.creationDayLabel.text = creationDate
-        })
-  
+            let videoRequestOptions = PHVideoRequestOptions()
+            videoRequestOptions.version = .original
+            PHCachingImageManager.default().requestAVAsset(forVideo: asset!, options: videoRequestOptions, resultHandler: { (avasset, audioMix, diction) in
+                if let url = (avasset as? AVURLAsset)?.url {
+                    if let data = try? Data(contentsOf:url) {
+                        DispatchQueue.main.sync {
+                            self.sizeLabel.text = ByteCountFormatter.string(fromByteCount: Int64(data.count), countStyle: .file )
+                            let date = self.asset.creationDate
+                            let dateFormatter = DateFormatter()
+                            dateFormatter.dateFormat = "dd MMMM , yyyy"
+                            let creationDate = dateFormatter.string(from: (date)!)
+                            self.creationDayLabel.text = creationDate
+                        }
+                        
+                    }
+                }
+            })
+        }
+        
     }
     
     
@@ -234,4 +278,5 @@ extension DetailImageVC: PHPhotoLibraryChangeObserver {
     
     
 }
+
 
