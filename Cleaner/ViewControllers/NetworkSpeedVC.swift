@@ -32,7 +32,7 @@ class NetworkSpeedVC: UIViewController ,SimplePingDelegate{
         super.viewDidLoad()
         speedButton.isEnabled = true
         registerNotification()
-      
+        
     }
     
     func registerNotification() {
@@ -67,11 +67,12 @@ class NetworkSpeedVC: UIViewController ,SimplePingDelegate{
     }
     
     @IBAction func clickAndStart(_ sender: UIButton) {
-        SimplePingClient.pingHostname(hostname: "192.168.1.1") { [unowned self] latency in
+        NetworkServices.shared.pingHostname(hostname: "192.168.1.1") { [unowned self] latency in
             DispatchQueue.main.async {
                 self.pingLabel.text = "\(latency ?? "--") ms"
                 self.networkService.startDownload()
             }
+            
         }
         speedButton.isEnabled = false
     }

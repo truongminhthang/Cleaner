@@ -20,18 +20,13 @@ class BoostVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
          GoogleAdMob.sharedInstance.initializeBannerView()
-
         // Do any additional setup after loading the view, typically from a nib.
-        let freeMemoryPercent  = String(format: "%.1f", DeviceServices.shared.memoryFreePercent)
-        self.percentMemoryFree.text = freeMemoryPercent
-        self.percentMUsed.text = "\(freeMemoryPercent) %"
-         let usedMemoryPercent  = String(format: "%.1f", DeviceServices.shared.memoryUsedPercent)
-        self.percentMemoryUsed.text = "\(usedMemoryPercent) %"
+        self.percentMemoryFree.text = "\(SystemServices.shared.memoryUsage(inPercent: true).memoryFree)"
+        self.percentMUsed.text = "\(SystemServices.shared.memoryUsage(inPercent: true).memoryFree) %"
+        self.percentMemoryUsed.text = "\(SystemServices.shared.memoryUsage(inPercent: true).memoryUsed) %"
         
-        self.memoryFreeLabel.text = ByteCountFormatter.string(fromByteCount: Int64(DeviceServices.shared.memoryFreeSize), countStyle: .file)
-        self.memoryUsedLabel.text = ByteCountFormatter.string(fromByteCount: Int64(DeviceServices.shared.memoryUsedSize), countStyle: .file)
-
-        
+        self.memoryFreeLabel.text = ByteCountFormatter.string(fromByteCount: Int64(SystemServices.shared.memoryUsage(inPercent: false).memoryFree), countStyle: .binary)
+        self.memoryUsedLabel.text = ByteCountFormatter.string(fromByteCount: Int64(SystemServices.shared.memoryUsage(inPercent: false).memoryUsed), countStyle: .binary)
     }
     
     override func didReceiveMemoryWarning() {

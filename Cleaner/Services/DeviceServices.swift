@@ -46,7 +46,7 @@ class DeviceServices {
         return memoryFreeSize/Memory.systemUsage().total * 100
     }
     
-    var memoryUsedPercent:Double {
+    var  memoryUsedPercent:Double {
         return memoryUsedSize/Memory.systemUsage().total * 100
     }
     
@@ -62,3 +62,4 @@ class DeviceServices {
     }
    
 }
+

@@ -18,5 +18,6 @@
 #import "MMDevice.h"
 #import "SimplePing.h"
 #import "NetObjc.h"
+#import "Ping.h"
 
 #endif /* BridingHeader_h */

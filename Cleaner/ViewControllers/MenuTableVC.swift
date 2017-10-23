@@ -14,14 +14,12 @@ class MenuTableVC: UITableViewController {
     @IBOutlet weak var storageLabel: UILabel!
     
     @IBOutlet weak var cpuLabel: UILabel!
+        
     override func viewDidLoad() {
         super.viewDidLoad()
-        let convertUsed = String(format: "%.1f", DeviceServices.shared.memoryUsedPercent)
-        memoryLabel.text = "\(convertUsed) %"
-        let convertStorage = String(format: "%.1f", DeviceServices.shared.diskUsedPercent)
-        storageLabel.text = "\(convertStorage) %"
-         let convertCPU = String(format: "%.1f", DeviceServices.shared.cpuUsedSize)
-        cpuLabel.text = "\(convertCPU) %"
+        memoryLabel.text = "\(SystemServices.shared.memoryUsage(inPercent: true).memoryUsed) %"
+        storageLabel.text = "\(SystemServices.shared.diskSpaceUsage(inPercent: true).useDiskSpace) %"
+        cpuLabel.text = "\(SystemServices.shared.cpuUsage()) %"
     }
 
     override func didReceiveMemoryWarning() {
