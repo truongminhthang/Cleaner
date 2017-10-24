@@ -30,11 +30,8 @@ class WifiScanResultVC: UIViewController, UITableViewDataSource, UITableViewDele
         self.networkScanner = NetworkScanner(delegate:self)
         self.spinner.startAnimating()
         self.networkScanner.scan()
-        
-
         self.addObserversForKVO()
         GoogleAdMob.sharedInstance.hideBannerView()
-        GoogleAdMob.sharedInstance.initializeBannerView()
         GoogleAdMob.sharedInstance.initTopBannerView()
 
         

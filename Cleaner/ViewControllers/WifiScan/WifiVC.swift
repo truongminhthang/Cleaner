@@ -19,7 +19,7 @@ class WifiVC: UIViewController  {
         super.viewWillDisappear(animated)
         GoogleAdMob.sharedInstance.hideBannerView()
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

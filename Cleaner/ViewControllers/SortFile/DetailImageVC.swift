@@ -9,13 +9,22 @@
 import UIKit
 import Photos
 import AVKit
-class DetailImageVC: UIViewController {
+class DetailImageVC: UIViewController, UIScrollViewDelegate {
     var assetCollection: PHAssetCollection!
     var asset: PHAsset!
     @IBOutlet weak var detailImageView: UIImageView!
     @IBOutlet weak var sizeLabel: UILabel!
     @IBOutlet weak var creationDayLabel: UILabel!
-    
+    @IBOutlet weak var scrollView: UIScrollView! {
+        didSet {
+            scrollView.delegate = self
+            scrollView.contentSize = detailImageView.frame.size
+            scrollView.maximumZoomScale = 6.0
+            scrollView.minimumZoomScale = 1.0
+            
+        }
+    }
+
     fileprivate var playerLayer: AVPlayerLayer!
     fileprivate var playerLooper: AVPlayerLooper?
     fileprivate var isPlayingHint = false
@@ -53,6 +62,7 @@ class DetailImageVC: UIViewController {
         PHPhotoLibrary.shared().register(self)
         
         updateContent()
+
     }
     
     deinit {
@@ -67,6 +77,9 @@ class DetailImageVC: UIViewController {
         let scale = UIScreen.main.scale
         return CGSize(width: detailImageView.bounds.width * scale,
                       height: detailImageView.bounds.height * scale )
+    }
+    func viewForZooming(in scrollView: UIScrollView) -> UIView? {
+        return self.detailImageView
     }
     
     func updateContent() {
@@ -109,7 +122,7 @@ class DetailImageVC: UIViewController {
         let options = PHImageRequestOptions()
         options.deliveryMode  = .highQualityFormat
         options.isNetworkAccessAllowed = true
-        
+      
         PHImageManager.default().requestImage(for: asset,
                                               targetSize: targetSize,
                                               contentMode: .aspectFit,
@@ -143,6 +156,9 @@ class DetailImageVC: UIViewController {
     }
     
     func playVideo() {
+        scrollView.minimumZoomScale = 1.0
+        scrollView.maximumZoomScale = 1.0
+        
         if playerLayer != nil {
             playerLayer.player!.play()
         } else {

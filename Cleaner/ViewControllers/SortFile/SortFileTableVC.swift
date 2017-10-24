@@ -9,6 +9,7 @@
 import UIKit
 import Foundation
 import Photos
+
 class SortFileTableVC: UITableViewController {
     
     @IBOutlet weak var freeDiskLabel: UILabel!
@@ -16,11 +17,10 @@ class SortFileTableVC: UITableViewController {
     
     
     fileprivate let imageManager = PHCachingImageManager()
-    fileprivate var thumbnailSize: CGSize!
+    fileprivate var thumbnailSize: CGSize = CGSize(width: 400, height: 400)
     fileprivate var previousPreheatRect = CGRect.zero
     
     var fetchResult = DataServices.shared.fetchResult
-    var assetCollection = DataServices.shared.assetCollection
     var asset: PHAsset!
     
     
@@ -87,58 +87,27 @@ class SortFileTableVC: UITableViewController {
     
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let asset = fetchResult?.object(at: indexPath.item)
-        
-        // Dequeue a GridViewCell.
-        let cell = tableView.dequeueReusableCell(withIdentifier: "photoCell", for: indexPath) as! TableViewCell
-        
-        
+        guard let asset = fetchResult?.object(at: indexPath.item) else { fatalError("couldn't fetch asset") }
+        let cellIdentifier = asset.duration == 0 ? "photoCell" : "videoCell"
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! TableViewCell
+        requestImage(for: cell, from: asset)
         // Request an image for the asset from the PHCachingImageManager.
-        cell.representedAssetIdentifier = asset?.localIdentifier
-        imageManager.requestImage(for: asset!, targetSize: CGSize(width: 400, height: 400), contentMode: .aspectFill, options: nil, resultHandler: { image, _ in
+        return cell
+    }
+    
+    func requestImage(for cell:TableViewCell, from asset: PHAsset) {
+        cell.representedAssetIdentifier = asset.localIdentifier
+        imageManager.requestImage(for: asset, targetSize: thumbnailSize , contentMode: .aspectFill, options: nil, resultHandler: { image, _ in
             
-            if cell.representedAssetIdentifier == asset?.localIdentifier && image != nil {
+            if cell.representedAssetIdentifier == asset.localIdentifier && image != nil {
                 cell.photoImageView.image = image
             }
         })
-        
-        
-        if asset?.duration == 0 {
-            cell.representedAssetIdentifier = asset?.localIdentifier
-            imageManager.requestImageData(for: asset!, options: nil, resultHandler: { (data, string, orientation, dictionary) in
-                
-                guard data != nil else {return}
-                cell.sizeLabel.text = ByteCountFormatter.string(fromByteCount: Int64(data!.count), countStyle: .file )
-                cell.typeLabel.text =  "Photo "
-                cell.typeLabel.textColor = #colorLiteral(red: 0.3568627451, green: 0.7411764706, blue: 0.168627451, alpha: 1)
-                cell.sizeLabel.textColor = #colorLiteral(red: 0.3568627451, green: 0.7411764706, blue: 0.168627451, alpha: 1)
-                cell.typeImageView.image = #imageLiteral(resourceName: "Camera")
-            })
-        } else {
-            let videoRequestOptions = PHVideoRequestOptions()
-            videoRequestOptions.version = .original
-            PHCachingImageManager.default().requestAVAsset(forVideo: asset!, options: videoRequestOptions, resultHandler: { (avasset, audioMix, diction) in
-                if let url = (avasset as? AVURLAsset)?.url {
-                    if let data = try? Data(contentsOf:url) {
-                        DispatchQueue.main.sync {
-                            cell.sizeLabel.text = ByteCountFormatter.string(fromByteCount: Int64(data.count), countStyle: .file )
-                            cell.typeLabel.text = " Video "
-                            cell.typeLabel.textColor = #colorLiteral(red: 0, green: 0.5898008943, blue: 1, alpha: 1)
-                            cell.sizeLabel.textColor = #colorLiteral(red: 0, green: 0.5898008943, blue: 1, alpha: 1)
-                            cell.typeImageView.image = #imageLiteral(resourceName: "video")
-                        }
-                    
-                    }
-                }
-            })
-
-        
-            
+        asset.getURL { (url) in
+                cell.sizeLabel.text = ByteCountFormatter.string(fromByteCount: Int64(url?.fileSize ?? 0), countStyle: .file )
         }
-        
-        
-        return cell
     }
+   
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let destination = segue.destination as? DetailImageVC
@@ -149,7 +118,6 @@ class SortFileTableVC: UITableViewController {
             destination.asset = fetchResult?.object(at: indexPath.item)
             
         }
-        destination.assetCollection = assetCollection
     }
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
@@ -203,7 +171,6 @@ extension SortFileTableVC : PHPhotoLibraryChangeObserver {
                 // Reload the collection view if incremental diffs are not available.
                 tableView!.reloadData()
             }
-            
         }
     }
 }
