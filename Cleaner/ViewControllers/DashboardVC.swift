@@ -21,6 +21,7 @@ class MainVC: UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
         let deviceServices = DeviceServices()
         pieChartView.addItem(value: 100 - Float(deviceServices.diskFreePercent) , color: UIColor.red)
         pieChartView.addItem(value: Float(deviceServices.diskFreePercent) , color: UIColor.clear)
