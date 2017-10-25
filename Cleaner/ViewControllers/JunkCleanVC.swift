@@ -13,6 +13,7 @@ class JunkCleanVC: UIViewController {
     @IBOutlet weak var freeDiskLabel: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
+       
         self.freeDiskLabel.text  = ByteCountFormatter.string(fromByteCount: Int64(SystemServices.shared.diskSpaceUsage(inPercent: false).freeDiskSpace), countStyle: .binary)
         // Do any additional setup after loading the view.
     }
