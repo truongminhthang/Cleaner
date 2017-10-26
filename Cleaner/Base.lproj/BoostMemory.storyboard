@@ -29,16 +29,18 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2HJ-1W-wzt" userLabel="smaller view" customClass="GradientView" customModule="Cleaner" customModuleProvider="target">
                                         <rect key="frame" x="21" y="21" width="179" height="179"/>
                                         <subviews>
-                                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KdY-mL-0Ot" customClass="View" customModule="Cleaner" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="179" height="179"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KdY-mL-0Ot" customClass="View" customModule="Cleaner" customModuleProvider="target">
+                                                <rect key="frame" x="-21" y="-21" width="221" height="221"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="KdY-mL-0Ot" secondAttribute="height" multiplier="1:1" id="dvb-1t-YQ9"/>
+                                                </constraints>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                         <real key="value" value="-1"/>
                                                     </userDefinedRuntimeAttribute>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                                        <real key="value" value="2"/>
+                                                        <real key="value" value="0.0"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </view>
@@ -117,15 +119,18 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
+                                    <constraint firstItem="KdY-mL-0Ot" firstAttribute="height" secondItem="ssR-6d-Jmt" secondAttribute="height" id="2VT-z8-7Tw"/>
                                     <constraint firstItem="Ie4-lY-MwS" firstAttribute="leading" secondItem="ssR-6d-Jmt" secondAttribute="leading" id="6WM-OA-Ty7"/>
                                     <constraint firstItem="Ie4-lY-MwS" firstAttribute="height" secondItem="ssR-6d-Jmt" secondAttribute="height" multiplier="1/10" constant="-12" id="Hsp-q1-y8F"/>
                                     <constraint firstItem="2HJ-1W-wzt" firstAttribute="centerY" secondItem="ssR-6d-Jmt" secondAttribute="centerY" id="Pls-0J-x8y"/>
                                     <constraint firstItem="2HJ-1W-wzt" firstAttribute="centerX" secondItem="ssR-6d-Jmt" secondAttribute="centerX" id="Qaa-sc-3sN"/>
+                                    <constraint firstItem="KdY-mL-0Ot" firstAttribute="centerY" secondItem="ssR-6d-Jmt" secondAttribute="centerY" id="Yu8-An-rNa"/>
                                     <constraint firstItem="2HJ-1W-wzt" firstAttribute="centerY" secondItem="ssR-6d-Jmt" secondAttribute="centerY" id="aks-qj-DNx"/>
                                     <constraint firstAttribute="width" secondItem="ssR-6d-Jmt" secondAttribute="height" multiplier="1:1" id="bUq-di-NUu"/>
                                     <constraint firstItem="Ie4-lY-MwS" firstAttribute="top" secondItem="ssR-6d-Jmt" secondAttribute="top" constant="-10" id="hmv-sL-IwK"/>
                                     <constraint firstItem="2HJ-1W-wzt" firstAttribute="centerX" secondItem="ssR-6d-Jmt" secondAttribute="centerX" id="jdU-MC-c27"/>
                                     <constraint firstAttribute="trailing" secondItem="Ie4-lY-MwS" secondAttribute="trailing" id="nps-I3-7kM"/>
+                                    <constraint firstItem="KdY-mL-0Ot" firstAttribute="centerX" secondItem="ssR-6d-Jmt" secondAttribute="centerX" id="rUf-61-8C3"/>
                                     <constraint firstItem="2HJ-1W-wzt" firstAttribute="width" secondItem="ssR-6d-Jmt" secondAttribute="width" multiplier="3/3.7" id="t5Q-cX-jyM"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>

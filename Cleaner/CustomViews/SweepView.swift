@@ -69,14 +69,19 @@ extension BoostVC {
     func showAlert(vc: UIViewController, title:String, message: String) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
         alertController.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
+             GoogleAdMob.sharedInstance.showInterstitial()
+            defer {
             self.navigationController?.popViewController(animated: true)
+            }
+
         }))
        
         vc.present(alertController, animated: true, completion: nil)
+
     }
     @objc func runBoost() {
         let memoryOut = ByteCountFormatter.string(fromByteCount: Int64(SharedUserDefaults.shared.memoryUsedFake - DeviceServices.shared.memoryUsedSize), countStyle: .binary)
-        showAlert(vc: self, title: "Hoàn thành", message: "chúng tôi đã giải phóng \(memoryOut) trong bộ nhớ")
+        showAlert(vc: self, title: "Complete", message: "we have liberate \(memoryOut) in memory")
     }
 
 }

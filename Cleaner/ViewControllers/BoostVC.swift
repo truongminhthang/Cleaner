@@ -72,6 +72,7 @@ class BoostVC: UIViewController,CAAnimationDelegate {
     }
     
     @IBAction func clickAndRunBoost(_ sender: UIButton) {
+        
         UIView.animate(withDuration: 3.0, delay: 0, options: [.repeat, .curveLinear] , animations: {
             self.moveRight(view: self.sweepView)
             self.changeLabel.textColor = UIColor.darkGray
