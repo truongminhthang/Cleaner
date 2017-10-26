@@ -9,6 +9,7 @@
 import UIKit
 import GoogleMobileAds
 class BoostVC: UIViewController,CAAnimationDelegate {
+    
     // - Mark : Properties
     @IBOutlet weak var smallerView: GradientView!
     @IBOutlet weak var changeLabel: UILabel!
@@ -37,19 +38,20 @@ class BoostVC: UIViewController,CAAnimationDelegate {
          changeValue()
         self.createColorSets()
         self.createGradientLayer()
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(BoostVC.clickAndRunBoost(_:)))
+        self.view.addGestureRecognizer(tapGestureRecognizer)
     }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         GoogleAdMob.sharedInstance.hideBannerView()
     }
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-    }
+   
     // - Mark : Active
     func changeValue(){
         if SharedUserDefaults.shared.a == 0 {
@@ -78,7 +80,6 @@ class BoostVC: UIViewController,CAAnimationDelegate {
             self.changeAlpha(label: self.changeLabel)
             self.handleTapGesture()
             self.percentMemoryFree.count(fromValue: 100.0, to: DeviceServices.shared.memoryUsedPercent, withDuration: 4, andAnimationType: .EaseOut, andCounterType: .Int)
-
         }) { (_) in
             self.moveLeft(view: self.sweepView)
             self.smallerView.startColor = UIColor.blue
@@ -86,9 +87,6 @@ class BoostVC: UIViewController,CAAnimationDelegate {
         self.sweepView.backgroundColor = UIColor(red: 248/255, green: 210/255, blue: 230/255, alpha: 0.7)
         self.stackView.isHidden = true
         self.coverButton.isHidden = true
-
-        
-        
         timer = Timer.scheduledTimer(timeInterval: 7, target: self, selector: #selector(BoostVC.runBoost), userInfo: nil, repeats: false)
     }
 }
