@@ -15,19 +15,19 @@
         <scene sceneID="hOA-Vk-rNt">
             <objects>
                 <tableViewController storyboardIdentifier="SortFileTableVC" title="Sort Files" useStoryboardIdentifierAsRestorationIdentifier="YES" id="OOK-g6-LYE" customClass="SortFileTableVC" customModule="Cleaner" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Dxq-Yf-hBE">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="100" estimatedSectionHeaderHeight="100" sectionFooterHeight="28" id="Dxq-Yf-hBE">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.94917863609999997" green="0.7692083716" blue="0.77964895960000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="sectionIndexBackgroundColor" red="0.9365198016166687" green="0.53027892112731934" blue="0.52608883380889893" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <view key="tableFooterView" contentMode="scaleToFill" id="ryT-PS-Q5s">
-                            <rect key="frame" x="0.0" y="208" width="375" height="44"/>
+                            <rect key="frame" x="0.0" y="280" width="375" height="44"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="0.94917863609999997" green="0.7692083716" blue="0.77964895960000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="videoCell" editingAccessoryType="disclosureIndicator" rowHeight="90" id="Dy2-fq-NWO" customClass="TableViewCell" customModule="Cleaner" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="375" height="90"/>
+                                <rect key="frame" x="0.0" y="100" width="375" height="90"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Dy2-fq-NWO" id="0kn-1F-PKP">
                                     <rect key="frame" x="0.0" y="0.0" width="342" height="90"/>
@@ -90,11 +90,11 @@
                                     <outlet property="sizeLabel" destination="73o-JD-YFl" id="Jx3-xx-g85"/>
                                     <outlet property="typeImageView" destination="sti-kt-a0b" id="d8f-DT-YZz"/>
                                     <outlet property="typeLabel" destination="gnx-Ag-O1U" id="ucp-Oe-Lk9"/>
-                                    <segue destination="zvs-Mj-ncP" kind="show" id="BKL-pf-Wuo"/>
+                                    <segue destination="zvs-Mj-ncP" kind="show" identifier="show Video Detail" id="BKL-pf-Wuo"/>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="photoCell" editingAccessoryType="disclosureIndicator" rowHeight="90" id="dLV-yf-MsA" customClass="TableViewCell" customModule="Cleaner" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="118" width="375" height="90"/>
+                                <rect key="frame" x="0.0" y="190" width="375" height="90"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="dLV-yf-MsA" id="7oK-EJ-Hv6">
                                     <rect key="frame" x="0.0" y="0.0" width="342" height="90"/>
@@ -157,7 +157,7 @@
                                     <outlet property="sizeLabel" destination="9fM-CI-nm4" id="bA6-f5-Cmh"/>
                                     <outlet property="typeImageView" destination="JeO-MG-3Oq" id="6XT-BE-Re5"/>
                                     <outlet property="typeLabel" destination="CaD-yx-z6e" id="vCg-7E-31z"/>
-                                    <segue destination="yl4-oS-S53" kind="show" id="O3W-Kh-yXy"/>
+                                    <segue destination="yl4-oS-S53" kind="show" identifier="show photo details" id="O3W-Kh-yXy"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
