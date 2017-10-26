@@ -110,7 +110,7 @@ class SortFileTableVC: UITableViewController {
    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let destination = segue.destination as? DetailImageVC
+        guard let destination = segue.destination as? VideoViewController
             else { fatalError("unexpected view controller for segue") }
         guard let cell = sender as? UITableViewCell else { fatalError("unexpected sender") }
         
