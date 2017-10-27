@@ -27,7 +27,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
             UNUserNotificationCenter.current().delegate = self
             self.scheduleNotification()
         }
-        _ = DataServices.shared.fetchResult
         return true
     }
     
