@@ -14,7 +14,7 @@ import UserNotifications
 class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDelegate {
 
     var window: UIWindow?
-
+    var isFakeModeApp : Bool = true
     static var shared = {
         return UIApplication.shared.delegate as! AppDelegate
     }()

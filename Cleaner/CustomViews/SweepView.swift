@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 extension BoostVC {
-// Custom sweepview
+    // Custom sweepview
     
     func changeAlpha(label: UILabel) {
         label.alpha = 0.2
@@ -40,7 +40,7 @@ extension BoostVC {
         currentColorSet = 0
     }
     
-
+    
     // Mark: Active
     func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
         if flag {
@@ -69,25 +69,24 @@ extension BoostVC {
     func showAlert(vc: UIViewController, title:String, message: String) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
         alertController.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
-             GoogleAdMob.sharedInstance.showInterstitial()
-            defer {
-            self.navigationController?.popViewController(animated: true)
-            }
-
+            GoogleAdMob.sharedInstance.showInterstitial()
         }))
-       
+        
         vc.present(alertController, animated: true, completion: nil)
-
+        
     }
     @objc func runBoost() {
+        self.isWhileRun = false
+        self.isFakeMode = false
+        self.sweepView.isHidden = false
         let memoryOut = ByteCountFormatter.string(fromByteCount: Int64(SharedUserDefaults.shared.memoryUsedFake - DeviceServices.shared.memoryUsedSize), countStyle: .binary)
-        showAlert(vc: self, title: "Complete", message: "we have liberate \(memoryOut) in memory")
+        showAlert(vc: self, title: "Complete", message: "We have liberate \(memoryOut) in memory")
     }
-
+    
 }
 extension JunkCleanVC {
     func changeAlpha(label: UILabel) {
-        label.alpha = 0.2
+        label.alpha = 0
     }
     func createGradientLayer() {
         gradientLayer = CAGradientLayer()
@@ -107,7 +106,7 @@ extension JunkCleanVC {
         colorSets.append([UIColor.init(red: 255/255, green: 211/255, blue: 212/255, alpha: 0.7).cgColor, UIColor.init(red: 248/255, green: 3/255, blue: 123/255, alpha: 0.7).cgColor])
         currentColorSet = 0
     }
-   
+    
     @objc func handleTapGesture() {
         if currentColorSet < colorSets.count - 1 {
             currentColorSet! += 1
@@ -137,6 +136,6 @@ extension JunkCleanVC {
         self.biggerView.backgroundColor = UIColor.clear
         self.middleView.backgroundColor = UIColor.clear
         self.handleTapGesture()
-        self.self.hander = !self.hander
+        self.hander = !self.hander
     }
 }

@@ -50,21 +50,21 @@
                                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Pz-Uy-qlB">
                                                         <rect key="frame" x="0.0" y="0.0" width="107" height="50"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="jsG-Ug-rhh" customClass="CountingLabel" customModule="Cleaner" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="0.0" width="80.5" height="50"/>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="jsG-Ug-rhh" customClass="CountingLabel" customModule="Cleaner" customModuleProvider="target">
+                                                                <rect key="frame" x="0.0" y="0.0" width="89" height="50"/>
                                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="40"/>
                                                                 <color key="textColor" red="1" green="0.080847518150000006" blue="0.25239977260000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UTE-Xo-mpJ">
-                                                                <rect key="frame" x="80.5" y="0.0" width="26.5" height="50"/>
+                                                                <rect key="frame" x="89" y="0.0" width="18" height="50"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <color key="textColor" red="1" green="0.080847518150000006" blue="0.25239977260000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                         </subviews>
                                                         <constraints>
-                                                            <constraint firstItem="UTE-Xo-mpJ" firstAttribute="width" secondItem="7Pz-Uy-qlB" secondAttribute="width" multiplier="1/4" id="fvi-mr-bin"/>
+                                                            <constraint firstItem="UTE-Xo-mpJ" firstAttribute="width" secondItem="7Pz-Uy-qlB" secondAttribute="width" multiplier="1/6" id="fvi-mr-bin"/>
                                                         </constraints>
                                                     </stackView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MEMORY FREE" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="C3F-XL-ICb">
@@ -157,21 +157,21 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lft-jL-qUn" userLabel="Stack View free">
                                                 <rect key="frame" x="5" y="0.0" width="153" height="17.5"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="🔵 FREE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6FK-4I-wJq">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="🔵 FREE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="5" translatesAutoresizingMaskIntoConstraints="NO" id="6FK-4I-wJq">
                                                         <rect key="frame" x="0.0" y="0.0" width="48" height="17.5"/>
                                                         <fontDescription key="fontDescription" type="system" weight="thin" pointSize="9"/>
                                                         <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NiN-1u-E3p" customClass="CountingLabel" customModule="Cleaner" customModuleProvider="target">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="4" translatesAutoresizingMaskIntoConstraints="NO" id="NiN-1u-E3p" customClass="CountingLabel" customModule="Cleaner" customModuleProvider="target">
                                                         <rect key="frame" x="48" y="0.0" width="57" height="17.5"/>
                                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="9"/>
                                                         <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AlG-84-4Gd" customClass="CountingLabel" customModule="Cleaner" customModuleProvider="target">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="4" translatesAutoresizingMaskIntoConstraints="NO" id="AlG-84-4Gd" customClass="CountingLabel" customModule="Cleaner" customModuleProvider="target">
                                                         <rect key="frame" x="105" y="0.0" width="48" height="17.5"/>
-                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="9"/>
+                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="8"/>
                                                         <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
@@ -207,21 +207,21 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jnX-ra-MYK" userLabel="Stack View used">
                                                 <rect key="frame" x="5" y="0.0" width="153" height="17.5"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="🔴 USED" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TRj-lE-jJ2">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="🔴 USED" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="5" translatesAutoresizingMaskIntoConstraints="NO" id="TRj-lE-jJ2">
                                                         <rect key="frame" x="0.0" y="0.0" width="48" height="17.5"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="9"/>
                                                         <color key="textColor" red="1" green="0.11121391899999999" blue="0.063787128849999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JHs-a9-Dct" customClass="CountingLabel" customModule="Cleaner" customModuleProvider="target">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="4" translatesAutoresizingMaskIntoConstraints="NO" id="JHs-a9-Dct" customClass="CountingLabel" customModule="Cleaner" customModuleProvider="target">
                                                         <rect key="frame" x="48" y="0.0" width="57" height="17.5"/>
                                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="9"/>
                                                         <color key="textColor" red="1" green="0.11121391899999999" blue="0.063787128849999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yga-16-KJq" customClass="CountingLabel" customModule="Cleaner" customModuleProvider="target">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="5" translatesAutoresizingMaskIntoConstraints="NO" id="Yga-16-KJq" customClass="CountingLabel" customModule="Cleaner" customModuleProvider="target">
                                                         <rect key="frame" x="105" y="0.0" width="48" height="17.5"/>
-                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="9"/>
+                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="8"/>
                                                         <color key="textColor" red="1" green="0.11121391899999999" blue="0.063787128849999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
