@@ -49,26 +49,26 @@
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="bottom" spacing="22" translatesAutoresizingMaskIntoConstraints="NO" id="Ibn-Mw-IKx" userLabel="Big Stack">
-                                                <rect key="frame" x="77.5" y="47.5" width="76.5" height="136.5"/>
+                                                <rect key="frame" x="77" y="47.5" width="78" height="136.5"/>
                                                 <subviews>
-                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wifi" translatesAutoresizingMaskIntoConstraints="NO" id="oK3-eS-wCz">
-                                                        <rect key="frame" x="0.0" y="0.0" width="76.5" height="60"/>
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wifistory" translatesAutoresizingMaskIntoConstraints="NO" id="oK3-eS-wCz">
+                                                        <rect key="frame" x="0.0" y="0.0" width="78" height="60"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="60" id="Yej-AO-fop"/>
                                                         </constraints>
                                                     </imageView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="uMd-OH-KBx">
-                                                        <rect key="frame" x="0.0" y="82" width="76.5" height="54.5"/>
+                                                        <rect key="frame" x="0.0" y="82" width="78" height="54.5"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WIFI" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yS7-g8-UEz">
-                                                                <rect key="frame" x="10.5" y="0.0" width="55.5" height="32.5"/>
+                                                                <rect key="frame" x="11.5" y="0.0" width="55.5" height="32.5"/>
                                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="27"/>
                                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DETECTION" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KDE-Zy-n1b">
-                                                                <rect key="frame" x="0.0" y="37.5" width="76.5" height="17"/>
+                                                                <rect key="frame" x="1" y="37.5" width="76.5" height="17"/>
                                                                 <fontDescription key="fontDescription" type="system" weight="thin" pointSize="14"/>
                                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <nil key="highlightedColor"/>
@@ -399,6 +399,6 @@
     <resources>
         <image name="Ellipse-1" width="1242" height="34"/>
         <image name="guest icon" width="25" height="25"/>
-        <image name="wifi" width="30" height="30"/>
+        <image name="wifistory" width="78" height="56"/>
     </resources>
 </document>

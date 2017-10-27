@@ -25,6 +25,7 @@
 		3B2A439D1F877B670053A89B /* PieChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2A43891F8779870053A89B /* PieChartView.swift */; };
 		3B2A439E1F877B670053A89B /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2A438A1F8779870053A89B /* View.swift */; };
 		3B2A43A01F877BCD0053A89B /* JunkClean.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B2A438F1F8779E60053A89B /* JunkClean.storyboard */; };
+		3B64C5E81FA18E77000F85F5 /* VideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B64C5E71FA18E77000F85F5 /* VideoViewController.swift */; };
 		3BA937631F973BFF002AA152 /* GoogleMobileAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BA937621F973BFF002AA152 /* GoogleMobileAds.framework */; };
 		3BA937651F973DA7002AA152 /* GoogleAdsMob.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA937641F973DA7002AA152 /* GoogleAdsMob.swift */; };
 		3BB71E301F9857B000263DF5 /* SystemServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB71E2F1F9857B000263DF5 /* SystemServices.swift */; };
@@ -46,9 +47,13 @@
 		3F9DE7871F96FF830018A861 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F20C9E81F95E8DD00DD46BD /* Network.swift */; };
 		3F9DE7881F96FF830018A861 /* NetworkFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F20C9E91F95E8DD00DD46BD /* NetworkFlow.swift */; };
 		3F9DE7891F96FF8E0018A861 /* NetObjc.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F20C9EC1F95E8DD00DD46BD /* NetObjc.m */; };
+<<<<<<< HEAD
 		3FC3B5261FA020BE004251A5 /* UserDefaultServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC3B5251FA020BE004251A5 /* UserDefaultServices.swift */; };
 		3FF0FAB81FA0109500030750 /* SweepView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF0FAB71FA0109500030750 /* SweepView.swift */; };
 		3FF0FABA1FA0109D00030750 /* CountingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF0FAB91FA0109D00030750 /* CountingLabel.swift */; };
+=======
+		8425DC3F1F9EB54300AE29C7 /* PHAssetExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8425DC3E1F9EB54300AE29C7 /* PHAssetExtension.swift */; };
+>>>>>>> ce1e400f6ce77ab96c26d3407104806bb051d7d9
 		8475E72E1F88B5D200F34CFC /* data.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8475E7141F88B5D200F34CFC /* data.plist */; };
 		8475E72F1F88B5D200F34CFC /* MacFinder.m in Sources */ = {isa = PBXBuildFile; fileRef = 8475E7181F88B5D200F34CFC /* MacFinder.m */; };
 		8475E7311F88B5D200F34CFC /* LANProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 8475E7221F88B5D200F34CFC /* LANProperties.m */; };
@@ -118,6 +123,7 @@
 		3B2A438B1F8779870053A89B /* GradientColorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GradientColorView.swift; path = Cleaner/CustomViews/GradientColorView.swift; sourceTree = SOURCE_ROOT; };
 		3B2A438D1F8779CF0053A89B /* DataServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DataServices.swift; path = Cleaner/Services/DataServices.swift; sourceTree = SOURCE_ROOT; };
 		3B2A43901F8779E60053A89B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/JunkClean.storyboard; sourceTree = "<group>"; };
+		3B64C5E71FA18E77000F85F5 /* VideoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoViewController.swift; sourceTree = "<group>"; };
 		3B6BDEAC1F9D8D330020A5CD /* Ping.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Ping.h; sourceTree = "<group>"; };
 		3B6BDEAD1F9D8D330020A5CD /* Ping.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Ping.m; sourceTree = "<group>"; };
 		3BA937621F973BFF002AA152 /* GoogleMobileAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMobileAds.framework; path = Cleaner/GoogleMobileAds.framework; sourceTree = "<group>"; };
@@ -143,9 +149,13 @@
 		3F673EDB1F8258AB00E0DA07 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3F7852E51F939BA70044F1A0 /* SimplePing.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SimplePing.h; sourceTree = "<group>"; };
 		3F7852E61F939BB60044F1A0 /* SimplePing.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SimplePing.m; sourceTree = "<group>"; };
+<<<<<<< HEAD
 		3FC3B5251FA020BE004251A5 /* UserDefaultServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultServices.swift; sourceTree = "<group>"; };
 		3FF0FAB71FA0109500030750 /* SweepView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SweepView.swift; sourceTree = "<group>"; };
 		3FF0FAB91FA0109D00030750 /* CountingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountingLabel.swift; sourceTree = "<group>"; };
+=======
+		8425DC3E1F9EB54300AE29C7 /* PHAssetExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PHAssetExtension.swift; sourceTree = "<group>"; };
+>>>>>>> ce1e400f6ce77ab96c26d3407104806bb051d7d9
 		8475E7141F88B5D200F34CFC /* data.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = data.plist; sourceTree = "<group>"; };
 		8475E7171F88B5D200F34CFC /* MacFinder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MacFinder.h; sourceTree = "<group>"; };
 		8475E7181F88B5D200F34CFC /* MacFinder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MacFinder.m; sourceTree = "<group>"; };
@@ -257,6 +267,7 @@
 			isa = PBXGroup;
 			children = (
 				8498CDB31F9186EF00118C98 /* DetailImageVC.swift */,
+				3B64C5E71FA18E77000F85F5 /* VideoViewController.swift */,
 				3B2A43871F87790F0053A89B /* SortFileTableVC.swift */,
 				3B2A43861F87790F0053A89B /* TableViewCell.swift */,
 			);
@@ -337,6 +348,7 @@
 			isa = PBXGroup;
 			children = (
 				FFD68E401F8CCEED00B1AC9A /* UrlExtension.swift */,
+				8425DC3E1F9EB54300AE29C7 /* PHAssetExtension.swift */,
 				3F30D72A1F88880700C28CA2 /* Constants.swift */,
 				84E39D781F8C3CD9004B77F3 /* ViewControllerHelper.swift */,
 			);
@@ -663,10 +675,12 @@
 				3B2A43911F877A010053A89B /* DataServices.swift in Sources */,
 				8475E7361F88B5D200F34CFC /* MMDevice.m in Sources */,
 				3F30D72B1F88880700C28CA2 /* Constants.swift in Sources */,
+				3B64C5E81FA18E77000F85F5 /* VideoViewController.swift in Sources */,
 				3BA937651F973DA7002AA152 /* GoogleAdsMob.swift in Sources */,
 				3F223BFA1F91A13C0075911F /* NetworkServices.swift in Sources */,
 				3F9DE7831F96FF450018A861 /* CPU.swift in Sources */,
 				3F30D7281F88866C00C28CA2 /* ContainerVC.swift in Sources */,
+				8425DC3F1F9EB54300AE29C7 /* PHAssetExtension.swift in Sources */,
 				84E39D791F8C3CD9004B77F3 /* ViewControllerHelper.swift in Sources */,
 				8475E7311F88B5D200F34CFC /* LANProperties.m in Sources */,
 				8475E73A1F88B7BB00F34CFC /* WifiScanResultVC.swift in Sources */,

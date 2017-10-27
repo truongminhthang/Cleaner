@@ -20,8 +20,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+<<<<<<< HEAD
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Ellipse-1" translatesAutoresizingMaskIntoConstraints="NO" id="bHH-hk-mwo" userLabel="ellip">
                                 <rect key="frame" x="0.0" y="59" width="375" height="10"/>
+=======
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Ellipse-1" translatesAutoresizingMaskIntoConstraints="NO" id="4jc-dY-FYR" userLabel="ellip">
+                                <rect key="frame" x="0.0" y="59" width="375" height="10.5"/>
+>>>>>>> ce1e400f6ce77ab96c26d3407104806bb051d7d9
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ssR-6d-Jmt" userLabel="Biggest Circle" customClass="GradientView" customModule="Cleaner" customModuleProvider="target">
                                 <rect key="frame" x="77" y="176" width="221" height="221"/>
