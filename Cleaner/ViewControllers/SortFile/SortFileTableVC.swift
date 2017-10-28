@@ -20,28 +20,20 @@ class SortFileTableVC: UITableViewController {
     fileprivate var thumbnailSize: CGSize = CGSize(width: 400, height: 400)
     fileprivate var previousPreheatRect = CGRect.zero
     
-    var fetchResult = DataServices.shared.fetchResult
-    var asset: PHAsset!
-    
+    var fetchResult : PHFetchResult<PHAsset> = {
+        let allPhotosOptions = PHFetchOptions()
+        allPhotosOptions.sortDescriptors = [NSSortDescriptor(key: "duration", ascending: false), NSSortDescriptor(key: "pixelWidth", ascending: false), NSSortDescriptor(key: "pixelHeight", ascending: false)]
+        return PHAsset.fetchAssets(with: allPhotosOptions)
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //    registerNotification()
-        //     requestAuthorizationIfNeed()
         PHPhotoLibrary.shared().register(self )
-        
-        
-        //   if fetchResult == nil {
-        let allPhotosOptions = PHFetchOptions()
-        allPhotosOptions.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: true)]
-        fetchResult = PHAsset.fetchAssets(with: allPhotosOptions)
-        //   }
-        
     }
     deinit {
         PHPhotoLibrary.shared().unregisterChangeObserver(self )
     }
-
+    
     
     @objc func reloadData() {
         DispatchQueue.main.async {
@@ -56,16 +48,6 @@ class SortFileTableVC: UITableViewController {
     
     
     // MARK: - Table view data source
-    
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 1
-    }
-    //
-    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        
-        return 100
-    }
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let view = UIView()
@@ -82,12 +64,12 @@ class SortFileTableVC: UITableViewController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return fetchResult?.count ?? 0
+        return fetchResult.count
     }
     
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let asset = fetchResult?.object(at: indexPath.item) else { fatalError("couldn't fetch asset") }
+        let asset = fetchResult.object(at: indexPath.item)
         let cellIdentifier = asset.duration == 0 ? "photoCell" : "videoCell"
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! TableViewCell
         requestImage(for: cell, from: asset)
@@ -104,47 +86,50 @@ class SortFileTableVC: UITableViewController {
             }
         })
         asset.getURL { (url) in
-                cell.sizeLabel.text = ByteCountFormatter.string(fromByteCount: Int64(url?.fileSize ?? 0), countStyle: .file )
+            cell.sizeLabel.text = ByteCountFormatter.string(fromByteCount: Int64(url?.fileSize ?? 0), countStyle: .file )
         }
     }
-   
+    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let destination = segue.destination as? DetailImageVC
-            else { fatalError("unexpected view controller for segue") }
-        guard let cell = sender as? UITableViewCell else { fatalError("unexpected sender") }
         
-        if let indexPath = tableView?.indexPath(for: cell) {
-            destination.asset = fetchResult?.object(at: indexPath.item)
-            
+        switch segue.identifier ?? "" {
+        case "show Video Detail":
+            guard let destination = segue.destination as? VideoViewController
+                else { fatalError("unexpected view controller for segue") }
+            if let selectedIndexPath = tableView.indexPathForSelectedRow  {
+                destination.asset = fetchResult.object(at: selectedIndexPath.row)
+            }
+        case "show photo details":
+            guard let destination = segue.destination as? DetailImageVC
+                else { fatalError("unexpected view controller for segue") }
+            if let selectedIndexPath = tableView.indexPathForSelectedRow  {
+                destination.asset = fetchResult.object(at: selectedIndexPath.row)
+            }
+        default:
+            return
         }
+        
+        
     }
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        let asset = self.fetchResult?.object(at: indexPath.item)
-        let completion = { (success: Bool, error: Error?) -> Void in
-            if success {
-                DispatchQueue.main.sync {
-                    tableView.reloadData()
-                }
-                
-            } else {
-                print("can't remove asset: \(String(describing: error))")
-            }
+        let asset = self.fetchResult.object(at: indexPath.item)
+        if editingStyle == .delete {
+            PHPhotoLibrary.shared().performChanges({
+                PHAssetChangeRequest.deleteAssets([asset] as NSArray)
+            }, completionHandler: nil)
+        } else if editingStyle == .insert {
+            
         }
-        PHPhotoLibrary.shared().performChanges({
-            PHAssetChangeRequest.deleteAssets([asset!] as NSArray)
-        }, completionHandler: completion)
-        
     }
-    
 }
 
 // MARK: PHPhotoLibraryChangeObserver
 extension SortFileTableVC : PHPhotoLibraryChangeObserver {
     func photoLibraryDidChange(_ changeInstance: PHChange) {
         
-        guard let changes = changeInstance.changeDetails(for: fetchResult!)
+        guard let changes = changeInstance.changeDetails(for: fetchResult)
             else { return }
         
         // Change notifications may be made on a background queue. Re-dispatch to the
@@ -160,11 +145,18 @@ extension SortFileTableVC : PHPhotoLibraryChangeObserver {
                         if let removed = changes.removedIndexes, !removed.isEmpty {
                             tableView.deleteRows(at: removed.map({ IndexPath(item: $0, section: 0) }), with: .automatic)
                         }
+                        if let inserted = changes.insertedIndexes, !inserted.isEmpty {
+                            tableView.insertRows(at: inserted.map({ IndexPath(item: $0, section: 0) }), with: .automatic)
+                        }
+
                         
                     })
                 } else {
                     if let removed = changes.removedIndexes, !removed.isEmpty {
                         tableView.deleteRows(at: removed.map({ IndexPath(item: $0, section: 0) }), with: .automatic)
+                    }
+                    if let inserted = changes.insertedIndexes {
+                        tableView.insertRows(at: inserted.map({ IndexPath(item: $0, section: 0) }), with: .automatic)
                     }
                 }
             } else {

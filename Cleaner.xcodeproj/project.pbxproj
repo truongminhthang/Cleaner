@@ -12,7 +12,6 @@
 		3B2A437D1F87781C0053A89B /* BoostMemory.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B2A43771F87781C0053A89B /* BoostMemory.storyboard */; };
 		3B2A437E1F87781C0053A89B /* NetworkSpeed.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B2A43791F87781C0053A89B /* NetworkSpeed.storyboard */; };
 		3B2A437F1F87781C0053A89B /* SortFileTableVC.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B2A437B1F87781C0053A89B /* SortFileTableVC.storyboard */; };
-		3B2A43911F877A010053A89B /* DataServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2A438D1F8779CF0053A89B /* DataServices.swift */; };
 		3B2A43921F877B5A0053A89B /* BoostVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2A43851F8779080053A89B /* BoostVC.swift */; };
 		3B2A43931F877B5F0053A89B /* JunkCleanVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2A43821F8779080053A89B /* JunkCleanVC.swift */; };
 		3B2A43941F877B5F0053A89B /* DashboardVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2A43801F8779080053A89B /* DashboardVC.swift */; };
@@ -25,6 +24,7 @@
 		3B2A439D1F877B670053A89B /* PieChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2A43891F8779870053A89B /* PieChartView.swift */; };
 		3B2A439E1F877B670053A89B /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2A438A1F8779870053A89B /* View.swift */; };
 		3B2A43A01F877BCD0053A89B /* JunkClean.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B2A438F1F8779E60053A89B /* JunkClean.storyboard */; };
+		3B64C5E81FA18E77000F85F5 /* VideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B64C5E71FA18E77000F85F5 /* VideoViewController.swift */; };
 		3BA937631F973BFF002AA152 /* GoogleMobileAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BA937621F973BFF002AA152 /* GoogleMobileAds.framework */; };
 		3BA937651F973DA7002AA152 /* GoogleAdsMob.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA937641F973DA7002AA152 /* GoogleAdsMob.swift */; };
 		3BB71E301F9857B000263DF5 /* SystemServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB71E2F1F9857B000263DF5 /* SystemServices.swift */; };
@@ -114,8 +114,8 @@
 		3B2A43891F8779870053A89B /* PieChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PieChartView.swift; path = Cleaner/CustomViews/PieChartView.swift; sourceTree = SOURCE_ROOT; };
 		3B2A438A1F8779870053A89B /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = View.swift; path = Cleaner/CustomViews/View.swift; sourceTree = SOURCE_ROOT; };
 		3B2A438B1F8779870053A89B /* GradientColorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GradientColorView.swift; path = Cleaner/CustomViews/GradientColorView.swift; sourceTree = SOURCE_ROOT; };
-		3B2A438D1F8779CF0053A89B /* DataServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DataServices.swift; path = Cleaner/Services/DataServices.swift; sourceTree = SOURCE_ROOT; };
 		3B2A43901F8779E60053A89B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/JunkClean.storyboard; sourceTree = "<group>"; };
+		3B64C5E71FA18E77000F85F5 /* VideoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoViewController.swift; sourceTree = "<group>"; };
 		3B6BDEAC1F9D8D330020A5CD /* Ping.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Ping.h; sourceTree = "<group>"; };
 		3B6BDEAD1F9D8D330020A5CD /* Ping.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Ping.m; sourceTree = "<group>"; };
 		3BA937621F973BFF002AA152 /* GoogleMobileAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMobileAds.framework; path = Cleaner/GoogleMobileAds.framework; sourceTree = "<group>"; };
@@ -251,6 +251,7 @@
 			isa = PBXGroup;
 			children = (
 				8498CDB31F9186EF00118C98 /* DetailImageVC.swift */,
+				3B64C5E71FA18E77000F85F5 /* VideoViewController.swift */,
 				3B2A43871F87790F0053A89B /* SortFileTableVC.swift */,
 				3B2A43861F87790F0053A89B /* TableViewCell.swift */,
 			);
@@ -261,7 +262,6 @@
 		3B508FC41F82654A00A15E62 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				3B2A438D1F8779CF0053A89B /* DataServices.swift */,
 				3F661ECA1F9424E700E030E4 /* DeviceServices.swift */,
 				3BB71E2F1F9857B000263DF5 /* SystemServices.swift */,
 				3F223BF91F91A13C0075911F /* NetworkServices.swift */,
@@ -653,9 +653,9 @@
 				8475E7331F88B5D200F34CFC /* MMLANScanner.m in Sources */,
 				3BB71E301F9857B000263DF5 /* SystemServices.swift in Sources */,
 				3F673EDC1F8258AB00E0DA07 /* AppDelegate.swift in Sources */,
-				3B2A43911F877A010053A89B /* DataServices.swift in Sources */,
 				8475E7361F88B5D200F34CFC /* MMDevice.m in Sources */,
 				3F30D72B1F88880700C28CA2 /* Constants.swift in Sources */,
+				3B64C5E81FA18E77000F85F5 /* VideoViewController.swift in Sources */,
 				3BA937651F973DA7002AA152 /* GoogleAdsMob.swift in Sources */,
 				3F223BFA1F91A13C0075911F /* NetworkServices.swift in Sources */,
 				3F9DE7831F96FF450018A861 /* CPU.swift in Sources */,
