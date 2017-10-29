@@ -38,7 +38,7 @@ class CountingLabel: UILabel {
         let percentage = Double(progress / duration)
         let update = updateCounter(counterValue: percentage)
         
-        return startNUmber + (update * (endNumber - startNUmber))
+        return (startNUmber + (update * (endNumber - startNUmber))).rounded(toPlaces: 2)
     }
     func count (fromValue : Double , to toValue: Double, withDuration duration: TimeInterval , andAnimationType animationType: CounterAnimationType , andCounterType counterType: CounterType ) {
         self.startNUmber = fromValue
@@ -72,7 +72,7 @@ class CountingLabel: UILabel {
         case .Int:
             self.text = "\(value)"
         case .Float:
-            self.text = String(format: "%.2f", value)
+            self.text = "\(value)"
         default:
             break
         }

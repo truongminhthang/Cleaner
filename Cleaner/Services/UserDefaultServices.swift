@@ -22,10 +22,10 @@ class SharedUserDefaults {
         return 85.0
     }
     var memoryFreeFake: Double {
-       return memoryFreePercentFake / 100 * Memory.systemUsage().total
+       return memoryFreePercentFake / 100 * SystemServices.shared.memoryUsage(inPercent: false).totalMemory
     }
     var memoryUsedFake: Double {
-        return memoryUsedPercentFake / 100 * Memory.systemUsage().total
+        return (SystemServices.shared.memoryUsage(inPercent: false).totalMemory - memoryFreeFake)
     }
 }
 

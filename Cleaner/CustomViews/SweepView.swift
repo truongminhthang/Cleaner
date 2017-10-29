@@ -75,11 +75,12 @@ extension BoostVC {
         vc.present(alertController, animated: true, completion: nil)
         
     }
-    @objc func runBoost() {
+    @objc func runBoost(memoryUseClear: Double, memoryFreeCurrent: Double, percentMemoryFreeCurrent: Double) {
         self.isWhileRun = false
         self.isFakeMode = false
-        self.sweepView.isHidden = false
-        let memoryOut = ByteCountFormatter.string(fromByteCount: Int64(SharedUserDefaults.shared.memoryUsedFake - DeviceServices.shared.memoryUsedSize), countStyle: .binary)
+        self.setDisplayMemoryFree(memoryFree: memoryFreeCurrent, percentMemoryFree: percentMemoryFreeCurrent, isFake: false)
+        self.sweepView.isHidden = true
+        let memoryOut = ByteCountFormatter.string(fromByteCount: Int64(memoryUseClear), countStyle: .binary)
         showAlert(vc: self, title: "Complete", message: "We have liberate \(memoryOut) in memory")
     }
     

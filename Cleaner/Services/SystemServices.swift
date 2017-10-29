@@ -73,6 +73,7 @@ class SystemServices {
     func memoryUsage(inPercent: Bool) -> (memoryFree: Double, memoryUsed: Double, totalMemory: Double) {
         let PAGE_SIZE : Double = Double(vm_kernel_page_size)
         var total: Double = 0.00
+        var totalAllMemory: Double = 0.00
         var totalUsedMemory: Double = 0.00
         var totalFreeMemory: Double = 0.00
         let allMemory: Double = Double(ProcessInfo.processInfo.physicalMemory)
@@ -118,11 +119,13 @@ class SystemServices {
         if inPercent {
             totalUsedMemory = ((active + compressed + wired) * 100 / allMemory).rounded(toPlaces: 1)
             totalFreeMemory = 100 - totalUsedMemory
+            totalAllMemory = total.rounded(toPlaces: 1)
         } else {
             totalUsedMemory = active + compressed + wired
             totalFreeMemory = free + inactive
+            totalAllMemory = allMemory
         }
-        return (totalFreeMemory, totalUsedMemory, total.rounded(toPlaces: 1))
+        return (totalFreeMemory, totalUsedMemory, totalAllMemory)
     }
     // MARK: Disk Space
     func diskSpaceUsage(inPercent: Bool) -> (diskSpace: Double, useDiskSpace: Double, freeDiskSpace: Double) {
