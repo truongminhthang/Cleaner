@@ -22,7 +22,6 @@ class JunkCleanVC: UIViewController,CAAnimationDelegate {
     @IBOutlet weak var availableLabel: UILabel!
     
     // Mark: Properties
-    var timer = Timer()
     var gradient: CAGradientLayer!
     var gradientLayer: CAGradientLayer!
     var colorSets = [[CGColor]]()
@@ -45,23 +44,18 @@ class JunkCleanVC: UIViewController,CAAnimationDelegate {
             gradient.add(colorChangeAnimation, forKey: "color")
         }
     }
-    
-    
+    var storeageReduce: Double = 0
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        showAlert(vc: self, title: "nothing", message: "nothing")
-        //        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(JunkCleanVC.chosenAll))
-        //        self.view.addGestureRecognizer(tapGestureRecognizer)
         self.freeDiskLabel.text  = ByteCountFormatter.string(fromByteCount: Int64(SystemServices.shared.diskSpaceUsage(inPercent: false).freeDiskSpace), countStyle: .binary)
+        storeageReduce = SystemServices.shared.diskSpaceUsage(inPercent: false).freeDiskSpace
     }
-    
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         self.createColorSets()
         self.createGradientLayer()
     }
-    
     // Mark: Clear Cache Memory
     func clearTempFolder() {
         let fileManager = FileManager.default
@@ -80,37 +74,45 @@ class JunkCleanVC: UIViewController,CAAnimationDelegate {
             if isNeedToChange {
                 self.SpaceLabel.isHidden = true
                 self.availableLabel.isHidden = true
+                biggerView.backgroundColor = UIColor.clear
                 self.changeLabel.text = " Getting the data .... Please wait!"
                 self.freeDiskLabel.text = "    Loading ...    "
                 coverButton.isEnabled = false
             } else {
-                let systemReduce = ByteCountFormatter.string(fromByteCount: Int64(SystemServices.shared.diskSpaceUsage(inPercent: false).freeDiskSpace), countStyle: .binary)
+                let systemChange = SystemServices.shared.diskSpaceUsage(inPercent: false).freeDiskSpace > storeageReduce ? SystemServices.shared.diskSpaceUsage(inPercent: false).freeDiskSpace - storeageReduce : storeageReduce - SystemServices.shared.diskSpaceUsage(inPercent: false).freeDiskSpace
+                let systemReduce = ByteCountFormatter.string(fromByteCount: Int64(systemChange), countStyle: .binary)
+                let storageChange = SystemServices.shared.diskSpaceUsage(inPercent: false).freeDiskSpace > storeageReduce ? SystemServices.shared.diskSpaceUsage(inPercent: false).freeDiskSpace :
+                storeageReduce
                 self.freeDiskLabel.alpha = 1
-                self.freeDiskLabel.text  = systemReduce
+                self.freeDiskLabel.text  = ByteCountFormatter.string(fromByteCount: Int64(storageChange), countStyle: .binary)
                 self.SpaceLabel.isHidden = false
                 self.availableLabel.isHidden = false
                 coverButton.isEnabled = true
                 coverButton.setTitle("FINISH", for: .normal)
-                self.showAlertCompelete(vc: self, title: "Complete", message: "Memory reduced  \(systemReduce)")
+                self.showAlertCompelete(vc: self, title: "Do you want go to setting manage?", message: "The process is complete! Storage reduced \(systemReduce) but some items with private content can not be removed!")
             }
         }
     }
     // Mark: Active
     @IBAction func clickAndRunBoost(_ sender: UIButton) {
         if sender.currentTitle == "CLEAN" {
-        self.chosenAll()
-        clearTempFolder()
-        isNeedToChange = true
-        UIView.animate(withDuration: 1, delay: 0, options: [.repeat, .curveLinear] , animations: {
-            self.changeAlpha(label: self.changeLabel)
-            self.changeAlpha(label: self.markLabel)
-        }) { (_) in
-        }
-        UIView.animate(withDuration: 2, delay: 0, options: [.repeat, .curveLinear] , animations: {
-            self.changeAlpha(label: self.freeDiskLabel)
-        }) { (_) in
-        }
-        self.timer = Timer.scheduledTimer(timeInterval: 7, target: self, selector: #selector(JunkCleanVC.runBoost), userInfo: nil, repeats: false)
+            self.chosenAll()
+            clearTempFolder()
+            isNeedToChange = true
+//            showAlert(vc: self, title: "Warning!", message: "You want go to Settings?")
+            UIView.animate(withDuration: 1, delay: 0, options: [.repeat, .curveLinear] , animations: {
+                self.changeAlpha(label: self.changeLabel)
+                self.changeAlpha(label: self.markLabel)
+            }) { (_) in
+            }
+            UIView.animate(withDuration: 2, delay: 0, options: [.repeat, .curveLinear] , animations: {
+                self.changeAlpha(label: self.freeDiskLabel)
+            }) { (_) in
+            }
+            let dispatchTime = DispatchTime.now() + DispatchTimeInterval.seconds(7)
+            DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
+             self.runBoost()
+            }
         } else {
             navigationController?.popViewController(animated: true)
         }
@@ -122,7 +124,7 @@ class JunkCleanVC: UIViewController,CAAnimationDelegate {
     // Create Alert
     // - Show setting
     func showAlert(vc: UIViewController, title:String, message: String) {
-        let alertController = UIAlertController (title: "Warning!", message: "You want go to Settings?", preferredStyle: .alert)
+        let alertController = UIAlertController (title: title, message: message, preferredStyle: .alert)
         let settingsAction = UIAlertAction(title: "Settings", style: .default) { (_) -> Void in
             guard let settingsUrl = URL(string: "App-Prefs:root=General&path=Keyboard") else {
                 return
@@ -135,7 +137,6 @@ class JunkCleanVC: UIViewController,CAAnimationDelegate {
         }
         alertController.addAction(settingsAction)
         let cancelAction = UIAlertAction(title: "Cancel", style: .default) {(_) -> Void in
-            GoogleAdMob.sharedInstance.showInterstitial()
         }
         alertController.addAction(cancelAction)
         
@@ -144,14 +145,23 @@ class JunkCleanVC: UIViewController,CAAnimationDelegate {
     // - Alert when run out
     func showAlertCompelete(vc: UIViewController, title:String, message: String) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
-        
-        let okAction = UIAlertAction(title: "Ok", style: UIAlertActionStyle.default) { (result : UIAlertAction) -> Void in
+        let goToStorageBackup = UIAlertAction(title: "Setting", style: .default) { (_) -> Void in
+            guard let settingsUrl = URL(string: "App-prefs:root=General&path=STORAGE_ICLOUD_USAGE/DEVICE_STORAGE") else {
+                return
+            }
+            if UIApplication.shared.canOpenURL(settingsUrl) {
+                UIApplication.shared.open(settingsUrl, completionHandler: { (success) in
+                    print("Settings opened: \(success)") // Prints true
+                })
+            }
+        }
+        let okAction = UIAlertAction(title: "Cancle", style: UIAlertActionStyle.default) { (result : UIAlertAction) -> Void in
             GoogleAdMob.sharedInstance.showInterstitial()
         }
+        alertController.addAction(goToStorageBackup)
         alertController.addAction(okAction)
         vc.present(alertController, animated: true, completion: nil)
     }
-    
 }
 
 

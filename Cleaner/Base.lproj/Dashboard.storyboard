@@ -120,7 +120,7 @@
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cWU-z5-iaY">
                                                 <rect key="frame" x="0.0" y="0.0" width="94" height="74"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                <state key="normal" image="clear"/>
+                                                <state key="normal" image="clareOn"/>
                                                 <state key="selected" image="clear"/>
                                                 <state key="highlighted" image="clareOn"/>
                                             </button>
