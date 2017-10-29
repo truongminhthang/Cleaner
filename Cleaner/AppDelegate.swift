@@ -40,11 +40,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
         date.hour = 11
         date.minute = 25
         date.timeZone = NSTimeZone.system
-        let convert = ByteCountFormatter.string(fromByteCount: Int64(SystemServices.shared.memoryUsage(inPercent: false).memoryUsed), countStyle: .binary)
+//        let convert = ByteCountFormatter.string(fromByteCount: Int64(SystemServices.shared.memoryUsage(inPercent: false).memoryUsed), countStyle: .binary)
         let trigger = UNCalendarNotificationTrigger(dateMatching: date, repeats: true)
         let content = UNMutableNotificationContent()
         content.title = "Cleaner"
-        content.body = "We have found \(convert) being used. Memory needs should be liberated!"
+        content.body = "Warning: Free your memory and RAM to speed up."
         content.sound = UNNotificationSound.default()
         content.badge = 1
         

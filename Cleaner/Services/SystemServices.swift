@@ -62,7 +62,7 @@ class SystemServices {
             threadBasicInfo = threadInfo as thread_basic_info
             
             if threadBasicInfo.flags & TH_FLAGS_IDLE == 0 {
-                totalUsageOfCPU = (totalUsageOfCPU + Double(threadBasicInfo.cpu_usage) / Double(TH_USAGE_SCALE) * 100.0).rounded(toPlaces: 1)
+                totalUsageOfCPU = (totalUsageOfCPU + Double(threadBasicInfo.cpu_usage) / Double(TH_USAGE_SCALE) * 100.0).rounded(toPlaces: 2)
             }
         }
         
@@ -117,9 +117,9 @@ class SystemServices {
         let compressed = Double(hostInfo.compressor_page_count) * PAGE_SIZE
         
         if inPercent {
-            totalUsedMemory = ((active + compressed + wired) * 100 / allMemory).rounded(toPlaces: 1)
+            totalUsedMemory = ((active + compressed + wired) * 100 / allMemory).rounded(toPlaces: 2)
             totalFreeMemory = 100 - totalUsedMemory
-            totalAllMemory = total.rounded(toPlaces: 1)
+            totalAllMemory = total.rounded(toPlaces: 2)
         } else {
             totalUsedMemory = active + compressed + wired
             totalFreeMemory = free + inactive
@@ -162,12 +162,12 @@ class SystemServices {
             totalUseDiskSpace = totaldiskSpace - totalFreeDiskSpace
             totalFreeDisk = totalFreeDiskSpace
         }
-        return (totaldiskSpace.rounded(toPlaces: 1), totalUseDiskSpace.rounded(toPlaces: 1), totalFreeDisk.rounded(toPlaces: 1))
+        return (totaldiskSpace.rounded(toPlaces: 2), totalUseDiskSpace.rounded(toPlaces: 2), totalFreeDisk.rounded(toPlaces: 2))
     }
 }
 extension Double {
     /// Rounds the double to decimal places value
-    func rounded(toPlaces places:Int) -> Double {
+    func rounded(toPlaces places: Double) -> Double {
         let divisor = pow(10.0, Double(places))
         return (self * divisor).rounded() / divisor
     }

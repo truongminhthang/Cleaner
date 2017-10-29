@@ -28,8 +28,8 @@ class BoostVC: UIViewController,CAAnimationDelegate {
     var colorSets = [[CGColor]]()
     var currentColorSet: Int!
     
-    var memoryFreeDefault: Double = 0
     var percentMemoryUse: Double = 0
+    var memoryUsedDefault: Double = 0
     var percentMemoryUseDefault: Double = 0
     
     var isWhileRun:Bool = true {
@@ -43,9 +43,9 @@ class BoostVC: UIViewController,CAAnimationDelegate {
                 self.stackView.isHidden = true
                 self.coverButton.isEnabled = false
             } else {
-                self.changeLabel.text = "MEMORY FREE"
-                self.changeLabel.textColor = UIColor.red
-                self.percentMemoryFree.textColor = UIColor.red
+                self.changeLabel.text = "MEMORY USED"
+                self.changeLabel.textColor = UIColor.blue
+                self.percentMemoryFree.textColor = UIColor.blue
                 self.changeLabel.alpha = 1
                 self.stackView.isHidden = false
                 self.coverButton.isEnabled = true
@@ -65,20 +65,15 @@ class BoostVC: UIViewController,CAAnimationDelegate {
         sweepView.backgroundColor = UIColor.clear
         // Do any additional setup after loading the view, typically from a nib.
         if AppDelegate.shared.isFakeModeApp {
-            setDisplayMemoryFree(memoryFree: 0, percentMemoryFree: 0, isFake: true)
+            setDisplayMemory(memoryUsed: 0, percentMemoryUsed: 0, isFake: true)
         } else {
-            setDisplayMemoryFree(memoryFree: SystemServices.shared.memoryUsage(inPercent: false).memoryFree.rounded(toPlaces: 3), percentMemoryFree: SystemServices.shared.memoryUsage(inPercent: true).memoryFree.rounded(toPlaces: 3), isFake: false)
+            setDisplayMemory(memoryUsed: SystemServices.shared.memoryUsage(inPercent: false).memoryUsed.rounded(toPlaces: 3), percentMemoryUsed: SystemServices.shared.memoryUsage(inPercent: true).memoryUsed.rounded(toPlaces: 3), isFake: false)
         }
         self.createColorSets()
         self.createGradientLayer()
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(BoostVC.clickAndRunBoost(_:)))
         self.view.addGestureRecognizer(tapGestureRecognizer)
-        memoryFreeDefault = SystemServices.shared.memoryUsage(inPercent: false).memoryFree.rounded(toPlaces: 2)
-        percentMemoryUseDefault = SystemServices.shared.memoryUsage(inPercent: true).memoryUsed.rounded(toPlaces: 2)
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+        getMemory()
     }
     
     override func didReceiveMemoryWarning() {
@@ -91,9 +86,13 @@ class BoostVC: UIViewController,CAAnimationDelegate {
         GoogleAdMob.sharedInstance.hideBannerView()
     }
     
+    func getMemory() {
+        percentMemoryUseDefault = SystemServices.shared.memoryUsage(inPercent: true).memoryUsed.rounded(toPlaces: 2)
+        memoryUsedDefault = SystemServices.shared.memoryUsage(inPercent: false).memoryUsed.rounded(toPlaces: 2)
+    }
+    
     // - Mark : Active
     @IBAction func clickAndRunBoost(_ sender: UIButton) {
-        isFakeMode = true
         var memoryUseClear: Double = 0
         percentMemoryUse = percentMemoryUseDefault > SystemServices.shared.memoryUsage(inPercent: true).memoryUsed.rounded(toPlaces: 2) ? SystemServices.shared.memoryUsage(inPercent: true).memoryUsed.rounded(toPlaces: 2) : percentMemoryUseDefault
         isWhileRun = true
@@ -105,33 +104,35 @@ class BoostVC: UIViewController,CAAnimationDelegate {
             self.moveLeft(view: self.sweepView)
             self.smallerView.startColor = UIColor.blue
         }
-        let memoryFreeCurrent: Double = SystemServices.shared.memoryUsage(inPercent: false).memoryFree
-        let memoryFreeCurrentResult = memoryFreeCurrent > memoryFreeDefault ? memoryFreeCurrent.rounded(toPlaces: 2) : memoryFreeDefault.rounded(toPlaces: 2)
-        let percentMemoryFreeCurrentResult = (memoryFreeCurrentResult * 100 / SystemServices.shared.memoryUsage(inPercent: false).totalMemory).rounded(toPlaces: 2)
+        let memoryUsedCurrent = SystemServices.shared.memoryUsage(inPercent: false).memoryUsed.rounded(toPlaces: 2)
+        let memoryUsedCurrentResult = memoryUsedCurrent > memoryUsedDefault ? memoryUsedDefault : memoryUsedCurrent
+        let percentMemoryUsedCurrentResult = (memoryUsedCurrentResult * 100 / SystemServices.shared.memoryUsage(inPercent: false).totalMemory).rounded(toPlaces: 2)
+
         if AppDelegate.shared.isFakeModeApp {
-            memoryUseClear = memoryFreeCurrentResult - SharedUserDefaults.shared.memoryFreeFake.rounded(toPlaces: 2)
+            memoryUseClear = SharedUserDefaults.shared.memoryUsedFake.rounded(toPlaces: 2) - memoryUsedCurrentResult
         } else {
-            memoryUseClear =  memoryFreeCurrent > memoryFreeDefault ? memoryFreeCurrent - memoryFreeDefault : memoryFreeDefault - memoryFreeCurrent
+            memoryUseClear =  memoryUsedCurrent > memoryUsedDefault ? memoryUsedCurrent - memoryUsedDefault : memoryUsedDefault - memoryUsedCurrent
         }
         let dispatchTime = DispatchTime.now() + DispatchTimeInterval.seconds(7)
         DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
-            self.runBoost(memoryUseClear: memoryUseClear, memoryFreeCurrent: memoryFreeCurrentResult, percentMemoryFreeCurrent: percentMemoryFreeCurrentResult)
+            self.runBoost(memoryUseClear: memoryUseClear, memoryUsedCurrent: memoryUsedCurrentResult, percentMemoryUsedCurrent: percentMemoryUsedCurrentResult)
         }
+        isFakeMode = true
     }
     
-    func setDisplayMemoryFree(memoryFree: Double,percentMemoryFree: Double, isFake: Bool) {
+    func setDisplayMemory(memoryUsed: Double,percentMemoryUsed: Double, isFake: Bool) {
         if isFake {
-            self.percentMemoryFree.text = "\(SharedUserDefaults.shared.memoryFreePercentFake)"
-            self.percentMemoryFreeMain.text = "\(SharedUserDefaults.shared.memoryFreePercentFake) %"
-            self.percentMemoryUsed.text = "\(100 - SharedUserDefaults.shared.memoryFreePercentFake) %"
+            self.percentMemoryFree.text = "\(SharedUserDefaults.shared.memoryUsedPercentFake)"
+            self.percentMemoryFreeMain.text = "\(100 - SharedUserDefaults.shared.memoryUsedPercentFake) %"
+            self.percentMemoryUsed.text = "\(SharedUserDefaults.shared.memoryUsedPercentFake) %"
             self.memoryFreeLabel.text = ByteCountFormatter.string(fromByteCount: Int64(SharedUserDefaults.shared.memoryFreeFake), countStyle: .binary)
             self.memoryUsedLabel.text = ByteCountFormatter.string(fromByteCount: Int64(SharedUserDefaults.shared.memoryUsedFake), countStyle: .binary)
         } else {
-            self.percentMemoryFree.text = "\(percentMemoryFree)"
-            self.percentMemoryFreeMain.text = "\(percentMemoryFree) %"
-            self.percentMemoryUsed.text = "\(100 - percentMemoryFree) %"
-            self.memoryFreeLabel.text = ByteCountFormatter.string(fromByteCount: Int64(memoryFree), countStyle: .binary)
-            self.memoryUsedLabel.text = ByteCountFormatter.string(fromByteCount: Int64(SystemServices.shared.memoryUsage(inPercent: false).totalMemory - memoryFree), countStyle: .binary)
+            self.percentMemoryFree.text = "\(percentMemoryUsed.rounded(toPlaces: 1))"
+            self.percentMemoryFreeMain.text = "\(100 - percentMemoryUsed) %"
+            self.percentMemoryUsed.text = "\(percentMemoryUsed) %"
+            self.memoryFreeLabel.text = ByteCountFormatter.string(fromByteCount: Int64(SystemServices.shared.memoryUsage(inPercent: false).totalMemory - memoryUsed), countStyle: .binary)
+            self.memoryUsedLabel.text = ByteCountFormatter.string(fromByteCount: Int64(memoryUsed), countStyle: .binary)
         }
     }
 }
