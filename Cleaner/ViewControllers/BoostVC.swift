@@ -11,6 +11,7 @@ import GoogleMobileAds
 class BoostVC: UIViewController,CAAnimationDelegate {
     
     // - Mark : Properties
+    @IBOutlet weak var viewNotmain: View!
     @IBOutlet weak var smallerView: GradientView!
     @IBOutlet weak var changeLabel: UILabel!
     @IBOutlet weak var viewMain: View!
@@ -38,12 +39,18 @@ class BoostVC: UIViewController,CAAnimationDelegate {
                 self.changeLabel.textColor = UIColor.darkGray
                 self.percentMemoryFree.textColor = UIColor.darkGray
                 self.changeLabel.text = "⇊MEMORY DOWN⇊"
+                self.viewNotmain.isHidden = true
+                self.viewMain.isHidden = false
                 self.percentMemoryFree.count(fromValue: 100.0, to: percentMemoryUse, withDuration: 4, andAnimationType: .EaseOut, andCounterType: .Int)
                 self.sweepView.backgroundColor = UIColor(red: 248/255, green: 210/255, blue: 230/255, alpha: 0.7)
                 self.stackView.isHidden = true
                 self.coverButton.isEnabled = false
+                self.sweepView.isHidden = false
             } else {
+                self.sweepView.isHidden = true
                 self.changeLabel.text = "MEMORY USED"
+                self.viewNotmain.isHidden = false
+                self.viewMain.isHidden = true
                 self.changeLabel.textColor = UIColor.blue
                 self.percentMemoryFree.textColor = UIColor.blue
                 self.changeLabel.alpha = 1
@@ -99,6 +106,7 @@ class BoostVC: UIViewController,CAAnimationDelegate {
         UIView.animate(withDuration: 3.0, delay: 0, options: [.repeat, .curveLinear] , animations: {
             self.moveRight(view: self.sweepView)
             self.changeAlpha(label: self.changeLabel)
+            
             self.handleTapGesture()
         }) { (_) in
             self.moveLeft(view: self.sweepView)
@@ -107,7 +115,7 @@ class BoostVC: UIViewController,CAAnimationDelegate {
         let memoryUsedCurrent = SystemServices.shared.memoryUsage(inPercent: false).memoryUsed.rounded(toPlaces: 2)
         let memoryUsedCurrentResult = memoryUsedCurrent > memoryUsedDefault ? memoryUsedDefault : memoryUsedCurrent
         let percentMemoryUsedCurrentResult = (memoryUsedCurrentResult * 100 / SystemServices.shared.memoryUsage(inPercent: false).totalMemory).rounded(toPlaces: 2)
-
+        
         if AppDelegate.shared.isFakeModeApp {
             memoryUseClear = SharedUserDefaults.shared.memoryUsedFake.rounded(toPlaces: 2) - memoryUsedCurrentResult
         } else {

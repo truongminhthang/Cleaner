@@ -79,7 +79,6 @@ extension BoostVC {
         self.isWhileRun = false
         self.isFakeMode = false
         self.setDisplayMemory(memoryUsed: memoryUsedCurrent, percentMemoryUsed: percentMemoryUsedCurrent, isFake: false)
-        self.sweepView.isHidden = true
         let memoryOut = ByteCountFormatter.string(fromByteCount: Int64(memoryUseClear), countStyle: .binary)
         showAlert(vc: self, title: "Complete", message: "We have liberate \(memoryOut) in memory")
     }

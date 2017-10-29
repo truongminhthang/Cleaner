@@ -29,6 +29,18 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2HJ-1W-wzt" userLabel="smaller view" customClass="GradientView" customModule="Cleaner" customModuleProvider="target">
                                         <rect key="frame" x="21" y="21" width="179" height="179"/>
                                         <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HjG-xX-sOj" customClass="View" customModule="Cleaner" customModuleProvider="target">
+                                                <rect key="frame" x="-21" y="-21" width="221" height="221"/>
+                                                <color key="backgroundColor" red="0.99959295989999997" green="0.82827109099999996" blue="0.83094799519999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="-1"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                        <real key="value" value="0.0"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KdY-mL-0Ot" customClass="View" customModule="Cleaner" customModuleProvider="target">
                                                 <rect key="frame" x="-21" y="-21" width="221" height="221"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -94,8 +106,12 @@
                                         <color key="backgroundColor" red="0.99959295989999997" green="0.82827109099999996" blue="0.83094799519999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstItem="eHm-ra-on4" firstAttribute="width" secondItem="2HJ-1W-wzt" secondAttribute="width" multiplier="3/5" id="2vc-TP-Own"/>
+                                            <constraint firstItem="HjG-xX-sOj" firstAttribute="leading" secondItem="KdY-mL-0Ot" secondAttribute="leading" id="FVz-jW-r6b"/>
                                             <constraint firstItem="eHm-ra-on4" firstAttribute="centerY" secondItem="2HJ-1W-wzt" secondAttribute="centerY" id="WzE-WI-TaL"/>
+                                            <constraint firstItem="HjG-xX-sOj" firstAttribute="top" secondItem="KdY-mL-0Ot" secondAttribute="top" id="ZOQ-3G-QzS"/>
                                             <constraint firstItem="eHm-ra-on4" firstAttribute="centerX" secondItem="2HJ-1W-wzt" secondAttribute="centerX" id="bfd-HF-Ibr"/>
+                                            <constraint firstItem="HjG-xX-sOj" firstAttribute="bottom" secondItem="KdY-mL-0Ot" secondAttribute="bottom" id="g1U-f6-8jl"/>
+                                            <constraint firstItem="HjG-xX-sOj" firstAttribute="trailing" secondItem="KdY-mL-0Ot" secondAttribute="trailing" id="i1M-Jn-gPU"/>
                                             <constraint firstAttribute="width" secondItem="2HJ-1W-wzt" secondAttribute="height" multiplier="1:1" id="iO7-WP-eqp"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
@@ -313,6 +329,7 @@
                         <outlet property="stackView" destination="1aA-GG-W8y" id="Kgc-3g-ALi"/>
                         <outlet property="sweepView" destination="Ie4-lY-MwS" id="cPq-lP-t03"/>
                         <outlet property="viewMain" destination="KdY-mL-0Ot" id="UTP-Zw-hmx"/>
+                        <outlet property="viewNotmain" destination="HjG-xX-sOj" id="Vyt-8M-cDj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QaX-Mc-0aJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
