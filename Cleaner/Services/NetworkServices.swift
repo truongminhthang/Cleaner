@@ -11,7 +11,7 @@ import UIKit
 import os.log
 public typealias PingClientCallback = (String?)->()
 class NetworkServices: NSObject {
-    let url = URL(string: "http://download.thinkbroadband.com/5MB.zip")
+    let url = URL(string: "http://www.nasa.gov/sites/default/files/saturn_collage.jpg")
     
     static let shared : NetworkServices = NetworkServices()
     // Init
@@ -64,8 +64,8 @@ class NetworkServices: NSObject {
     // Upload
     func startUpload() {
         
-        guard let imageData = UIImageJPEGRepresentation(UIImage(named: "AsterNovi-belgii-flower-1mb")!, 1) else {return }
-        let uploadScriptUrl = URL(string:"http://swiftdeveloperblog.com/http-post-example-script/")
+        guard let imageData = UIImageJPEGRepresentation(UIImage(named: "pia03883-full")!, 1) else {return }
+        let uploadScriptUrl = URL(string:"http://speedtest1.vtn.com.vn/speedtest/upload.php")
         var request = URLRequest(url: uploadScriptUrl!)
         request.httpMethod = "POST"
         request.setValue("Keep-Alive", forHTTPHeaderField: "Connection")
@@ -117,6 +117,7 @@ extension NetworkServices: URLSessionDownloadDelegate {
         }
         if task is URLSessionUploadTask {
             NotificationCenter.default.post(name: NotificationName.didFinishTestUpload, object: nil)
+            GoogleAdMob.sharedInstance.showInterstitial()
         }
         
     }

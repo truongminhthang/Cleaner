@@ -47,6 +47,9 @@
 		3F9DE7881F96FF830018A861 /* NetworkFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F20C9E91F95E8DD00DD46BD /* NetworkFlow.swift */; };
 		3F9DE7891F96FF8E0018A861 /* NetObjc.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F20C9EC1F95E8DD00DD46BD /* NetObjc.m */; };
 		8425DC3F1F9EB54300AE29C7 /* PHAssetExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8425DC3E1F9EB54300AE29C7 /* PHAssetExtension.swift */; };
+		3FC3B5261FA020BE004251A5 /* UserDefaultServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC3B5251FA020BE004251A5 /* UserDefaultServices.swift */; };
+		3FF0FAB81FA0109500030750 /* SweepView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF0FAB71FA0109500030750 /* SweepView.swift */; };
+		3FF0FABA1FA0109D00030750 /* CountingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF0FAB91FA0109D00030750 /* CountingLabel.swift */; };
 		8475E72E1F88B5D200F34CFC /* data.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8475E7141F88B5D200F34CFC /* data.plist */; };
 		8475E72F1F88B5D200F34CFC /* MacFinder.m in Sources */ = {isa = PBXBuildFile; fileRef = 8475E7181F88B5D200F34CFC /* MacFinder.m */; };
 		8475E7311F88B5D200F34CFC /* LANProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 8475E7221F88B5D200F34CFC /* LANProperties.m */; };
@@ -142,6 +145,9 @@
 		3F7852E51F939BA70044F1A0 /* SimplePing.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SimplePing.h; sourceTree = "<group>"; };
 		3F7852E61F939BB60044F1A0 /* SimplePing.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SimplePing.m; sourceTree = "<group>"; };
 		8425DC3E1F9EB54300AE29C7 /* PHAssetExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PHAssetExtension.swift; sourceTree = "<group>"; };
+		3FC3B5251FA020BE004251A5 /* UserDefaultServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultServices.swift; sourceTree = "<group>"; };
+		3FF0FAB71FA0109500030750 /* SweepView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SweepView.swift; sourceTree = "<group>"; };
+		3FF0FAB91FA0109D00030750 /* CountingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountingLabel.swift; sourceTree = "<group>"; };
 		8475E7141F88B5D200F34CFC /* data.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = data.plist; sourceTree = "<group>"; };
 		8475E7171F88B5D200F34CFC /* MacFinder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MacFinder.h; sourceTree = "<group>"; };
 		8475E7181F88B5D200F34CFC /* MacFinder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MacFinder.m; sourceTree = "<group>"; };
@@ -223,6 +229,8 @@
 		3B508FC11F8264EF00A15E62 /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
+				3FF0FAB91FA0109D00030750 /* CountingLabel.swift */,
+				3FF0FAB71FA0109500030750 /* SweepView.swift */,
 				3F223BFD1F91A7810075911F /* ConvertMpbs.swift */,
 				3B2A43881F8779870053A89B /* CustomView.swift */,
 				3B2A438B1F8779870053A89B /* GradientColorView.swift */,
@@ -262,6 +270,8 @@
 		3B508FC41F82654A00A15E62 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				3FC3B5251FA020BE004251A5 /* UserDefaultServices.swift */,
+				3B2A438D1F8779CF0053A89B /* DataServices.swift */,
 				3F661ECA1F9424E700E030E4 /* DeviceServices.swift */,
 				3BB71E2F1F9857B000263DF5 /* SystemServices.swift */,
 				3F223BF91F91A13C0075911F /* NetworkServices.swift */,
@@ -653,6 +663,8 @@
 				8475E7331F88B5D200F34CFC /* MMLANScanner.m in Sources */,
 				3BB71E301F9857B000263DF5 /* SystemServices.swift in Sources */,
 				3F673EDC1F8258AB00E0DA07 /* AppDelegate.swift in Sources */,
+				3FF0FABA1FA0109D00030750 /* CountingLabel.swift in Sources */,
+				3B2A43911F877A010053A89B /* DataServices.swift in Sources */,
 				8475E7361F88B5D200F34CFC /* MMDevice.m in Sources */,
 				3F30D72B1F88880700C28CA2 /* Constants.swift in Sources */,
 				3B64C5E81FA18E77000F85F5 /* VideoViewController.swift in Sources */,
@@ -670,6 +682,7 @@
 				8475E7321F88B5D200F34CFC /* MACOperation.m in Sources */,
 				3B2A43921F877B5A0053A89B /* BoostVC.swift in Sources */,
 				3B2A43951F877B5F0053A89B /* NetworkSpeedVC.swift in Sources */,
+				3FF0FAB81FA0109500030750 /* SweepView.swift in Sources */,
 				3F9DE7891F96FF8E0018A861 /* NetObjc.m in Sources */,
 				8475E73E1F88B8B400F34CFC /* NetworkScanner.swift in Sources */,
 				3F9DE7871F96FF830018A861 /* Network.swift in Sources */,
@@ -677,6 +690,7 @@
 				8475E7351F88B5D200F34CFC /* PingOperation.m in Sources */,
 				8475E72F1F88B5D200F34CFC /* MacFinder.m in Sources */,
 				3B2A439B1F877B670053A89B /* CustomView.swift in Sources */,
+				3FC3B5261FA020BE004251A5 /* UserDefaultServices.swift in Sources */,
 				8475E7341F88B5D200F34CFC /* NetworkCalculator.m in Sources */,
 				3F661ECB1F9424EE00E030E4 /* DeviceServices.swift in Sources */,
 				3F7852EB1F939DC60044F1A0 /* SimplePing.m in Sources */,
@@ -894,7 +908,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_CODE_COVERAGE = YES;
-				DEVELOPMENT_TEAM = 33YWV4B47P;
+				DEVELOPMENT_TEAM = Z9S7H83RUG;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -916,7 +930,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_CODE_COVERAGE = YES;
-				DEVELOPMENT_TEAM = 33YWV4B47P;
+				DEVELOPMENT_TEAM = Z9S7H83RUG;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
