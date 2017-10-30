@@ -8,6 +8,8 @@
 
 import UIKit
 
+typealias MemoryState = (memoryFree: Double, memoryUsed: Double, totalMemory: Double)
+
 class SystemServices {
     static let shared: SystemServices = SystemServices()
     
@@ -70,16 +72,11 @@ class SystemServices {
     }
     
     // MARK: Memory
-    func memoryUsage(inPercent: Bool) -> (memoryFree: Double, memoryUsed: Double, totalMemory: Double) {
+    var memoryState : MemoryState = (0,0,0)
+    func updateMemoryUsage() {
         let PAGE_SIZE : Double = Double(vm_kernel_page_size)
-        var total: Double = 0.00
-        var totalAllMemory: Double = 0.00
-        var totalUsedMemory: Double = 0.00
-        var totalFreeMemory: Double = 0.00
-        let allMemory: Double = Double(ProcessInfo.processInfo.physicalMemory)
-        
-        var hostInfo: vm_statistics64 {
-            get {
+        let totalMemory: Double = Double(ProcessInfo.processInfo.physicalMemory)
+        let hostInfo: vm_statistics64 = {
                 var size: mach_msg_type_number_t = UInt32(MemoryLayout<vm_statistics64_data_t>.size / MemoryLayout<integer_t>.size)
                 var hostInfo = vm_statistics64()
                 
@@ -95,38 +92,18 @@ class SystemServices {
                     }
                 #endif
                 return hostInfo
-            }
-        }
+        }()
         
-        // Total Memory (formatted)
-        total = (allMemory / 1024.0) / 1024.0
-        let toNearest = 256
-        let remainder = Int(total) % toNearest
-        
-        if remainder >= toNearest / 2 {
-            // Round the final number up
-            total = Double((Int(total) - remainder) + toNearest)
-        } else {
-            // Round the final number down
-            total = Double(Int(total) - remainder)
-        }
         let free = Double(hostInfo.free_count) * PAGE_SIZE
         let active = Double(hostInfo.active_count) * PAGE_SIZE
         let inactive = Double(hostInfo.inactive_count) * PAGE_SIZE
         let wired = Double(hostInfo.wire_count) * PAGE_SIZE
         let compressed = Double(hostInfo.compressor_page_count) * PAGE_SIZE
-        
-        if inPercent {
-            totalUsedMemory = ((active + compressed + wired) * 100 / allMemory).rounded(toPlaces: 2)
-            totalFreeMemory = 100 - totalUsedMemory
-            totalAllMemory = total.rounded(toPlaces: 2)
-        } else {
-            totalUsedMemory = active + compressed + wired
-            totalFreeMemory = free + inactive
-            totalAllMemory = allMemory
-        }
-        return (totalFreeMemory, totalUsedMemory, totalAllMemory)
+        let memoryUsed = active + compressed + wired
+        let memoryFree = free + inactive
+        memoryState = (memoryFree, memoryUsed, totalMemory)
     }
+
     // MARK: Disk Space
     func diskSpaceUsage(inPercent: Bool) -> (diskSpace: Double, useDiskSpace: Double, freeDiskSpace: Double) {
         var totalUseDiskSpace: Double = 0.0

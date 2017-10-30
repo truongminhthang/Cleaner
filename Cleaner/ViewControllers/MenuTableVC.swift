@@ -17,7 +17,8 @@ class MenuTableVC: UITableViewController {
         
     override func viewDidLoad() {
         super.viewDidLoad()
-        memoryLabel.text = "\(SystemServices.shared.memoryUsage(inPercent: true).memoryUsed) %"
+        SystemServices.shared.updateMemoryUsage()
+        memoryLabel.text = "\(SystemServices.shared.memoryState.memoryUsed) %"
         storageLabel.text = "\(SystemServices.shared.diskSpaceUsage(inPercent: true).useDiskSpace) %"
         cpuLabel.text = "\(SystemServices.shared.cpuUsage()) %"
     }
