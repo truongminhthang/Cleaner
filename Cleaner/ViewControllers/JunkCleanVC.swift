@@ -89,7 +89,7 @@ class JunkCleanVC: UIViewController,CAAnimationDelegate {
                 self.availableLabel.isHidden = false
                 boostCleanButton.isEnabled = true
                 boostCleanButton.setTitle("FINISH", for: .normal)
-                self.showAlertCompelete(vc: self, title: "Do you want go to setting manage?", message: "The process is complete! Storage reduced \(systemReduce) but some items with private content can not be removed!")
+                showAlertToDeleteApp(vc: self, title: "Do you want go to setting manage?", message: "The process is complete! Storage reduced \(systemReduce) but some items with private content can not be removed!")
             }
         }
     }
@@ -120,47 +120,6 @@ class JunkCleanVC: UIViewController,CAAnimationDelegate {
     // - create active when finish
     @objc func runBoost() {
         isNeedToChange = false
-    }
-    // Create Alert
-    // - Show setting
-    func showAlert(vc: UIViewController, title:String, message: String) {
-        let alertController = UIAlertController (title: title, message: message, preferredStyle: .alert)
-        let settingsAction = UIAlertAction(title: "Settings", style: .default) { (_) -> Void in
-            guard let settingsUrl = URL(string: "App-prefs:root=General&path=ACCESSIBILITY") else {
-                return
-            }
-            if UIApplication.shared.canOpenURL(settingsUrl) {
-                UIApplication.shared.open(settingsUrl, completionHandler: { (success) in
-                    print("Settings opened: \(success)") // Prints true
-                })
-            }
-        }
-        alertController.addAction(settingsAction)
-        let cancelAction = UIAlertAction(title: "Cancel", style: .default) {(_) -> Void in
-        }
-        alertController.addAction(cancelAction)
-        
-        present(alertController, animated: true, completion: nil)
-    }
-    // - Alert when run out
-    func showAlertCompelete(vc: UIViewController, title:String, message: String) {
-        let alertController = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
-        let goToStorageBackup = UIAlertAction(title: "Setting", style: .default) { (_) -> Void in
-            guard let settingsUrl = URL(string: "App-prefs:root=General&path=STORAGE_ICLOUD_USAGE/DEVICE_STORAGE") else {
-                return
-            }
-            if UIApplication.shared.canOpenURL(settingsUrl) {
-                UIApplication.shared.open(settingsUrl, completionHandler: { (success) in
-                    print("Settings opened: \(success)") // Prints true
-                })
-            }
-        }
-        let okAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default) { (result : UIAlertAction) -> Void in
-            GoogleAdMob.sharedInstance.showInterstitial()
-        }
-        alertController.addAction(goToStorageBackup)
-        alertController.addAction(okAction)
-        vc.present(alertController, animated: true, completion: nil)
     }
 }
 
