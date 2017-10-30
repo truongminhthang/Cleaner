@@ -39,10 +39,10 @@ class ContainerVC: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    
     func registerNotification() {
         NotificationCenter.default.addObserver(self, selector: #selector(backButton(_:)), name: NotificationName.toggleMenu, object: nil)
     }
+    
     deinit {
         NotificationCenter.default.removeObserver(self)
     }

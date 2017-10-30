@@ -47,7 +47,6 @@
 		3F9DE7871F96FF830018A861 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F20C9E81F95E8DD00DD46BD /* Network.swift */; };
 		3F9DE7881F96FF830018A861 /* NetworkFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F20C9E91F95E8DD00DD46BD /* NetworkFlow.swift */; };
 		3F9DE7891F96FF8E0018A861 /* NetObjc.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F20C9EC1F95E8DD00DD46BD /* NetObjc.m */; };
-		3FC3B5261FA020BE004251A5 /* UserDefaultServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC3B5251FA020BE004251A5 /* UserDefaultServices.swift */; };
 		3FF0FAB81FA0109500030750 /* SweepView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF0FAB71FA0109500030750 /* SweepView.swift */; };
 		3FF0FABA1FA0109D00030750 /* CountingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF0FAB91FA0109D00030750 /* CountingLabel.swift */; };
 		8425DC3F1F9EB54300AE29C7 /* PHAssetExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8425DC3E1F9EB54300AE29C7 /* PHAssetExtension.swift */; };
@@ -146,7 +145,6 @@
 		3F673EDB1F8258AB00E0DA07 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3F7852E51F939BA70044F1A0 /* SimplePing.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SimplePing.h; sourceTree = "<group>"; };
 		3F7852E61F939BB60044F1A0 /* SimplePing.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SimplePing.m; sourceTree = "<group>"; };
-		3FC3B5251FA020BE004251A5 /* UserDefaultServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultServices.swift; sourceTree = "<group>"; };
 		3FF0FAB71FA0109500030750 /* SweepView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SweepView.swift; sourceTree = "<group>"; };
 		3FF0FAB91FA0109D00030750 /* CountingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountingLabel.swift; sourceTree = "<group>"; };
 		8425DC3E1F9EB54300AE29C7 /* PHAssetExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PHAssetExtension.swift; sourceTree = "<group>"; };
@@ -272,7 +270,6 @@
 		3B508FC41F82654A00A15E62 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				3FC3B5251FA020BE004251A5 /* UserDefaultServices.swift */,
 				3F661ECA1F9424E700E030E4 /* DeviceServices.swift */,
 				3BB71E2F1F9857B000263DF5 /* SystemServices.swift */,
 				3F223BF91F91A13C0075911F /* NetworkServices.swift */,
@@ -700,7 +697,6 @@
 				8475E7351F88B5D200F34CFC /* PingOperation.m in Sources */,
 				8475E72F1F88B5D200F34CFC /* MacFinder.m in Sources */,
 				3B2A439B1F877B670053A89B /* CustomView.swift in Sources */,
-				3FC3B5261FA020BE004251A5 /* UserDefaultServices.swift in Sources */,
 				8475E7341F88B5D200F34CFC /* NetworkCalculator.m in Sources */,
 				3F661ECB1F9424EE00E030E4 /* DeviceServices.swift in Sources */,
 				3F7852EB1F939DC60044F1A0 /* SimplePing.m in Sources */,

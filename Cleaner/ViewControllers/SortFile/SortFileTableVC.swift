@@ -41,7 +41,7 @@ class SortFileTableVC: UITableViewController {
             case .notDetermined:
                 fallthrough
             case .restricted:
-                showAlertToAccessAppFolder(vc: self, title: "Warning", message: "We need permission to access Photo Library for this action")
+                showAlertToAccessAppFolder(title: "Warning", message: "We need permission to access Photo Library for this action")
             }
         }
     }

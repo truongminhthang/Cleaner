@@ -79,7 +79,6 @@ class BoostVC: UIViewController {
         super.viewDidLoad()
         setupRunningEffectView()
         memoryShouldClear = isFirstTimeMode ? Double(arc4random() %  UInt32(memoryState.memoryUsed * 0.3)) : Double(arc4random() %  UInt32(memoryState.memoryFree * 0.05))
-        GoogleAdMob.sharedInstance.initializeBannerView()
         usedMemoryDisplay = memoryUsageFake
     }
     
@@ -96,7 +95,6 @@ class BoostVC: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        GoogleAdMob.sharedInstance.hideBannerView()
         timer?.invalidate()
         timer = nil
     }
@@ -133,9 +131,10 @@ class BoostVC: UIViewController {
         runningEffectView.removeFromSuperview()
         boostButton.isEnabled = true
         usedMemoryDisplay = memoryState.memoryUsed
+        isRunning = false
         let clearnMemoryCount = memoryShouldClear
         let memoryOut = ByteCountFormatter.string(fromByteCount: Int64(clearnMemoryCount), countStyle: .binary)
-        showAlert(vc: self, title: "Complete", message: "We have liberate \(memoryOut) in memory")
+        showAlert(title: "Complete", message: "We have liberate \(memoryOut) in memory")
         memoryShouldClear = 0
         isFirstTimeMode = false
 

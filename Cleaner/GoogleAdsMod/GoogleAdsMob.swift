@@ -22,112 +22,119 @@ struct BannerViewSize {
     static var height = CGFloat((UIDevice.current.userInterfaceIdiom == .pad ? 90 : 50))
 }
 //MARK: - Create GoogleAdMob Class
-class GoogleAdMob:NSObject, GADInterstitialDelegate, GADBannerViewDelegate {
+class GoogleAdMob: NSObject, GADInterstitialDelegate {
     
-    //MARK: - Shared Instance
-    static let sharedInstance : GoogleAdMob = {
-        let instance = GoogleAdMob()
-        return instance
-    }()
-    
-    //MARK: - Variable
-    private var isBannerViewDisplay = false
+    static let sharedInstance : GoogleAdMob = GoogleAdMob()
     
     private var isInitializeBannerView = false
     private var isInitializeInterstitial = false
     
     private var interstitialAds: GADInterstitial!
-    private var bannerView: GADBannerView!
+    private var bannerView: GADBannerView?
     
-    
-    //MARK: - Create Banner View
-    func initializeBannerView() {
-        self.isInitializeBannerView = true
-        self.createBannerView()
-    }
-    func initTopBannerView() {
-        self.isInitializeBannerView = true
-        if UIApplication.shared.keyWindow?.rootViewController == nil {
-            NSObject.cancelPreviousPerformRequests(withTarget: self, selector: #selector(createBannerView), object: nil)
-            self.perform(#selector(createBannerView), with: nil, afterDelay: 0.5)
-        } else {
-            
-            isBannerViewDisplay = true
-            bannerView = GADBannerView(frame: CGRect(
-                x:0 ,
-                y: 102  ,
-                width: 425   ,
-                height: 50))
-            self.bannerView.adUnitID = GoogleAdsUnitID.strBannerAdsID
-            self.bannerView.rootViewController = UIApplication.shared.keyWindow?.rootViewController
-            self.bannerView.delegate = self
-            self.bannerView.backgroundColor = UIColor.clear
-            self.bannerView.load(GADRequest())
-            UIApplication.shared.keyWindow?.addSubview(bannerView)
-        }
+    //MARK: - Variable
+    var isBannerDisplay = false {
+        didSet {
+            guard isConnectionAvailable() else {return}
 
-    }
-    @objc private func createBannerView() {
-        
-        print("GoogleAdMob : create")
-        if UIApplication.shared.keyWindow?.rootViewController == nil {
+            if isBannerDisplay {
+                self.bannerView?.isHidden = false
+            }
             
+            UIView.animate(withDuration: 0.3, animations: {
+                self.bannerView?.transform = CGAffineTransform(translationX: 0,
+                                                               y: self.isBannerDisplay ? -BannerViewSize.height : BannerViewSize.height)
+            }, completion: { (success) in
+                if !self.isBannerDisplay {
+                    self.bannerView?.isHidden = true
+                }
+            })
+        }
+    }
+    
+    override init() {
+        super.init()
+        createBannerView()
+        self.createInterstitial()
+    }
+    
+    @objc private func createBannerView() {
+        guard isConnectionAvailable() else {return}
+        if UIApplication.shared.keyWindow?.rootViewController == nil {
             NSObject.cancelPreviousPerformRequests(withTarget: self, selector: #selector(createBannerView), object: nil)
             self.perform(#selector(createBannerView), with: nil, afterDelay: 0.5)
         } else {
-            
-            isBannerViewDisplay = true
             bannerView = GADBannerView(frame: CGRect(
                 x:0 ,
-                y:BannerViewSize.screenHeight - BannerViewSize.height ,
-                width:BannerViewSize.screenWidth ,
+                y:BannerViewSize.screenHeight,
+                width:BannerViewSize.screenWidth,
                 height:BannerViewSize.height))
-            self.bannerView.adUnitID = GoogleAdsUnitID.strBannerAdsID
-            self.bannerView.rootViewController = UIApplication.shared.keyWindow?.rootViewController
-            self.bannerView.delegate = self
-            self.bannerView.backgroundColor = UIColor.clear
-            self.bannerView.load(GADRequest())
-            UIApplication.shared.keyWindow?.addSubview(bannerView)
-        }
-    }
-    //MARK: - Hide - Show Banner View
-    func showBannerView() {
-        
-        print("showBannerView")
-        isBannerViewDisplay = true
-        if isInitializeBannerView == false {
-            print("First initialize Banner View")
-        } else {
+            self.bannerView?.adUnitID = GoogleAdsUnitID.strBannerAdsID
+            self.bannerView?.rootViewController = UIApplication.shared.keyWindow?.rootViewController
+            self.bannerView?.delegate = self
+            self.bannerView?.backgroundColor = UIColor.clear
+            self.bannerView?.load(GADRequest())
             
-            print("isBannerViewCreate : true")
-            self.bannerView.isHidden = false
-            UIView.animate(withDuration: 0.3, animations: {
-                self.bannerView.frame = CGRect(x:0 ,y:BannerViewSize.screenHeight - BannerViewSize.height ,width:BannerViewSize.screenWidth ,height:BannerViewSize.height)
-            })
+            UIApplication.shared.keyWindow?.addSubview(bannerView!)
         }
     }
-    func hideBannerView() {
-        print("hideBannerView")
-        isBannerViewDisplay = false
-        if self.bannerView != nil {
-            UIView.animate(withDuration: 0.3, animations: {
-                self.bannerView.frame = CGRect(x:0 ,y:BannerViewSize.screenHeight ,width:BannerViewSize.screenWidth ,height:BannerViewSize.height)
-            })
+    
+    func toogleBanner() {
+        isBannerDisplay = !isBannerDisplay
+    }
+    
+    @objc func showBanner() {
+        isBannerDisplay = true
+    }
+    
+    private func createInterstitial() {
+        interstitialAds = GADInterstitial(adUnitID: GoogleAdsUnitID.strInterstitialAdsID)
+        interstitialAds.delegate = self
+        interstitialAds.load(GADRequest())
+    }
+    
+    func showInterstitial() {
+        guard isConnectionAvailable() else {return}
+
+        if interstitialAds.isReady {
+            interstitialAds.present(fromRootViewController: (UIApplication.shared.keyWindow?.rootViewController)!)
+        } else {
+            createInterstitial()
         }
     }
-    @objc private func showBanner() {
-        print("showBanner")
-        if self.bannerView != nil && isBannerViewDisplay == true {
-            self.bannerView.isHidden = false
+    //MARK: - GADInterstitial Delegate
+    func interstitialDidReceiveAd(_ ad: GADInterstitial) {
+       showInterstitial()
+    }
+    
+    func interstitialDidDismissScreen(_ ad: GADInterstitial) {
+        
+    }
+    func interstitialWillDismissScreen(_ ad: GADInterstitial) {
+        if !AppDelegate.shared.isDashboardDisplay {
+            NSObject.cancelPreviousPerformRequests(withTarget: self, selector: #selector(showBanner), object: nil)
+            self.perform(#selector(showBanner), with: nil, afterDelay: 0.1)
         }
     }
-    private func hideBanner() {
-        print("hideBanner")
-        if self.bannerView != nil {
-            self.bannerView.isHidden = true
-        }
+    func interstitialWillPresentScreen(_ ad: GADInterstitial) {
+        
+        self.isBannerDisplay = false
     }
-    //MARK: - GADBannerView Delegate
+    func interstitialWillLeaveApplication(_ ad: GADInterstitial) {
+        
+    }
+    func interstitialDidFail(toPresentScreen ad: GADInterstitial) {
+        
+    }
+    func interstitial(_ ad: GADInterstitial, didFailToReceiveAdWithError error: GADRequestError) {
+        
+    }
+}
+
+// MARK: - GADBannerViewDelegate
+
+extension GoogleAdMob: GADBannerViewDelegate {
+    
     func adViewDidReceiveAd(_ bannerView: GADBannerView) {
         
         print("adViewDidReceiveAd")
@@ -151,65 +158,5 @@ class GoogleAdMob:NSObject, GADInterstitialDelegate, GADBannerViewDelegate {
     func adView(_ bannerView: GADBannerView, didFailToReceiveAdWithError error: GADRequestError) {
         
         print("adView")
-    }
-    //MARK: - Create Interstitial Ads
-    func initializeInterstitial() {
-        self.isInitializeInterstitial = true
-        self.createInterstitial()
-    }
-    private func createInterstitial() {
-        interstitialAds = GADInterstitial(adUnitID: GoogleAdsUnitID.strInterstitialAdsID)
-        interstitialAds.delegate = self
-        interstitialAds.load(GADRequest())
-    }
-    //MARK: - Show Interstitial Ads
-    func showInterstitial() {
-        
-        if isInitializeInterstitial == false {
-            
-            print("First initialize Interstitial")
-        } else {
-            
-            if interstitialAds.isReady {
-                interstitialAds.present(fromRootViewController: (UIApplication.shared.keyWindow?.rootViewController)!)
-                
-            } else {
-                print("Interstitial not ready")
-                self.createInterstitial()
-            }
-        }
-    }
-    //MARK: - GADInterstitial Delegate
-    func interstitialDidReceiveAd(_ ad: GADInterstitial) {
-        
-        print("interstitialDidReceiveAd")
-    }
-    func interstitialDidDismissScreen(_ ad: GADInterstitial) {
-        
-        print("interstitialDidDismissScreen")
-        self.createInterstitial()
-    }
-    func interstitialWillDismissScreen(_ ad: GADInterstitial) {
-        
-        print("interstitialWillDismissScreen")
-        NSObject.cancelPreviousPerformRequests(withTarget: self, selector: #selector(showBanner), object: nil)
-        self.perform(#selector(showBanner), with: nil, afterDelay: 0.1)
-    }
-    func interstitialWillPresentScreen(_ ad: GADInterstitial) {
-        
-        print("interstitialWillPresentScreen")
-        self.hideBanner()
-    }
-    func interstitialWillLeaveApplication(_ ad: GADInterstitial) {
-        
-        print("interstitialWillLeaveApplication")
-    }
-    func interstitialDidFail(toPresentScreen ad: GADInterstitial) {
-        
-        print("interstitialDidFail")
-    }
-    func interstitial(_ ad: GADInterstitial, didFailToReceiveAdWithError error: GADRequestError) {
-        
-        print("interstitial")
     }
 }

@@ -24,28 +24,15 @@ class WifiScanResultVC: UIViewController, UITableViewDataSource, UITableViewDele
     @IBOutlet weak var adsView: UIView!
     override func viewDidLoad() {
         super.viewDidLoad()
-      //  GoogleAdMob.sharedInstance.initializeBannerView()
-      //  adsView.addSubview(GoogleAdMob.sharedInstance.bannerView)
-  
         self.networkScanner = NetworkScanner(delegate:self)
         self.spinner.startAnimating()
         self.networkScanner.scan()
         self.addObserversForKVO()
-        GoogleAdMob.sharedInstance.hideBannerView()
-    
-
-        
-        
     }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        GoogleAdMob.sharedInstance.hideBannerView()
         networkScanner.stop()
     }
-//    override func viewWillDisappear(_ animated: Bool) {
-//        super.viewWillDisappear(animated)
-//        GoogleAdMob.sharedInstance.hideBannerView()
-//    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -53,7 +40,6 @@ class WifiScanResultVC: UIViewController, UITableViewDataSource, UITableViewDele
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        GoogleAdMob.sharedInstance.initTopBannerView()
     }
     
     func addObserversForKVO ()->Void {
@@ -82,7 +68,7 @@ class WifiScanResultVC: UIViewController, UITableViewDataSource, UITableViewDele
     // MARK: NetworkScannerDelegate
     
     func networkScannerIPSearchFinished() {
-        showAlert(vc: self, title: "Scan Finished", message: "Number of devices connected to the Local Area Network : \(self.networkScanner.connectedDevices.count)")
+        showAlert(title: "Scan Finished", message: "Number of devices connected to the Local Area Network : \(self.networkScanner.connectedDevices.count)")
         resultLabel.text = "There are \(self.networkScanner.connectedDevices.count) connected to \( self.networkScanner.ssidName ) "
           self.spinner.stopAnimating()
             self.spinner.hidesWhenStopped = true
@@ -93,7 +79,7 @@ class WifiScanResultVC: UIViewController, UITableViewDataSource, UITableViewDele
     }
     
     func networkScannerIPSearchFailed() {
-        showAlert(vc: self, title: "Failed to scan", message: "Please make sure that you are connected to a WiFi before starting LAN Scan")
+        showAlert(title: "Failed to scan", message: "Please make sure that you are connected to a WiFi before starting LAN Scan")
         networkScanner.stop()
         self.spinner.stopAnimating()
         self.spinner.hidesWhenStopped = true
@@ -148,6 +134,5 @@ class WifiScanResultVC: UIViewController, UITableViewDataSource, UITableViewDele
     }
     @IBAction func doneButton(_ sender: UIBarButtonItem) {
         navigationController?.popToRootViewController(animated: true)
-        GoogleAdMob.sharedInstance.hideBannerView()
     }
 }

@@ -16,6 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
     
     var window: UIWindow?
     var isFakeModeApp : Bool = true
+    var isDashboardDisplay: Bool = false
     static var shared = {
         return UIApplication.shared.delegate as! AppDelegate
     }()
@@ -30,9 +31,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
         }
         
         application.applicationIconBadgeNumber = 0
-        if isConnectionAvailable() {
-           GoogleAdMob.sharedInstance.initializeInterstitial()
-        }
+           GoogleAdMob.sharedInstance.showInterstitial()
         
         return true
     }
@@ -45,7 +44,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
         date.hour = 11
         date.minute = 25
         date.timeZone = NSTimeZone.system
-//        let convert = ByteCountFormatter.string(fromByteCount: Int64(SystemServices.shared.memoryUsage(inPercent: false).memoryUsed), countStyle: .binary)
         let trigger = UNCalendarNotificationTrigger(dateMatching: date, repeats: true)
         let content = UNMutableNotificationContent()
         content.title = "Cleaner"

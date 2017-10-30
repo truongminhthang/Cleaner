@@ -7,7 +7,7 @@
 //
 
 import UIKit
-class MainVC: UIViewController{
+class DashboardVC: UIViewController{
     @IBOutlet weak var clearButton: UIButton!
     @IBOutlet weak var pieChartView: PieChartView!
     @IBOutlet weak var freePercentLabel: UILabel!
@@ -28,6 +28,8 @@ class MainVC: UIViewController{
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         clearButton.isSelected = true
+        GoogleAdMob.sharedInstance.isBannerDisplay = false
+        AppDelegate.shared.isDashboardDisplay = true
     }
     
     
@@ -38,6 +40,11 @@ class MainVC: UIViewController{
     
     @IBAction func openSideMenu(_ sender: UIBarButtonItem) {
         NotificationCenter.default.post(name: NotificationName.toggleMenu, object: nil)
+    }
+    // MARK: Navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        AppDelegate.shared.isDashboardDisplay = false
+       GoogleAdMob.sharedInstance.toogleBanner()
     }
     
     

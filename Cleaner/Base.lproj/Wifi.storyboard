@@ -4,7 +4,8 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
@@ -196,13 +197,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DtV-FE-puk">
-                                <rect key="frame" x="0.0" y="102" width="375" height="50"/>
-                                <color key="backgroundColor" red="0.97363299131393433" green="0.82302659749984741" blue="0.82567816972732544" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="hyh-cu-Xn4"/>
-                                </constraints>
-                            </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R59-vO-lG0">
                                 <rect key="frame" x="0.0" y="72" width="315" height="30"/>
                                 <color key="backgroundColor" red="0.9999160171" green="1" blue="0.99987202880000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -224,7 +218,7 @@
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="QvS-Yv-PiJ">
-                                <rect key="frame" x="0.0" y="152" width="375" height="515"/>
+                                <rect key="frame" x="0.0" y="102" width="375" height="565"/>
                                 <color key="backgroundColor" red="0.97346121070000002" green="0.82357507939999997" blue="0.82939440009999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="sectionIndexBackgroundColor" red="0.97346121070000002" green="0.82357507939999997" blue="0.82939440009999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <view key="tableFooterView" contentMode="scaleToFill" id="0Xd-DK-F2l">
@@ -262,9 +256,6 @@
                                                             </constraints>
                                                             <userDefinedRuntimeAttributes>
                                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="bottomBorder" value="NO"/>
-                                                                <userDefinedRuntimeAttribute type="number" keyPath="imageCornerRadius">
-                                                                    <real key="value" value="1"/>
-                                                                </userDefinedRuntimeAttribute>
                                                                 <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                                     <real key="value" value="-1"/>
                                                                 </userDefinedRuntimeAttribute>
@@ -344,19 +335,16 @@
                         </subviews>
                         <color key="backgroundColor" red="0.97346121072769165" green="0.82357507944107056" blue="0.82939440011978149" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="DtV-FE-puk" firstAttribute="leading" secondItem="YsH-hQ-7BJ" secondAttribute="leading" id="2eB-VO-zvS"/>
                             <constraint firstItem="QvS-Yv-PiJ" firstAttribute="trailing" secondItem="YsH-hQ-7BJ" secondAttribute="trailing" id="9GE-sW-2bg"/>
                             <constraint firstItem="QvS-Yv-PiJ" firstAttribute="bottom" secondItem="YsH-hQ-7BJ" secondAttribute="bottom" id="Fx4-nL-71O"/>
                             <constraint firstItem="R59-vO-lG0" firstAttribute="leading" secondItem="YsH-hQ-7BJ" secondAttribute="leading" id="GNa-1P-gUF"/>
                             <constraint firstItem="R59-vO-lG0" firstAttribute="top" secondItem="YsH-hQ-7BJ" secondAttribute="top" constant="8" id="UoB-KW-nuI"/>
                             <constraint firstItem="R59-vO-lG0" firstAttribute="trailing" secondItem="seP-tU-rvM" secondAttribute="leading" id="WHS-zU-HJP"/>
-                            <constraint firstItem="YsH-hQ-7BJ" firstAttribute="trailing" secondItem="DtV-FE-puk" secondAttribute="trailing" id="Z0k-9b-Jg9"/>
+                            <constraint firstItem="QvS-Yv-PiJ" firstAttribute="top" secondItem="R59-vO-lG0" secondAttribute="bottom" id="Xgf-u5-K6H"/>
                             <constraint firstItem="R59-vO-lG0" firstAttribute="height" secondItem="seP-tU-rvM" secondAttribute="height" id="hfv-eH-8Ok"/>
                             <constraint firstItem="YsH-hQ-7BJ" firstAttribute="trailing" secondItem="seP-tU-rvM" secondAttribute="trailing" id="jlh-ly-4xs"/>
                             <constraint firstItem="seP-tU-rvM" firstAttribute="top" secondItem="YsH-hQ-7BJ" secondAttribute="top" constant="8" id="p3m-eR-aKC"/>
                             <constraint firstItem="QvS-Yv-PiJ" firstAttribute="leading" secondItem="YsH-hQ-7BJ" secondAttribute="leading" id="x0S-FQ-GNj"/>
-                            <constraint firstItem="QvS-Yv-PiJ" firstAttribute="top" secondItem="DtV-FE-puk" secondAttribute="bottom" id="z84-bI-orv"/>
-                            <constraint firstItem="DtV-FE-puk" firstAttribute="top" secondItem="R59-vO-lG0" secondAttribute="bottom" id="zfP-zC-9sf"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="YsH-hQ-7BJ"/>
                     </view>
@@ -368,7 +356,6 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="adsView" destination="DtV-FE-puk" id="1H0-JR-VWR"/>
                         <outlet property="resultLabel" destination="R59-vO-lG0" id="DSE-dZ-hLQ"/>
                         <outlet property="spinner" destination="SmV-OM-ybT" id="qiC-gD-vjN"/>
                         <outlet property="tableView" destination="QvS-Yv-PiJ" id="EV4-9j-Ex5"/>

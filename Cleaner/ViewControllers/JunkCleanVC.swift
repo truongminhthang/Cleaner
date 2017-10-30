@@ -89,7 +89,7 @@ class JunkCleanVC: UIViewController,CAAnimationDelegate {
                 self.availableLabel.isHidden = false
                 boostCleanButton.isEnabled = true
                 boostCleanButton.setTitle("FINISH", for: .normal)
-                showAlertToDeleteApp(vc: self, title: "Do you want go to setting manage?", message: "The process is complete! Storage reduced \(systemReduce) but some items with private content can not be removed!")
+                showAlertToDeleteApp(title: "Do you want go to setting manage?", message: "The process is complete! Storage reduced \(systemReduce) but some items with private content can not be removed!")
             }
         }
     }

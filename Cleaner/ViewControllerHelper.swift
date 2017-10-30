@@ -9,15 +9,17 @@
 import UIKit
 import SystemConfiguration
 
-func showAlert(vc: UIViewController?, title:String, message: String) {
+func showAlert(title:String, message: String) {
     let alertController = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
     let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) { (result : UIAlertAction) -> Void in
         GoogleAdMob.sharedInstance.showInterstitial()
     }
     alertController.addAction(okAction)
-    vc?.present(alertController, animated: true, completion: nil)
+    if let rootVC = UIApplication.shared.keyWindow?.rootViewController {
+        rootVC.present(alertController, animated: true, completion: nil)
+    }
 }
-func isConnectionAvailable(vc: UIViewController? = nil) -> Bool {
+func isConnectionAvailable() -> Bool {
     var zero_Address = sockaddr_in(sin_len: 0, sin_family: 0, sin_port: 0, sin_addr: in_addr(s_addr: 0), sin_zero: (0,0,0,0,0,0,0,0 ))
     zero_Address.sin_len = UInt8(MemoryLayout.size(ofValue: zero_Address))
     zero_Address.sin_family = sa_family_t(AF_INET)
@@ -35,19 +37,19 @@ func isConnectionAvailable(vc: UIViewController? = nil) -> Bool {
     let isReachable = flags == .reachable
     let needsConnection = flags == .connectionRequired
     if !(isReachable && !needsConnection) {
-        showAlert(vc: vc,  title: "Warning", message: "The Internet is not available")
+        showAlert(title: "Warning", message: "The Internet is not available")
     }
     return isReachable && !needsConnection
 }
 
 
-func showAlertToDeleteApp(vc: UIViewController, title:String, message: String) {
-    showAlertCompelete(vc: vc, title: title, message: message, settingUrl: "App-prefs:root=General&path=STORAGE_ICLOUD_USAGE/DEVICE_STORAGE")
+func showAlertToDeleteApp(title:String, message: String) {
+    showAlertCompelete(title: title, message: message, settingUrl: "App-prefs:root=General&path=STORAGE_ICLOUD_USAGE/DEVICE_STORAGE")
 }
-func showAlertToAccessAppFolder(vc: UIViewController, title:String, message: String) {
-    showAlertCompelete(vc: vc, title: title, message: message, settingUrl: UIApplicationOpenSettingsURLString)
+func showAlertToAccessAppFolder( title:String, message: String) {
+    showAlertCompelete(title: title, message: message, settingUrl: UIApplicationOpenSettingsURLString)
 }
-func showAlertCompelete(vc: UIViewController, title:String, message: String, settingUrl: String) {
+func showAlertCompelete(title:String, message: String, settingUrl: String) {
     let alertController = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
     let goToStorageBackup = UIAlertAction(title: "Setting", style: .default) { (_) -> Void in
         guard let settingsUrl = URL(string: settingUrl) else {
@@ -64,6 +66,9 @@ func showAlertCompelete(vc: UIViewController, title:String, message: String, set
     }
     alertController.addAction(goToStorageBackup)
     alertController.addAction(okAction)
-    vc.present(alertController, animated: true, completion: nil)
+    if let rootVC = UIApplication.shared.keyWindow?.rootViewController {
+        rootVC.present(alertController, animated: true, completion: nil)
+    }
+    
 }
  
