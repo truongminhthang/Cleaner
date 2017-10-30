@@ -9,6 +9,7 @@
 import UIKit
 import Photos
 import UserNotifications
+import SystemConfiguration
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDelegate {
@@ -27,8 +28,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
             UNUserNotificationCenter.current().delegate = self
             self.scheduleNotification()
         }
+        
         application.applicationIconBadgeNumber = 0
-        GoogleAdMob.sharedInstance.initializeInterstitial()
+        if connectionCkeck.connectionAvailable() {
+           GoogleAdMob.sharedInstance.initializeInterstitial()
+        }
+        
         return true
     }
     

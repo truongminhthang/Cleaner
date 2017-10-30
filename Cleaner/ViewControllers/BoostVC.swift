@@ -43,7 +43,6 @@ class BoostVC: UIViewController,CAAnimationDelegate {
         }
     }
     
-    
     var isRunning:Bool = true {
         didSet {
             infoStageLabel.text = isRunning ? "⇊MEMORY DOWN⇊" : "MEMORY USAGE"
@@ -76,7 +75,9 @@ class BoostVC: UIViewController,CAAnimationDelegate {
         super.viewDidLoad()
         setupRunningEffectView()
         memoryShouldClear = isFirstTimeMode ? Double(arc4random() %  UInt32(SystemServices.shared.memoryUsage(inPercent: false).memoryFree * 0.3)) : Double(arc4random() %  UInt32(SystemServices.shared.memoryUsage(inPercent: false).memoryFree * 0.05))
+        if connectionCkeck.connectionAvailable() {
         GoogleAdMob.sharedInstance.initializeBannerView()
+        }
         usedMemoryDisplay = memoryUsageFake
        
     }

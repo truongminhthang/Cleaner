@@ -223,8 +223,8 @@
                         <outlet property="UnderView" destination="deV-Cf-01N" id="sjn-GL-9YJ"/>
                         <outlet property="availableLabel" destination="E6S-xo-Sbe" id="eOw-bS-7BG"/>
                         <outlet property="biggerView" destination="UzQ-dE-3nk" id="gBz-Xh-eSt"/>
-                        <outlet property="changeLabel" destination="h9s-cN-WvO" id="N7D-oJ-Hl8"/>
-                        <outlet property="coverButton" destination="Qnv-j9-cvj" id="0Kq-tN-Fyg"/>
+                        <outlet property="boostCleanButton" destination="Qnv-j9-cvj" id="Tq0-B7-wNj"/>
+                        <outlet property="displayInfoLabel" destination="h9s-cN-WvO" id="w1m-8v-E3W"/>
                         <outlet property="freeDiskLabel" destination="COP-54-j0L" id="MeQ-D9-IdA"/>
                         <outlet property="markLabel" destination="hP0-mx-JoP" id="RKy-sH-W8u"/>
                         <outlet property="middleView" destination="EzI-gT-yaN" id="tFj-Yo-zBa"/>
@@ -250,7 +250,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pJy-B9-KY3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4420" y="-306"/>
+            <point key="canvasLocation" x="4092" y="-306"/>
         </scene>
     </scenes>
     <resources>

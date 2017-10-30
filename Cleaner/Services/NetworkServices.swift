@@ -63,7 +63,6 @@ class NetworkServices: NSObject {
     
     // Upload
     func startUpload() {
-        
         guard let imageData = UIImageJPEGRepresentation(UIImage(named: "pia03883-full")!, 1) else {return }
         let uploadScriptUrl = URL(string:"http://speedtest1.vtn.com.vn/speedtest/upload.php")
         var request = URLRequest(url: uploadScriptUrl!)
@@ -96,7 +95,6 @@ extension NetworkServices: URLSessionDownloadDelegate {
                     didFinishDownloadingTo location: URL) {
         os_log("did Finish Downloading To", log: OSLog.default, type: .info)
         NotificationCenter.default.post(name: NotificationName.didFinishTestDownload, object: nil)
-
     }
     
     func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask,
@@ -107,10 +105,12 @@ extension NetworkServices: URLSessionDownloadDelegate {
             self.downloadSpeed =  Float(totalBytesWritten) / downloadDuration * 8
         }
     }
+  
     
     func urlSession(_ session: URLSession,
                     task: URLSessionTask,
                     didCompleteWithError error: Error?){
+        
         guard error == nil else {
             print(error!.localizedDescription)
             return
@@ -119,7 +119,6 @@ extension NetworkServices: URLSessionDownloadDelegate {
             NotificationCenter.default.post(name: NotificationName.didFinishTestUpload, object: nil)
             GoogleAdMob.sharedInstance.showInterstitial()
         }
-        
     }
 }
 // MARK: - URLSessionTaskDelegate
@@ -138,20 +137,16 @@ extension NetworkServices: PingDelegate {
     public func ping(_ pinger: Ping, didSendPacket packet: Data, sequenceNumber: UInt16){
         dateReference = Date()
     }
-
     public func ping(_ pinger: Ping, didStartWithAddress address: Data) {
         pinger.send(with: nil)
     }
-
     public func ping(_ pinger: Ping, didFailWithError error: Error) {
         resultCallback?(nil)
     }
-
     public func ping(_ pinger: Ping, didReceiveUnexpectedPacket packet: Data) {
         pinger.stop()
         resultCallback?(nil)
     }
-
     public func ping(_ pinger: Ping, didReceivePingResponsePacket packet: Data, sequenceNumber: UInt16) {
         pinger.stop()
         guard let dateReference = dateReference else { return }
@@ -160,7 +155,6 @@ extension NetworkServices: PingDelegate {
         let latency = Date().timeIntervalSince(dateReference) * 1000
         resultCallback?(String(format: "%.f", latency))
     }
-
     public func ping(_ pinger: Ping, didFailToSendPacket packet: Data, sequenceNumber: UInt16, error: Error) {
         pinger.stop()
         resultCallback?(nil)
