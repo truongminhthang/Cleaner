@@ -18,7 +18,7 @@
                 <viewControllerPlaceholder storyboardName="BoostMemory" referencedIdentifier="BoostVC" id="ysR-4U-m1t" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VjM-Fl-I0O" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3648" y="74"/>
+            <point key="canvasLocation" x="3638" y="87"/>
         </scene>
         <!--Sort FilesVC-->
         <scene sceneID="Thy-O8-zvu">
@@ -131,7 +131,7 @@
                                                 <state key="selected" image="boost"/>
                                                 <state key="highlighted" image="boosOn"/>
                                                 <connections>
-                                                    <segue destination="ysR-4U-m1t" kind="show" id="ggn-LF-kgX"/>
+                                                    <segue destination="ysR-4U-m1t" kind="show" id="yhc-Rg-3HU"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TnS-RN-PI2">

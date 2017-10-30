@@ -48,7 +48,6 @@ class GoogleAdMob:NSObject, GADInterstitialDelegate, GADBannerViewDelegate {
     func initTopBannerView() {
         self.isInitializeBannerView = true
         if UIApplication.shared.keyWindow?.rootViewController == nil {
-            
             NSObject.cancelPreviousPerformRequests(withTarget: self, selector: #selector(createBannerView), object: nil)
             self.perform(#selector(createBannerView), with: nil, afterDelay: 0.5)
         } else {
