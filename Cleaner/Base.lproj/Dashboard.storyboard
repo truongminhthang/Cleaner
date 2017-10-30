@@ -5,7 +5,7 @@
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -117,41 +117,40 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="tgN-by-xs4">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="74"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cWU-z5-iaY">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cWU-z5-iaY">
                                                 <rect key="frame" x="0.0" y="0.0" width="94" height="74"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                <state key="normal" image="clareOn"/>
-                                                <state key="selected" image="clear"/>
-                                                <state key="highlighted" image="clareOn"/>
+                                                <state key="normal" image="clear"/>
+                                                <state key="selected" image="clearOn"/>
+                                                <state key="highlighted" image="clearOn"/>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fmh-XV-Nnx">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fmh-XV-Nnx">
                                                 <rect key="frame" x="94" y="0.0" width="93.5" height="74"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                <state key="normal" image="boost"/>
+                                                <state key="normal" image="boos"/>
                                                 <state key="selected" image="boost"/>
-                                                <state key="highlighted" image="boostOn"/>
+                                                <state key="highlighted" image="boosOn"/>
                                                 <connections>
-                                                    <action selector="bootButton:" destination="Rd2-9d-3hu" eventType="touchUpInside" id="rwX-pc-dDj"/>
                                                     <segue destination="ysR-4U-m1t" kind="show" id="ggn-LF-kgX"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TnS-RN-PI2">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TnS-RN-PI2">
                                                 <rect key="frame" x="187.5" y="0.0" width="94" height="74"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 <state key="normal" image="wifi"/>
-                                                <state key="selected" image="wifi"/>
+                                                <state key="selected" image="wifiOn"/>
                                                 <state key="highlighted" image="wifiOn"/>
                                                 <connections>
                                                     <segue destination="sXx-NU-gRc" kind="show" id="V0Y-kr-DJL"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qyf-SH-XFc">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qyf-SH-XFc">
                                                 <rect key="frame" x="281.5" y="0.0" width="93.5" height="74"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="19"/>
-                                                <state key="normal" image="Speed"/>
-                                                <state key="selected" image="Speed"/>
-                                                <state key="highlighted" image="speedOn"/>
+                                                <state key="normal" image="test-speed"/>
+                                                <state key="selected" image="test-speedOn"/>
+                                                <state key="highlighted" image="test-speedOn"/>
                                                 <connections>
                                                     <segue destination="QOQ-Wi-g7K" kind="show" id="1XM-tu-m76"/>
                                                 </connections>
@@ -417,13 +416,10 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="boostButton" destination="fmh-XV-Nnx" id="UNb-yB-6lX"/>
                         <outlet property="clearButton" destination="cWU-z5-iaY" id="zbR-zW-L6W"/>
                         <outlet property="freePercentLabel" destination="gf5-pJ-J3o" id="Yjl-CQ-qZh"/>
                         <outlet property="freeSpaceLabel" destination="5B9-S9-lP7" id="R7S-zg-4fS"/>
                         <outlet property="pieChartView" destination="m6r-b6-oep" id="WFW-Ea-zBx"/>
-                        <outlet property="speedButton" destination="qyf-SH-XFc" id="2EX-ku-dwQ"/>
-                        <outlet property="wifiButton" destination="TnS-RN-PI2" id="U4i-0X-Tci"/>
                     </connections>
                 </viewController>
                 <tapGestureRecognizer id="pNF-Eg-Q40">
@@ -443,15 +439,16 @@
     </scenes>
     <resources>
         <image name="SortFile" width="157" height="195"/>
-        <image name="Speed" width="30" height="30"/>
+        <image name="boos" width="66" height="54"/>
+        <image name="boosOn" width="66" height="54"/>
         <image name="boost" width="30" height="30"/>
-        <image name="boostOn" width="30" height="30"/>
-        <image name="clareOn" width="30" height="30"/>
-        <image name="clear" width="30" height="30"/>
+        <image name="clear" width="69" height="55"/>
+        <image name="clearOn" width="69" height="55"/>
         <image name="junk" width="159" height="197"/>
         <image name="menu" width="25" height="25"/>
-        <image name="speedOn" width="30" height="30"/>
-        <image name="wifi" width="30" height="30"/>
-        <image name="wifiOn" width="30" height="30"/>
+        <image name="test-speed" width="82" height="52"/>
+        <image name="test-speedOn" width="82" height="52"/>
+        <image name="wifi" width="84" height="52"/>
+        <image name="wifiOn" width="84" height="52"/>
     </resources>
 </document>

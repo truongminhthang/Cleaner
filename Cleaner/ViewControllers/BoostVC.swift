@@ -84,7 +84,7 @@ class BoostVC: UIViewController,CAAnimationDelegate {
     func setupRunningEffectView() {
         runningEffectView.frame = CGRect(x: 0, y: 0, width: 500, height: 100)
         displayedInfoCircle.insertSubview(runningEffectView, at: 0)
-        self.runningEffectView.transform = CGAffineTransform(translationX: 0, y: -150)
+        self.runningEffectView.transform = CGAffineTransform(translationX: 0, y: -200)
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -94,13 +94,15 @@ class BoostVC: UIViewController,CAAnimationDelegate {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         GoogleAdMob.sharedInstance.hideBannerView()
+        timer?.invalidate()
+        timer = nil
     }
     
     // - Mark : Active
     @IBAction func clickAndRunBoost(_ sender: UIButton) {
         isRunning = true
         showRunningEffect()
-        timer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(fakeReduceMemory), userInfo: nil, repeats: true)
+        timer = Timer.scheduledTimer(timeInterval: 0.005, target: self, selector: #selector(fakeReduceMemory), userInfo: nil, repeats: true)
     }
     
     @objc func fakeReduceMemory() {
