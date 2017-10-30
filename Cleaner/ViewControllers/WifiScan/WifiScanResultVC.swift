@@ -148,5 +148,6 @@ class WifiScanResultVC: UIViewController, UITableViewDataSource, UITableViewDele
     }
     @IBAction func doneButton(_ sender: UIBarButtonItem) {
         navigationController?.popToRootViewController(animated: true)
+        GoogleAdMob.sharedInstance.hideBannerView()
     }
 }
