@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		18F8DB2F1FA6CA06003148FB /* ContactVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F8DB2E1FA6CA06003148FB /* ContactVC.swift */; };
 		3B220D1F1F8483DE00782306 /* Wifi.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B220D1D1F8483BC00782306 /* Wifi.storyboard */; };
 		3B289B421F9D9DB500906FBF /* Ping.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B6BDEAD1F9D8D330020A5CD /* Ping.m */; };
 		3B2A437D1F87781C0053A89B /* BoostMemory.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B2A43771F87781C0053A89B /* BoostMemory.storyboard */; };
@@ -102,6 +103,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		18F8DB2E1FA6CA06003148FB /* ContactVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactVC.swift; sourceTree = "<group>"; };
 		3B220D1E1F8483BC00782306 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Wifi.storyboard; sourceTree = "<group>"; };
 		3B2A43781F87781C0053A89B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/BoostMemory.storyboard; sourceTree = "<group>"; };
 		3B2A437A1F87781C0053A89B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/NetworkSpeed.storyboard; sourceTree = "<group>"; };
@@ -220,6 +222,7 @@
 				3B2A43831F8779080053A89B /* NetworkSpeedVC.swift */,
 				3F30D7261F88866C00C28CA2 /* ContainerVC.swift */,
 				3F30D7251F88866C00C28CA2 /* MenuTableVC.swift */,
+				18F8DB2E1FA6CA06003148FB /* ContactVC.swift */,
 				8475E7381F88B79B00F34CFC /* WifiScan */,
 				3B508FC31F82652B00A15E62 /* SortFile */,
 			);
@@ -670,6 +673,7 @@
 				8475E7331F88B5D200F34CFC /* MMLANScanner.m in Sources */,
 				3BB71E301F9857B000263DF5 /* SystemServices.swift in Sources */,
 				3F673EDC1F8258AB00E0DA07 /* AppDelegate.swift in Sources */,
+				18F8DB2F1FA6CA06003148FB /* ContactVC.swift in Sources */,
 				3FF0FABA1FA0109D00030750 /* CountingLabel.swift in Sources */,
 				8475E7361F88B5D200F34CFC /* MMDevice.m in Sources */,
 				3F30D72B1F88880700C28CA2 /* Constants.swift in Sources */,
@@ -914,16 +918,18 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_CODE_COVERAGE = YES;
+
 				DEVELOPMENT_TEAM = 56AJJ634ZU;
+
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Cleaner",
 				);
 				INFOPLIST_FILE = Cleaner/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = bababibo.cleaner;
+				PRODUCT_BUNDLE_IDENTIFIER = bababibo.cleaner123;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -936,16 +942,18 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_CODE_COVERAGE = YES;
+
 				DEVELOPMENT_TEAM = 56AJJ634ZU;
+
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Cleaner",
 				);
 				INFOPLIST_FILE = Cleaner/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = bababibo.cleaner;
+				PRODUCT_BUNDLE_IDENTIFIER = bababibo.cleaner123;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
