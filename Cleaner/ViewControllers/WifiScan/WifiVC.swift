@@ -12,7 +12,9 @@ class WifiVC: UIViewController  {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        GoogleAdMob.sharedInstance.initializeBannerView()
+        if isConnectionAvailable() {
+            GoogleAdMob.sharedInstance.initializeBannerView()
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {

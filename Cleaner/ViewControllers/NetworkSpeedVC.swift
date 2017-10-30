@@ -22,7 +22,6 @@ class NetworkSpeedVC: UIViewController ,SimplePingDelegate{
     let timeoutIntertval: TimeInterval = 4
     var networkService = NetworkServices.shared
     let fortyDegreeConstant = Float.pi / 180 * 45
-    
     var currentIndicatorDegree : Float = 0 {
         didSet {
             self.rotateIndicator(with: currentIndicatorDegree)
@@ -34,13 +33,11 @@ class NetworkSpeedVC: UIViewController ,SimplePingDelegate{
         registerNotification()
         
     }
-    
     func registerNotification() {
         NotificationCenter.default.addObserver(self, selector: #selector(updateDownloadSpeed), name: NotificationName.updateDownloadSpeed, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(updateUploadSpeed), name: NotificationName.updateUploadSpeed, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(resetIndicator), name: NotificationName.didFinishTestUpload, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(resetIndicatorAndTestUpload), name: NotificationName.didFinishTestDownload, object: nil)
-        
     }
     deinit {
         NotificationCenter.default.removeObserver(self)
@@ -67,14 +64,17 @@ class NetworkSpeedVC: UIViewController ,SimplePingDelegate{
     }
     
     @IBAction func clickAndStart(_ sender: UIButton) {
+       if isConnectionAvailable() {
         NetworkServices.shared.pingHostname(hostname: "192.168.1.1") { [unowned self] latency in
             DispatchQueue.main.async {
                 self.pingLabel.text = "\(latency ?? "--") ms"
                 self.networkService.startDownload()
             }
-            
         }
         speedButton.isEnabled = false
+       } else {
+        showAlertConnectionCkeck(vc: self, title: "Warning", message: "The Internet is not available")
+        }
     }
     
     private func convertFromSpeedToDegree(_ speed: Float) -> Degree {
@@ -109,7 +109,6 @@ class NetworkSpeedVC: UIViewController ,SimplePingDelegate{
             
         }
     }
-    
     private func rotateIndicator(with degree: Float) {
         guard degree != 0 else {return}
         UIView.animate(withDuration: 0.1, delay: 0, options: .curveEaseInOut, animations: {
@@ -147,7 +146,16 @@ class NetworkSpeedVC: UIViewController ,SimplePingDelegate{
             return "\(speedConvertString.converted(to: UnitDataRate.megabitPerSecond))"
         }
     }
-    
+    func showAlertConnectionCkeck(vc: UIViewController, title: String, message: String) {
+        if !isConnectionAvailable() {
+            let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+            let backAction = UIAlertAction(title: "Back", style: UIAlertActionStyle.default) { (result : UIAlertAction) -> Void in
+                self.navigationController?.popViewController(animated: true)
+            }
+            alert.addAction(backAction)
+            vc.present(alert, animated: true, completion: nil)
+        }
+    }
 }
 
 

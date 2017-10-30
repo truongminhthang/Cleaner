@@ -15,9 +15,9 @@ class JunkCleanVC: UIViewController,CAAnimationDelegate {
     @IBOutlet weak var UnderView: GradientView!
     @IBOutlet weak var AboveView: GradientView!
     @IBOutlet weak var freeDiskLabel: UILabel!
-    @IBOutlet weak var changeLabel: UILabel!
+    @IBOutlet weak var displayInfoLabel: UILabel!
     @IBOutlet weak var markLabel: UILabel!
-    @IBOutlet weak var coverButton: Button!
+    @IBOutlet weak var boostCleanButton: Button!
     @IBOutlet weak var SpaceLabel: UILabel!
     @IBOutlet weak var availableLabel: UILabel!
     
@@ -75,9 +75,9 @@ class JunkCleanVC: UIViewController,CAAnimationDelegate {
                 self.SpaceLabel.isHidden = true
                 self.availableLabel.isHidden = true
                 biggerView.backgroundColor = UIColor.clear
-                self.changeLabel.text = " Getting the data .... Please wait!"
+                self.displayInfoLabel.text = " Getting the data .... Please wait!"
                 self.freeDiskLabel.text = "    Loading ...    "
-                coverButton.isEnabled = false
+                boostCleanButton.isEnabled = false
             } else {
                 let systemChange = SystemServices.shared.diskSpaceUsage(inPercent: false).freeDiskSpace > storeageReduce ? SystemServices.shared.diskSpaceUsage(inPercent: false).freeDiskSpace - storeageReduce : storeageReduce - SystemServices.shared.diskSpaceUsage(inPercent: false).freeDiskSpace
                 let systemReduce = ByteCountFormatter.string(fromByteCount: Int64(systemChange), countStyle: .binary)
@@ -87,8 +87,8 @@ class JunkCleanVC: UIViewController,CAAnimationDelegate {
                 self.freeDiskLabel.text  = ByteCountFormatter.string(fromByteCount: Int64(storageChange), countStyle: .binary)
                 self.SpaceLabel.isHidden = false
                 self.availableLabel.isHidden = false
-                coverButton.isEnabled = true
-                coverButton.setTitle("FINISH", for: .normal)
+                boostCleanButton.isEnabled = true
+                boostCleanButton.setTitle("FINISH", for: .normal)
                 self.showAlertCompelete(vc: self, title: "Do you want go to setting manage?", message: "The process is complete! Storage reduced \(systemReduce) but some items with private content can not be removed!")
             }
         }
@@ -101,7 +101,7 @@ class JunkCleanVC: UIViewController,CAAnimationDelegate {
             isNeedToChange = true
 //            showAlert(vc: self, title: "Warning!", message: "You want go to Settings?")
             UIView.animate(withDuration: 1, delay: 0, options: [.repeat, .curveLinear] , animations: {
-                self.changeAlpha(label: self.changeLabel)
+                self.changeAlpha(label: self.displayInfoLabel)
                 self.changeAlpha(label: self.markLabel)
             }) { (_) in
             }
