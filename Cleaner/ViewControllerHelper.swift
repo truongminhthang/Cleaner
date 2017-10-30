@@ -9,15 +9,15 @@
 import UIKit
 import SystemConfiguration
 
-func showAlert(vc: UIViewController, title:String, message: String) {
+func showAlert(vc: UIViewController?, title:String, message: String) {
     let alertController = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
     let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) { (result : UIAlertAction) -> Void in
         GoogleAdMob.sharedInstance.showInterstitial()
     }
     alertController.addAction(okAction)
-    vc.present(alertController, animated: true, completion: nil)
+    vc?.present(alertController, animated: true, completion: nil)
 }
-func isConnectionAvailable() -> Bool {
+func isConnectionAvailable(vc: UIViewController? = nil) -> Bool {
     var zero_Address = sockaddr_in(sin_len: 0, sin_family: 0, sin_port: 0, sin_addr: in_addr(s_addr: 0), sin_zero: (0,0,0,0,0,0,0,0 ))
     zero_Address.sin_len = UInt8(MemoryLayout.size(ofValue: zero_Address))
     zero_Address.sin_family = sa_family_t(AF_INET)
@@ -34,6 +34,9 @@ func isConnectionAvailable() -> Bool {
     }
     let isReachable = flags == .reachable
     let needsConnection = flags == .connectionRequired
+    if !(isReachable && !needsConnection) {
+        showAlert(vc: vc,  title: "Warning", message: "The Internet is not available")
+    }
     return isReachable && !needsConnection
 }
 

@@ -64,7 +64,7 @@ class NetworkSpeedVC: UIViewController ,SimplePingDelegate{
     }
     
     @IBAction func clickAndStart(_ sender: UIButton) {
-       if isConnectionAvailable() {
+        if isConnectionAvailable(vc: self) {
         NetworkServices.shared.pingHostname(hostname: "192.168.1.1") { [unowned self] latency in
             DispatchQueue.main.async {
                 self.pingLabel.text = "\(latency ?? "--") ms"
@@ -73,7 +73,7 @@ class NetworkSpeedVC: UIViewController ,SimplePingDelegate{
         }
         speedButton.isEnabled = false
        } else {
-        showAlertConnectionCkeck(vc: self, title: "Warning", message: "The Internet is not available")
+            isConnectionAvailable(vc: self)
         }
     }
     
@@ -121,7 +121,9 @@ class NetworkSpeedVC: UIViewController ,SimplePingDelegate{
         }, completion: {success in
             NetworkServices.shared.startUpload()
             self.currentIndicatorDegree = 0
+            self.speedButton.isEnabled = true
         })
+        _ = isConnectionAvailable(vc: self)
     }
     
     @objc private func resetIndicator() {
@@ -130,7 +132,7 @@ class NetworkSpeedVC: UIViewController ,SimplePingDelegate{
             self.indictorView.transform = CGAffineTransform(rotationAngle: CGFloat(0))
         },  completion: nil)
         speedButton.isEnabled = true
-        
+        _ = isConnectionAvailable(vc: self)
     }
     
     private func convertSpeedToDisplayedString(speed: Float) -> String {
@@ -144,16 +146,6 @@ class NetworkSpeedVC: UIViewController ,SimplePingDelegate{
             return "\(speedConvertString.converted(to: UnitDataRate.gigabitPerSecond))"
         } else {
             return "\(speedConvertString.converted(to: UnitDataRate.megabitPerSecond))"
-        }
-    }
-    func showAlertConnectionCkeck(vc: UIViewController, title: String, message: String) {
-        if !isConnectionAvailable() {
-            let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-            let backAction = UIAlertAction(title: "Back", style: UIAlertActionStyle.default) { (result : UIAlertAction) -> Void in
-                self.navigationController?.popViewController(animated: true)
-            }
-            alert.addAction(backAction)
-            vc.present(alert, animated: true, completion: nil)
         }
     }
 }
