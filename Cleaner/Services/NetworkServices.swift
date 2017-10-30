@@ -12,12 +12,12 @@ import os.log
 public typealias PingClientCallback = (String?)->()
 class NetworkServices: NSObject {
     let url = URL(string: "http://www.nasa.gov/sites/default/files/saturn_collage.jpg")
-    
     static let shared : NetworkServices = NetworkServices()
     // Init
     private override init() {
         super.init()
         let backgroundSessionConfiguration = URLSessionConfiguration.background(withIdentifier: "backgroundSession")
+        backgroundSessionConfiguration.timeoutIntervalForResource = TimeInterval(10)
         backgroundSession = URLSession(configuration: backgroundSessionConfiguration, delegate: self, delegateQueue: OperationQueue.main)
     }
     // Properties ping
@@ -70,6 +70,7 @@ class NetworkServices: NSObject {
         request.setValue("Keep-Alive", forHTTPHeaderField: "Connection")
         
         let configuration = URLSessionConfiguration.default
+        configuration.timeoutIntervalForResource = TimeInterval(10)
         let session = URLSession(configuration: configuration, delegate: self, delegateQueue: OperationQueue.main)
         uploadTask = session.uploadTask(with: request, from: imageData)
         uploadStartTime = Date()
@@ -105,7 +106,6 @@ extension NetworkServices: URLSessionDownloadDelegate {
             self.downloadSpeed =  Float(totalBytesWritten) / downloadDuration * 8
         }
     }
-  
     
     func urlSession(_ session: URLSession,
                     task: URLSessionTask,
@@ -113,6 +113,14 @@ extension NetworkServices: URLSessionDownloadDelegate {
         
         guard error == nil else {
             print(error!.localizedDescription)
+            if task is URLSessionDownloadTask {
+                NotificationCenter.default.post(name: NotificationName.didFinishTestDownload, object: nil)
+            }
+            if task is URLSessionUploadTask {
+                NotificationCenter.default.post(name: NotificationName.didFinishTestUpload, object: nil)
+
+            }
+            
             return
         }
         if task is URLSessionUploadTask {
