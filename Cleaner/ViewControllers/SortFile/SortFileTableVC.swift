@@ -16,19 +16,31 @@ class SortFileTableVC: UITableViewController {
     @IBOutlet var headerView: UIView!
     
     
-    fileprivate let imageManager = PHCachingImageManager()
+    fileprivate var imageManager : PHCachingImageManager?
     fileprivate var thumbnailSize: CGSize = CGSize(width: 400, height: 400)
     fileprivate var previousPreheatRect = CGRect.zero
     
-    var fetchResult : PHFetchResult<PHAsset> = {
-        let allPhotosOptions = PHFetchOptions()
-        allPhotosOptions.sortDescriptors = [NSSortDescriptor(key: "duration", ascending: false), NSSortDescriptor(key: "pixelWidth", ascending: false), NSSortDescriptor(key: "pixelHeight", ascending: false)]
-        return PHAsset.fetchAssets(with: allPhotosOptions)
-    }()
+    var fetchResult : PHFetchResult<PHAsset>?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        PHPhotoLibrary.shared().register(self )
+        PHPhotoLibrary.requestAuthorization { [unowned self] (status) in
+            switch status {
+            case .authorized:
+                PHPhotoLibrary.shared().register(self)
+                let allPhotosOptions = PHFetchOptions()
+                allPhotosOptions.sortDescriptors = [NSSortDescriptor(key: "duration", ascending: false), NSSortDescriptor(key: "pixelWidth", ascending: false), NSSortDescriptor(key: "pixelHeight", ascending: false)]
+                self.fetchResult = PHAsset.fetchAssets(with: allPhotosOptions)
+                self.imageManager = PHCachingImageManager()
+            case .denied:
+                fallthrough
+            case .notDetermined:
+                fallthrough
+            case .restricted:
+                
+                showAlertCompelete(vc: self, title: "Warning", message: "We need permission to access Photo Library for this action")
+            }
+        }
     }
     deinit {
         PHPhotoLibrary.shared().unregisterChangeObserver(self )
@@ -64,12 +76,12 @@ class SortFileTableVC: UITableViewController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return fetchResult.count
+        return fetchResult?.count ?? 0
     }
     
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let asset = fetchResult.object(at: indexPath.item)
+        let asset = fetchResult!.object(at: indexPath.item)
         let cellIdentifier = asset.duration == 0 ? "photoCell" : "videoCell"
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! TableViewCell
         requestImage(for: cell, from: asset)
@@ -79,7 +91,7 @@ class SortFileTableVC: UITableViewController {
     
     func requestImage(for cell:TableViewCell, from asset: PHAsset) {
         cell.representedAssetIdentifier = asset.localIdentifier
-        imageManager.requestImage(for: asset, targetSize: thumbnailSize , contentMode: .aspectFill, options: nil, resultHandler: { image, _ in
+        imageManager?.requestImage(for: asset, targetSize: thumbnailSize , contentMode: .aspectFill, options: nil, resultHandler: { image, _ in
             
             if cell.representedAssetIdentifier == asset.localIdentifier && image != nil {
                 cell.photoImageView.image = image
@@ -98,13 +110,13 @@ class SortFileTableVC: UITableViewController {
             guard let destination = segue.destination as? VideoViewController
                 else { fatalError("unexpected view controller for segue") }
             if let selectedIndexPath = tableView.indexPathForSelectedRow  {
-                destination.asset = fetchResult.object(at: selectedIndexPath.row)
+                destination.asset = fetchResult!.object(at: selectedIndexPath.row)
             }
         case "show photo details":
             guard let destination = segue.destination as? DetailImageVC
                 else { fatalError("unexpected view controller for segue") }
             if let selectedIndexPath = tableView.indexPathForSelectedRow  {
-                destination.asset = fetchResult.object(at: selectedIndexPath.row)
+                destination.asset = fetchResult!.object(at: selectedIndexPath.row)
             }
         default:
             return
@@ -114,7 +126,7 @@ class SortFileTableVC: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        let asset = self.fetchResult.object(at: indexPath.item)
+        let asset = self.fetchResult!.object(at: indexPath.item)
         if editingStyle == .delete {
             PHPhotoLibrary.shared().performChanges({
                 PHAssetChangeRequest.deleteAssets([asset] as NSArray)
@@ -129,7 +141,7 @@ class SortFileTableVC: UITableViewController {
 extension SortFileTableVC : PHPhotoLibraryChangeObserver {
     func photoLibraryDidChange(_ changeInstance: PHChange) {
         
-        guard let changes = changeInstance.changeDetails(for: fetchResult)
+        guard let changes = changeInstance.changeDetails(for: fetchResult!)
             else { return }
         
         // Change notifications may be made on a background queue. Re-dispatch to the
@@ -148,7 +160,7 @@ extension SortFileTableVC : PHPhotoLibraryChangeObserver {
                         if let inserted = changes.insertedIndexes, !inserted.isEmpty {
                             tableView.insertRows(at: inserted.map({ IndexPath(item: $0, section: 0) }), with: .automatic)
                         }
-
+                        
                         
                     })
                 } else {

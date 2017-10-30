@@ -31,6 +31,8 @@ class NetworkSpeedVC: UIViewController ,SimplePingDelegate{
         super.viewDidLoad()
         speedButton.isEnabled = true
         registerNotification()
+        _ = isConnectionAvailable(vc: self)
+
         
     }
     func registerNotification() {

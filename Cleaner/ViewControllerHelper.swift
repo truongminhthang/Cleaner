@@ -40,4 +40,23 @@ func isConnectionAvailable(vc: UIViewController? = nil) -> Bool {
     return isReachable && !needsConnection
 }
 
+func showAlertCompelete(vc: UIViewController, title:String, message: String) {
+    let alertController = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
+    let goToStorageBackup = UIAlertAction(title: "Setting", style: .default) { (_) -> Void in
+        guard let settingsUrl = URL(string: "App-prefs:root=General&path=STORAGE_ICLOUD_USAGE/DEVICE_STORAGE") else {
+            return
+        }
+        if UIApplication.shared.canOpenURL(settingsUrl) {
+            UIApplication.shared.open(settingsUrl, completionHandler: { (success) in
+                print("Settings opened: \(success)") // Prints true
+            })
+        }
+    }
+    let okAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default) { (result : UIAlertAction) -> Void in
+        GoogleAdMob.sharedInstance.showInterstitial()
+    }
+    alertController.addAction(goToStorageBackup)
+    alertController.addAction(okAction)
+    vc.present(alertController, animated: true, completion: nil)
+}
  
