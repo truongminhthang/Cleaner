@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import StoreKit
 
 class MenuTableVC: UITableViewController {
     @IBOutlet weak var memoryLabel: UILabel!
@@ -28,6 +29,24 @@ class MenuTableVC: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.row == 3 {
+            reviewUs(url: "itms-apps://itunes.apple.com/app/id(ID_APP)?action=write-review")
+        }
+    }
+    
+    private func reviewUs(url: String) {
+        if #available(iOS 10.3, *) {
+            SKStoreReviewController.requestReview()
+        } else if let urlAppStore = URL(string: url) {
+            if #available(iOS 10.0, *) {
+                UIApplication.shared.open(urlAppStore, options: [:])
+            }
+            else {
+                UIApplication.shared.openURL(urlAppStore)
+            }
+        }
+    }
 
     /*
     // MARK: - Navigation
