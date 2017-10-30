@@ -56,8 +56,8 @@ class GoogleAdMob:NSObject, GADInterstitialDelegate, GADBannerViewDelegate {
             bannerView = GADBannerView(frame: CGRect(
                 x:0 ,
                 y: 102  ,
-                width: 375   ,
-                height: 80 ))
+                width: 425   ,
+                height: 50))
             self.bannerView.adUnitID = GoogleAdsUnitID.strBannerAdsID
             self.bannerView.rootViewController = UIApplication.shared.keyWindow?.rootViewController
             self.bannerView.delegate = self

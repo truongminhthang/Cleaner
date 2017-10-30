@@ -32,7 +32,7 @@ class WifiScanResultVC: UIViewController, UITableViewDataSource, UITableViewDele
         self.networkScanner.scan()
         self.addObserversForKVO()
         GoogleAdMob.sharedInstance.hideBannerView()
-        GoogleAdMob.sharedInstance.initTopBannerView()
+    
 
         
         
@@ -40,6 +40,7 @@ class WifiScanResultVC: UIViewController, UITableViewDataSource, UITableViewDele
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         GoogleAdMob.sharedInstance.hideBannerView()
+        networkScanner.stop()
     }
 //    override func viewWillDisappear(_ animated: Bool) {
 //        super.viewWillDisappear(animated)
@@ -49,6 +50,10 @@ class WifiScanResultVC: UIViewController, UITableViewDataSource, UITableViewDele
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        GoogleAdMob.sharedInstance.initTopBannerView()
     }
     
     func addObserversForKVO ()->Void {
@@ -128,8 +133,7 @@ class WifiScanResultVC: UIViewController, UITableViewDataSource, UITableViewDele
                 self.tableView.reloadData()
                 
             case "isScanRunning":
-//                let isScanRunning = change?[.newKey] as! BooleanLiteralType
-            //   self.scanButton.image = isScanRunning ? #imageLiteral(resourceName: "stopBarButton") : #imageLiteral(resourceName: "refreshBarButton")
+
                 break
             default:
                 print("Not valid key for observing")
@@ -141,5 +145,8 @@ class WifiScanResultVC: UIViewController, UITableViewDataSource, UITableViewDele
     deinit {
         
         self.removeObserversForKVO()
+    }
+    @IBAction func doneButton(_ sender: UIBarButtonItem) {
+        navigationController?.popToRootViewController(animated: true)
     }
 }

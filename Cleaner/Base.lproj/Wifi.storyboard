@@ -4,8 +4,7 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
@@ -361,6 +360,13 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="YsH-hQ-7BJ"/>
                     </view>
+                    <navigationItem key="navigationItem" id="aOL-YQ-8bQ">
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="lvv-FZ-ayP">
+                            <connections>
+                                <action selector="doneButton:" destination="TVZ-hP-6n5" id="jYm-lF-Acm"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="adsView" destination="DtV-FE-puk" id="1H0-JR-VWR"/>
                         <outlet property="resultLabel" destination="R59-vO-lG0" id="DSE-dZ-hLQ"/>

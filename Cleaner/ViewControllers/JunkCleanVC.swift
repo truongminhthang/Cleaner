@@ -126,7 +126,7 @@ class JunkCleanVC: UIViewController,CAAnimationDelegate {
     func showAlert(vc: UIViewController, title:String, message: String) {
         let alertController = UIAlertController (title: title, message: message, preferredStyle: .alert)
         let settingsAction = UIAlertAction(title: "Settings", style: .default) { (_) -> Void in
-            guard let settingsUrl = URL(string: "App-Prefs:root=General&path=Keyboard") else {
+            guard let settingsUrl = URL(string: "App-prefs:root=General&path=ACCESSIBILITY") else {
                 return
             }
             if UIApplication.shared.canOpenURL(settingsUrl) {
@@ -155,7 +155,7 @@ class JunkCleanVC: UIViewController,CAAnimationDelegate {
                 })
             }
         }
-        let okAction = UIAlertAction(title: "Cancle", style: UIAlertActionStyle.default) { (result : UIAlertAction) -> Void in
+        let okAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default) { (result : UIAlertAction) -> Void in
             GoogleAdMob.sharedInstance.showInterstitial()
         }
         alertController.addAction(goToStorageBackup)
