@@ -2,7 +2,7 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "wifiOn.png",
+      "filename" : "wifiOn@1x.png",
       "scale" : "1x"
     },
     {

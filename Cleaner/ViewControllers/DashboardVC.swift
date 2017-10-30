@@ -8,15 +8,11 @@
 
 import UIKit
 class MainVC: UIViewController{
-    
-    @IBOutlet weak var speedButton: UIButton!
-    @IBOutlet weak var wifiButton: UIButton!
-    @IBOutlet weak var boostButton: UIButton!
     @IBOutlet weak var clearButton: UIButton!
     @IBOutlet weak var pieChartView: PieChartView!
-    
     @IBOutlet weak var freePercentLabel: UILabel!
     @IBOutlet weak var freeSpaceLabel: UILabel!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,6 +25,10 @@ class MainVC: UIViewController{
         let freeSize = ByteCountFormatter.string(fromByteCount: Int64(deviceServices.diskFree), countStyle: .file)
         freeSpaceLabel.text = "\(freeSize)"
     }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        clearButton.isSelected = true
+    }
     
     
     override func didReceiveMemoryWarning() {
@@ -36,12 +36,10 @@ class MainVC: UIViewController{
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func bootButton(_ sender: UIButton) {
-    }
-    
     @IBAction func openSideMenu(_ sender: UIBarButtonItem) {
         NotificationCenter.default.post(name: NotificationName.toggleMenu, object: nil)
     }
+    
     
     
 }

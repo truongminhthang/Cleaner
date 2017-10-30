@@ -10,14 +10,10 @@ import UIKit
 
 
 func showAlert(vc: UIViewController, title:String, message: String) {
-    
     let alertController = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
-    
     let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) { (result : UIAlertAction) -> Void in
         GoogleAdMob.sharedInstance.showInterstitial()
     }
-    
     alertController.addAction(okAction)
-    
     vc.present(alertController, animated: true, completion: nil)
 }

@@ -216,7 +216,7 @@
 		3B508FC01F8264BE00A15E62 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				3B2A43851F8779080053A89B /* BoostVC.swift */,
+				3FC440061FA699FA0044C60B /* Boost */,
 				3B2A43821F8779080053A89B /* JunkCleanVC.swift */,
 				3B2A43801F8779080053A89B /* DashboardVC.swift */,
 				3B2A43831F8779080053A89B /* NetworkSpeedVC.swift */,
@@ -233,7 +233,6 @@
 			isa = PBXGroup;
 			children = (
 				3FF0FAB91FA0109D00030750 /* CountingLabel.swift */,
-				3FF0FAB71FA0109500030750 /* SweepView.swift */,
 				3F223BFD1F91A7810075911F /* ConvertMpbs.swift */,
 				3B2A43881F8779870053A89B /* CustomView.swift */,
 				3B2A438B1F8779870053A89B /* GradientColorView.swift */,
@@ -347,6 +346,15 @@
 				84E39D781F8C3CD9004B77F3 /* ViewControllerHelper.swift */,
 			);
 			name = SupportFiles;
+			sourceTree = "<group>";
+		};
+		3FC440061FA699FA0044C60B /* Boost */ = {
+			isa = PBXGroup;
+			children = (
+				3B2A43851F8779080053A89B /* BoostVC.swift */,
+				3FF0FAB71FA0109500030750 /* SweepView.swift */,
+			);
+			name = Boost;
 			sourceTree = "<group>";
 		};
 		8475E7111F88B5D200F34CFC /* FrameWorks */ = {
@@ -910,7 +918,9 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_CODE_COVERAGE = YES;
-				DEVELOPMENT_TEAM = 33YWV4B47P;
+
+				DEVELOPMENT_TEAM = 56AJJ634ZU;
+
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -932,7 +942,9 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_CODE_COVERAGE = YES;
-				DEVELOPMENT_TEAM = 33YWV4B47P;
+
+				DEVELOPMENT_TEAM = 56AJJ634ZU;
+
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

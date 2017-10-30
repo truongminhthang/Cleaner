@@ -8,24 +8,10 @@
 
 import Foundation
 import UIKit
-class SharedUserDefaults {
-    static let shared: SharedUserDefaults = SharedUserDefaults()
-//    var number = UserDefaults.standard
-//    var numberDefault = UserDefaults.standard.object(forKey: "freeMemory")
+class MemoryFake {
+    static let shared: MemoryFake = MemoryFake()
     var a = 0 
     
-    
-    var memoryFreePercentFake: Double {
-        return 15.0
-    }
-    var memoryUsedPercentFake: Double {
-        return 85.0
-    }
-    var memoryFreeFake: Double {
-       return memoryFreePercentFake / 100 * SystemServices.shared.memoryUsage(inPercent: false).totalMemory
-    }
-    var memoryUsedFake: Double {
-        return (SystemServices.shared.memoryUsage(inPercent: false).totalMemory - memoryFreeFake)
-    }
+   
 }
 
