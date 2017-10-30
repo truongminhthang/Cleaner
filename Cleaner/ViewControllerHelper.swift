@@ -40,10 +40,17 @@ func isConnectionAvailable(vc: UIViewController? = nil) -> Bool {
     return isReachable && !needsConnection
 }
 
-func showAlertCompelete(vc: UIViewController, title:String, message: String) {
+
+func showAlertToDeleteApp(vc: UIViewController, title:String, message: String) {
+    showAlertCompelete(vc: vc, title: title, message: message, settingUrl: "App-prefs:root=General&path=STORAGE_ICLOUD_USAGE/DEVICE_STORAGE")
+}
+func showAlertToAccessAppFolder(vc: UIViewController, title:String, message: String) {
+    showAlertCompelete(vc: vc, title: title, message: message, settingUrl: UIApplicationOpenSettingsURLString)
+}
+func showAlertCompelete(vc: UIViewController, title:String, message: String, settingUrl: String) {
     let alertController = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
     let goToStorageBackup = UIAlertAction(title: "Setting", style: .default) { (_) -> Void in
-        guard let settingsUrl = URL(string: "App-prefs:root=General&path=STORAGE_ICLOUD_USAGE/DEVICE_STORAGE") else {
+        guard let settingsUrl = URL(string: settingUrl) else {
             return
         }
         if UIApplication.shared.canOpenURL(settingsUrl) {
