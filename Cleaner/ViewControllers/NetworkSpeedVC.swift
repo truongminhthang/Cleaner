@@ -41,11 +41,12 @@ class NetworkSpeedVC: UIViewController ,SimplePingDelegate{
         NotificationCenter.default.addObserver(self, selector: #selector(resetIndicator), name: NotificationName.didFinishTestUpload, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(resetIndicatorAndTestUpload), name: NotificationName.didFinishTestDownload, object: nil)
     }
+    
     deinit {
         NotificationCenter.default.removeObserver(self)
-        networkService.downloadTask?.cancel()
-        networkService.uploadTask?.cancel()
+        networkService.stopAllTest()
     }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -69,13 +70,13 @@ class NetworkSpeedVC: UIViewController ,SimplePingDelegate{
         if isConnectionAvailable(vc: self) {
         NetworkServices.shared.pingHostname(hostname: "192.168.1.1") { [unowned self] latency in
             DispatchQueue.main.async {
-                self.pingLabel.text = "\(latency ?? "--") ms"
+                self.pingLabel?.text = "\(latency ?? "--") ms"
                 self.networkService.startDownload()
             }
         }
         speedButton.isEnabled = false
        } else {
-            isConnectionAvailable(vc: self)
+            _ = isConnectionAvailable(vc: self)
         }
     }
     

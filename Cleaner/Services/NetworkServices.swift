@@ -88,6 +88,12 @@ class NetworkServices: NSObject {
         pingClinet?.delegate = self
         pingClinet?.start()
     }
+    public func stopAllTest() {
+        pingClinet?.stop()
+        resultCallback = nil
+        downloadTask?.cancel()
+        uploadTask?.cancel()
+    }
 }
 // MARK: - URLSessionDownloadDelegate
 extension NetworkServices: URLSessionDownloadDelegate {

@@ -20,7 +20,11 @@ class SortFileTableVC: UITableViewController {
     fileprivate var thumbnailSize: CGSize = CGSize(width: 400, height: 400)
     fileprivate var previousPreheatRect = CGRect.zero
     
-    var fetchResult : PHFetchResult<PHAsset>?
+    var fetchResult : PHFetchResult<PHAsset>? {
+        didSet {
+           reloadData()
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -97,7 +101,9 @@ class SortFileTableVC: UITableViewController {
             }
         })
         asset.getURL { (url) in
-            cell.sizeLabel.text = ByteCountFormatter.string(fromByteCount: Int64(url?.fileSize ?? 0), countStyle: .file )
+            DispatchQueue.main.async {
+                cell.sizeLabel.text = ByteCountFormatter.string(fromByteCount: Int64(url?.fileSize ?? 0), countStyle: .file )
+            }
         }
     }
     
