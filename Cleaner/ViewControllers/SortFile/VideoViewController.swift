@@ -45,6 +45,12 @@ class VideoViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        GoogleAdMob.sharedInstance.toogleBanner()
+
+    }
+    
     override func viewWillDisappear(_ animated: Bool) {
         player.pause()
         player.resetVideo()

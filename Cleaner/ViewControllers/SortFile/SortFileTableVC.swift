@@ -22,7 +22,7 @@ class SortFileTableVC: UITableViewController {
     
     var fetchResult : PHFetchResult<PHAsset>? {
         didSet {
-           reloadData()
+            reloadData()
         }
     }
     
@@ -61,6 +61,10 @@ class SortFileTableVC: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(true)
+        GoogleAdMob.sharedInstance.toogleBanner()
+    }
     
     // MARK: - Table view data source
     
@@ -100,10 +104,18 @@ class SortFileTableVC: UITableViewController {
                 cell.photoImageView.image = image
             }
         })
-        asset.getURL { (url) in
-            DispatchQueue.main.async {
-                cell.sizeLabel.text = ByteCountFormatter.string(fromByteCount: Int64(url?.fileSize ?? 0), countStyle: .file )
-            }
+       
+        if asset.duration ==  0 {
+            imageManager?.requestImageData(for: asset, options: nil, resultHandler: { (data, string, orientation, dictionary) in
+                guard data != nil else {return}
+                cell.sizeLabel.text = ByteCountFormatter.string(fromByteCount: Int64(data!.count), countStyle: .file )
+            })
+        } else {
+                    asset.getURL { (url) in
+                        DispatchQueue.main.async {
+                            cell.sizeLabel.text = ByteCountFormatter.string(fromByteCount: Int64(url?.fileSize ?? 0), countStyle: .file )
+                        }
+                    }
         }
     }
     

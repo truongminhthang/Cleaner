@@ -39,8 +39,12 @@ class DetailImageVC: UIViewController, UIScrollViewDelegate {
         
         PHPhotoLibrary.shared().register(self)
         displayImage()
-        
+      
 
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        GoogleAdMob.sharedInstance.toogleBanner()
     }
     
     deinit {
