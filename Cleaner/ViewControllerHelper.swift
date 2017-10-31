@@ -36,9 +36,9 @@ func isConnectionAvailable() -> Bool {
     }
     let isReachable = flags == .reachable
     let needsConnection = flags == .connectionRequired
-    if !(isReachable && !needsConnection) {
-        showAlert(title: "Warning", message: "The Internet is not available")
-    }
+//    if !(isReachable && !needsConnection) {
+//        showAlert(title: "Warning", message: "The Internet is not available")
+//    }
     return isReachable && !needsConnection
 }
 

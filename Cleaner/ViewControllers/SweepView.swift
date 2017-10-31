@@ -8,11 +8,6 @@
 
 import Foundation
 import UIKit
-extension BoostVC {
-
-  
-    
-}
 extension JunkCleanVC {
     func changeAlpha(label: UILabel) {
         label.alpha = 0
@@ -24,7 +19,6 @@ extension JunkCleanVC {
         gradient.frame = self.UnderView.bounds
         gradient.colors = colorSets[currentColorSet]
         gradientLayer.colors = colorSets[currentColorSet]
-        
         self.AboveView.layer.addSublayer(gradient)
         self.UnderView.layer.addSublayer(gradientLayer)
     }

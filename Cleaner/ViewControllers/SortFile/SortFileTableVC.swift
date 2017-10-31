@@ -15,6 +15,7 @@ class SortFileTableVC: UITableViewController {
     @IBOutlet weak var freeDiskLabel: UILabel!
     @IBOutlet var headerView: UIView!
     
+    @IBOutlet weak var typeOfSizeLabel: UILabel!
     
     fileprivate var imageManager : PHCachingImageManager?
     fileprivate var thumbnailSize: CGSize = CGSize(width: 400, height: 400)
@@ -77,6 +78,8 @@ class SortFileTableVC: UITableViewController {
         var myStringArr = freeSize.components(separatedBy: " ")
         let numbers: String = myStringArr[0]
         freeDiskLabel.text = numbers
+        let typeOfSize: String = myStringArr[1]
+        typeOfSizeLabel.text = typeOfSize
         return view
     }
     

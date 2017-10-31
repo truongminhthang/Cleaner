@@ -5,7 +5,7 @@
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -23,9 +23,13 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Ellipse-1" translatesAutoresizingMaskIntoConstraints="NO" id="bHH-hk-mwo" userLabel="ellip">
                                 <rect key="frame" x="0.0" y="59" width="375" height="10.5"/>
                             </imageView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ssR-6d-Jmt" userLabel="Biggest Circle" customClass="GradientView" customModule="Cleaner" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ssR-6d-Jmt" userLabel="Biggest Circle" customClass="PieChartView" customModule="Cleaner" customModuleProvider="target">
                                 <rect key="frame" x="60" y="99.5" width="255" height="255"/>
                                 <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="003-NH-X3f" customClass="PieChartView" customModule="Cleaner" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="255" height="255"/>
+                                        <color key="backgroundColor" red="0.99959295989999997" green="0.82827109099999996" blue="0.83094799519999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2HJ-1W-wzt" userLabel="smaller view" customClass="GradientView" customModule="Cleaner" customModuleProvider="target">
                                         <rect key="frame" x="24" y="24" width="207" height="207"/>
                                         <subviews>
@@ -90,14 +94,18 @@
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.99959295989999997" green="0.82827109099999996" blue="0.83094799519999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstItem="2HJ-1W-wzt" firstAttribute="leading" secondItem="ssR-6d-Jmt" secondAttribute="leading" constant="24" id="3pY-vb-YW3"/>
+                                    <constraint firstAttribute="trailing" secondItem="003-NH-X3f" secondAttribute="trailing" id="5Fw-rl-PKK"/>
+                                    <constraint firstAttribute="bottom" secondItem="003-NH-X3f" secondAttribute="bottom" id="5Gz-gn-JAz"/>
+                                    <constraint firstItem="003-NH-X3f" firstAttribute="leading" secondItem="ssR-6d-Jmt" secondAttribute="leading" id="BvR-x6-Uc1"/>
                                     <constraint firstItem="2HJ-1W-wzt" firstAttribute="centerY" secondItem="ssR-6d-Jmt" secondAttribute="centerY" id="Pls-0J-x8y"/>
                                     <constraint firstItem="2HJ-1W-wzt" firstAttribute="centerX" secondItem="ssR-6d-Jmt" secondAttribute="centerX" id="Qaa-sc-3sN"/>
                                     <constraint firstItem="2HJ-1W-wzt" firstAttribute="centerY" secondItem="ssR-6d-Jmt" secondAttribute="centerY" id="aks-qj-DNx"/>
                                     <constraint firstAttribute="width" secondItem="ssR-6d-Jmt" secondAttribute="height" multiplier="1:1" id="bUq-di-NUu"/>
                                     <constraint firstItem="2HJ-1W-wzt" firstAttribute="centerX" secondItem="ssR-6d-Jmt" secondAttribute="centerX" id="jdU-MC-c27"/>
+                                    <constraint firstItem="003-NH-X3f" firstAttribute="top" secondItem="ssR-6d-Jmt" secondAttribute="top" id="qle-is-v63"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
@@ -111,6 +119,9 @@
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="endColor">
                                         <color key="value" red="0.99959295989999997" green="0.82827109099999996" blue="0.83094799519999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="colorCenterCircle">
+                                        <color key="value" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
@@ -272,6 +283,7 @@
                     <connections>
                         <outlet property="boostButton" destination="6Rn-sI-NBS" id="s6b-az-dmx"/>
                         <outlet property="diplayedInfoCircleContainer" destination="ssR-6d-Jmt" id="hiC-A1-ZBH"/>
+                        <outlet property="displayPieChartView" destination="003-NH-X3f" id="ZV3-Z4-pxB"/>
                         <outlet property="displayedInfoCircle" destination="2HJ-1W-wzt" id="iTj-ck-1oG"/>
                         <outlet property="infoStageLabel" destination="C3F-XL-ICb" id="xsR-33-838"/>
                         <outlet property="infoUsedMemoryPercentLabel" destination="jsG-Ug-rhh" id="8zA-rW-J5g"/>

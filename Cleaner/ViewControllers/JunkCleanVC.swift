@@ -10,7 +10,8 @@ import UIKit
 
 class JunkCleanVC: UIViewController,CAAnimationDelegate {
     
-    @IBOutlet weak var middleView: View!
+    @IBOutlet weak var displayPieChartView: PieChartView!
+    @IBOutlet weak var middleView: PieChartView!
     @IBOutlet weak var biggerView: View!
     @IBOutlet weak var UnderView: GradientView!
     @IBOutlet weak var AboveView: GradientView!
@@ -50,6 +51,10 @@ class JunkCleanVC: UIViewController,CAAnimationDelegate {
         // Do any additional setup after loading the view, typically from a nib.
         self.freeDiskLabel.text  = ByteCountFormatter.string(fromByteCount: Int64(SystemServices.shared.diskSpaceUsage(inPercent: false).freeDiskSpace), countStyle: .binary)
         storeageReduce = SystemServices.shared.diskSpaceUsage(inPercent: false).freeDiskSpace
+        middleView.backgroundColor = UIColor.clear
+          let freeDiskSpacePercent = SystemServices.shared.diskSpaceUsage(inPercent: true).freeDiskSpace
+        displayPieChartView.addItem(value: 100 - Float(freeDiskSpacePercent), color: UIColor.red)
+        displayPieChartView.addItem(value: Float(SystemServices.shared.diskSpaceUsage(inPercent: true).freeDiskSpace), color: UIColor.white)
     }
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
@@ -78,15 +83,21 @@ class JunkCleanVC: UIViewController,CAAnimationDelegate {
                 self.displayInfoLabel.text = " Getting the data .... Please wait!"
                 self.freeDiskLabel.text = "    Loading ...    "
                 boostCleanButton.isEnabled = false
+                self.displayPieChartView.isHidden = true
             } else {
                 let systemChange = SystemServices.shared.diskSpaceUsage(inPercent: false).freeDiskSpace > storeageReduce ? SystemServices.shared.diskSpaceUsage(inPercent: false).freeDiskSpace - storeageReduce : storeageReduce - SystemServices.shared.diskSpaceUsage(inPercent: false).freeDiskSpace
                 let systemReduce = ByteCountFormatter.string(fromByteCount: Int64(systemChange), countStyle: .binary)
                 let storageChange = SystemServices.shared.diskSpaceUsage(inPercent: false).freeDiskSpace > storeageReduce ? SystemServices.shared.diskSpaceUsage(inPercent: false).freeDiskSpace :
                 storeageReduce
                 self.freeDiskLabel.alpha = 1
+                self.displayInfoLabel.text = " Complete"
                 self.freeDiskLabel.text  = ByteCountFormatter.string(fromByteCount: Int64(storageChange), countStyle: .binary)
                 self.SpaceLabel.isHidden = false
                 self.availableLabel.isHidden = false
+                let freeDiskSpacePercent = SystemServices.shared.diskSpaceUsage(inPercent: true).freeDiskSpace
+                self.middleView.addItem(value: 100 - Float(freeDiskSpacePercent), color: UIColor.red)
+                self.middleView.addItem(value: Float(SystemServices.shared.diskSpaceUsage(inPercent: true).freeDiskSpace), color: UIColor.white)
+                middleView.setNeedsDisplay()
                 boostCleanButton.isEnabled = true
                 boostCleanButton.setTitle("FINISH", for: .normal)
                 showAlertToDeleteApp(title: "Do you want go to setting manage?", message: "The process is complete! Storage reduced \(systemReduce) but some items with private content can not be removed!")
@@ -99,7 +110,6 @@ class JunkCleanVC: UIViewController,CAAnimationDelegate {
             self.chosenAll()
             clearTempFolder()
             isNeedToChange = true
-//            showAlert(vc: self, title: "Warning!", message: "You want go to Settings?")
             UIView.animate(withDuration: 1, delay: 0, options: [.repeat, .curveLinear] , animations: {
                 self.changeAlpha(label: self.displayInfoLabel)
                 self.changeAlpha(label: self.markLabel)
@@ -114,12 +124,13 @@ class JunkCleanVC: UIViewController,CAAnimationDelegate {
              self.runBoost()
             }
         } else {
-            navigationController?.popViewController(animated: true)
+            showAlert(title: "Complete", message: "Storage has been refreshed")
         }
     }
     // - create active when finish
     @objc func runBoost() {
         isNeedToChange = false
+        
     }
 }
 

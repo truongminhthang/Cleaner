@@ -76,7 +76,7 @@ class NetworkSpeedVC: UIViewController ,SimplePingDelegate{
         }
         speedButton.isEnabled = false
        } else {
-            _ = isConnectionAvailable()
+             showAlert(title: "Warning", message: "The Internet is not available")
         }
     }
     

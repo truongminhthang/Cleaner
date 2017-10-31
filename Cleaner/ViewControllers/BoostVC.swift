@@ -11,8 +11,9 @@ import GoogleMobileAds
 class BoostVC: UIViewController {
     
     // - Mark : Properties
+    @IBOutlet weak var displayPieChartView: PieChartView!
     @IBOutlet weak var displayedInfoCircle: GradientView!
-    @IBOutlet weak var diplayedInfoCircleContainer: GradientView!
+    @IBOutlet weak var diplayedInfoCircleContainer: PieChartView!
     @IBOutlet weak var infoStageLabel: UILabel!
     @IBOutlet weak var boostButton: Button!
     @IBOutlet weak var percentLabel: UILabel!
@@ -34,27 +35,33 @@ class BoostVC: UIViewController {
             let usedMemoryPercent = usedMemoryDisplay / totalMemory * 100
             let freeMemory = totalMemory - usedMemoryDisplay
             let freeMemoryPercent = 100.0 - usedMemoryPercent
-            
             self.infoUsedMemoryPercentLabel.text = "\(usedMemoryPercent.rounded(toPlaces: 2))"
-            
             self.subinfoFreeMemoryPercentLabel.text = "\(freeMemoryPercent.rounded(toPlaces: 2)) %"
             self.subinfoFreeMemoryLabel.text = ByteCountFormatter.string(fromByteCount: Int64(freeMemory), countStyle: .file)
-            
             self.subInfoUsedMemoryPercentLabel.text = "\(usedMemoryPercent.rounded(toPlaces: 2)) %"
             self.subinfoUsedMemoryLabel.text = ByteCountFormatter.string(fromByteCount: Int64(usedMemoryDisplay), countStyle: .file)
-
+            
         }
     }
     
     
     var isRunning:Bool = true {
         didSet {
-            infoStageLabel.text = isRunning ? "⇊MEMORY DOWN⇊" : "MEMORY USAGE"
-            infoStageLabel.textColor = isRunning ? UIColor.gray : UIColor.blue
-            infoUsedMemoryPercentLabel.textColor = isRunning ? UIColor.gray : UIColor.blue
-            percentLabel.textColor =  isRunning ? UIColor.gray : UIColor.blue
-            self.boostButton.isEnabled = !isRunning
-            self.runningEffectView.isHidden = !isRunning
+            if isRunning {
+                infoStageLabel.text = isRunning ? "⇊MEMORY DOWN⇊" : "MEMORY USAGE"
+                infoStageLabel.textColor = isRunning ? UIColor.gray : UIColor.blue
+                infoUsedMemoryPercentLabel.textColor = isRunning ? UIColor.gray : UIColor.blue
+                percentLabel.textColor =  isRunning ? UIColor.gray : UIColor.blue
+                self.boostButton.isEnabled = !isRunning
+                self.runningEffectView.isHidden = !isRunning
+                displayPieChartView.isHidden = true
+                diplayedInfoCircleContainer.isHidden = false
+            } else {
+                let usedMemoryPercent = usedMemoryDisplay / memoryState.totalMemory * 100
+                self.diplayedInfoCircleContainer.addItem(value: Float(usedMemoryPercent), color: UIColor.red)
+                self.diplayedInfoCircleContainer.addItem(value: Float(100 - usedMemoryPercent), color: UIColor.white)
+                self.diplayedInfoCircleContainer.setNeedsDisplay()
+            }
         }
     }
     
@@ -65,7 +72,7 @@ class BoostVC: UIViewController {
         set {
             AppDelegate.shared.isFakeModeApp = newValue
         }
-       
+        
     }
     var timer : Timer?
     
@@ -80,6 +87,9 @@ class BoostVC: UIViewController {
         setupRunningEffectView()
         memoryShouldClear = isFirstTimeMode ? Double(arc4random() %  UInt32(memoryState.memoryUsed * 0.3)) : Double(arc4random() %  UInt32(memoryState.memoryFree * 0.05))
         usedMemoryDisplay = memoryUsageFake
+        let usedMemoryPercent = usedMemoryDisplay / memoryState.totalMemory * 100
+        displayPieChartView.addItem(value: Float(usedMemoryPercent), color: UIColor.red)
+        displayPieChartView.addItem(value: Float(100 - usedMemoryPercent), color: UIColor.white)
     }
     
     func setupRunningEffectView() {
@@ -97,15 +107,20 @@ class BoostVC: UIViewController {
         super.viewWillDisappear(animated)
         timer?.invalidate()
         timer = nil
+        
     }
     
     // - Mark : Active
     @IBAction func clickAndRunBoost(_ sender: UIButton) {
-        isRunning = true
-        showRunningEffect()
-        timer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(fakeReduceMemory), userInfo: nil, repeats: true)
+        if sender.currentTitle == "BOOST MEMORY"
+        {
+            isRunning = true
+            showRunningEffect()
+            timer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(fakeReduceMemory), userInfo: nil, repeats: true)
+        } else {
+            showAlert(title: "Complete", message: "We have liberate Zero KB in memory")
+        }
     }
-    
     @objc func fakeReduceMemory() {
         let jumpStep = 525000.0
         guard usedMemoryDisplay > memoryState.memoryUsed + jumpStep else {
@@ -115,6 +130,7 @@ class BoostVC: UIViewController {
         DispatchQueue.main.async {
             self.usedMemoryDisplay -= jumpStep
         }
+        
     }
     func showRunningEffect() {
         setupRunningEffectView()
@@ -137,7 +153,7 @@ class BoostVC: UIViewController {
         showAlert(title: "Complete", message: "We have liberate \(memoryOut) in memory")
         memoryShouldClear = 0
         isFirstTimeMode = false
-
+        boostButton.setTitle("RUN AGAIN", for: .normal)
     }
 }
 
