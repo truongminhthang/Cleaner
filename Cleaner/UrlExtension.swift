@@ -17,3 +17,14 @@ extension URL {
         return resourceValues?.fileSize ?? resourceValues?.totalFileSize
     }
 }
+
+extension Int {
+    var fileSizeString: String {
+        return ByteCountFormatter.string(fromByteCount: Int64(self), countStyle: .file)
+    }
+}
+extension Double {
+    var fileSizeString: String {
+        return ByteCountFormatter.string(fromByteCount: Int64(self), countStyle: .file)
+    }
+}

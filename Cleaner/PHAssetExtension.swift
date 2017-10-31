@@ -10,7 +10,6 @@ import Photos
 import UIKit
 
 extension PHAsset {
-    
     func getURL(completionHandler : @escaping ((_ responseURL : URL?) -> Void)){
         if self.mediaType == .image {
             let options: PHContentEditingInputRequestOptions = PHContentEditingInputRequestOptions()

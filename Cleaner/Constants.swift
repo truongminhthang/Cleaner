@@ -13,6 +13,9 @@ struct NotificationName {
     static let updateUploadSpeed = Notification.Name.init("updateUploadSpeed")
     static let didFinishTestDownload = Notification.Name.init("didFinishTestDownload")
     static let didFinishTestUpload = Notification.Name.init("didFinishTestUpload")
+    static let didFinishFetchPHAsset = Notification.Name.init("didFinishFetchPHAsset")
+    static let didAddPHAsset = Notification.Name.init("didAddPHAsset")
+
     static let reloadData = Notification.Name.init("reloadData")
 
 

@@ -5,7 +5,7 @@
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -19,11 +19,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.94917863609999997" green="0.7692083716" blue="0.77964895960000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <color key="sectionIndexBackgroundColor" red="0.9365198016166687" green="0.53027892112731934" blue="0.52608883380889893" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <view key="tableFooterView" contentMode="scaleToFill" id="ryT-PS-Q5s">
                             <rect key="frame" x="0.0" y="280" width="375" height="44"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <color key="backgroundColor" red="0.94917863609999997" green="0.7692083716" blue="0.77964895960000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="videoCell" editingAccessoryType="disclosureIndicator" rowHeight="90" id="Dy2-fq-NWO" customClass="TableViewCell" customModule="Cleaner" customModuleProvider="target">
@@ -60,7 +58,6 @@
                                             </constraints>
                                         </imageView>
                                     </subviews>
-                                    <color key="backgroundColor" red="0.94527655839920044" green="0.76529973745346069" blue="0.77573329210281372" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
                                         <constraint firstItem="gnx-Ag-O1U" firstAttribute="leading" secondItem="sti-kt-a0b" secondAttribute="trailing" constant="8" id="4fx-6n-7S2"/>
                                         <constraint firstItem="gnx-Ag-O1U" firstAttribute="top" secondItem="0kn-1F-PKP" secondAttribute="topMargin" constant="24" id="6oR-Da-5Ca"/>
@@ -73,7 +70,6 @@
                                         <constraint firstAttribute="bottomMargin" secondItem="gnx-Ag-O1U" secondAttribute="bottom" constant="24" id="ngl-Zz-8It"/>
                                     </constraints>
                                 </tableViewCellContentView>
-                                <color key="backgroundColor" red="0.94527655840000002" green="0.76529973750000002" blue="0.77573329209999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="tintColor" red="0.40916907787322998" green="0.76304703950881958" blue="0.10624640434980392" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="bottomBorderWidth">
@@ -83,8 +79,6 @@
                                 <connections>
                                     <outlet property="photoImageView" destination="Vd9-on-jNS" id="62U-H1-3E3"/>
                                     <outlet property="sizeLabel" destination="73o-JD-YFl" id="Jx3-xx-g85"/>
-                                    <outlet property="typeImageView" destination="sti-kt-a0b" id="d8f-DT-YZz"/>
-                                    <outlet property="typeLabel" destination="gnx-Ag-O1U" id="ucp-Oe-Lk9"/>
                                     <segue destination="zvs-Mj-ncP" kind="show" identifier="show Video Detail" id="BKL-pf-Wuo"/>
                                 </connections>
                             </tableViewCell>
@@ -122,7 +116,6 @@
                                             </constraints>
                                         </imageView>
                                     </subviews>
-                                    <color key="backgroundColor" red="0.94527655840000002" green="0.76529973750000002" blue="0.77573329209999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
                                         <constraint firstItem="9fM-CI-nm4" firstAttribute="baseline" secondItem="CaD-yx-z6e" secondAttribute="baseline" id="4pt-hS-nJx"/>
                                         <constraint firstAttribute="bottomMargin" secondItem="CaD-yx-z6e" secondAttribute="bottom" constant="24" id="5eL-8c-GMX"/>
@@ -135,7 +128,6 @@
                                         <constraint firstItem="CaD-yx-z6e" firstAttribute="leading" secondItem="JeO-MG-3Oq" secondAttribute="trailing" constant="8" id="Vcs-6N-rGg"/>
                                     </constraints>
                                 </tableViewCellContentView>
-                                <color key="backgroundColor" red="0.94527655840000002" green="0.76529973750000002" blue="0.77573329209999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="tintColor" red="0.40916907790000001" green="0.76304703949999997" blue="0.1062464043" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="bottomBorderWidth">
@@ -145,8 +137,6 @@
                                 <connections>
                                     <outlet property="photoImageView" destination="l96-2l-tHq" id="Dux-vr-YmS"/>
                                     <outlet property="sizeLabel" destination="9fM-CI-nm4" id="bA6-f5-Cmh"/>
-                                    <outlet property="typeImageView" destination="JeO-MG-3Oq" id="6XT-BE-Re5"/>
-                                    <outlet property="typeLabel" destination="CaD-yx-z6e" id="vCg-7E-31z"/>
                                     <segue destination="yl4-oS-S53" kind="show" identifier="show photo details" id="O3W-Kh-yXy"/>
                                 </connections>
                             </tableViewCell>
@@ -161,7 +151,6 @@
                     <connections>
                         <outlet property="freeDiskLabel" destination="fKV-5Z-gdf" id="u77-as-zta"/>
                         <outlet property="headerView" destination="llS-Yx-X8a" id="Bgh-JI-KV2"/>
-                        <outlet property="typeOfSizeLabel" destination="pAR-js-DB1" id="kk2-fd-VCi"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="huX-aT-QeE" userLabel="First Responder" sceneMemberID="firstResponder"/>

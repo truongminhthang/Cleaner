@@ -9,16 +9,6 @@
 import UIKit
 import SystemConfiguration
 
-func showAlert(title:String, message: String) {
-    let alertController = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
-    let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) { (result : UIAlertAction) -> Void in
-        GoogleAdMob.sharedInstance.showInterstitial()
-    }
-    alertController.addAction(okAction)
-    if let rootVC = UIApplication.shared.keyWindow?.rootViewController {
-        rootVC.present(alertController, animated: true, completion: nil)
-    }
-}
 func isConnectionAvailable() -> Bool {
     var zero_Address = sockaddr_in(sin_len: 0, sin_family: 0, sin_port: 0, sin_addr: in_addr(s_addr: 0), sin_zero: (0,0,0,0,0,0,0,0 ))
     zero_Address.sin_len = UInt8(MemoryLayout.size(ofValue: zero_Address))
@@ -49,26 +39,62 @@ func showAlertToDeleteApp(title:String, message: String) {
 func showAlertToAccessAppFolder( title:String, message: String) {
     showAlertCompelete(title: title, message: message, settingUrl: UIApplicationOpenSettingsURLString)
 }
+
+
+func showAlert(title:String, message: String) {
+    let alertController = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
+    let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.cancel) { (result : UIAlertAction) -> Void in
+        GoogleAdMob.sharedInstance.showInterstitial()
+    }
+    alertController.addAction(okAction)
+    if let rootVC = UIApplication.shared.keyWindow?.rootViewController {
+        rootVC.present(alertController, animated: true, completion: nil)
+    }
+}
+
 func showAlertCompelete(title:String, message: String, settingUrl: String) {
     let alertController = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
-    let goToStorageBackup = UIAlertAction(title: "Setting", style: .default) { (_) -> Void in
+    let settingAction = UIAlertAction(title: "Setting", style: .default) { (_) -> Void in
         guard let settingsUrl = URL(string: settingUrl) else {
             return
         }
         if UIApplication.shared.canOpenURL(settingsUrl) {
-            UIApplication.shared.open(settingsUrl, completionHandler: { (success) in
-                print("Settings opened: \(success)") // Prints true
-            })
+            UIApplication.shared.open(settingsUrl, completionHandler: nil)
         }
     }
-    let okAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default) { (result : UIAlertAction) -> Void in
+    let okAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel) { (result : UIAlertAction) -> Void in
         GoogleAdMob.sharedInstance.showInterstitial()
     }
-    alertController.addAction(goToStorageBackup)
+    alertController.addAction(settingAction)
     alertController.addAction(okAction)
     if let rootVC = UIApplication.shared.keyWindow?.rootViewController {
         rootVC.present(alertController, animated: true, completion: nil)
     }
     
 }
- 
+
+func showActivity() {
+    if let rootVC = UIApplication.shared.keyWindow?.rootViewController {
+        DispatchQueue.main.async {
+            let corverView = UIView()
+            
+            corverView.backgroundColor = UIColor.gray.withAlphaComponent(0.5)
+            corverView.frame = CGRect(origin: .zero, size: CGSize(width: 100, height: 100))
+            corverView.center = rootVC.view.center
+            rootVC.view.addSubview(corverView)
+            let activity = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
+            activity.center = corverView.center
+            activity.startAnimating()
+            corverView.addSubview(activity)
+        }
+    }
+}
+
+func hideActivity() {
+    if let rootVC = UIApplication.shared.keyWindow?.rootViewController {
+        rootVC.view.subviews.last?.removeFromSuperview()
+        
+    }
+}
+
+

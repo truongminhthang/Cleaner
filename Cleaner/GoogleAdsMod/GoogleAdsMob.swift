@@ -32,9 +32,12 @@ class GoogleAdMob: NSObject, GADInterstitialDelegate {
     private var interstitialAds: GADInterstitial!
     private var bannerView: GADBannerView?
     
+    var isTestMode = true
     //MARK: - Variable
     var isBannerDisplay = false {
         didSet {
+            guard !isTestMode else {return}
+
             guard isConnectionAvailable() else {return}
 
             if isBannerDisplay {
@@ -59,6 +62,7 @@ class GoogleAdMob: NSObject, GADInterstitialDelegate {
     }
     
     @objc private func createBannerView() {
+        guard !isTestMode else {return}
         guard isConnectionAvailable() else {return}
         if UIApplication.shared.keyWindow?.rootViewController == nil {
             NSObject.cancelPreviousPerformRequests(withTarget: self, selector: #selector(createBannerView), object: nil)
@@ -88,12 +92,15 @@ class GoogleAdMob: NSObject, GADInterstitialDelegate {
     }
     
     private func createInterstitial() {
+        guard !isTestMode else {return}
         interstitialAds = GADInterstitial(adUnitID: GoogleAdsUnitID.strInterstitialAdsID)
         interstitialAds.delegate = self
         interstitialAds.load(GADRequest())
     }
     
     func showInterstitial() {
+        guard !isTestMode else {return}
+
         guard isConnectionAvailable() else {return}
 
         if interstitialAds.isReady {

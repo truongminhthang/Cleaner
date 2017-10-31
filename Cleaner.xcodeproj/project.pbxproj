@@ -19,7 +19,6 @@
 		3B2A43951F877B5F0053A89B /* NetworkSpeedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2A43831F8779080053A89B /* NetworkSpeedVC.swift */; };
 		3B2A43971F877B5F0053A89B /* WifiVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2A43841F8779080053A89B /* WifiVC.swift */; };
 		3B2A43981F877B640053A89B /* SortFileTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2A43871F87790F0053A89B /* SortFileTableVC.swift */; };
-		3B2A43991F877B640053A89B /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2A43861F87790F0053A89B /* TableViewCell.swift */; };
 		3B2A439B1F877B670053A89B /* CustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2A43881F8779870053A89B /* CustomView.swift */; };
 		3B2A439C1F877B670053A89B /* GradientColorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2A438B1F8779870053A89B /* GradientColorView.swift */; };
 		3B2A439D1F877B670053A89B /* PieChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2A43891F8779870053A89B /* PieChartView.swift */; };
@@ -68,7 +67,10 @@
 		FF0E308D1F8214FF006CCBA9 /* CleanerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0E308C1F8214FF006CCBA9 /* CleanerTests.swift */; };
 		FF0E30981F8214FF006CCBA9 /* CleanerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0E30971F8214FF006CCBA9 /* CleanerUITests.swift */; };
 		FFD68E411F8CCEED00B1AC9A /* UrlExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD68E401F8CCEED00B1AC9A /* UrlExtension.swift */; };
+		FFD983631FA831CF0055DF03 /* PhotoServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD983621FA831CF0055DF03 /* PhotoServices.swift */; };
 		FFDB57E11F97506B008EDE77 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FF0E30831F8214FF006CCBA9 /* Info.plist */; };
+		FFE7246E1FA8BAE700E4D021 /* CleanerAsset.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE7246D1FA8BAE700E4D021 /* CleanerAsset.swift */; };
+		FFE724701FA8D7F400E4D021 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE7246F1FA8D7F300E4D021 /* TableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -112,7 +114,6 @@
 		3B2A43831F8779080053A89B /* NetworkSpeedVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NetworkSpeedVC.swift; path = Cleaner/ViewControllers/NetworkSpeedVC.swift; sourceTree = SOURCE_ROOT; };
 		3B2A43841F8779080053A89B /* WifiVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = WifiVC.swift; path = Cleaner/ViewControllers/WifiScan/WifiVC.swift; sourceTree = SOURCE_ROOT; };
 		3B2A43851F8779080053A89B /* BoostVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BoostVC.swift; path = Cleaner/ViewControllers/BoostVC.swift; sourceTree = SOURCE_ROOT; };
-		3B2A43861F87790F0053A89B /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TableViewCell.swift; path = Cleaner/ViewControllers/SortFile/TableViewCell.swift; sourceTree = SOURCE_ROOT; };
 		3B2A43871F87790F0053A89B /* SortFileTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SortFileTableVC.swift; path = Cleaner/ViewControllers/SortFile/SortFileTableVC.swift; sourceTree = SOURCE_ROOT; };
 		3B2A43881F8779870053A89B /* CustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CustomView.swift; path = Cleaner/CustomViews/CustomView.swift; sourceTree = SOURCE_ROOT; };
 		3B2A43891F8779870053A89B /* PieChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PieChartView.swift; path = Cleaner/CustomViews/PieChartView.swift; sourceTree = SOURCE_ROOT; };
@@ -183,6 +184,9 @@
 		FF0E30971F8214FF006CCBA9 /* CleanerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CleanerUITests.swift; sourceTree = "<group>"; };
 		FF0E30991F8214FF006CCBA9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FFD68E401F8CCEED00B1AC9A /* UrlExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrlExtension.swift; sourceTree = "<group>"; };
+		FFD983621FA831CF0055DF03 /* PhotoServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoServices.swift; sourceTree = "<group>"; };
+		FFE7246D1FA8BAE700E4D021 /* CleanerAsset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CleanerAsset.swift; sourceTree = "<group>"; };
+		FFE7246F1FA8D7F300E4D021 /* TableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -261,7 +265,7 @@
 				8498CDB31F9186EF00118C98 /* DetailImageVC.swift */,
 				3B64C5E71FA18E77000F85F5 /* VideoViewController.swift */,
 				3B2A43871F87790F0053A89B /* SortFileTableVC.swift */,
-				3B2A43861F87790F0053A89B /* TableViewCell.swift */,
+				FFE7246F1FA8D7F300E4D021 /* TableViewCell.swift */,
 			);
 			name = SortFile;
 			path = ../ViewControllers/SortFile;
@@ -271,6 +275,7 @@
 			isa = PBXGroup;
 			children = (
 				3F661ECA1F9424E700E030E4 /* DeviceServices.swift */,
+				FFD983621FA831CF0055DF03 /* PhotoServices.swift */,
 				3BB71E2F1F9857B000263DF5 /* SystemServices.swift */,
 				3F223BF91F91A13C0075911F /* NetworkServices.swift */,
 			);
@@ -493,6 +498,7 @@
 				3BA937661F973DE1002AA152 /* GoogleAdsMod */,
 				3F30D7291F8887E100C28CA2 /* SupportFiles */,
 				8475E7371F88B65600F34CFC /* BridingHeader.h */,
+				FFE7246D1FA8BAE700E4D021 /* CleanerAsset.swift */,
 			);
 			path = Cleaner;
 			sourceTree = "<group>";
@@ -656,6 +662,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3B289B421F9D9DB500906FBF /* Ping.m in Sources */,
+				FFE7246E1FA8BAE700E4D021 /* CleanerAsset.swift in Sources */,
 				3F9DE7821F96FF2B0018A861 /* Memory.swift in Sources */,
 				8475E73C1F88B7CC00F34CFC /* WifiScanResultTableViewCell.swift in Sources */,
 				3B2A439D1F877B670053A89B /* PieChartView.swift in Sources */,
@@ -683,7 +690,7 @@
 				84E39D791F8C3CD9004B77F3 /* ViewControllerHelper.swift in Sources */,
 				8475E7311F88B5D200F34CFC /* LANProperties.m in Sources */,
 				8475E73A1F88B7BB00F34CFC /* WifiScanResultVC.swift in Sources */,
-				3B2A43991F877B640053A89B /* TableViewCell.swift in Sources */,
+				FFD983631FA831CF0055DF03 /* PhotoServices.swift in Sources */,
 				3F9DE7881F96FF830018A861 /* NetworkFlow.swift in Sources */,
 				3F9DE7841F96FF6A0018A861 /* System.swift in Sources */,
 				8475E7321F88B5D200F34CFC /* MACOperation.m in Sources */,
@@ -699,6 +706,7 @@
 				3B2A439B1F877B670053A89B /* CustomView.swift in Sources */,
 				8475E7341F88B5D200F34CFC /* NetworkCalculator.m in Sources */,
 				3F661ECB1F9424EE00E030E4 /* DeviceServices.swift in Sources */,
+				FFE724701FA8D7F400E4D021 /* TableViewCell.swift in Sources */,
 				3F7852EB1F939DC60044F1A0 /* SimplePing.m in Sources */,
 				3B2A43971F877B5F0053A89B /* WifiVC.swift in Sources */,
 				FFD68E411F8CCEED00B1AC9A /* UrlExtension.swift in Sources */,
