@@ -18,28 +18,11 @@ class SortFileTableVC: UITableViewController {
 
     @IBOutlet var headerView: UIView!
     var timer : Timer?
-    var freeSize : Double = 0 {
-        didSet {
-            let freeSizeString = freeSize.fileSizeString
-            let freeSizeStringArray = freeSizeString.components(separatedBy: " ")
-            freeDiskLabel.text = freeSizeStringArray.first ?? ""
-            freeDiskUnitLabel.text = freeSizeStringArray.last ?? ""
-        }
-    }
-    var addMoreFreeSize: Double = 0.0
-    var displayAddMoreFreeSize: Double = 0.0 {
-        didSet {
-            addMoreFreeDiskLabel.text = "+" + displayAddMoreFreeSize.fileSizeString
-        }
-    }
-
+   
     override func viewDidLoad() {
         super.viewDidLoad()
         freeSize = SystemServices.shared.diskSpaceUsage(inPercent: false).freeDiskSpace
         addMoreFreeDiskLabel.alpha = 0
-        if PhotoServices.shared.isFetching {
-            ActivityIndicator.shared.showActivity()
-        }
         registerNotification()
     }
     override func viewWillDisappear(_ animated: Bool) {
@@ -67,12 +50,28 @@ class SortFileTableVC: UITableViewController {
     
     @objc func didFinishSortedFile() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            ActivityIndicator.shared.hideActivity()
             self.tableView.reloadData()
             self.freeSize = SystemServices.shared.diskSpaceUsage(inPercent: false).freeDiskSpace
         }
     }
     
+    // MARK: - Handle display Free Disk and Saved Free Disk
+    
+    var freeSize : Double = 0 {
+        didSet {
+            let freeSizeString = freeSize.fileSizeString
+            let freeSizeStringArray = freeSizeString.components(separatedBy: " ")
+            freeDiskLabel.text = freeSizeStringArray.first ?? ""
+            freeDiskUnitLabel.text = freeSizeStringArray.last ?? ""
+        }
+    }
+    var addMoreFreeSize: Double = 0.0
+    var displayAddMoreFreeSize: Double = 0.0 {
+        didSet {
+            addMoreFreeDiskLabel.text = "+" + displayAddMoreFreeSize.fileSizeString
+        }
+    }
+
     func startRunAddMoreValue() {
         if timer != nil { timer = nil }
         UIView.animate(withDuration: 0.05, animations: {
@@ -85,12 +84,14 @@ class SortFileTableVC: UITableViewController {
     @objc func runAddMoreValue() {
         let step = 5278000.0
         guard displayAddMoreFreeSize < addMoreFreeSize - step else {
+           
+            timer?.invalidate()
+            timer = nil
+            
             freeSize -= displayAddMoreFreeSize
             freeSize += addMoreFreeSize
             displayAddMoreFreeSize = addMoreFreeSize
-            timer?.invalidate()
-            timer = nil
-            self.addMoreFreeSize = 0
+            addMoreFreeSize = 0
             DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                 UIView.animate(withDuration: 0.2, animations: {
                     self.addMoreFreeDiskLabel.alpha = 0
@@ -104,8 +105,9 @@ class SortFileTableVC: UITableViewController {
             self.displayAddMoreFreeSize += step
             self.freeSize += step
         }
-        
     }
+    
+
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -116,9 +118,7 @@ class SortFileTableVC: UITableViewController {
     // MARK: - Table view data source
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let view = UIView()
-        view.addSubview(headerView)
-        return view
+        return headerView
     }
     
     
@@ -155,7 +155,6 @@ class SortFileTableVC: UITableViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
         switch segue.identifier ?? "" {
         case "show Video Detail":
             guard let destination = segue.destination as? VideoViewController
@@ -174,6 +173,8 @@ class SortFileTableVC: UITableViewController {
         }        
     }
     
+    // MARK: - Handle add and remove asset
+    
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         let asset = PhotoServices.shared.displayedAssets[indexPath.row]
         if editingStyle == .delete {
@@ -189,8 +190,8 @@ class SortFileTableVC: UITableViewController {
             self.tableView.deleteRows(at: [IndexPath(item: removedIndex, section: 0)], with: .automatic)
             self.startRunAddMoreValue()
         }
-        
     }
+    
     @IBAction func unwindToDeleteAsset(sender: UIStoryboardSegue) {
         if sender.source is DetailVC{
             if let selectedIndexPath = tableView.indexPathForSelectedRow {

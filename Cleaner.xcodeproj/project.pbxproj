@@ -74,6 +74,7 @@
 		FFDB57E11F97506B008EDE77 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FF0E30831F8214FF006CCBA9 /* Info.plist */; };
 		FFE7246E1FA8BAE700E4D021 /* CleanerAsset.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE7246D1FA8BAE700E4D021 /* CleanerAsset.swift */; };
 		FFE724701FA8D7F400E4D021 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE7246F1FA8D7F300E4D021 /* TableViewCell.swift */; };
+		FFEF839B1FAA01710059D379 /* ArrayExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFEF839A1FAA01710059D379 /* ArrayExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -193,6 +194,7 @@
 		FFD983621FA831CF0055DF03 /* PhotoServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoServices.swift; sourceTree = "<group>"; };
 		FFE7246D1FA8BAE700E4D021 /* CleanerAsset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CleanerAsset.swift; sourceTree = "<group>"; };
 		FFE7246F1FA8D7F300E4D021 /* TableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
+		FFEF839A1FAA01710059D379 /* ArrayExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -351,6 +353,7 @@
 			isa = PBXGroup;
 			children = (
 				FFD68E401F8CCEED00B1AC9A /* UrlExtension.swift */,
+				FFEF839A1FAA01710059D379 /* ArrayExtension.swift */,
 				8425DC3E1F9EB54300AE29C7 /* PHAssetExtension.swift */,
 				3F30D72A1F88880700C28CA2 /* Constants.swift */,
 				84E39D781F8C3CD9004B77F3 /* ViewControllerHelper.swift */,
@@ -707,6 +710,7 @@
 				3F9DE7841F96FF6A0018A861 /* System.swift in Sources */,
 				8475E7321F88B5D200F34CFC /* MACOperation.m in Sources */,
 				3B2A43921F877B5A0053A89B /* BoostVC.swift in Sources */,
+				FFEF839B1FAA01710059D379 /* ArrayExtension.swift in Sources */,
 				3B2A43951F877B5F0053A89B /* NetworkSpeedVC.swift in Sources */,
 				3FF0FAB81FA0109500030750 /* SweepView.swift in Sources */,
 				3F9DE7891F96FF8E0018A861 /* NetObjc.m in Sources */,

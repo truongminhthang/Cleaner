@@ -103,7 +103,6 @@ class ActivityIndicator : UIView {
     func showActivity() {
         DispatchQueue.main.async {
             self.isHidden = false
-            
         }
     }
     
