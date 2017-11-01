@@ -67,6 +67,7 @@
 		FF0E308D1F8214FF006CCBA9 /* CleanerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0E308C1F8214FF006CCBA9 /* CleanerTests.swift */; };
 		FF0E30981F8214FF006CCBA9 /* CleanerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0E30971F8214FF006CCBA9 /* CleanerUITests.swift */; };
 		FFD68E411F8CCEED00B1AC9A /* UrlExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD68E401F8CCEED00B1AC9A /* UrlExtension.swift */; };
+		FFD8EE571FA9A002007C9C3C /* ActivityIndicator.xib in Resources */ = {isa = PBXBuildFile; fileRef = FFD8EE561FA9A002007C9C3C /* ActivityIndicator.xib */; };
 		FFD983631FA831CF0055DF03 /* PhotoServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD983621FA831CF0055DF03 /* PhotoServices.swift */; };
 		FFDB57E11F97506B008EDE77 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FF0E30831F8214FF006CCBA9 /* Info.plist */; };
 		FFE7246E1FA8BAE700E4D021 /* CleanerAsset.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE7246D1FA8BAE700E4D021 /* CleanerAsset.swift */; };
@@ -184,6 +185,7 @@
 		FF0E30971F8214FF006CCBA9 /* CleanerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CleanerUITests.swift; sourceTree = "<group>"; };
 		FF0E30991F8214FF006CCBA9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FFD68E401F8CCEED00B1AC9A /* UrlExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrlExtension.swift; sourceTree = "<group>"; };
+		FFD8EE561FA9A002007C9C3C /* ActivityIndicator.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ActivityIndicator.xib; sourceTree = "<group>"; };
 		FFD983621FA831CF0055DF03 /* PhotoServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoServices.swift; sourceTree = "<group>"; };
 		FFE7246D1FA8BAE700E4D021 /* CleanerAsset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CleanerAsset.swift; sourceTree = "<group>"; };
 		FFE7246F1FA8D7F300E4D021 /* TableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
@@ -346,6 +348,7 @@
 				8425DC3E1F9EB54300AE29C7 /* PHAssetExtension.swift */,
 				3F30D72A1F88880700C28CA2 /* Constants.swift */,
 				84E39D781F8C3CD9004B77F3 /* ViewControllerHelper.swift */,
+				FFD8EE561FA9A002007C9C3C /* ActivityIndicator.xib */,
 			);
 			name = SupportFiles;
 			sourceTree = "<group>";
@@ -630,6 +633,7 @@
 				3B220D1F1F8483DE00782306 /* Wifi.storyboard in Resources */,
 				3B2A437F1F87781C0053A89B /* SortFileTableVC.storyboard in Resources */,
 				3B2A437E1F87781C0053A89B /* NetworkSpeed.storyboard in Resources */,
+				FFD8EE571FA9A002007C9C3C /* ActivityIndicator.xib in Resources */,
 				3B2A437D1F87781C0053A89B /* BoostMemory.storyboard in Resources */,
 				FF0E30821F8214FF006CCBA9 /* LaunchScreen.storyboard in Resources */,
 				3F30D7241F8885DF00C28CA2 /* Main.storyboard in Resources */,

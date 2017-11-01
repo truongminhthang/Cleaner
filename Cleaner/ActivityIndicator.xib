@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="ActivityIndicator" customModule="Cleaner" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C2j-ff-jfc">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="8Bp-hq-H8p">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="60w-2R-Y8l">
+                                <rect key="frame" x="107" y="273" width="160" height="120"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="LlU-fe-D68">
+                                    <rect key="frame" x="0.0" y="0.0" width="160" height="120"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="CB9-R1-Ln9">
+                                            <rect key="frame" x="70.5" y="42" width="20" height="20"/>
+                                        </activityIndicatorView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sorting Photos..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Iv9-gF-eof">
+                                            <rect key="frame" x="8" y="83.5" width="144" height="20.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="trailing" secondItem="Iv9-gF-eof" secondAttribute="trailing" constant="8" id="1Ut-Td-yfh"/>
+                                        <constraint firstItem="Iv9-gF-eof" firstAttribute="leading" secondItem="LlU-fe-D68" secondAttribute="leading" constant="8" id="B6Q-9w-LiT"/>
+                                        <constraint firstItem="CB9-R1-Ln9" firstAttribute="centerY" secondItem="LlU-fe-D68" secondAttribute="centerY" constant="-8" id="DNe-C9-Sbj"/>
+                                        <constraint firstAttribute="bottom" secondItem="Iv9-gF-eof" secondAttribute="bottom" constant="16" id="NNk-cc-nmu"/>
+                                        <constraint firstItem="CB9-R1-Ln9" firstAttribute="centerX" secondItem="LlU-fe-D68" secondAttribute="centerX" id="hJ2-Hx-Lb6"/>
+                                    </constraints>
+                                </view>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="120" id="7Bi-SO-NyM"/>
+                                    <constraint firstAttribute="width" constant="160" id="7wg-PD-NNU"/>
+                                </constraints>
+                                <blurEffect style="extraLight"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="8"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </visualEffectView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="60w-2R-Y8l" firstAttribute="centerY" secondItem="8Bp-hq-H8p" secondAttribute="centerY" id="GRg-T5-fRX"/>
+                            <constraint firstItem="60w-2R-Y8l" firstAttribute="centerX" secondItem="8Bp-hq-H8p" secondAttribute="centerX" id="bGE-4n-LVw"/>
+                        </constraints>
+                    </view>
+                    <blurEffect style="dark"/>
+                </visualEffectView>
+            </subviews>
+            <constraints>
+                <constraint firstItem="C2j-ff-jfc" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="8xh-8o-wNM"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="C2j-ff-jfc" secondAttribute="bottom" id="ZMt-Os-Ceh"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="C2j-ff-jfc" secondAttribute="trailing" id="nxQ-Li-8mo"/>
+                <constraint firstItem="C2j-ff-jfc" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="x2u-52-CqZ"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <point key="canvasLocation" x="26.5" y="51.5"/>
+        </view>
+    </objects>
+</document>

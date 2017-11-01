@@ -30,7 +30,6 @@ class VideoViewController: DetailVC {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        getInfo()
         initPlayerLayer()
         registerNotification()
     }
@@ -56,21 +55,14 @@ class VideoViewController: DetailVC {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         GoogleAdMob.sharedInstance.toogleBanner()
-
     }
     
     override func viewWillDisappear(_ animated: Bool) {
        resetPlayer()
     }
     
-    
-    
     func initPlayerLayer() {
-        let options = PHVideoRequestOptions()
-        options.isNetworkAccessAllowed = true
-        options.deliveryMode = .automatic
-        
-        PHImageManager.default().requestPlayerItem(forVideo: cleanerAsset.asset, options: options, resultHandler: { [unowned self] (playerItem, _) in
+        PHImageManager.default().requestPlayerItem(forVideo: cleanerAsset.asset, options: nil, resultHandler: { [unowned self] (playerItem, _) in
             DispatchQueue.main.sync {
                 guard self.playerLayer == nil && playerItem != nil else { return }
                 // Create an AVPlayer and AVPlayerLayer with the AVPlayerItem.

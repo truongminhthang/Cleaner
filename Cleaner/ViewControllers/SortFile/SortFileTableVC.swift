@@ -17,7 +17,6 @@ class SortFileTableVC: UITableViewController {
     @IBOutlet weak var addMoreFreeDiskLabel: UILabel!
 
     @IBOutlet var headerView: UIView!
-    @IBOutlet weak var indicatorView: UIActivityIndicatorView!
     var timer : Timer?
     var freeSize : Double = 0 {
         didSet {
@@ -30,7 +29,7 @@ class SortFileTableVC: UITableViewController {
     var addMoreFreeSize: Double = 0.0
     var displayAddMoreFreeSize: Double = 0.0 {
         didSet {
-            addMoreFreeDiskLabel.text = "+" + displayAddMoreFreeSize.fileBinarySizeString
+            addMoreFreeDiskLabel.text = "+" + displayAddMoreFreeSize.fileSizeString
         }
     }
 
@@ -38,12 +37,19 @@ class SortFileTableVC: UITableViewController {
         super.viewDidLoad()
         freeSize = SystemServices.shared.diskSpaceUsage(inPercent: false).freeDiskSpace
         addMoreFreeDiskLabel.alpha = 0
+        if PhotoServices.shared.isFetching {
+            showActivity()
+        }
         registerNotification()
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        hideActivity()
     }
     
     func registerNotification() {
         NotificationCenter.default.addObserver(self, selector: #selector(reloadData), name: NotificationName.didFinishFetchPHAsset, object: nil)
-        
+        NotificationCenter.default.addObserver(self, selector: #selector(didFinishSortedFile), name: NotificationName.didFinishSortedFile, object: nil)
     }
     
     deinit {
@@ -55,9 +61,13 @@ class SortFileTableVC: UITableViewController {
     
     @objc func reloadData() {
         DispatchQueue.main.async {
-            self.indicatorView.stopAnimating()
             self.tableView.reloadData()
-            self.updateFreeDiskValue()
+        }
+    }
+    
+    @objc func didFinishSortedFile() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            hideActivity()
         }
     }
     
@@ -100,9 +110,7 @@ class SortFileTableVC: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func updateFreeDiskValue() {
-        
-    }
+   
     // MARK: - Table view data source
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {

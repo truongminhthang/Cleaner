@@ -100,6 +100,7 @@ class PhotoServices : NSObject {
     
     func updateDisplayedAssets() {
         guard let count = fetchResult?.count, count > 0 else { return }
+        _displayedAssets = []
         let downloadGroup = DispatchGroup()
         for index in 0 ..< count {
             downloadGroup.enter()
@@ -107,11 +108,10 @@ class PhotoServices : NSObject {
                 downloadGroup.leave()
             }))
         }
-        hideActivity()
         downloadGroup.notify(queue: DispatchQueue.main) {
             self._displayedAssets = self._displayedAssets.sorted(by: {$0.fileSize > $1.fileSize})
             self.isFetching = false
-            
+            NotificationCenter.default.post(name: NotificationName.didFinishSortedFile, object: nil)
         }
     }
 }

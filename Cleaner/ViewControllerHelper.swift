@@ -75,28 +75,40 @@ func showAlertCompelete(title:String, message: String, settingUrl: String) {
 
 func showActivity() {
     DispatchQueue.main.async {
-        if let rootVC = UIApplication.shared.keyWindow?.rootViewController {
-            let corverView = UIView()
-            
-            corverView.backgroundColor = UIColor.gray.withAlphaComponent(0.5)
-            corverView.frame = rootVC.view.frame
-            rootVC.view.addSubview(corverView)
-            let activity = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
-            activity.center = CGPoint(x: corverView.bounds.width / 2, y: corverView.bounds.height / 2)
-            activity.startAnimating()
-            corverView.addSubview(activity)
-        }
+        let activitiIndicatorView = ActivityIndicator.instance
+        guard let window = AppDelegate.shared.window else {return}
+        activitiIndicatorView?.frame = CGRect(x: 0, y: 64, width: window.bounds.width, height: window.bounds.height - 64)
+        window.addSubview(activitiIndicatorView!)
+        activitiIndicatorView?.autoresizingMask = [.flexibleBottomMargin, .flexibleHeight, .flexibleRightMargin, .flexibleLeftMargin, .flexibleTopMargin, .flexibleWidth]
     }
 }
 
 func hideActivity() {
     DispatchQueue.main.async {
-        
-        if let rootVC = UIApplication.shared.keyWindow?.rootViewController {
-            rootVC.view.subviews.last?.removeFromSuperview()
-            
+        if AppDelegate.shared.window?.subviews.last is ActivityIndicator {
+            AppDelegate.shared.window?.subviews.last?.removeFromSuperview()
         }
+        
     }
+}
+
+class ActivityIndicator : UIView {
+    static var instance: ActivityIndicator! {
+        if let viewArray  =  Bundle.main.loadNibNamed("ActivityIndicator", owner: nil, options: nil) {
+            for item in viewArray {
+                if item is ActivityIndicator {
+                    return item as? ActivityIndicator
+                }
+            }
+        }
+        return nil
+    }
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+    }
+
 }
 
 
