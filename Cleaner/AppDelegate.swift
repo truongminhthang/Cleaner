@@ -29,7 +29,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
             UNUserNotificationCenter.current().delegate = self
             self.scheduleNotification()
         }
-        
         application.applicationIconBadgeNumber = 0
            GoogleAdMob.sharedInstance.showInterstitial()
         

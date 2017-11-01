@@ -26,9 +26,9 @@ func isConnectionAvailable() -> Bool {
     }
     let isReachable = flags == .reachable
     let needsConnection = flags == .connectionRequired
-//    if !(isReachable && !needsConnection) {
-//        showAlert(title: "Warning", message: "The Internet is not available")
-//    }
+    //    if !(isReachable && !needsConnection) {
+    //        showAlert(title: "Warning", message: "The Internet is not available")
+    //    }
     return isReachable && !needsConnection
 }
 
@@ -74,16 +74,15 @@ func showAlertCompelete(title:String, message: String, settingUrl: String) {
 }
 
 func showActivity() {
-    if let rootVC = UIApplication.shared.keyWindow?.rootViewController {
-        DispatchQueue.main.async {
+    DispatchQueue.main.async {
+        if let rootVC = UIApplication.shared.keyWindow?.rootViewController {
             let corverView = UIView()
             
             corverView.backgroundColor = UIColor.gray.withAlphaComponent(0.5)
-            corverView.frame = CGRect(origin: .zero, size: CGSize(width: 100, height: 100))
-            corverView.center = rootVC.view.center
+            corverView.frame = rootVC.view.frame
             rootVC.view.addSubview(corverView)
             let activity = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
-            activity.center = corverView.center
+            activity.center = CGPoint(x: corverView.bounds.width / 2, y: corverView.bounds.height / 2)
             activity.startAnimating()
             corverView.addSubview(activity)
         }
@@ -91,9 +90,12 @@ func showActivity() {
 }
 
 func hideActivity() {
-    if let rootVC = UIApplication.shared.keyWindow?.rootViewController {
-        rootVC.view.subviews.last?.removeFromSuperview()
+    DispatchQueue.main.async {
         
+        if let rootVC = UIApplication.shared.keyWindow?.rootViewController {
+            rootVC.view.subviews.last?.removeFromSuperview()
+            
+        }
     }
 }
 

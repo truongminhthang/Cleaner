@@ -18,22 +18,28 @@ private let scale = UIScreen.main.scale
 private let cellSize = CGSize(width: 64, height: 64)
 private let thumbnailSize = CGSize(width: cellSize.width * scale, height: cellSize.height * scale)
 
-class CleanerAsset {
+class CleanerAsset: Equatable {
     var thumbnailStatus: AssetStatus = .fetching
     var fileSizeStatus: AssetStatus = .fetching
     var asset: PHAsset
     var thumbnail: UIImage?
     var fileSize = 0
     var representedAssetIdentifier: String
+    var orderPosition: Int?
+    var dateCreatedString = ""
     
-    init(asset: PHAsset, completeBlock: @escaping () -> Void) {
+    init(asset: PHAsset, completeBlock: (() -> Void)? = nil) {
         self.asset = asset
         self.representedAssetIdentifier = asset.localIdentifier
+        let date = self.asset.creationDate
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd MMMM , yyyy"
+        dateCreatedString = dateFormatter.string(from: (date)!)
         fetchImage()
         fetchFileSize(completeBlock: completeBlock)
     }
     
-    func fetchImage() {
+    func fetchImage(completeBlock:  (() -> Void)? = nil) {
         PHImageManager.default().requestImage(for: asset,
                                               targetSize: thumbnailSize,
                                               contentMode: .aspectFill,
@@ -43,6 +49,11 @@ class CleanerAsset {
                 if self.representedAssetIdentifier == self.asset.localIdentifier {
                     self.thumbnail = image
                     self.thumbnailStatus = .goodToGo
+                    if !PhotoServices.shared.isFetching {
+                        NotificationCenter.default.post(name: NotificationName.didFinishFetchPHAsset, object: nil)
+
+                    }
+                    completeBlock?()
                 }
             } else if let info = info,
                 let _ = info[PHImageErrorKey] as? NSError {
@@ -50,15 +61,38 @@ class CleanerAsset {
             }
         }
     }
-    func fetchFileSize(completeBlock:  @escaping () -> Void) {
-        asset.getURL { (url) in
-            guard url != nil else {
-                self.fileSizeStatus = .failed
-                return
+    func fetchFileSize(completeBlock:  (() -> Void)?) {
+        if asset.duration == 0 {
+            PHImageManager.default().requestImageData(for: asset, options: nil, resultHandler: { (data, string, orientation, dictionary) in
+                guard data != nil else {return}
+                self.fileSize = data?.count ?? 0
+                self.fileSizeStatus = .goodToGo
+                completeBlock?()
+            })
+        } else {
+            asset.getURL { (url) in
+                guard url != nil else {
+                    self.fileSizeStatus = .failed
+                    return
+                }
+                self.fileSize = url?.fileSize ?? 0
+                self.fileSizeStatus = .goodToGo
+                completeBlock?()
             }
-            self.fileSize = url?.fileSize ?? 0
-            self.fileSizeStatus = .goodToGo
-            completeBlock()
         }
     }
+    
+    func remove(completionHandler: ((Bool, Error?) -> Void)? = nil) {
+        PHPhotoLibrary.shared().performChanges({
+            PHAssetChangeRequest.deleteAssets([self.asset] as NSArray)
+        }, completionHandler: completionHandler)
+        PhotoServices.shared.removeCleanerAsset(self)
+    }
+    
+    public static func ==(lhs: CleanerAsset, rhs: CleanerAsset) -> Bool {
+        return lhs.representedAssetIdentifier == rhs.representedAssetIdentifier
+
+    }
+
+ 
 }

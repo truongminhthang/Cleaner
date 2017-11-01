@@ -488,6 +488,7 @@
 			isa = PBXGroup;
 			children = (
 				3F673EDB1F8258AB00E0DA07 /* AppDelegate.swift */,
+				FFE7246D1FA8BAE700E4D021 /* CleanerAsset.swift */,
 				8475E7111F88B5D200F34CFC /* FrameWorks */,
 				3B508FC41F82654A00A15E62 /* Services */,
 				3B508FC21F82650C00A15E62 /* Storyboard */,
@@ -498,7 +499,6 @@
 				3BA937661F973DE1002AA152 /* GoogleAdsMod */,
 				3F30D7291F8887E100C28CA2 /* SupportFiles */,
 				8475E7371F88B65600F34CFC /* BridingHeader.h */,
-				FFE7246D1FA8BAE700E4D021 /* CleanerAsset.swift */,
 			);
 			path = Cleaner;
 			sourceTree = "<group>";

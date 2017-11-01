@@ -11,7 +11,7 @@ import Photos
 
 class VideoViewController: UIViewController {
     var assetCollection: PHAssetCollection!
-    var asset: PHAsset!
+    var cleanerAsset: CleanerAsset!
     var player: AVPlayer!
     @IBOutlet weak var playButton: UIButton!
     @IBOutlet weak var stopCorverButton: UIButton!
@@ -38,7 +38,24 @@ class VideoViewController: UIViewController {
         super.viewDidLoad()
         getVideoInfo()
         initPlayerLayer()
+        registerNotification()
+        if cleanerAsset.thumbnailStatus == .fetching {
+            cleanerAsset.fetchImage(completeBlock: initPlayerLayer)
+        }
     }
+    
+    func registerNotification() {
+        NotificationCenter.default.addObserver(self, selector: #selector(resetPlayer), name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: nil)
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    @objc func resetPlayer() {
+        isPlaying = false
+        player?.resetVideo()
+    }
+
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -52,27 +69,13 @@ class VideoViewController: UIViewController {
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        player.pause()
-        player.resetVideo()
+       resetPlayer()
     }
     
     func getVideoInfo() {
-        let videoRequestOptions = PHVideoRequestOptions()
-        videoRequestOptions.version = .original
-        PHCachingImageManager.default().requestAVAsset(forVideo: asset!, options: videoRequestOptions, resultHandler: { (avasset, audioMix, diction) in
-            if let url = (avasset as? AVURLAsset)?.url {
-                if let data = try? Data(contentsOf:url) {
-                    DispatchQueue.main.sync {
-                        self.sizeLabel.text = ByteCountFormatter.string(fromByteCount: Int64(data.count), countStyle: .file )
-                        let date = self.asset.creationDate
-                        let dateFormatter = DateFormatter()
-                        dateFormatter.dateFormat = "dd MMMM , yyyy"
-                        let creationDate = dateFormatter.string(from: (date)!)
-                        self.creationDayLabel.text = creationDate
-                    }
-                }
-            }
-        })
+        self.sizeLabel.text = cleanerAsset.fileSize.fileSizeString
+        self.creationDayLabel.text = cleanerAsset.dateCreatedString
+        
     }
     
     func initPlayerLayer() {
@@ -80,12 +83,12 @@ class VideoViewController: UIViewController {
         options.isNetworkAccessAllowed = true
         options.deliveryMode = .automatic
         
-        PHImageManager.default().requestPlayerItem(forVideo: asset, options: options, resultHandler: { [unowned self] (playerItem, _) in
+        PHImageManager.default().requestPlayerItem(forVideo: cleanerAsset.asset, options: options, resultHandler: { [unowned self] (playerItem, _) in
             DispatchQueue.main.sync {
                 guard self.playerLayer == nil && playerItem != nil else { return }
                 // Create an AVPlayer and AVPlayerLayer with the AVPlayerItem.
                 if #available(iOS 11.0, *) {
-                    if self.asset.playbackStyle == .videoLooping {
+                    if self.cleanerAsset.asset.playbackStyle == .videoLooping {
                         let queuePlayer = AVQueuePlayer(playerItem: playerItem)
                         self.playerLooper = AVPlayerLooper(player: queuePlayer, templateItem: playerItem!)
                         self.player = queuePlayer
@@ -93,7 +96,7 @@ class VideoViewController: UIViewController {
                         self.player = AVPlayer(playerItem: playerItem)
                     }
                 } else {
-                    if self.asset.mediaType == .video {
+                    if self.cleanerAsset.asset.mediaType == .video {
                         let queuePlayer = AVQueuePlayer(playerItem: playerItem)
                         self.playerLooper = AVPlayerLooper(player: queuePlayer, templateItem: playerItem!)
                         self.player = queuePlayer
@@ -118,7 +121,6 @@ class VideoViewController: UIViewController {
     @IBAction func deleteButton(_ sender: UIButton) {
         let completion = { (success: Bool, error: Error?) -> Void in
             if success {
-                PHPhotoLibrary.shared().unregisterChangeObserver(self)
                 DispatchQueue.main.sync {
                     _ = self.navigationController!.popViewController(animated: true)
                 }
@@ -126,9 +128,7 @@ class VideoViewController: UIViewController {
                 print("can't remove asset: \(String(describing: error))")
             }
         }
-        PHPhotoLibrary.shared().performChanges({
-            PHAssetChangeRequest.deleteAssets([self.asset] as NSArray)
-        }, completionHandler: completion)
+        cleanerAsset.remove(completionHandler: completion)
     }
 }
 
@@ -137,24 +137,4 @@ extension AVPlayer {
         seek(to: CMTimeMakeWithSeconds(Float64(0), 1))
     }
 }
-extension VideoViewController: PHPhotoLibraryChangeObserver {
-    func photoLibraryDidChange(_ changeInstance: PHChange) {
-        DispatchQueue.main.sync {
-            guard let details = changeInstance.changeDetails(for: asset) else { return }
-            guard let assetAfterChange = details.objectAfterChanges else {return}
-            
-            asset = assetAfterChange
-            
-            if details.assetContentChanged {
-                
-                playerLayer?.removeFromSuperlayer()
-                playerLayer = nil
-                playerLooper = nil
-            }
-        }
-    }
-    
-    
-}
-
 

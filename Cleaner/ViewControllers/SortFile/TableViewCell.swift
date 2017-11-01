@@ -11,6 +11,7 @@ import UIKit
 class TableViewCell: UITableViewCell {
     
     @IBOutlet weak var sizeLabel: UILabel!
+    @IBOutlet weak var typeAssetLabel: UILabel!
     @IBOutlet weak var photoImageView: UIImageView!
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -23,4 +24,25 @@ class TableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    override func prepareForReuse() {
+        sizeLabel.text = ""
+        typeAssetLabel.text = ""
+        photoImageView.image = nil 
+    }
+    
+}
+class ImageCell: TableViewCell {
+    override func prepareForReuse() {
+        sizeLabel.text = ""
+        typeAssetLabel.text = "Photo"
+        photoImageView.image = nil
+    }
+}
+
+class VideoCell: TableViewCell {
+    override func prepareForReuse() {
+        sizeLabel.text = ""
+        typeAssetLabel.text = "Video"
+        photoImageView.image = nil
+    }
 }

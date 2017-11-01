@@ -9,6 +9,7 @@
 import UIKit
 
 typealias MemoryState = (memoryFree: Double, memoryUsed: Double, totalMemory: Double)
+typealias DiskUsage = (memoryFree: Double, memoryUsed: Double, totalMemory: Double)
 
 class SystemServices {
     static let shared: SystemServices = SystemServices()

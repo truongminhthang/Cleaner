@@ -13,10 +13,16 @@ import Photos
 class SortFileTableVC: UITableViewController {
     
     @IBOutlet weak var freeDiskLabel: UILabel!
+    @IBOutlet weak var freeDiskUnitLabel: UILabel!
     @IBOutlet var headerView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        PhotoServices.shared.changeObserver = self
+        if PhotoServices.shared.isFetching {
+            showActivity()
+        }
+        self.updateFreeDiskValue()
        registerNotification()
     }
     
@@ -32,6 +38,7 @@ class SortFileTableVC: UITableViewController {
     @objc func reloadData() {
         DispatchQueue.main.async {
             self.tableView.reloadData()
+            self.updateFreeDiskValue()
         }
     }
     
@@ -40,18 +47,18 @@ class SortFileTableVC: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    
+    func updateFreeDiskValue() {
+        let freeSize = SystemServices.shared.diskSpaceUsage(inPercent: false).freeDiskSpace.fileSizeString
+        let freeSizeStringArray = freeSize.components(separatedBy: " ")
+        freeDiskLabel.text = freeSizeStringArray.first ?? ""
+        freeDiskUnitLabel.text = freeSizeStringArray.last ?? ""
+    }
     // MARK: - Table view data source
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let view = UIView()
         view.addSubview(headerView)
-        let deviceServices = DeviceServices()
-        let freeSize = deviceServices.diskFree.fileSizeString
         
-        var myStringArr = freeSize.components(separatedBy: " ")
-        let numbers: String = myStringArr[0]
-        freeDiskLabel.text = numbers
         return view
     }
     
@@ -64,16 +71,17 @@ class SortFileTableVC: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cleanerAsset = PhotoServices.shared.displayedAssets[indexPath.row]
-        let cellIdentifier = cleanerAsset.asset.duration == 0 ? "photoCell" : "videoCell"
+        let cellIdentifier = cleanerAsset.asset.duration == 0 ? "ImageCell" : "videoCell"
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! TableViewCell
         
         switch cleanerAsset.thumbnailStatus {
         case .goodToGo:
             cell.photoImageView?.image = cleanerAsset.thumbnail
-        case .fetching:
-            cell.photoImageView?.image = UIImage(named: "photoDownloading")
-        case .failed:
+        case .fetching, .failed:
             cell.photoImageView?.image = UIImage(named: "photoDownloadError")
+            cell.typeAssetLabel?.text = "Error Asset"
+        
+
         }
         
         switch cleanerAsset.fileSizeStatus {
@@ -87,8 +95,6 @@ class SortFileTableVC: UITableViewController {
         return cell
     }
     
-   
-
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 
         switch segue.identifier ?? "" {
@@ -96,13 +102,13 @@ class SortFileTableVC: UITableViewController {
             guard let destination = segue.destination as? VideoViewController
                 else { fatalError("unexpected view controller for segue") }
             if let selectedIndexPath = tableView.indexPathForSelectedRow  {
-                destination.asset = PhotoServices.shared.displayedAssets[selectedIndexPath.row].asset
+                destination.cleanerAsset = PhotoServices.shared.displayedAssets[selectedIndexPath.row]
             }
         case "show photo details":
             guard let destination = segue.destination as? DetailImageVC
                 else { fatalError("unexpected view controller for segue") }
             if let selectedIndexPath = tableView.indexPathForSelectedRow  {
-                destination.asset = PhotoServices.shared.displayedAssets[selectedIndexPath.row].asset
+                destination.cleanerAsset = PhotoServices.shared.displayedAssets[selectedIndexPath.row]
             }
         default:
             return
@@ -111,40 +117,39 @@ class SortFileTableVC: UITableViewController {
 
     }
     
-//    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-//        let asset = self.fetchResult!.object(at: indexPath.item)
-//        if editingStyle == .delete {
-//            PHPhotoLibrary.shared().performChanges({
-//                PHAssetChangeRequest.deleteAssets([asset] as NSArray)
-//            }, completionHandler: nil)
-//        } else if editingStyle == .insert {
-//
-//        }
-//    }
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        let asset = PhotoServices.shared.displayedAssets[indexPath.row]
+        if editingStyle == .delete {
+            asset.remove()
+        } else if editingStyle == .insert {
+
+        }
+    }
 }
 
-//// MARK: PHPhotoLibraryChangeObserver
-//extension SortFileTableVC : PHPhotoLibraryChangeObserver {
-//    func photoLibraryDidChange(_ changeInstance: PHChange) {
-//
-//        guard let changes = changeInstance.changeDetails(for: fetchResult!)
-//            else { return }
-//
-//        // Change notifications may be made on a background queue. Re-dispatch to the
-//        // main queue before acting on the change as we'll be updating the UI.
+// MARK: PHPhotoLibraryChangeObserver
+extension SortFileTableVC : PHPhotoLibraryChangeObserver {
+    func photoLibraryDidChange(_ changeInstance: PHChange) {
+
+        guard let changes = changeInstance.changeDetails(for: PhotoServices.shared.fetchResult!)
+            else { return }
+
+        // Change notifications may be made on a background queue. Re-dispatch to the
+        // main queue before acting on the change as we'll be updating the UI.
 //        DispatchQueue.main.sync {
-//            // Hang on to the new fetch result.
-//            fetchResult = changes.fetchResultAfterChanges
+            // Hang on to the new fetch result.
 //            if changes.hasIncrementalChanges {
 //                // If we have incremental diffs, animate them in the collection view.
 //                guard let tableView = self.tableView else { fatalError() }
 //                if #available(iOS 11.0, *) {
 //                    tableView.performBatchUpdates({
 //                        if let removed = changes.removedIndexes, !removed.isEmpty {
-//                            tableView.deleteRows(at: removed.map({ IndexPath(item: $0, section: 0) }), with: .automatic)
+//                            tableView.deleteRows(at: removed.map({ IndexPath(row: $0, section: 0) }), with: .automatic)
+////                            removed.forEach({ PhotoServices.shared.removeCleanerAsset(at: $0)})
 //                        }
 //                        if let inserted = changes.insertedIndexes, !inserted.isEmpty {
-//                            tableView.insertRows(at: inserted.map({ IndexPath(item: $0, section: 0) }), with: .automatic)
+//                            tableView.insertRows(at: inserted.map({ IndexPath(row: $0, section: 0) }), with: .automatic)
+//                            inserted.forEach({ PhotoServices.shared.insertCleanerAsset(at: $0)})
 //                        }
 //
 //
@@ -152,16 +157,18 @@ class SortFileTableVC: UITableViewController {
 //                } else {
 //                    if let removed = changes.removedIndexes, !removed.isEmpty {
 //                        tableView.deleteRows(at: removed.map({ IndexPath(item: $0, section: 0) }), with: .automatic)
+//                        removed.forEach({ PhotoServices.shared.removeCleanerAsset(at: $0)})
 //                    }
 //                    if let inserted = changes.insertedIndexes {
 //                        tableView.insertRows(at: inserted.map({ IndexPath(item: $0, section: 0) }), with: .automatic)
+//                        inserted.forEach({ PhotoServices.shared.insertCleanerAsset(at: $0)})
 //                    }
 //                }
 //            } else {
-//                // Reload the collection view if incremental diffs are not available.
-//                tableView!.reloadData()
+                // Reload the collection view if incremental diffs are not available.
+                self.reloadData()
 //            }
 //        }
-//    }
-//}
+    }
+}
 

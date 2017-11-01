@@ -11,7 +11,7 @@ import Photos
 import AVKit
 class DetailImageVC: UIViewController, UIScrollViewDelegate {
     var assetCollection: PHAssetCollection!
-    var asset: PHAsset!
+    var cleanerAsset: CleanerAsset!
     
     @IBOutlet weak var detailImageView: UIImageView!
     @IBOutlet weak var sizeLabel: UILabel!
@@ -37,7 +37,6 @@ class DetailImageVC: UIViewController, UIScrollViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        PHPhotoLibrary.shared().register(self)
         displayImage()
       
 
@@ -45,10 +44,6 @@ class DetailImageVC: UIViewController, UIScrollViewDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         GoogleAdMob.sharedInstance.toogleBanner()
-    }
-    
-    deinit {
-        PHPhotoLibrary.shared().unregisterChangeObserver(self)
     }
     
     override func didReceiveMemoryWarning() {
@@ -71,7 +66,7 @@ class DetailImageVC: UIViewController, UIScrollViewDelegate {
         options.deliveryMode  = .highQualityFormat
         options.isNetworkAccessAllowed = true
       
-        PHImageManager.default().requestImage(for: asset,
+        PHImageManager.default().requestImage(for: cleanerAsset.asset,
                                               targetSize: targetSize,
                                               contentMode: .aspectFit,
                                               options: options,
@@ -86,31 +81,14 @@ class DetailImageVC: UIViewController, UIScrollViewDelegate {
                                                 
                                                 self.detailImageView.image = image
         })
-        
-        imageManager.requestImageData(for: asset!, options: nil, resultHandler: { (data, string, orientation, dictionary) in
-            guard data != nil else {
-                return
-            }
-            self.sizeLabel.text = ByteCountFormatter.string(fromByteCount: Int64(data!.count), countStyle: .file )
-            
-            let date = self.asset.creationDate
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "dd MMMM , yyyy"
-            let creationDate = dateFormatter.string(from: (date)!)
-            
-            self.creationDayLabel.text = creationDate
-        })
+        self.sizeLabel.text = cleanerAsset.fileSize.fileSizeString
+        self.creationDayLabel.text = cleanerAsset.dateCreatedString
         
     }
-    
-    
-    
-    
     
     @IBAction func deleteButton(_ sender: UIButton) {
         let completion = { (success: Bool, error: Error?) -> Void in
             if success {
-                PHPhotoLibrary.shared().unregisterChangeObserver(self)
                 DispatchQueue.main.sync {
                     _ = self.navigationController!.popViewController(animated: true)
                 }
@@ -118,32 +96,9 @@ class DetailImageVC: UIViewController, UIScrollViewDelegate {
                 print("can't remove asset: \(String(describing: error))")
             }
         }
-        PHPhotoLibrary.shared().performChanges({
-            PHAssetChangeRequest.deleteAssets([self.asset] as NSArray)
-        }, completionHandler: completion)
+        
+        cleanerAsset.remove(completionHandler: completion)
         
     }
 }
-
-
-extension DetailImageVC: PHPhotoLibraryChangeObserver {
-    func photoLibraryDidChange(_ changeInstance: PHChange) {
-        DispatchQueue.main.sync {
-            guard let details = changeInstance.changeDetails(for: asset) else { return }
-            guard let assetAfterChange = details.objectAfterChanges else {return}
-            
-            asset = assetAfterChange
-            
-            if details.assetContentChanged {
-                
-                playerLayer?.removeFromSuperlayer()
-                playerLayer = nil
-                playerLooper = nil
-            }
-        }
-    }
-    
-    
-}
-
 
