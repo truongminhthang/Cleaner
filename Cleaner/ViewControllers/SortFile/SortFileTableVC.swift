@@ -38,13 +38,13 @@ class SortFileTableVC: UITableViewController {
         freeSize = SystemServices.shared.diskSpaceUsage(inPercent: false).freeDiskSpace
         addMoreFreeDiskLabel.alpha = 0
         if PhotoServices.shared.isFetching {
-            showActivity()
+            ActivityIndicator.shared.showActivity()
         }
         registerNotification()
     }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        hideActivity()
+        ActivityIndicator.shared.hideActivity()
     }
     
     func registerNotification() {
@@ -67,7 +67,9 @@ class SortFileTableVC: UITableViewController {
     
     @objc func didFinishSortedFile() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            hideActivity()
+            ActivityIndicator.shared.hideActivity()
+            self.tableView.reloadData()
+            self.freeSize = SystemServices.shared.diskSpaceUsage(inPercent: false).freeDiskSpace
         }
     }
     

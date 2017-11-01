@@ -11,7 +11,8 @@ import Photos
 
 class PhotoServices : NSObject {
     static let shared : PhotoServices = PhotoServices()
-    var isFetching : Bool = true
+    var isFetching : Bool = false
+    var isRemoved: Bool = false
     fileprivate let concurrentCleanerAssetQueue =
         DispatchQueue(
             label: "com.bababibo.CleanerAsset.cleanerAssetQueue",
@@ -100,6 +101,9 @@ class PhotoServices : NSObject {
     
     func updateDisplayedAssets() {
         guard let count = fetchResult?.count, count > 0 else { return }
+        guard isFetching == false else {return}
+        isFetching = true
+        ActivityIndicator.shared.showActivity()
         _displayedAssets = []
         let downloadGroup = DispatchGroup()
         for index in 0 ..< count {
@@ -140,7 +144,14 @@ extension PhotoServices : PHPhotoLibraryChangeObserver {
             // Hang on to the new fetch result.
             if changes.hasIncrementalChanges {
                 if let inserted = changes.insertedIndexes, !inserted.isEmpty {
-                    fetchAsset()
+                }
+                if let changed = changes.changedIndexes, !changed.isEmpty {
+                    if isRemoved {isRemoved = false; return}
+                    self.updateDisplayedAssets()
+                }
+                if let removed = changes.removedIndexes, !removed.isEmpty {
+                    isRemoved = true
+                    
                 }
                
             } else {

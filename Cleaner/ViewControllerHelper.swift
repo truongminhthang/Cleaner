@@ -73,40 +73,46 @@ func showAlertCompelete(title:String, message: String, settingUrl: String) {
     
 }
 
-func showActivity() {
-    DispatchQueue.main.async {
-        let activitiIndicatorView = ActivityIndicator.instance
-        guard let window = AppDelegate.shared.window else {return}
-        activitiIndicatorView?.frame = CGRect(x: 0, y: 64, width: window.bounds.width, height: window.bounds.height - 64)
-        window.addSubview(activitiIndicatorView!)
-        activitiIndicatorView?.autoresizingMask = [.flexibleBottomMargin, .flexibleHeight, .flexibleRightMargin, .flexibleLeftMargin, .flexibleTopMargin, .flexibleWidth]
-    }
-}
 
-func hideActivity() {
-    DispatchQueue.main.async {
-        if AppDelegate.shared.window?.subviews.last is ActivityIndicator {
-            AppDelegate.shared.window?.subviews.last?.removeFromSuperview()
-        }
-        
-    }
-}
+
+
 
 class ActivityIndicator : UIView {
-    static var instance: ActivityIndicator! {
+
+    static var shared : ActivityIndicator! = {
         if let viewArray  =  Bundle.main.loadNibNamed("ActivityIndicator", owner: nil, options: nil) {
             for item in viewArray {
                 if item is ActivityIndicator {
-                    return item as? ActivityIndicator
+                    return item as! ActivityIndicator
                 }
             }
         }
+
         return nil
-    }
+    }()
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
+        guard let window = AppDelegate.shared.window else {return}
+        self.frame = CGRect(x: 0, y: 64, width: window.bounds.width, height: window.bounds.height - 64)
+        window.addSubview(self)
+        self.autoresizingMask = [.flexibleBottomMargin, .flexibleHeight, .flexibleRightMargin, .flexibleLeftMargin, .flexibleTopMargin, .flexibleWidth]
+    }
+    
+    func showActivity() {
+        DispatchQueue.main.async {
+            self.isHidden = false
+            
+        }
+    }
+    
+    func hideActivity() {
+        DispatchQueue.main.async {
+            self.isHidden = true
+
+            
+        }
     }
 
 }
