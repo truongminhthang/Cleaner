@@ -21,10 +21,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Ellipse-1" translatesAutoresizingMaskIntoConstraints="NO" id="bHH-hk-mwo" userLabel="ellip">
-                                <rect key="frame" x="0.0" y="59" width="375" height="10.5"/>
+                                <rect key="frame" x="0.0" y="59" width="375" height="10"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ssR-6d-Jmt" userLabel="Biggest Circle" customClass="PieChartView" customModule="Cleaner" customModuleProvider="target">
-                                <rect key="frame" x="60" y="99.5" width="255" height="255"/>
+                                <rect key="frame" x="60" y="99" width="255" height="255"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YW3-bM-Uzp" customClass="GaugeView" customModule="Cleaner" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="255" height="255"/>
@@ -109,7 +109,7 @@
                                                 <color key="value" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                <color key="value" red="0.89520935800000001" green="1" blue="0.45448701130000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="value" red="0.97432488203048706" green="0.82576596736907959" blue="0.82913666963577271" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </view>
@@ -150,7 +150,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="1aA-GG-W8y">
-                                <rect key="frame" x="68" y="379.5" width="239" height="75"/>
+                                <rect key="frame" x="68" y="379" width="239" height="75"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="B7W-ac-QEf" userLabel="View free" customClass="View" customModule="Cleaner" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="239" height="32.5"/>

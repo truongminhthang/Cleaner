@@ -49,17 +49,21 @@ class BoostVC: UIViewController {
     var isRunning:Bool = true {
         didSet {
             if isRunning {
-                infoStageLabel.text = isRunning ? "⇊MEMORY DOWN⇊" : "MEMORY USAGE"
-                infoStageLabel.textColor = isRunning ? UIColor.gray : UIColor.blue
-                infoUsedMemoryPercentLabel.textColor = isRunning ? UIColor.gray : UIColor.blue
-                percentLabel.textColor =  isRunning ? UIColor.gray : UIColor.blue
+                infoStageLabel.text = "⇊MEMORY DOWN⇊"
+                infoStageLabel.textColor = UIColor.gray
+                infoUsedMemoryPercentLabel.textColor = UIColor.gray
+                percentLabel.textColor = UIColor.gray
                 self.boostButton.isEnabled = !isRunning
                 self.runningEffectView.isHidden = !isRunning
                 displayPieChartView.isHidden = true
                 diplayedInfoCircleContainer.isHidden = false
             } else {
+                infoStageLabel.text = "MEMORY USAGE"
+                infoStageLabel.textColor = UIColor.blue
+                infoUsedMemoryPercentLabel.textColor = UIColor.blue
+                percentLabel.textColor = UIColor.blue
                 let usedMemoryPercent = usedMemoryDisplay / memoryState.totalMemory * 100
-                self.diplayedInfoCircleContainer.addItem(value: Float(usedMemoryPercent), color: UIColor.red)
+                self.diplayedInfoCircleContainer.addItem(value: Float(usedMemoryPercent), color: UIColor.blue)
                 self.diplayedInfoCircleContainer.addItem(value: Float(100 - usedMemoryPercent), color: UIColor.white)
                 self.diplayedInfoCircleContainer.setNeedsDisplay()
             }
