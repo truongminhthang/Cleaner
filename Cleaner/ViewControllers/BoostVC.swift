@@ -11,6 +11,7 @@ import GoogleMobileAds
 class BoostVC: UIViewController {
     
     // - Mark : Properties
+    @IBOutlet weak var gaugeView: GaugeView!
     @IBOutlet weak var displayPieChartView: PieChartView!
     @IBOutlet weak var displayedInfoCircle: GradientView!
     @IBOutlet weak var diplayedInfoCircleContainer: PieChartView!
@@ -24,6 +25,9 @@ class BoostVC: UIViewController {
     @IBOutlet weak var subInfoUsedMemoryPercentLabel: UILabel!
     @IBOutlet var runningEffectView: GradientView!
     var colorSets = [[CGColor]]()
+    var timers = Timer()
+    var value = 0
+    var valueAdd = 150
     var currentColorSet: Int!
     var memoryState : MemoryState = {
         SystemServices.shared.updateMemoryUsage()
@@ -40,11 +44,8 @@ class BoostVC: UIViewController {
             self.subinfoFreeMemoryLabel.text = ByteCountFormatter.string(fromByteCount: Int64(freeMemory), countStyle: .file)
             self.subInfoUsedMemoryPercentLabel.text = "\(usedMemoryPercent.rounded(toPlaces: 2)) %"
             self.subinfoUsedMemoryLabel.text = ByteCountFormatter.string(fromByteCount: Int64(usedMemoryDisplay), countStyle: .file)
-            
         }
     }
-    
-    
     var isRunning:Bool = true {
         didSet {
             if isRunning {
@@ -64,7 +65,6 @@ class BoostVC: UIViewController {
             }
         }
     }
-    
     var isFirstTimeMode : Bool {
         get {
             return AppDelegate.shared.isFakeModeApp
@@ -72,7 +72,6 @@ class BoostVC: UIViewController {
         set {
             AppDelegate.shared.isFakeModeApp = newValue
         }
-        
     }
     var timer : Timer?
     
@@ -81,17 +80,20 @@ class BoostVC: UIViewController {
     var memoryUsageFake: Double {
         return memoryState.memoryUsed + memoryShouldClear
     }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
+        gaugeView.percentage = Float(value)
         setupRunningEffectView()
         memoryShouldClear = isFirstTimeMode ? Double(arc4random() %  UInt32(memoryState.memoryUsed * 0.3)) : Double(arc4random() %  UInt32(memoryState.memoryFree * 0.05))
         usedMemoryDisplay = memoryUsageFake
         let usedMemoryPercent = usedMemoryDisplay / memoryState.totalMemory * 100
         displayPieChartView.addItem(value: Float(usedMemoryPercent), color: UIColor.red)
         displayPieChartView.addItem(value: Float(100 - usedMemoryPercent), color: UIColor.white)
+        displayPieChartView.setNeedsDisplay()
     }
-    
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+    }
     func setupRunningEffectView() {
         runningEffectView.frame = CGRect(x: 0, y: 0, width: 500, height: 100)
         displayedInfoCircle.insertSubview(runningEffectView, at: 0)
@@ -114,6 +116,7 @@ class BoostVC: UIViewController {
     @IBAction func clickAndRunBoost(_ sender: UIButton) {
         if sender.currentTitle == "BOOST MEMORY"
         {
+            timers = Timer.scheduledTimer(timeInterval: 2, target: self, selector:#selector(repeatFire), userInfo: nil, repeats: true)
             isRunning = true
             showRunningEffect()
             timer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(fakeReduceMemory), userInfo: nil, repeats: true)
@@ -130,7 +133,6 @@ class BoostVC: UIViewController {
         DispatchQueue.main.async {
             self.usedMemoryDisplay -= jumpStep
         }
-        
     }
     func showRunningEffect() {
         setupRunningEffectView()
@@ -140,8 +142,8 @@ class BoostVC: UIViewController {
             // handle complete if need
         }
     }
-    
     @objc func boostFinish() {
+        gaugeView.isHidden = true
         timer?.invalidate()
         timer = nil
         runningEffectView.removeFromSuperview()
@@ -155,5 +157,26 @@ class BoostVC: UIViewController {
         isFirstTimeMode = false
         boostButton.setTitle("RUN AGAIN", for: .normal)
     }
+    // create repeat view
+    @objc func repeatFire(){
+        if valueAdd > 0 {
+            valueAdd -= 1
+            UIView.animate(withDuration: 1 , delay: 1, options: .curveLinear, animations: {
+                self.valueUp(view: self.gaugeView)
+            }) { (_) in
+                self.valueDown(view: self.gaugeView)
+            }
+            
+        } else {
+            timer?.invalidate()
+        }
+    }
+    func valueUp(view: GaugeView) {
+        view.percentage += 100
+    }
+    func valueDown(view : GaugeView) {
+        view.percentage += 0
+    }
+    
 }
 

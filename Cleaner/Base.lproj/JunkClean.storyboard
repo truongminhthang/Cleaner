@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Xm1-wN-ZrA">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -50,6 +50,21 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UzQ-dE-3nk" userLabel="Bigger Circle" customClass="View" customModule="Cleaner" customModuleProvider="target">
                                 <rect key="frame" x="53.5" y="94" width="268" height="268"/>
                                 <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="seg-ec-Iky" customClass="GaugeView" customModule="Cleaner" customModuleProvider="target">
+                                        <rect key="frame" x="20" y="20" width="228" height="228"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="gaugeBackgroundColor">
+                                                <color key="value" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="thickness">
+                                                <real key="value" value="20"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="-1"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MFQ-4S-hyU" customClass="PieChartView" customModule="Cleaner" customModuleProvider="target">
                                         <rect key="frame" x="20" y="20" width="228" height="228"/>
                                         <color key="backgroundColor" red="0.99959295989999997" green="0.82827109099999996" blue="0.83094799519999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -59,6 +74,9 @@
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="color" keyPath="colorCenterCircle">
                                                 <color key="value" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="centerRadius">
+                                                <real key="value" value="0.0"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </view>
@@ -123,19 +141,26 @@
                                             <userDefinedRuntimeAttribute type="color" keyPath="colorCenterCircle">
                                                 <color key="value" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="-1"/>
+                                            </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                 </subviews>
                                 <color key="backgroundColor" red="0.99959295989999997" green="0.82827109099999996" blue="0.83094799519999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="UzQ-dE-3nk" secondAttribute="height" multiplier="1:1" id="3Gc-w0-sgO"/>
+                                    <constraint firstItem="seg-ec-Iky" firstAttribute="trailing" secondItem="MFQ-4S-hyU" secondAttribute="trailing" id="IFx-gy-5bl"/>
                                     <constraint firstItem="MFQ-4S-hyU" firstAttribute="top" secondItem="EzI-gT-yaN" secondAttribute="top" id="QlH-YG-I9w"/>
                                     <constraint firstItem="MFQ-4S-hyU" firstAttribute="trailing" secondItem="EzI-gT-yaN" secondAttribute="trailing" id="SHe-z3-dVg"/>
                                     <constraint firstItem="EzI-gT-yaN" firstAttribute="centerX" secondItem="UzQ-dE-3nk" secondAttribute="centerX" id="Sgp-A4-SGF"/>
+                                    <constraint firstItem="seg-ec-Iky" firstAttribute="leading" secondItem="MFQ-4S-hyU" secondAttribute="leading" id="THV-xK-t7v"/>
                                     <constraint firstItem="MFQ-4S-hyU" firstAttribute="bottom" secondItem="EzI-gT-yaN" secondAttribute="bottom" id="dlW-YB-nOz"/>
                                     <constraint firstItem="EzI-gT-yaN" firstAttribute="centerY" secondItem="UzQ-dE-3nk" secondAttribute="centerY" id="iED-A0-i0h"/>
                                     <constraint firstItem="EzI-gT-yaN" firstAttribute="leading" secondItem="UzQ-dE-3nk" secondAttribute="leading" multiplier="6/7" constant="20" symbolic="YES" id="iut-6L-fOm"/>
+                                    <constraint firstItem="seg-ec-Iky" firstAttribute="bottom" secondItem="MFQ-4S-hyU" secondAttribute="bottom" id="nwq-vb-yNr"/>
                                     <constraint firstItem="MFQ-4S-hyU" firstAttribute="leading" secondItem="EzI-gT-yaN" secondAttribute="leading" id="slH-Fj-e35"/>
+                                    <constraint firstItem="seg-ec-Iky" firstAttribute="top" secondItem="MFQ-4S-hyU" secondAttribute="top" id="uDj-8y-Jn5"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
@@ -249,6 +274,7 @@
                         <outlet property="displayInfoLabel" destination="h9s-cN-WvO" id="w1m-8v-E3W"/>
                         <outlet property="displayPieChartView" destination="MFQ-4S-hyU" id="cXi-8z-dOD"/>
                         <outlet property="freeDiskLabel" destination="COP-54-j0L" id="MeQ-D9-IdA"/>
+                        <outlet property="gaugeView" destination="seg-ec-Iky" id="HeS-RN-Vrn"/>
                         <outlet property="markLabel" destination="hP0-mx-JoP" id="RKy-sH-W8u"/>
                         <outlet property="middleView" destination="EzI-gT-yaN" id="tFj-Yo-zBa"/>
                     </connections>
