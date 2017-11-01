@@ -27,11 +27,18 @@ class PhotoServices : NSObject {
     }
    
     var displayedAssets : [CleanerAsset] {
-        var displayedAssetsCopy : [CleanerAsset]!
-        concurrentCleanerAssetQueue.sync {
-            displayedAssetsCopy = self._displayedAssets
+        get {
+            var displayedAssetsCopy : [CleanerAsset]!
+            concurrentCleanerAssetQueue.sync {
+                displayedAssetsCopy = self._displayedAssets
+            }
+            return displayedAssetsCopy
         }
-        return displayedAssetsCopy
+        set {
+            concurrentCleanerAssetQueue.async(flags: .barrier) {
+                self._displayedAssets = newValue
+            }
+        }
     }
     
     func addCleanerAsset(_ cleanerAsset : CleanerAsset) {
@@ -106,16 +113,16 @@ class PhotoServices : NSObject {
         DispatchQueue.main.async {
             ActivityIndicator.shared.showActivity()
         }
-        _displayedAssets = []
+        self.displayedAssets = []
         let downloadGroup = DispatchGroup()
         for index in 0 ..< count {
             downloadGroup.enter()
-            _displayedAssets.append(CleanerAsset(asset: fetchResult!.object(at: index), completeBlock: {
+            addCleanerAsset(CleanerAsset(asset: fetchResult!.object(at: index), completeBlock: {
                 downloadGroup.leave()
             }))
         }
         downloadGroup.notify(queue: DispatchQueue.main) {
-            self._displayedAssets = self._displayedAssets.sorted(by: {$0.fileSize > $1.fileSize})
+            self.displayedAssets = self._displayedAssets.sorted(by: {$0.fileSize > $1.fileSize})
             self.isFetching = false
             NotificationCenter.default.post(name: NotificationName.didFinishSortedFile, object: nil)
         }
@@ -146,6 +153,7 @@ extension PhotoServices : PHPhotoLibraryChangeObserver {
             // Hang on to the new fetch result.
             if changes.hasIncrementalChanges {
                 if let inserted = changes.insertedIndexes, !inserted.isEmpty {
+                    self.updateDisplayedAssets()
                 }
                 if let changed = changes.changedIndexes, !changed.isEmpty {
                     if isRemoved {isRemoved = false; return}
@@ -153,7 +161,6 @@ extension PhotoServices : PHPhotoLibraryChangeObserver {
                 }
                 if let removed = changes.removedIndexes, !removed.isEmpty {
                     isRemoved = true
-                    
                 }
                
             } else {

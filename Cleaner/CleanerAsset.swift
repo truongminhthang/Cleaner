@@ -31,10 +31,11 @@ class CleanerAsset: Equatable {
     init(asset: PHAsset, completeBlock: (() -> Void)? = nil) {
         self.asset = asset
         self.representedAssetIdentifier = asset.localIdentifier
-        let date = self.asset.creationDate
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd MMMM , yyyy"
-        dateCreatedString = dateFormatter.string(from: (date)!)
+        if let date = self.asset.creationDate {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "dd MMMM , yyyy"
+            dateCreatedString = dateFormatter.string(from:date)
+        }
         fetchImage()
         fetchFileSize(completeBlock: completeBlock)
     }
