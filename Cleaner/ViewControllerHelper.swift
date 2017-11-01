@@ -12,7 +12,6 @@ import SystemConfiguration
 func showAlert(title:String, message: String) {
     let alertController = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
     let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) { (result : UIAlertAction) -> Void in
-        GoogleAdMob.sharedInstance.showInterstitial()
     }
     alertController.addAction(okAction)
     if let rootVC = UIApplication.shared.keyWindow?.rootViewController {

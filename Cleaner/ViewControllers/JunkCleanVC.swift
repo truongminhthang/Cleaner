@@ -11,6 +11,7 @@ import UIKit
 class JunkCleanVC: UIViewController,CAAnimationDelegate {
     
     @IBOutlet weak var displayPieChartView: PieChartView!
+    @IBOutlet weak var gaugeView: GaugeView!
     @IBOutlet weak var middleView: PieChartView!
     @IBOutlet weak var biggerView: View!
     @IBOutlet weak var UnderView: GradientView!
@@ -23,6 +24,9 @@ class JunkCleanVC: UIViewController,CAAnimationDelegate {
     @IBOutlet weak var availableLabel: UILabel!
     
     // Mark: Properties
+    var timer = Timer()
+    var value = 0
+    var valueAdd = 150
     var gradient: CAGradientLayer!
     var gradientLayer: CAGradientLayer!
     var colorSets = [[CGColor]]()
@@ -49,12 +53,14 @@ class JunkCleanVC: UIViewController,CAAnimationDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        gaugeView.percentage = Float(value)
         self.freeDiskLabel.text  = ByteCountFormatter.string(fromByteCount: Int64(SystemServices.shared.diskSpaceUsage(inPercent: false).freeDiskSpace), countStyle: .binary)
         storeageReduce = SystemServices.shared.diskSpaceUsage(inPercent: false).freeDiskSpace
         middleView.backgroundColor = UIColor.clear
-          let freeDiskSpacePercent = SystemServices.shared.diskSpaceUsage(inPercent: true).freeDiskSpace
+        let freeDiskSpacePercent = SystemServices.shared.diskSpaceUsage(inPercent: true).freeDiskSpace
         displayPieChartView.addItem(value: 100 - Float(freeDiskSpacePercent), color: UIColor.red)
         displayPieChartView.addItem(value: Float(SystemServices.shared.diskSpaceUsage(inPercent: true).freeDiskSpace), color: UIColor.white)
+        displayPieChartView.setNeedsDisplay()
     }
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
@@ -119,9 +125,10 @@ class JunkCleanVC: UIViewController,CAAnimationDelegate {
                 self.changeAlpha(label: self.freeDiskLabel)
             }) { (_) in
             }
+            timer = Timer.scheduledTimer(timeInterval: 2, target: self, selector:#selector(repeatFire), userInfo: nil, repeats: true)
             let dispatchTime = DispatchTime.now() + DispatchTimeInterval.seconds(7)
             DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
-             self.runBoost()
+                self.runBoost()
             }
         } else {
             showAlert(title: "Complete", message: "Storage has been refreshed")
@@ -130,7 +137,25 @@ class JunkCleanVC: UIViewController,CAAnimationDelegate {
     // - create active when finish
     @objc func runBoost() {
         isNeedToChange = false
-        
+    }
+    // - create repeat view
+    @objc func repeatFire(){
+        if valueAdd > 0 {
+            valueAdd -= 1
+            UIView.animate(withDuration: 1 , delay: 1, options: .curveLinear, animations: {
+                self.valueUp(view: self.gaugeView)
+            }) { (_) in
+                self.valueDown(view: self.gaugeView)
+            }
+        } else {
+            timer.invalidate()
+        }
+    }
+    func valueUp(view: GaugeView) {
+        view.percentage += 100
+    }
+    func valueDown(view : GaugeView) {
+        view.percentage += 0
     }
 }
 

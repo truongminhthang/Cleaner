@@ -20,7 +20,12 @@ class PieChartItem {
 
 @IBDesignable
 class PieChartView: UIView {
-    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        if cornerRadius == -1 {
+            self.layer.cornerRadius = self.bounds.width < self.bounds.height ? self.bounds.width * 0.5 : self.bounds.height * 0.5
+        }
+    }
     @IBInspectable var colorCenterCircle: UIColor = UIColor.clear
     @IBInspectable var centerRadius: CGFloat = 0
     var startDeg: Float = 0
