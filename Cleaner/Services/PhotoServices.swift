@@ -17,7 +17,13 @@ class PhotoServices : NSObject {
             label: "com.bababibo.CleanerAsset.cleanerAssetQueue",
             attributes: .concurrent)
     var fetchResult : PHFetchResult<PHAsset>?
-    private var _displayedAssets : [CleanerAsset] = []
+    var isDeleting = false
+    private var _displayedAssets : [CleanerAsset] = [] {
+        didSet {
+            guard !isDeleting else {return}
+            NotificationCenter.default.post(name: NotificationName.didFinishFetchPHAsset, object: nil)
+        }
+    }
     weak var changeObserver : PHPhotoLibraryChangeObserver? {
         didSet {
             if changeObserver != nil {
@@ -43,9 +49,21 @@ class PhotoServices : NSObject {
         }
     }
     
-    func removeCleanerAsset(_ cleanerAsset : CleanerAsset) {
+    func removeCleanerAsset(_ cleanerAsset : CleanerAsset, completionHandler: ((Bool, Int, Error?) -> Void)? = nil) {
         concurrentCleanerAssetQueue.async(flags: .barrier) {
-            self._displayedAssets.remove(object: cleanerAsset)
+            PHPhotoLibrary.shared().performChanges({
+                PHAssetChangeRequest.deleteAssets([cleanerAsset.asset] as NSArray)
+                self.isDeleting = true
+            }, completionHandler: { (success, error) in
+                guard success else {
+                    return
+                }
+                
+                if let removeIndex = self._displayedAssets.remove(object: cleanerAsset) {
+                    completionHandler?(success, removeIndex, error)
+                    self.isDeleting = false
+                }
+            })
         }
         
     }
@@ -92,13 +110,11 @@ class PhotoServices : NSObject {
             downloadGroup.enter()
             _displayedAssets.append(CleanerAsset(asset: fetchResult!.object(at: index), completeBlock: {
                 downloadGroup.leave()
-                NotificationCenter.default.post(name: NotificationName.didFinishFetchPHAsset, object: nil)
             }))
         }
         hideActivity()
         downloadGroup.notify(queue: DispatchQueue.main) {
             self._displayedAssets = self._displayedAssets.sorted(by: {$0.fileSize > $1.fileSize})
-            NotificationCenter.default.post(name: NotificationName.didFinishFetchPHAsset, object: nil)
             self.isFetching = false
             
         }
@@ -107,11 +123,15 @@ class PhotoServices : NSObject {
 
 extension Array where Element: Equatable {
     // Remove first collection element that is equal to the given `object`:
-    mutating func remove(object: Element) {
+    mutating func remove(object: Element) -> Int? {
         if let index = index(of: object) {
             remove(at: index)
+            return index
         }
+        return nil
     }
 }
+
+
 
 

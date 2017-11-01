@@ -153,7 +153,7 @@
                                     <outlet property="photoImageView" destination="FXQ-xq-Spa" id="ec2-0a-Asd"/>
                                     <outlet property="sizeLabel" destination="rmb-Mx-3Zd" id="hCM-SU-4Tu"/>
                                     <outlet property="typeAssetLabel" destination="hrn-xQ-pbd" id="1iY-Mw-yiB"/>
-                                    <segue destination="yl4-oS-S53" kind="show" id="YOq-AQ-vGz"/>
+                                    <segue destination="yl4-oS-S53" kind="show" identifier="show photo details" id="YOq-AQ-vGz"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -257,14 +257,13 @@
                                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v5J-iO-IIK">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DW2-qv-kt8">
                                                                 <rect key="frame" x="0.0" y="30" width="359" height="30"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                                 <constraints>
-                                                                    <constraint firstAttribute="height" constant="30" id="HFG-bi-w36"/>
+                                                                    <constraint firstAttribute="height" constant="30" id="m8x-xb-9Jp"/>
                                                                 </constraints>
-                                                                <viewLayoutGuide key="safeArea" id="pCE-r9-fUx"/>
-                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="17"/>
                                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
@@ -300,7 +299,7 @@
                                         </constraints>
                                         <state key="normal" title="DELETE!"/>
                                         <connections>
-                                            <action selector="deleteButton:" destination="yl4-oS-S53" eventType="touchUpInside" id="pwT-YX-juS"/>
+                                            <segue destination="xXg-If-bGx" kind="unwind" unwindAction="unwindToDeleteAssetWithSender:" id="EZk-bg-Z2Y"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -319,10 +318,11 @@
                         <outlet property="creationDayLabel" destination="wkA-JG-zXp" id="tL9-j5-ota"/>
                         <outlet property="detailImageView" destination="Afc-lh-uQe" id="5oa-eA-tgA"/>
                         <outlet property="scrollView" destination="tsS-SO-EC9" id="tVE-UR-AF1"/>
-                        <outlet property="sizeLabel" destination="v5J-iO-IIK" id="0AJ-BU-gCF"/>
+                        <outlet property="sizeLabel" destination="DW2-qv-kt8" id="sPs-ba-0Fh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HB9-Y9-CBC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="xXg-If-bGx" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2042" y="479"/>
         </scene>
@@ -360,14 +360,13 @@
                                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RuD-YG-4h5">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D6L-2z-w7N">
                                                                 <rect key="frame" x="0.0" y="30" width="359" height="30"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                                 <constraints>
-                                                                    <constraint firstAttribute="height" constant="30" id="SK3-dG-rTA"/>
+                                                                    <constraint firstAttribute="height" constant="30" id="kOF-lr-4uC"/>
                                                                 </constraints>
-                                                                <viewLayoutGuide key="safeArea" id="UTn-PD-wjC"/>
-                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="17"/>
                                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
@@ -432,8 +431,7 @@
                                         </constraints>
                                         <state key="normal" title="DELETE!"/>
                                         <connections>
-                                            <action selector="deleteButton:" destination="zvs-Mj-ncP" eventType="touchUpInside" id="THY-kL-hHq"/>
-                                            <action selector="deleteButton:" destination="yl4-oS-S53" eventType="touchUpInside" id="kev-KM-scz"/>
+                                            <segue destination="Vev-qt-Zvv" kind="unwind" unwindAction="unwindToDeleteAssetWithSender:" id="ZOI-Zc-I7B"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -451,12 +449,13 @@
                     <connections>
                         <outlet property="creationDayLabel" destination="E42-Bz-eFY" id="Lgq-6r-Cp7"/>
                         <outlet property="playButton" destination="I8s-jt-gDe" id="3Pw-JH-Ysx"/>
-                        <outlet property="sizeLabel" destination="RuD-YG-4h5" id="cWi-nO-fYw"/>
+                        <outlet property="sizeLabel" destination="D6L-2z-w7N" id="a9l-AF-geq"/>
                         <outlet property="stopCorverButton" destination="p3v-pj-B52" id="k3l-8f-Gli"/>
                         <outlet property="videoContainer" destination="alo-TY-XWB" id="8ao-W6-6hj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pdQ-PD-5hH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="Vev-qt-Zvv" userLabel="Exit" sceneMemberID="exit"/>
                 <navigationItem title="Title" id="GH4-Ix-G0h">
                     <barButtonItem key="rightBarButtonItem" title="Item" id="Hfx-0v-vex">
                         <connections>

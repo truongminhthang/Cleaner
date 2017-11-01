@@ -61,6 +61,7 @@ class CleanerAsset: Equatable {
             }
         }
     }
+    
     func fetchFileSize(completeBlock:  (() -> Void)?) {
         if asset.duration == 0 {
             PHImageManager.default().requestImageData(for: asset, options: nil, resultHandler: { (data, string, orientation, dictionary) in
@@ -82,11 +83,9 @@ class CleanerAsset: Equatable {
         }
     }
     
-    func remove(completionHandler: ((Bool, Error?) -> Void)? = nil) {
-        PHPhotoLibrary.shared().performChanges({
-            PHAssetChangeRequest.deleteAssets([self.asset] as NSArray)
-        }, completionHandler: completionHandler)
-        PhotoServices.shared.removeCleanerAsset(self)
+    func remove(completionHandler: ((Bool, Int, Error?) -> Void)? = nil) {
+       
+        PhotoServices.shared.removeCleanerAsset(self, completionHandler: completionHandler)
     }
     
     public static func ==(lhs: CleanerAsset, rhs: CleanerAsset) -> Bool {

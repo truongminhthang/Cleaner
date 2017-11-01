@@ -18,22 +18,22 @@ class SortFileTableVC: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        PhotoServices.shared.changeObserver = self
         if PhotoServices.shared.isFetching {
             showActivity()
         }
         self.updateFreeDiskValue()
-       registerNotification()
+        registerNotification()
     }
     
     func registerNotification() {
         NotificationCenter.default.addObserver(self, selector: #selector(reloadData), name: NotificationName.didFinishFetchPHAsset, object: nil)
+        
     }
     
     deinit {
         NotificationCenter.default.removeObserver(self)
     }
-
+    
     
     @objc func reloadData() {
         DispatchQueue.main.async {
@@ -80,8 +80,8 @@ class SortFileTableVC: UITableViewController {
         case .fetching, .failed:
             cell.photoImageView?.image = UIImage(named: "photoDownloadError")
             cell.typeAssetLabel?.text = "Error Asset"
-        
-
+            
+            
         }
         
         switch cleanerAsset.fileSizeStatus {
@@ -96,7 +96,7 @@ class SortFileTableVC: UITableViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-
+        
         switch segue.identifier ?? "" {
         case "show Video Detail":
             guard let destination = segue.destination as? VideoViewController
@@ -113,62 +113,75 @@ class SortFileTableVC: UITableViewController {
         default:
             return
         }
-
-
+        
+        
     }
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         let asset = PhotoServices.shared.displayedAssets[indexPath.row]
         if editingStyle == .delete {
-            asset.remove()
+            asset.remove(completionHandler: didFinishRemoveAsset)
         } else if editingStyle == .insert {
-
+            
+        }
+    }
+    
+    func didFinishRemoveAsset(success: Bool, removedIndex: Int, error: Error?) {
+        DispatchQueue.main.async {
+            self.tableView.deleteRows(at: [IndexPath(item: removedIndex, section: 0)], with: .automatic)
+        }
+        
+    }
+    @IBAction func unwindToDeleteAsset(sender: UIStoryboardSegue) {
+        if let sourceViewController = sender.source as? DetailVC{
+            if let selectedIndexPath = tableView.indexPathForSelectedRow {
+                // Update an existing meal.
+                let asset = PhotoServices.shared.displayedAssets[selectedIndexPath.row]
+                asset.remove(completionHandler: didFinishRemoveAsset)
+            }
         }
     }
 }
 
-// MARK: PHPhotoLibraryChangeObserver
-extension SortFileTableVC : PHPhotoLibraryChangeObserver {
-    func photoLibraryDidChange(_ changeInstance: PHChange) {
-
-        guard let changes = changeInstance.changeDetails(for: PhotoServices.shared.fetchResult!)
-            else { return }
-
-        // Change notifications may be made on a background queue. Re-dispatch to the
-        // main queue before acting on the change as we'll be updating the UI.
+//// MARK: PHPhotoLibraryChangeObserver
+//extension SortFileTableVC : PHPhotoLibraryChangeObserver {
+//    func photoLibraryDidChange(_ changeInstance: PHChange) {
+//        
+//        guard let changes = changeInstance.changeDetails(for: fetchResult!)
+//            else { return }
+//        
+//        // Change notifications may be made on a background queue. Re-dispatch to the
+//        // main queue before acting on the change as we'll be updating the UI.
 //        DispatchQueue.main.sync {
-            // Hang on to the new fetch result.
+//            // Hang on to the new fetch result.
+//            fetchResult = changes.fetchResultAfterChanges
 //            if changes.hasIncrementalChanges {
 //                // If we have incremental diffs, animate them in the collection view.
 //                guard let tableView = self.tableView else { fatalError() }
 //                if #available(iOS 11.0, *) {
 //                    tableView.performBatchUpdates({
 //                        if let removed = changes.removedIndexes, !removed.isEmpty {
-//                            tableView.deleteRows(at: removed.map({ IndexPath(row: $0, section: 0) }), with: .automatic)
-////                            removed.forEach({ PhotoServices.shared.removeCleanerAsset(at: $0)})
+//                            tableView.deleteRows(at: removed.map({ IndexPath(item: $0, section: 0) }), with: .automatic)
 //                        }
 //                        if let inserted = changes.insertedIndexes, !inserted.isEmpty {
-//                            tableView.insertRows(at: inserted.map({ IndexPath(row: $0, section: 0) }), with: .automatic)
-//                            inserted.forEach({ PhotoServices.shared.insertCleanerAsset(at: $0)})
+//                            tableView.insertRows(at: inserted.map({ IndexPath(item: $0, section: 0) }), with: .automatic)
 //                        }
-//
-//
 //                    })
 //                } else {
 //                    if let removed = changes.removedIndexes, !removed.isEmpty {
 //                        tableView.deleteRows(at: removed.map({ IndexPath(item: $0, section: 0) }), with: .automatic)
-//                        removed.forEach({ PhotoServices.shared.removeCleanerAsset(at: $0)})
 //                    }
 //                    if let inserted = changes.insertedIndexes {
 //                        tableView.insertRows(at: inserted.map({ IndexPath(item: $0, section: 0) }), with: .automatic)
-//                        inserted.forEach({ PhotoServices.shared.insertCleanerAsset(at: $0)})
 //                    }
 //                }
 //            } else {
-                // Reload the collection view if incremental diffs are not available.
-                self.reloadData()
+//                // Reload the collection view if incremental diffs are not available.
+//                tableView!.reloadData()
 //            }
 //        }
-    }
-}
+//    }
+//}
+
+
 

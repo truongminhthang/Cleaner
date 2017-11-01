@@ -9,9 +9,8 @@
 import UIKit
 import Photos
 
-class VideoViewController: UIViewController {
-    var assetCollection: PHAssetCollection!
-    var cleanerAsset: CleanerAsset!
+class VideoViewController: DetailVC {
+    @IBOutlet weak var videoContainer: UIView!
     var player: AVPlayer!
     @IBOutlet weak var playButton: UIButton!
     @IBOutlet weak var stopCorverButton: UIButton!
@@ -29,19 +28,11 @@ class VideoViewController: UIViewController {
 
         }
     }
-
-    @IBOutlet weak var videoContainer: UIView!
-    @IBOutlet weak var sizeLabel: UILabel!
-    @IBOutlet weak var creationDayLabel: UILabel!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        getVideoInfo()
+        getInfo()
         initPlayerLayer()
         registerNotification()
-        if cleanerAsset.thumbnailStatus == .fetching {
-            cleanerAsset.fetchImage(completeBlock: initPlayerLayer)
-        }
     }
     
     func registerNotification() {
@@ -72,11 +63,7 @@ class VideoViewController: UIViewController {
        resetPlayer()
     }
     
-    func getVideoInfo() {
-        self.sizeLabel.text = cleanerAsset.fileSize.fileSizeString
-        self.creationDayLabel.text = cleanerAsset.dateCreatedString
-        
-    }
+    
     
     func initPlayerLayer() {
         let options = PHVideoRequestOptions()
@@ -116,19 +103,6 @@ class VideoViewController: UIViewController {
     }
     @IBAction func pause(sender: UIButton!) {
         isPlaying = !isPlaying
-    }
-    
-    @IBAction func deleteButton(_ sender: UIButton) {
-        let completion = { (success: Bool, error: Error?) -> Void in
-            if success {
-                DispatchQueue.main.sync {
-                    _ = self.navigationController!.popViewController(animated: true)
-                }
-            } else {
-                print("can't remove asset: \(String(describing: error))")
-            }
-        }
-        cleanerAsset.remove(completionHandler: completion)
     }
 }
 

@@ -9,37 +9,43 @@
 import UIKit
 import Photos
 import AVKit
-class DetailImageVC: UIViewController, UIScrollViewDelegate {
-    var assetCollection: PHAssetCollection!
+
+class DetailVC: UIViewController {
     var cleanerAsset: CleanerAsset!
-    
-    @IBOutlet weak var detailImageView: UIImageView!
     @IBOutlet weak var sizeLabel: UILabel!
     @IBOutlet weak var creationDayLabel: UILabel!
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        getInfo()
+    }
+    
+    func getInfo() {
+        self.sizeLabel.text = cleanerAsset.fileSize.fileSizeString
+        self.creationDayLabel.text = cleanerAsset.dateCreatedString
+        
+    }
+}
+class DetailImageVC: DetailVC, UIScrollViewDelegate {
+
+    
+    @IBOutlet weak var detailImageView: UIImageView!
+
     @IBOutlet weak var scrollView: UIScrollView! {
         didSet {
             scrollView.delegate = self
             scrollView.contentSize = detailImageView.frame.size
             scrollView.maximumZoomScale = 6.0
             scrollView.minimumZoomScale = 1.0
-            
         }
     }
 
     fileprivate var playerLayer: AVPlayerLayer!
     fileprivate var playerLooper: AVPlayerLooper?
     fileprivate var isPlayingHint = false
-    fileprivate let imageManager = PHCachingImageManager()
-    
-  
-    
-  
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         displayImage()
-      
-
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
@@ -65,7 +71,6 @@ class DetailImageVC: UIViewController, UIScrollViewDelegate {
         let options = PHImageRequestOptions()
         options.deliveryMode  = .highQualityFormat
         options.isNetworkAccessAllowed = true
-      
         PHImageManager.default().requestImage(for: cleanerAsset.asset,
                                               targetSize: targetSize,
                                               contentMode: .aspectFit,
@@ -78,26 +83,8 @@ class DetailImageVC: UIViewController, UIScrollViewDelegate {
                                                 // Now that we have the image, show it.
                                                 self.detailImageView.autoresizingMask = [.flexibleWidth, .flexibleHeight, .flexibleLeftMargin, .flexibleRightMargin, .flexibleTopMargin, .flexibleBottomMargin]
                                                 self.detailImageView.contentMode = UIViewContentMode.scaleAspectFit
-                                                
                                                 self.detailImageView.image = image
         })
-        self.sizeLabel.text = cleanerAsset.fileSize.fileSizeString
-        self.creationDayLabel.text = cleanerAsset.dateCreatedString
-        
-    }
-    
-    @IBAction func deleteButton(_ sender: UIButton) {
-        let completion = { (success: Bool, error: Error?) -> Void in
-            if success {
-                DispatchQueue.main.sync {
-                    _ = self.navigationController!.popViewController(animated: true)
-                }
-            } else {
-                print("can't remove asset: \(String(describing: error))")
-            }
-        }
-        
-        cleanerAsset.remove(completionHandler: completion)
         
     }
 }
