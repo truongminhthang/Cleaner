@@ -24,17 +24,7 @@ class PhotoServices : NSObject {
             NotificationCenter.default.post(name: NotificationName.didFinishFetchPHAsset, object: nil)
         }
     }
-    weak var changeObserver : PHPhotoLibraryChangeObserver? {
-        didSet {
-            if changeObserver != nil {
-                PHPhotoLibrary.shared().register(changeObserver!)
-            } else {
-                guard oldValue != nil else {return }
-                PHPhotoLibrary.shared().unregisterChangeObserver(oldValue!)
-            }
-
-        }
-    }
+   
     var displayedAssets : [CleanerAsset] {
         var displayedAssetsCopy : [CleanerAsset]!
         concurrentCleanerAssetQueue.sync {
@@ -77,7 +67,12 @@ class PhotoServices : NSObject {
     override init() {
         super.init()
         reqestAuthorization()
+        PHPhotoLibrary.shared().register(self)
         
+    }
+    
+    deinit {
+        PHPhotoLibrary.shared().unregisterChangeObserver(self)
     }
     
     func reqestAuthorization() {
@@ -129,6 +124,29 @@ extension Array where Element: Equatable {
             return index
         }
         return nil
+    }
+}
+
+// MARK: PHPhotoLibraryChangeObserver
+extension PhotoServices : PHPhotoLibraryChangeObserver {
+    func photoLibraryDidChange(_ changeInstance: PHChange) {
+
+        guard let changes = changeInstance.changeDetails(for: fetchResult!)
+            else { return }
+
+        // Change notifications may be made on a background queue. Re-dispatch to the
+        // main queue before acting on the change as we'll be updating the UI.
+        DispatchQueue.main.sync {
+            // Hang on to the new fetch result.
+            if changes.hasIncrementalChanges {
+                if let inserted = changes.insertedIndexes, !inserted.isEmpty {
+                    fetchAsset()
+                }
+               
+            } else {
+              
+            }
+        }
     }
 }
 

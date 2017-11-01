@@ -14,14 +14,30 @@ class SortFileTableVC: UITableViewController {
     
     @IBOutlet weak var freeDiskLabel: UILabel!
     @IBOutlet weak var freeDiskUnitLabel: UILabel!
+    @IBOutlet weak var addMoreFreeDiskLabel: UILabel!
+
     @IBOutlet var headerView: UIView!
-    
+    @IBOutlet weak var indicatorView: UIActivityIndicatorView!
+    var timer : Timer?
+    var freeSize : Double = 0 {
+        didSet {
+            let freeSizeString = freeSize.fileSizeString
+            let freeSizeStringArray = freeSizeString.components(separatedBy: " ")
+            freeDiskLabel.text = freeSizeStringArray.first ?? ""
+            freeDiskUnitLabel.text = freeSizeStringArray.last ?? ""
+        }
+    }
+    var addMoreFreeSize: Double = 0.0
+    var displayAddMoreFreeSize: Double = 0.0 {
+        didSet {
+            addMoreFreeDiskLabel.text = "+" + displayAddMoreFreeSize.fileBinarySizeString
+        }
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        if PhotoServices.shared.isFetching {
-            showActivity()
-        }
-        self.updateFreeDiskValue()
+        freeSize = SystemServices.shared.diskSpaceUsage(inPercent: false).freeDiskSpace
+        addMoreFreeDiskLabel.alpha = 0
         registerNotification()
     }
     
@@ -31,15 +47,52 @@ class SortFileTableVC: UITableViewController {
     }
     
     deinit {
+        showAlert(title: "Info", message: "Need go to recently deleted photos Album to actually remove photos in your disk")
         NotificationCenter.default.removeObserver(self)
     }
     
     
+    
     @objc func reloadData() {
         DispatchQueue.main.async {
+            self.indicatorView.stopAnimating()
             self.tableView.reloadData()
             self.updateFreeDiskValue()
         }
+    }
+    
+    func startRunAddMoreValue() {
+        if timer != nil { timer = nil }
+        UIView.animate(withDuration: 0.05, animations: {
+            self.addMoreFreeDiskLabel.alpha = 1
+        }) {(success) in
+            self.timer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(self.runAddMoreValue), userInfo: nil, repeats: true)
+        }
+    }
+    
+    @objc func runAddMoreValue() {
+        let step = 5278000.0
+        guard displayAddMoreFreeSize < addMoreFreeSize - step else {
+            freeSize -= displayAddMoreFreeSize
+            freeSize += addMoreFreeSize
+            displayAddMoreFreeSize = addMoreFreeSize
+            timer?.invalidate()
+            timer = nil
+            self.addMoreFreeSize = 0
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                UIView.animate(withDuration: 0.2, animations: {
+                    self.addMoreFreeDiskLabel.alpha = 0
+                }) {(success) in
+                    self.displayAddMoreFreeSize = 0
+                }
+            }
+            return
+        }
+        DispatchQueue.main.async {
+            self.displayAddMoreFreeSize += step
+            self.freeSize += step
+        }
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -48,17 +101,13 @@ class SortFileTableVC: UITableViewController {
     }
     
     func updateFreeDiskValue() {
-        let freeSize = SystemServices.shared.diskSpaceUsage(inPercent: false).freeDiskSpace.fileSizeString
-        let freeSizeStringArray = freeSize.components(separatedBy: " ")
-        freeDiskLabel.text = freeSizeStringArray.first ?? ""
-        freeDiskUnitLabel.text = freeSizeStringArray.last ?? ""
+        
     }
     // MARK: - Table view data source
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let view = UIView()
         view.addSubview(headerView)
-        
         return view
     }
     
@@ -112,15 +161,14 @@ class SortFileTableVC: UITableViewController {
             }
         default:
             return
-        }
-        
-        
+        }        
     }
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         let asset = PhotoServices.shared.displayedAssets[indexPath.row]
         if editingStyle == .delete {
             asset.remove(completionHandler: didFinishRemoveAsset)
+            addMoreFreeSize = Double(asset.fileSize)
         } else if editingStyle == .insert {
             
         }
@@ -129,59 +177,18 @@ class SortFileTableVC: UITableViewController {
     func didFinishRemoveAsset(success: Bool, removedIndex: Int, error: Error?) {
         DispatchQueue.main.async {
             self.tableView.deleteRows(at: [IndexPath(item: removedIndex, section: 0)], with: .automatic)
+            self.startRunAddMoreValue()
         }
         
     }
     @IBAction func unwindToDeleteAsset(sender: UIStoryboardSegue) {
-        if let sourceViewController = sender.source as? DetailVC{
+        if sender.source is DetailVC{
             if let selectedIndexPath = tableView.indexPathForSelectedRow {
                 // Update an existing meal.
                 let asset = PhotoServices.shared.displayedAssets[selectedIndexPath.row]
                 asset.remove(completionHandler: didFinishRemoveAsset)
+                addMoreFreeSize = Double(asset.fileSize)
             }
         }
     }
 }
-
-//// MARK: PHPhotoLibraryChangeObserver
-//extension SortFileTableVC : PHPhotoLibraryChangeObserver {
-//    func photoLibraryDidChange(_ changeInstance: PHChange) {
-//        
-//        guard let changes = changeInstance.changeDetails(for: fetchResult!)
-//            else { return }
-//        
-//        // Change notifications may be made on a background queue. Re-dispatch to the
-//        // main queue before acting on the change as we'll be updating the UI.
-//        DispatchQueue.main.sync {
-//            // Hang on to the new fetch result.
-//            fetchResult = changes.fetchResultAfterChanges
-//            if changes.hasIncrementalChanges {
-//                // If we have incremental diffs, animate them in the collection view.
-//                guard let tableView = self.tableView else { fatalError() }
-//                if #available(iOS 11.0, *) {
-//                    tableView.performBatchUpdates({
-//                        if let removed = changes.removedIndexes, !removed.isEmpty {
-//                            tableView.deleteRows(at: removed.map({ IndexPath(item: $0, section: 0) }), with: .automatic)
-//                        }
-//                        if let inserted = changes.insertedIndexes, !inserted.isEmpty {
-//                            tableView.insertRows(at: inserted.map({ IndexPath(item: $0, section: 0) }), with: .automatic)
-//                        }
-//                    })
-//                } else {
-//                    if let removed = changes.removedIndexes, !removed.isEmpty {
-//                        tableView.deleteRows(at: removed.map({ IndexPath(item: $0, section: 0) }), with: .automatic)
-//                    }
-//                    if let inserted = changes.insertedIndexes {
-//                        tableView.insertRows(at: inserted.map({ IndexPath(item: $0, section: 0) }), with: .automatic)
-//                    }
-//                }
-//            } else {
-//                // Reload the collection view if incremental diffs are not available.
-//                tableView!.reloadData()
-//            }
-//        }
-//    }
-//}
-
-
-

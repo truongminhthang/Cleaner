@@ -27,4 +27,7 @@ extension Double {
     var fileSizeString: String {
         return ByteCountFormatter.string(fromByteCount: Int64(self), countStyle: .file)
     }
+    var fileBinarySizeString: String {
+        return ByteCountFormatter.string(fromByteCount: Int64(self), countStyle: .binary)
+    }
 }

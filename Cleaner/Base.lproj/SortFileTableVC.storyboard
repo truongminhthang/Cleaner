@@ -24,6 +24,15 @@
                         <view key="tableFooterView" contentMode="scaleToFill" id="ryT-PS-Q5s">
                             <rect key="frame" x="0.0" y="280" width="375" height="44"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="jdw-FU-eaz">
+                                    <rect key="frame" x="177" y="12" width="20" height="20"/>
+                                </activityIndicatorView>
+                            </subviews>
+                            <constraints>
+                                <constraint firstItem="jdw-FU-eaz" firstAttribute="centerY" secondItem="ryT-PS-Q5s" secondAttribute="centerY" id="WYl-1F-Ynb"/>
+                                <constraint firstItem="jdw-FU-eaz" firstAttribute="centerX" secondItem="ryT-PS-Q5s" secondAttribute="centerX" id="h0s-WE-DMS"/>
+                            </constraints>
                         </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="videoCell" editingAccessoryType="disclosureIndicator" rowHeight="90" id="Dy2-fq-NWO" customClass="VideoCell" customModule="Cleaner" customModuleProvider="target">
@@ -165,9 +174,11 @@
                     </tableView>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics"/>
                     <connections>
+                        <outlet property="addMoreFreeDiskLabel" destination="5ce-HN-HJW" id="Uri-U2-UK8"/>
                         <outlet property="freeDiskLabel" destination="fKV-5Z-gdf" id="u77-as-zta"/>
                         <outlet property="freeDiskUnitLabel" destination="pAR-js-DB1" id="gPh-UA-Bo8"/>
                         <outlet property="headerView" destination="llS-Yx-X8a" id="Bgh-JI-KV2"/>
+                        <outlet property="indicatorView" destination="jdw-FU-eaz" id="L4T-zQ-J21"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="huX-aT-QeE" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -193,6 +204,22 @@
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5ce-HN-HJW">
+                            <rect key="frame" x="305" y="30" width="100" height="40"/>
+                            <color key="backgroundColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="40" id="IZF-z4-tMx"/>
+                                <constraint firstAttribute="width" constant="100" id="Urh-fF-BGG"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                    <real key="value" value="-1"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </label>
                     </subviews>
                     <color key="backgroundColor" red="0.93804723024368286" green="0.59208405017852783" blue="0.59094208478927612" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
@@ -203,7 +230,9 @@
                         <constraint firstItem="fKV-5Z-gdf" firstAttribute="top" secondItem="HMQ-yo-e1i" secondAttribute="top" constant="20" id="e5D-Px-jjb"/>
                         <constraint firstItem="HMQ-yo-e1i" firstAttribute="bottom" secondItem="fKV-5Z-gdf" secondAttribute="bottom" constant="20" id="gGj-bN-kqn"/>
                         <constraint firstItem="hJL-bD-Mi7" firstAttribute="height" secondItem="pAR-js-DB1" secondAttribute="height" id="nWp-e6-Qna"/>
+                        <constraint firstItem="5ce-HN-HJW" firstAttribute="centerY" secondItem="llS-Yx-X8a" secondAttribute="centerY" id="qrC-Hf-ZZX"/>
                         <constraint firstItem="pAR-js-DB1" firstAttribute="leading" secondItem="fKV-5Z-gdf" secondAttribute="trailing" constant="9" id="trl-Cq-zqB"/>
+                        <constraint firstItem="HMQ-yo-e1i" firstAttribute="trailing" secondItem="5ce-HN-HJW" secondAttribute="trailing" constant="60" id="ttd-zf-dsq"/>
                         <constraint firstItem="fKV-5Z-gdf" firstAttribute="leading" secondItem="HMQ-yo-e1i" secondAttribute="leading" constant="20" id="zDM-S5-R2W"/>
                     </constraints>
                     <viewLayoutGuide key="safeArea" id="HMQ-yo-e1i"/>
