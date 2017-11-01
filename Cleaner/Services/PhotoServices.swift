@@ -103,13 +103,16 @@ class PhotoServices : NSObject {
         guard let count = fetchResult?.count, count > 0 else { return }
         guard isFetching == false else {return}
         isFetching = true
-        ActivityIndicator.shared.showActivity()
+        DispatchQueue.main.async {
+            ActivityIndicator.shared.showActivity()
+        }
         _displayedAssets = []
         let downloadGroup = DispatchGroup()
         for index in 0 ..< count {
             downloadGroup.enter()
             _displayedAssets.append(CleanerAsset(asset: fetchResult!.object(at: index), completeBlock: {
                 downloadGroup.leave()
+                
             }))
         }
         downloadGroup.notify(queue: DispatchQueue.main) {

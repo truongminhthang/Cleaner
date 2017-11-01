@@ -78,17 +78,16 @@ func showAlertCompelete(title:String, message: String, settingUrl: String) {
 
 
 class ActivityIndicator : UIView {
-
+    
     static var shared : ActivityIndicator! = {
-        if let viewArray  =  Bundle.main.loadNibNamed("ActivityIndicator", owner: nil, options: nil) {
-            for item in viewArray {
-                if item is ActivityIndicator {
-                    return item as! ActivityIndicator
+            if let viewArray  =  Bundle.main.loadNibNamed("ActivityIndicator", owner: nil, options: nil) {
+                for item in viewArray {
+                    if item is ActivityIndicator {
+                        return item as! ActivityIndicator
+                    }
                 }
             }
-        }
-
-        return nil
+            return nil
     }()
     
     
@@ -103,18 +102,20 @@ class ActivityIndicator : UIView {
     func showActivity() {
         DispatchQueue.main.async {
             self.isHidden = false
-            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 15) {
+                self.hideActivity()
+            }
         }
     }
     
     func hideActivity() {
         DispatchQueue.main.async {
             self.isHidden = true
-
+            
             
         }
     }
-
+    
 }
 
 
