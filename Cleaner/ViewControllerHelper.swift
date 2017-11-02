@@ -41,10 +41,10 @@ func showAlertToAccessAppFolder( title:String, message: String) {
 }
 
 
-func showAlert(title:String, message: String) {
+func showAlert(title:String, message: String, completeHandler: (() -> Void)? = nil) {
     let alertController = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
     let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.cancel) { (result : UIAlertAction) -> Void in
-
+        completeHandler?()
     }
     alertController.addAction(okAction)
     if let rootVC = UIApplication.shared.keyWindow?.rootViewController {
@@ -69,8 +69,8 @@ func showAlertCompelete(title:String, message: String, settingUrl: String) {
     if let rootVC = UIApplication.shared.keyWindow?.rootViewController {
         rootVC.present(alertController, animated: true, completion: nil)
     }
-    
 }
+
 
 
 

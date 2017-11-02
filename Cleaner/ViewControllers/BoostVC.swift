@@ -125,7 +125,9 @@ class BoostVC: UIViewController {
             showRunningEffect()
             timer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(fakeReduceMemory), userInfo: nil, repeats: true)
         } else {
-            showAlert(title: "Complete", message: "We have liberate Zero KB in memory")
+            showAlert(title: "Complete", message: "We have liberate Zero KB in memory", completeHandler: {
+                GoogleAdMob.sharedInstance.showInterstitial()
+            })
         }
     }
     @objc func fakeReduceMemory() {
@@ -156,7 +158,9 @@ class BoostVC: UIViewController {
         isRunning = false
         let clearnMemoryCount = memoryShouldClear
         let memoryOut = ByteCountFormatter.string(fromByteCount: Int64(clearnMemoryCount), countStyle: .binary)
-        showAlert(title: "Complete", message: "We have liberate \(memoryOut) in memory")
+        showAlert(title: "Complete", message: "We have liberate \(memoryOut) in memory", completeHandler: {
+            GoogleAdMob.sharedInstance.showInterstitial()
+        })
         memoryShouldClear = 0
         isFirstTimeMode = false
         boostButton.setTitle("RUN AGAIN", for: .normal)

@@ -68,7 +68,9 @@ class WifiScanResultVC: UIViewController, UITableViewDataSource, UITableViewDele
     // MARK: NetworkScannerDelegate
     
     func networkScannerIPSearchFinished() {
-        showAlert(title: "Scan Finished", message: "Number of devices connected to the Local Area Network : \(self.networkScanner.connectedDevices.count)")
+        showAlert(title: "Scan Finished", message: "Number of devices connected to the Local Area Network : \(self.networkScanner.connectedDevices.count)", completeHandler: {
+            GoogleAdMob.sharedInstance.showInterstitial()
+        })
         resultLabel.text = "There are \(self.networkScanner.connectedDevices.count) connected to \( self.networkScanner.ssidName ) "
           self.spinner.stopAnimating()
             self.spinner.hidesWhenStopped = true
@@ -79,7 +81,9 @@ class WifiScanResultVC: UIViewController, UITableViewDataSource, UITableViewDele
     }
     
     func networkScannerIPSearchFailed() {
-        showAlert(title: "Failed to scan", message: "Please make sure that you are connected to a WiFi before starting LAN Scan")
+        showAlert(title: "Failed to scan", message: "Please make sure that you are connected to a WiFi before starting LAN Scan", completeHandler: {
+            GoogleAdMob.sharedInstance.showInterstitial()
+        })
         networkScanner.stop()
         self.spinner.stopAnimating()
         self.spinner.hidesWhenStopped = true
