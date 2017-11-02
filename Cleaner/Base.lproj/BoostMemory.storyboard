@@ -23,41 +23,43 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Ellipse-1" translatesAutoresizingMaskIntoConstraints="NO" id="bHH-hk-mwo" userLabel="ellip">
                                 <rect key="frame" x="0.0" y="59" width="375" height="10"/>
                             </imageView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ssR-6d-Jmt" userLabel="Biggest Circle" customClass="PieChartView" customModule="Cleaner" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ssR-6d-Jmt" userLabel="Biggest Circle">
                                 <rect key="frame" x="60" y="99" width="255" height="255"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YW3-bM-Uzp" customClass="GaugeView" customModule="Cleaner" customModuleProvider="target">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YW3-bM-Uzp" customClass="Gauge" customModule="Cleaner" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="255" height="255"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="YW3-bM-Uzp" secondAttribute="height" multiplier="1:1" id="eLY-cr-u7u"/>
+                                        </constraints>
                                         <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="thickness">
-                                                <real key="value" value="20"/>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="lineWidth">
+                                                <real key="value" value="30"/>
                                             </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="gaugeBackgroundColor">
-                                                <color key="value" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isCircle" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="reverse" value="NO"/>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="bgColor">
+                                                <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                    </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="003-NH-X3f" customClass="PieChartView" customModule="Cleaner" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="255" height="255"/>
-                                        <color key="backgroundColor" red="0.99959295989999997" green="0.82827109099999996" blue="0.83094799519999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="colorCenterCircle">
-                                                <color key="value" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="startColor">
+                                                <color key="value" red="1" green="0.36080265890000002" blue="0.29425046510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                <real key="value" value="-1"/>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="endColor">
+                                                <color key="value" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="bgAlpha">
+                                                <real key="value" value="1"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2HJ-1W-wzt" userLabel="smaller view" customClass="GradientView" customModule="Cleaner" customModuleProvider="target">
-                                        <rect key="frame" x="24" y="24" width="207" height="207"/>
+                                        <rect key="frame" x="30" y="30" width="195" height="195"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="eHm-ra-on4">
-                                                <rect key="frame" x="25" y="73.5" width="157" height="60"/>
+                                                <rect key="frame" x="25" y="67.5" width="145" height="60"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Pz-Uy-qlB">
-                                                        <rect key="frame" x="32" y="0.0" width="93" height="42"/>
+                                                        <rect key="frame" x="26" y="0.0" width="93" height="42"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="80.0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="jsG-Ug-rhh" customClass="CountingLabel" customModule="Cleaner" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="0.0" width="77" height="42"/>
@@ -77,7 +79,7 @@
                                                         </constraints>
                                                     </stackView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MEMORY USAGE" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="C3F-XL-ICb">
-                                                        <rect key="frame" x="20.5" y="42" width="116" height="18"/>
+                                                        <rect key="frame" x="14.5" y="42" width="116" height="18"/>
                                                         <fontDescription key="fontDescription" type="system" weight="thin" pointSize="15"/>
                                                         <color key="textColor" red="1" green="0.080847518150000006" blue="0.25239977260000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
@@ -88,7 +90,7 @@
                                                 </constraints>
                                             </stackView>
                                         </subviews>
-                                        <color key="backgroundColor" red="0.99959295989999997" green="0.82827109099999996" blue="0.83094799519999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstItem="eHm-ra-on4" firstAttribute="leading" secondItem="2HJ-1W-wzt" secondAttribute="leading" constant="25" id="3aP-JY-sYd"/>
                                             <constraint firstItem="eHm-ra-on4" firstAttribute="centerY" secondItem="2HJ-1W-wzt" secondAttribute="centerY" id="WzE-WI-TaL"/>
@@ -116,20 +118,16 @@
                                 </subviews>
                                 <color key="backgroundColor" red="0.99959295989999997" green="0.82827109099999996" blue="0.83094799519999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstItem="2HJ-1W-wzt" firstAttribute="leading" secondItem="ssR-6d-Jmt" secondAttribute="leading" constant="24" id="3pY-vb-YW3"/>
-                                    <constraint firstAttribute="trailing" secondItem="003-NH-X3f" secondAttribute="trailing" id="5Fw-rl-PKK"/>
-                                    <constraint firstAttribute="bottom" secondItem="003-NH-X3f" secondAttribute="bottom" id="5Gz-gn-JAz"/>
-                                    <constraint firstItem="YW3-bM-Uzp" firstAttribute="top" secondItem="003-NH-X3f" secondAttribute="top" id="94o-XD-ybA"/>
-                                    <constraint firstItem="YW3-bM-Uzp" firstAttribute="leading" secondItem="003-NH-X3f" secondAttribute="leading" id="A5Y-D9-f9U"/>
-                                    <constraint firstItem="003-NH-X3f" firstAttribute="leading" secondItem="ssR-6d-Jmt" secondAttribute="leading" id="BvR-x6-Uc1"/>
+                                    <constraint firstItem="2HJ-1W-wzt" firstAttribute="leading" secondItem="ssR-6d-Jmt" secondAttribute="leading" constant="30" id="3pY-vb-YW3"/>
                                     <constraint firstItem="2HJ-1W-wzt" firstAttribute="centerY" secondItem="ssR-6d-Jmt" secondAttribute="centerY" id="Pls-0J-x8y"/>
                                     <constraint firstItem="2HJ-1W-wzt" firstAttribute="centerX" secondItem="ssR-6d-Jmt" secondAttribute="centerX" id="Qaa-sc-3sN"/>
-                                    <constraint firstItem="YW3-bM-Uzp" firstAttribute="trailing" secondItem="003-NH-X3f" secondAttribute="trailing" id="T6r-pP-V1m"/>
+                                    <constraint firstAttribute="trailing" secondItem="YW3-bM-Uzp" secondAttribute="trailing" id="ZJn-08-6CP"/>
+                                    <constraint firstAttribute="bottom" secondItem="YW3-bM-Uzp" secondAttribute="bottom" id="a01-CH-Zr4"/>
                                     <constraint firstItem="2HJ-1W-wzt" firstAttribute="centerY" secondItem="ssR-6d-Jmt" secondAttribute="centerY" id="aks-qj-DNx"/>
                                     <constraint firstAttribute="width" secondItem="ssR-6d-Jmt" secondAttribute="height" multiplier="1:1" id="bUq-di-NUu"/>
                                     <constraint firstItem="2HJ-1W-wzt" firstAttribute="centerX" secondItem="ssR-6d-Jmt" secondAttribute="centerX" id="jdU-MC-c27"/>
-                                    <constraint firstItem="YW3-bM-Uzp" firstAttribute="bottom" secondItem="003-NH-X3f" secondAttribute="bottom" id="oWR-kw-oyp"/>
-                                    <constraint firstItem="003-NH-X3f" firstAttribute="top" secondItem="ssR-6d-Jmt" secondAttribute="top" id="qle-is-v63"/>
+                                    <constraint firstItem="YW3-bM-Uzp" firstAttribute="top" secondItem="ssR-6d-Jmt" secondAttribute="top" id="sEM-YP-O7M"/>
+                                    <constraint firstItem="YW3-bM-Uzp" firstAttribute="leading" secondItem="ssR-6d-Jmt" secondAttribute="leading" id="uXz-10-U1U"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
@@ -137,15 +135,6 @@
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                         <real key="value" value="-1"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="startColor">
-                                        <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="endColor">
-                                        <color key="value" red="0.99959295989999997" green="0.82827109099999996" blue="0.83094799519999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="colorCenterCircle">
-                                        <color key="value" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
@@ -306,10 +295,8 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="boostButton" destination="6Rn-sI-NBS" id="s6b-az-dmx"/>
-                        <outlet property="diplayedInfoCircleContainer" destination="ssR-6d-Jmt" id="hiC-A1-ZBH"/>
-                        <outlet property="displayPieChartView" destination="003-NH-X3f" id="ZV3-Z4-pxB"/>
                         <outlet property="displayedInfoCircle" destination="2HJ-1W-wzt" id="iTj-ck-1oG"/>
-                        <outlet property="gaugeView" destination="YW3-bM-Uzp" id="VpR-hY-fTD"/>
+                        <outlet property="gauge" destination="YW3-bM-Uzp" id="Vua-mI-QzJ"/>
                         <outlet property="infoStageLabel" destination="C3F-XL-ICb" id="xsR-33-838"/>
                         <outlet property="infoUsedMemoryPercentLabel" destination="jsG-Ug-rhh" id="8zA-rW-J5g"/>
                         <outlet property="percentLabel" destination="UTE-Xo-mpJ" id="EcM-n8-lJd"/>

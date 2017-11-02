@@ -28,6 +28,13 @@
 		3BA937631F973BFF002AA152 /* GoogleMobileAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BA937621F973BFF002AA152 /* GoogleMobileAds.framework */; };
 		3BA937651F973DA7002AA152 /* GoogleAdsMob.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA937641F973DA7002AA152 /* GoogleAdsMob.swift */; };
 		3BB71E301F9857B000263DF5 /* SystemServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB71E2F1F9857B000263DF5 /* SystemServices.swift */; };
+		3BE357561FAAC1620004D688 /* CAShapeLayer+oval.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BE357531FAAC14B0004D688 /* CAShapeLayer+oval.swift */; };
+		3BE357571FAAC1620004D688 /* Gauge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BE357511FAAC14A0004D688 /* Gauge.swift */; };
+		3BE357581FAAC1620004D688 /* Gauge+Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BE357541FAAC14B0004D688 /* Gauge+Animations.swift */; };
+		3BE357591FAAC1620004D688 /* GaugeCircle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BE357521FAAC14B0004D688 /* GaugeCircle.swift */; };
+		3BE3575A1FAAC1620004D688 /* GaugeHalf.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BE357551FAAC14B0004D688 /* GaugeHalf.swift */; };
+		3BE3575B1FAAC1620004D688 /* GaugeLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BE3574F1FAAC14A0004D688 /* GaugeLine.swift */; };
+		3BE3575C1FAAC1620004D688 /* UIColor+Blend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BE357501FAAC14A0004D688 /* UIColor+Blend.swift */; };
 		3F223BFA1F91A13C0075911F /* NetworkServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F223BF91F91A13C0075911F /* NetworkServices.swift */; };
 		3F2241D01F91FE220075911F /* ConvertMpbs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F223BFD1F91A7810075911F /* ConvertMpbs.swift */; };
 		3F30D7241F8885DF00C28CA2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F30D7231F8885D900C28CA2 /* Main.storyboard */; };
@@ -130,6 +137,13 @@
 		3BA937621F973BFF002AA152 /* GoogleMobileAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMobileAds.framework; path = Cleaner/GoogleMobileAds.framework; sourceTree = "<group>"; };
 		3BA937641F973DA7002AA152 /* GoogleAdsMob.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleAdsMob.swift; sourceTree = "<group>"; };
 		3BB71E2F1F9857B000263DF5 /* SystemServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemServices.swift; sourceTree = "<group>"; };
+		3BE3574F1FAAC14A0004D688 /* GaugeLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GaugeLine.swift; sourceTree = "<group>"; };
+		3BE357501FAAC14A0004D688 /* UIColor+Blend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Blend.swift"; sourceTree = "<group>"; };
+		3BE357511FAAC14A0004D688 /* Gauge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gauge.swift; sourceTree = "<group>"; };
+		3BE357521FAAC14B0004D688 /* GaugeCircle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GaugeCircle.swift; sourceTree = "<group>"; };
+		3BE357531FAAC14B0004D688 /* CAShapeLayer+oval.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CAShapeLayer+oval.swift"; sourceTree = "<group>"; };
+		3BE357541FAAC14B0004D688 /* Gauge+Animations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Gauge+Animations.swift"; sourceTree = "<group>"; };
+		3BE357551FAAC14B0004D688 /* GaugeHalf.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GaugeHalf.swift; sourceTree = "<group>"; };
 		3F20C9E41F95E8DD00DD46BD /* CPU.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CPU.swift; sourceTree = "<group>"; };
 		3F20C9E51F95E8DD00DD46BD /* FPS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FPS.swift; sourceTree = "<group>"; };
 		3F20C9E61F95E8DD00DD46BD /* Hardware.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hardware.swift; sourceTree = "<group>"; };
@@ -317,6 +331,20 @@
 			path = GoogleAdsMod;
 			sourceTree = "<group>";
 		};
+		3BE3574E1FAAC12D0004D688 /* GaugeView */ = {
+			isa = PBXGroup;
+			children = (
+				3BE357531FAAC14B0004D688 /* CAShapeLayer+oval.swift */,
+				3BE357511FAAC14A0004D688 /* Gauge.swift */,
+				3BE357541FAAC14B0004D688 /* Gauge+Animations.swift */,
+				3BE357521FAAC14B0004D688 /* GaugeCircle.swift */,
+				3BE357551FAAC14B0004D688 /* GaugeHalf.swift */,
+				3BE3574F1FAAC14A0004D688 /* GaugeLine.swift */,
+				3BE357501FAAC14A0004D688 /* UIColor+Blend.swift */,
+			);
+			path = GaugeView;
+			sourceTree = "<group>";
+		};
 		3F20C9E21F95E8DD00DD46BD /* SystemEye */ = {
 			isa = PBXGroup;
 			children = (
@@ -374,6 +402,7 @@
 		8475E7111F88B5D200F34CFC /* FrameWorks */ = {
 			isa = PBXGroup;
 			children = (
+				3BE3574E1FAAC12D0004D688 /* GaugeView */,
 				3B6BDEAB1F9D8CD80020A5CD /* Ping */,
 				3F20C9E21F95E8DD00DD46BD /* SystemEye */,
 				8475E7121F88B5D200F34CFC /* MMLanScan */,
@@ -674,6 +703,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3BE357561FAAC1620004D688 /* CAShapeLayer+oval.swift in Sources */,
+				3BE357571FAAC1620004D688 /* Gauge.swift in Sources */,
+				3BE357581FAAC1620004D688 /* Gauge+Animations.swift in Sources */,
+				3BE357591FAAC1620004D688 /* GaugeCircle.swift in Sources */,
+				3BE3575A1FAAC1620004D688 /* GaugeHalf.swift in Sources */,
+				3BE3575B1FAAC1620004D688 /* GaugeLine.swift in Sources */,
+				3BE3575C1FAAC1620004D688 /* UIColor+Blend.swift in Sources */,
 				3B289B421F9D9DB500906FBF /* Ping.m in Sources */,
 				FFE7246E1FA8BAE700E4D021 /* CleanerAsset.swift in Sources */,
 				3F9DE7821F96FF2B0018A861 /* Memory.swift in Sources */,
