@@ -75,6 +75,9 @@
 		FF0E30821F8214FF006CCBA9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF0E30801F8214FF006CCBA9 /* LaunchScreen.storyboard */; };
 		FF0E308D1F8214FF006CCBA9 /* CleanerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0E308C1F8214FF006CCBA9 /* CleanerTests.swift */; };
 		FF0E30981F8214FF006CCBA9 /* CleanerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0E30971F8214FF006CCBA9 /* CleanerUITests.swift */; };
+		FF545E891FAAEF850024B185 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF545E881FAAEF850024B185 /* ActivityIndicator.swift */; };
+		FFC9BB7F1FAAF9E5009FDE2A /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC9BB7E1FAAF9E5009FDE2A /* Reachability.swift */; };
+		FFC9BB811FAAFD17009FDE2A /* Reachabilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC9BB801FAAFD17009FDE2A /* Reachabilities.swift */; };
 		FFD68E411F8CCEED00B1AC9A /* UrlExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD68E401F8CCEED00B1AC9A /* UrlExtension.swift */; };
 		FFD8EE571FA9A002007C9C3C /* ActivityIndicator.xib in Resources */ = {isa = PBXBuildFile; fileRef = FFD8EE561FA9A002007C9C3C /* ActivityIndicator.xib */; };
 		FFD983631FA831CF0055DF03 /* PhotoServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD983621FA831CF0055DF03 /* PhotoServices.swift */; };
@@ -203,6 +206,9 @@
 		FF0E30931F8214FF006CCBA9 /* CleanerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CleanerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF0E30971F8214FF006CCBA9 /* CleanerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CleanerUITests.swift; sourceTree = "<group>"; };
 		FF0E30991F8214FF006CCBA9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FF545E881FAAEF850024B185 /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
+		FFC9BB7E1FAAF9E5009FDE2A /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
+		FFC9BB801FAAFD17009FDE2A /* Reachabilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachabilities.swift; sourceTree = "<group>"; };
 		FFD68E401F8CCEED00B1AC9A /* UrlExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrlExtension.swift; sourceTree = "<group>"; };
 		FFD8EE561FA9A002007C9C3C /* ActivityIndicator.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ActivityIndicator.xib; sourceTree = "<group>"; };
 		FFD983621FA831CF0055DF03 /* PhotoServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoServices.swift; sourceTree = "<group>"; };
@@ -385,6 +391,9 @@
 				8425DC3E1F9EB54300AE29C7 /* PHAssetExtension.swift */,
 				3F30D72A1F88880700C28CA2 /* Constants.swift */,
 				84E39D781F8C3CD9004B77F3 /* ViewControllerHelper.swift */,
+				FFC9BB7E1FAAF9E5009FDE2A /* Reachability.swift */,
+				FFC9BB801FAAFD17009FDE2A /* Reachabilities.swift */,
+				FF545E881FAAEF850024B185 /* ActivityIndicator.swift */,
 				FFD8EE561FA9A002007C9C3C /* ActivityIndicator.xib */,
 			);
 			name = SupportFiles;
@@ -705,10 +714,12 @@
 			files = (
 				3BE357561FAAC1620004D688 /* CAShapeLayer+oval.swift in Sources */,
 				3BE357571FAAC1620004D688 /* Gauge.swift in Sources */,
+				FFC9BB811FAAFD17009FDE2A /* Reachabilities.swift in Sources */,
 				3BE357581FAAC1620004D688 /* Gauge+Animations.swift in Sources */,
 				3BE357591FAAC1620004D688 /* GaugeCircle.swift in Sources */,
 				3BE3575A1FAAC1620004D688 /* GaugeHalf.swift in Sources */,
 				3BE3575B1FAAC1620004D688 /* GaugeLine.swift in Sources */,
+				FF545E891FAAEF850024B185 /* ActivityIndicator.swift in Sources */,
 				3BE3575C1FAAC1620004D688 /* UIColor+Blend.swift in Sources */,
 				3B289B421F9D9DB500906FBF /* Ping.m in Sources */,
 				FFE7246E1FA8BAE700E4D021 /* CleanerAsset.swift in Sources */,
@@ -720,6 +731,7 @@
 				3F9DE7851F96FF830018A861 /* FPS.swift in Sources */,
 				3B2A43931F877B5F0053A89B /* JunkCleanVC.swift in Sources */,
 				3F9DE7861F96FF830018A861 /* Hardware.swift in Sources */,
+				FFC9BB7F1FAAF9E5009FDE2A /* Reachability.swift in Sources */,
 				3B2A439C1F877B670053A89B /* GradientColorView.swift in Sources */,
 				3FD96D391FA98A5300AF332E /* GaugeView.swift in Sources */,
 				3B2A43941F877B5F0053A89B /* DashboardVC.swift in Sources */,

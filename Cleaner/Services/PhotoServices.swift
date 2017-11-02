@@ -84,7 +84,7 @@ class PhotoServices : NSObject, PHPhotoLibraryChangeObserver {
             case .notDetermined:
                 fallthrough
             case .restricted:
-                showAlertToAccessAppFolder(title: "No Photo Permissions", message: "Please grant photo permissions in Settings")
+                showAlertToOpenSetting(title: "No Photo Permissions", message: "Please grant photo permissions in Settings")
             }
         }
     }

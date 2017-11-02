@@ -15,7 +15,6 @@ struct NotificationName {
     static let didFinishTestUpload = Notification.Name.init("didFinishTestUpload")
     static let didFinishFetchPHAsset = Notification.Name.init("didFinishFetchPHAsset")
     static let didFinishSortedFile = Notification.Name.init("didFinishSortedFile")
-    
     static let didAddPHAsset = Notification.Name.init("didAddPHAsset")
 
     static let reloadData = Notification.Name.init("reloadData")

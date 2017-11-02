@@ -9,7 +9,7 @@
 import UIKit
 import Foundation
 
-protocol NetworkScannerDelegate {
+protocol NetworkScannerDelegate: class {
     func networkScannerIPSearchFinished()
     func networkScannerIPSearchCancelled()
     func networkScannerIPSearchFailed()
@@ -22,7 +22,7 @@ class NetworkScanner: NSObject, MMLANScannerDelegate {
     @objc dynamic var isScanRunning : BooleanLiteralType = false
     
     var lanScanner : MMLANScanner!
-    var delegate : NetworkScannerDelegate?
+    weak var delegate : NetworkScannerDelegate?
     
     //MARK: - Custom init method
     //Initialization with delegate

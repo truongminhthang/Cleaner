@@ -31,9 +31,11 @@ class NetworkSpeedVC: UIViewController ,SimplePingDelegate{
         super.viewDidLoad()
         speedButton.isEnabled = true
         registerNotification()
-        _ = isConnectionAvailable()
-
-        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        AppDelegate.shared.reachabilityChanged()
     }
     func registerNotification() {
         NotificationCenter.default.addObserver(self, selector: #selector(updateDownloadSpeed), name: NotificationName.updateDownloadSpeed, object: nil)
@@ -67,16 +69,14 @@ class NetworkSpeedVC: UIViewController ,SimplePingDelegate{
     }
     
     @IBAction func clickAndStart(_ sender: UIButton) {
-        if isConnectionAvailable() {
+        guard AppDelegate.shared.reachability.connection != .none else {return}
+        
         NetworkServices.shared.pingHostname(hostname: "google.com") { [unowned self] latency in
             DispatchQueue.main.async {
                 self.pingLabel?.text = latency
             }
         }
         speedButton.isEnabled = false
-       } else {
-             showAlert(title: "Warning", message: "The Internet is not available")
-        }
     }
     
     private func convertFromSpeedToDegree(_ speed: Float) -> Degree {
@@ -108,7 +108,6 @@ class NetworkSpeedVC: UIViewController ,SimplePingDelegate{
             let startPoint =  (5 * fortyDegreeConstant)
             let rangeSpeed = Float(500_000_000 - 80_000_000)
             return (speed - 80_000_000) * fortyDegreeConstant / rangeSpeed + startPoint
-            
         }
     }
     private func rotateIndicator(with degree: Float) {
@@ -125,7 +124,6 @@ class NetworkSpeedVC: UIViewController ,SimplePingDelegate{
             self.currentIndicatorDegree = 0
             self.speedButton.isEnabled = true
         })
-        _ = isConnectionAvailable()
     }
     
     @objc private func resetIndicator() {
@@ -134,7 +132,6 @@ class NetworkSpeedVC: UIViewController ,SimplePingDelegate{
             self.indictorView.transform = CGAffineTransform(rotationAngle: CGFloat(0))
         },  completion: nil)
         speedButton.isEnabled = true
-        _ = isConnectionAvailable()
     }
     
     private func convertSpeedToDisplayedString(speed: Float) -> String {

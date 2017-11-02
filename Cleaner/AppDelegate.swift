@@ -14,27 +14,32 @@ import SystemConfiguration
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDelegate {
     
-    var window: UIWindow?
-    var isFakeModeApp : Bool = true
-    var isDashboardDisplay: Bool = false
     static var shared = {
         return UIApplication.shared.delegate as! AppDelegate
     }()
     
+    var window: UIWindow?
+    var isFakeModeApp : Bool = true
+    var isDashboardDisplay: Bool = false
     var photoService : PhotoServices?
     
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
-        
-        UIApplication.shared.statusBarStyle = .default
-        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]){ (allowed, error) in
-            UNUserNotificationCenter.current().delegate = self
-            self.scheduleNotification()
+    var reachability: Reachability! = {
+        guard let reachability = Reachability(hostname: "google.com") else {
+            return nil
         }
-        application.applicationIconBadgeNumber = 0
-           GoogleAdMob.sharedInstance.showInterstitial()
-        
-        return true
+        NotificationCenter.default.addObserver(self, selector: #selector(reachabilityChanged), name: .reachabilityChanged, object: reachability)
+        return reachability
+    }()
+    
+    @objc func reachabilityChanged() {
+        switch reachability.connection {
+        case .none:
+                showAlertToOpenSetting(title: "Cellular Data is Turned Off", message: "Turn on cellular data and allow app to access or use Wi-Fi to access data.")
+        case .wifi:
+            break
+        case .cellular:
+            break
+        }
     }
     
     func scheduleNotification() {
@@ -59,11 +64,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
                 print("error: \(error)")
             }
         }
-        
     }
     
     
     
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        // Override point for customization after application launch.
+        UIApplication.shared.statusBarStyle = .default
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]){ (allowed, error) in
+            UNUserNotificationCenter.current().delegate = self
+            self.scheduleNotification()
+        }
+        application.applicationIconBadgeNumber = 0
+        GoogleAdMob.sharedInstance.showInterstitial()
+        
+        return true
+    }
     
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
@@ -79,11 +95,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
     func applicationWillEnterForeground(_ application: UIApplication) {
         // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
         application.applicationIconBadgeNumber = 0
-        
     }
     
     func applicationDidBecomeActive(_ application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+        reachabilityChanged()
         if photoService == nil {
             GoogleAdMob.sharedInstance.showInterstitial()
         } else {

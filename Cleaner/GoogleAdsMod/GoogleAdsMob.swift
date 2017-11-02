@@ -38,7 +38,7 @@ class GoogleAdMob: NSObject, GADInterstitialDelegate {
         didSet {
             guard !isTestMode else {return}
 
-            guard isConnectionAvailable() else {return}
+            guard AppDelegate.shared.reachability.connection != .none else {return}
 
             if isBannerDisplay {
                 self.bannerView?.isHidden = false
@@ -63,7 +63,7 @@ class GoogleAdMob: NSObject, GADInterstitialDelegate {
     
     @objc private func createBannerView() {
         guard !isTestMode else {return}
-        guard isConnectionAvailable() else {return}
+        guard AppDelegate.shared.reachability.connection != .none else {return}
         if UIApplication.shared.keyWindow?.rootViewController == nil {
             NSObject.cancelPreviousPerformRequests(withTarget: self, selector: #selector(createBannerView), object: nil)
             self.perform(#selector(createBannerView), with: nil, afterDelay: 0.5)
@@ -100,8 +100,7 @@ class GoogleAdMob: NSObject, GADInterstitialDelegate {
     
     func showInterstitial() {
         guard !isTestMode else {return}
-        guard isConnectionAvailable() else {return}
-
+        guard AppDelegate.shared.reachability.connection != .none else {return}
         if interstitialAds.isReady {
             interstitialAds.present(fromRootViewController: (UIApplication.shared.keyWindow?.rootViewController)!)
         } else {

@@ -43,23 +43,18 @@ class WifiScanResultVC: UIViewController, UITableViewDataSource, UITableViewDele
     }
     
     func addObserversForKVO ()->Void {
-        
         self.networkScanner.addObserver(self, forKeyPath: "connectedDevices", options: .new, context:&myContext)
-        
         self.networkScanner.addObserver(self, forKeyPath: "isScanRunning", options: .new, context:&myContext)
     }
     
     func removeObserversForKVO ()->Void {
-        
         self.networkScanner.removeObserver(self, forKeyPath: "connectedDevices")
-        
         self.networkScanner.removeObserver(self, forKeyPath: "isScanRunning")
     }
     
     
     
     @IBAction func reScan(_ sender: UIButton) {
-        
         self.networkScanner.scan()
         self.spinner.isHidden = false
         self.spinner.startAnimating()
@@ -81,8 +76,8 @@ class WifiScanResultVC: UIViewController, UITableViewDataSource, UITableViewDele
     }
     
     func networkScannerIPSearchFailed() {
-        showAlert(title: "Failed to scan", message: "Please make sure that you are connected to a WiFi before starting LAN Scan", completeHandler: {
-            GoogleAdMob.sharedInstance.showInterstitial()
+        showAlert(title: "Please connect to Wi-Fi first", message: "", completeHandler: {[weak self] in
+            self?.navigationController?.popViewController(animated: true)
         })
         networkScanner.stop()
         self.spinner.stopAnimating()
@@ -133,7 +128,6 @@ class WifiScanResultVC: UIViewController, UITableViewDataSource, UITableViewDele
     }
     
     deinit {
-        
         self.removeObserversForKVO()
     }
     @IBAction func doneButton(_ sender: UIBarButtonItem) {
