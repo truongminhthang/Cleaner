@@ -11,7 +11,11 @@ import UIKit
 class JunkCleanVC: UIViewController,CAAnimationDelegate {
     
     @IBOutlet weak var displayPieChartView: PieChartView!
-    @IBOutlet weak var gaugeView: GaugeView!
+    @IBOutlet weak var gaugeView: GaugeView! {
+        didSet {
+            gaugeView.transform = CGAffineTransform(rotationAngle: -CGFloat.pi / 2)
+        }
+    }
     @IBOutlet weak var middleView: PieChartView!
     @IBOutlet weak var biggerView: View!
     @IBOutlet weak var UnderView: GradientView!
@@ -49,6 +53,14 @@ class JunkCleanVC: UIViewController,CAAnimationDelegate {
             gradient.add(colorChangeAnimation, forKey: "color")
         }
     }
+    var controlPieChartView: Double = 0 {
+        didSet {
+            displayPieChartView.addItem(value: 100 - Float(controlPieChartView), color: UIColor.red)
+            displayPieChartView.addItem(value: Float(controlPieChartView), color: UIColor.white)
+            displayPieChartView.setNeedsDisplay()
+
+        }
+    }
     var storeageReduce: Double = 0
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,10 +69,7 @@ class JunkCleanVC: UIViewController,CAAnimationDelegate {
         self.freeDiskLabel.text  = ByteCountFormatter.string(fromByteCount: Int64(SystemServices.shared.diskSpaceUsage(inPercent: false).freeDiskSpace), countStyle: .binary)
         storeageReduce = SystemServices.shared.diskSpaceUsage(inPercent: false).freeDiskSpace
         middleView.backgroundColor = UIColor.clear
-        let freeDiskSpacePercent = SystemServices.shared.diskSpaceUsage(inPercent: true).freeDiskSpace
-        displayPieChartView.addItem(value: 100 - Float(freeDiskSpacePercent), color: UIColor.red)
-        displayPieChartView.addItem(value: Float(SystemServices.shared.diskSpaceUsage(inPercent: true).freeDiskSpace), color: UIColor.white)
-        displayPieChartView.setNeedsDisplay()
+        controlPieChartView = SystemServices.shared.diskSpaceUsage(inPercent: true).freeDiskSpace
     }
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
@@ -142,7 +151,7 @@ class JunkCleanVC: UIViewController,CAAnimationDelegate {
     @objc func repeatFire(){
         if valueAdd > 0 {
             valueAdd -= 1
-            UIView.animate(withDuration: 1 , delay: 1, options: .curveLinear, animations: {
+            UIView.animate(withDuration: 1 , delay: 1, options: .curveEaseInOut, animations: {
                 self.valueUp(view: self.gaugeView)
             }) { (_) in
                 self.valueDown(view: self.gaugeView)

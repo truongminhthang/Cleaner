@@ -85,7 +85,7 @@ class NetworkSpeedVC: UIViewController ,SimplePingDelegate, NetworkServicesToVCP
         DispatchQueue.main.async {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
                 self.reset(completeHandler: {
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
                         self.indicatorFlag = true
                         NetworkServices.shared.startUpload()
                         
@@ -118,7 +118,12 @@ class NetworkSpeedVC: UIViewController ,SimplePingDelegate, NetworkServicesToVCP
     }
     
     @IBAction func clickAndStart(_ sender: UIButton) {
-        //        guard AppDelegate.shared.reachability.connection != .none else {return}
+        guard AppDelegate.shared.reachability.connection != .none else {
+            showAlert(title: "Please connect to Internet first", message: "", completeHandler: {[weak self] in
+                self?.navigationController?.popViewController(animated: true)
+            })
+            return
+        }
         NetworkServices.shared.ping()
         speedButton.isEnabled = false
     }
