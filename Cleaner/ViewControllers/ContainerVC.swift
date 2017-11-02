@@ -27,7 +27,7 @@ class ContainerVC: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         registerNotification()
-        isSideMenuOpen = true
+        isSideMenuOpen = false
     }
 
     override func viewDidAppear(_ animated: Bool) {
