@@ -92,6 +92,7 @@ class CleanerAsset: Equatable {
     public static func ==(lhs: CleanerAsset, rhs: CleanerAsset) -> Bool {
         return lhs.representedAssetIdentifier == rhs.representedAssetIdentifier
 
+
     }
 
  

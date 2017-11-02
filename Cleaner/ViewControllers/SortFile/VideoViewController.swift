@@ -15,7 +15,6 @@ class VideoViewController: DetailVC {
     @IBOutlet weak var playButton: UIButton!
     @IBOutlet weak var stopCorverButton: UIButton!
     fileprivate var playerLayer: AVPlayerLayer?
-    fileprivate var playerLooper: AVPlayerLooper?
     var isPlaying = false {
         didSet {
             playButton.isHidden = isPlaying
@@ -68,17 +67,13 @@ class VideoViewController: DetailVC {
                 // Create an AVPlayer and AVPlayerLayer with the AVPlayerItem.
                 if #available(iOS 11.0, *) {
                     if self.cleanerAsset.asset.playbackStyle == .videoLooping {
-                        let queuePlayer = AVQueuePlayer(playerItem: playerItem)
-                        self.playerLooper = AVPlayerLooper(player: queuePlayer, templateItem: playerItem!)
-                        self.player = queuePlayer
+                        self.player = AVQueuePlayer(playerItem: playerItem)
                     } else {
                         self.player = AVPlayer(playerItem: playerItem)
                     }
-                } else {
+                }  else {
                     if self.cleanerAsset.asset.mediaType == .video {
-                        let queuePlayer = AVQueuePlayer(playerItem: playerItem)
-                        self.playerLooper = AVPlayerLooper(player: queuePlayer, templateItem: playerItem!)
-                        self.player = queuePlayer
+                        self.player = AVQueuePlayer(playerItem: playerItem)
                     } else {
                         self.player = AVPlayer(playerItem: playerItem)
                     }

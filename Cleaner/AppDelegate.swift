@@ -12,7 +12,7 @@ import UserNotifications
 import SystemConfiguration
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDelegate {
+class 	AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDelegate {
     
     var window: UIWindow?
     var isFakeModeApp : Bool = true
@@ -25,10 +25,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
         // Override point for customization after application launch.
         
         UIApplication.shared.statusBarStyle = .default
-        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]){ (allowed, error) in
-            UNUserNotificationCenter.current().delegate = self
-            self.scheduleNotification()
-        }
         application.applicationIconBadgeNumber = 0
            GoogleAdMob.sharedInstance.showInterstitial()
         

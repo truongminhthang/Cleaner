@@ -38,11 +38,6 @@ class DetailImageVC: DetailVC, UIScrollViewDelegate {
             scrollView.minimumZoomScale = 1.0
         }
     }
-
-    fileprivate var playerLayer: AVPlayerLayer!
-    fileprivate var playerLooper: AVPlayerLooper?
-    fileprivate var isPlayingHint = false
-
     override func viewDidLoad() {
         super.viewDidLoad()
         displayImage()
@@ -52,6 +47,9 @@ class DetailImageVC: DetailVC, UIScrollViewDelegate {
         GoogleAdMob.sharedInstance.toogleBanner()
     }
     
+    func viewForZooming(in scrollView: UIScrollView) -> UIView? {
+        return self.detailImageView
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -61,12 +59,6 @@ class DetailImageVC: DetailVC, UIScrollViewDelegate {
         return CGSize(width: detailImageView.bounds.width * scale,
                       height: detailImageView.bounds.height * scale )
     }
-    func viewForZooming(in scrollView: UIScrollView) -> UIView? {
-        return self.detailImageView
-    }
-    
-
-    
     func displayImage() {
         let options = PHImageRequestOptions()
         options.deliveryMode  = .highQualityFormat

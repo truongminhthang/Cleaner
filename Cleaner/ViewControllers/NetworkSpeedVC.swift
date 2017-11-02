@@ -138,6 +138,7 @@ class NetworkSpeedVC: UIViewController ,SimplePingDelegate{
         _ = isConnectionAvailable()
     }
     
+    @available(iOS 10.0, *)
     private func convertSpeedToDisplayedString(speed: Float) -> String {
         let speedConvert = String(format: "%.2f", speed / 1_000_000)
         let speedConvertString = Measurement(value: Double(speedConvert)!, unit: UnitDataRate.megabitPerSecond)
