@@ -210,9 +210,6 @@ open class Gauge: UIView {
                 default:
                     let percentageInSector: CGFloat = ((rate / maxValue * CGFloat(colorsArray.count - 1) * 100.0).truncatingRemainder(dividingBy: 100.0)) / 100.0
                     let currentSector: Int = Int(rate / maxValue * CGFloat(colorsArray.count - 1)) + 1
-                    //print(currentSector)
-                    //print(percentageInSector)
-                    
                     let firstColor = colorsArray[currentSector - 1]
                     let secondColor = colorsArray[min(currentSector, colorsArray.count - 1)]
                     

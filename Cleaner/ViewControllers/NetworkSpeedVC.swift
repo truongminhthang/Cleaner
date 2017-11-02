@@ -8,6 +8,7 @@
 
 
 import UIKit
+import os.log
 
 typealias Degree = Double
 
@@ -22,11 +23,20 @@ class NetworkSpeedVC: UIViewController ,SimplePingDelegate, NetworkServicesToVCP
     let pingInterval: TimeInterval = 3
     let timeoutIntertval: TimeInterval = 4
     var networkService = NetworkServices.shared
-    let fortyDegreeConstant = Double.pi / 180.0 * 45.0
-    var isRotating = false
+    let fortyDegreeConstant = Double.pi / 180 * 45
+    var indicatorFlag = true
     var currentIndicatorDegree : Double = 0 {
         didSet {
-            self.rotateIndicator(with: currentIndicatorDegree)
+            if currentIndicatorDegree >= Double.pi, indicatorFlag {
+                self.rotateIndicator(with: currentIndicatorDegree / 2, completeHander:  {
+                    self.rotateIndicator(with: self.currentIndicatorDegree)
+                })
+                indicatorFlag = false
+            } else {
+                
+                self.rotateIndicator(with: currentIndicatorDegree)
+            }
+
         }
     }
     override func viewDidLoad() {
@@ -73,12 +83,14 @@ class NetworkSpeedVC: UIViewController ,SimplePingDelegate, NetworkServicesToVCP
     func didFinishDownload() {
         print("didFinishDownload")
         DispatchQueue.main.async {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                self.rotateIndicator(with: Double(0)) {
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
+                self.reset(completeHandler: {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
+                        self.indicatorFlag = true
                         NetworkServices.shared.startUpload()
+                        
                     }
-                }
+                })
             }
             
         }
@@ -86,15 +98,23 @@ class NetworkSpeedVC: UIViewController ,SimplePingDelegate, NetworkServicesToVCP
     func didFinishUpload() {
         print("didFinishUpload")
         DispatchQueue.main.async {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                self.rotateIndicator(with: Double(0))
-                self.speedButton.isEnabled = true
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
+                self.reset(completeHandler: {
+                    self.indicatorFlag = true
+                    self.speedButton.isEnabled = true
+
+                })
             }
         }
     }
-    @IBAction func reset(sender: UIButton) {
-        self.rotateIndicator(with: Double(0))
-        
+    
+    func reset(completeHandler: (() -> Void)? = nil ) {
+        self.rotateIndicator(with: currentIndicatorDegree / 2, completeHander: {
+            self.rotateIndicator(with: Double(0), completeHander: {
+                self.currentIndicatorDegree = 0
+                completeHandler?()
+            }, duration: 0.7)
+        },duration: 0.7)
     }
     
     @IBAction func clickAndStart(_ sender: UIButton) {
@@ -134,13 +154,10 @@ class NetworkSpeedVC: UIViewController ,SimplePingDelegate, NetworkServicesToVCP
             return (speed - 80_000_000) * fortyDegreeConstant / rangeSpeed + startPoint
         }
     }
-    private func rotateIndicator(with degree: Double, completeHander: (()-> Void)? = nil) {
-        guard isRotating == false else {return}
-        isRotating = true
-        UIView.animate(withDuration: 0.1, delay: 0, options: .curveEaseInOut, animations: {
+    private func rotateIndicator(with degree: Double, completeHander: (()-> Void)? = nil, duration: Double = 0.1) {
+        UIView.animate(withDuration: duration, delay: 0, options: .curveLinear, animations: {
             self.indictorView.transform = CGAffineTransform(rotationAngle: CGFloat(degree))
         }, completion: { success in
-            self.isRotating = false
             completeHander?()}
         )
     }

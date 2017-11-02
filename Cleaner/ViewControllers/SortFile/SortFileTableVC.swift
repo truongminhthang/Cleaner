@@ -92,11 +92,9 @@ class SortFileTableVC: UITableViewController {
     
     @objc func runAddMoreValue() {
         let step = 5278000.0
-        guard displayAddMoreFreeSize < addMoreFreeSize - step else {
-           
+        guard displayAddMoreFreeSize < addMoreFreeSize - step else {           
             timer?.invalidate()
             timer = nil
-            
             freeSize -= displayAddMoreFreeSize
             freeSize += addMoreFreeSize
             displayAddMoreFreeSize = addMoreFreeSize
@@ -115,8 +113,6 @@ class SortFileTableVC: UITableViewController {
             self.freeSize += step
         }
     }
-    
-
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
