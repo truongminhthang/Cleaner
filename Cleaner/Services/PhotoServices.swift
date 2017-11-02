@@ -19,7 +19,7 @@ class PhotoServices : NSObject, PHPhotoLibraryChangeObserver {
     private var _displayedAssets : [CleanerAsset] = [] {
         didSet {
             guard !isDeleting else {return}
-            NotificationCenter.default.post(name: NotificationName.didFinishFetchPHAsset, object: nil)
+            NotificationCenter.default.post(name: Notification.Name.didFinishFetchPHAsset, object: nil)
         }
     }
     
@@ -129,7 +129,7 @@ class PhotoServices : NSObject, PHPhotoLibraryChangeObserver {
         self.displayedAssets = self.displayedAssets.sorted(by: {$0.fileSize > $1.fileSize})
         self.isFetching = false
         self.isRemoving = false
-        NotificationCenter.default.post(name: NotificationName.didFinishSortedFile, object: nil)
+        NotificationCenter.default.post(name: Notification.Name.didFinishSortedFile, object: nil)
         ActivityIndicator.shared.hideActivity()
     }
     

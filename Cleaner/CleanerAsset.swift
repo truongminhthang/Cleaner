@@ -54,7 +54,7 @@ class CleanerAsset: Equatable {
                     self.thumbnail = image
                     self.thumbnailStatus = .goodToGo
                     if !photoService.isFetching {
-                        NotificationCenter.default.post(name: NotificationName.didFinishFetchPHAsset, object: nil)
+                        NotificationCenter.default.post(name: Notification.Name.didFinishFetchPHAsset, object: nil)
 
                     }
                     completeBlock?()

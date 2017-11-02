@@ -31,7 +31,7 @@ class SortFileTableVC: UITableViewController {
     func initPhotoServicesIfNeed() {
         guard AppDelegate.shared.photoService == nil else {return}
         AppDelegate.shared.photoService = PhotoServices()
-    }
+    }  
     override func viewWillDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         ActivityIndicator.shared.hideActivity()
@@ -40,8 +40,8 @@ class SortFileTableVC: UITableViewController {
     }
     
     func registerNotification() {
-        NotificationCenter.default.addObserver(self, selector: #selector(reloadData), name: NotificationName.didFinishFetchPHAsset, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(didFinishSortedFile), name: NotificationName.didFinishSortedFile, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadData), name: Notification.Name.didFinishFetchPHAsset, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(didFinishSortedFile), name: Notification.Name.didFinishSortedFile, object: nil)
     }
     
     deinit {

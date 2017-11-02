@@ -59,7 +59,7 @@ class MenuTableVC: UITableViewController {
     */
    
     @IBAction func closeSideMenu() {
-        NotificationCenter.default.post(name: NotificationName.toggleMenu, object: nil)
+        NotificationCenter.default.post(name: Notification.Name.toggleMenu, object: nil)
         tableView.reloadData()
     }
 

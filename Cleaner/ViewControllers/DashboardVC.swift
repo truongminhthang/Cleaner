@@ -39,7 +39,7 @@ class DashboardVC: UIViewController{
     }
     
     @IBAction func openSideMenu(_ sender: UIBarButtonItem) {
-        NotificationCenter.default.post(name: NotificationName.toggleMenu, object: nil)
+        NotificationCenter.default.post(name: Notification.Name.toggleMenu, object: nil)
     }
     // MARK: Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

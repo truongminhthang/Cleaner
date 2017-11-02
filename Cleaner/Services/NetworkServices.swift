@@ -9,20 +9,23 @@
 import Foundation
 import UIKit
 import os.log
-public typealias PingClientCallback = (String?)->()
+
+protocol NetworkServicesToVCProtocol: class {
+    func networkServices(_ networkServices: NetworkServices, updateDownloadSpeed downloadSpeed: Double)
+    func networkServices(_ networkServices: NetworkServices, updateUploadSpeed uploadSpeed: Double)
+    func networkServices(_ networkServices: NetworkServices, updatelatency latency: Double?)
+    func didFinishDownload()
+    func didFinishUpload()
+}
+
 class NetworkServices: NSObject {
-    let url = URL(string: "http://www.nasa.gov/sites/default/files/saturn_collage.jpg")
+    let url = URL(string: "http://speedtest1.vtn.com.vn/speedtest/random4000x4000.jpg")
     static let shared : NetworkServices = NetworkServices()
-    // Init
-    private override init() {
-        super.init()
-        let backgroundSessionConfiguration = URLSessionConfiguration.background(withIdentifier: "backgroundSession")
-        backgroundSessionConfiguration.timeoutIntervalForResource = TimeInterval(10)
-        backgroundSession = URLSession(configuration: backgroundSessionConfiguration, delegate: self, delegateQueue: OperationQueue.main)
-    }
+    
+    weak var delegate: NetworkServicesToVCProtocol?
+    
     // Properties ping
-    fileprivate var resultCallback: PingClientCallback?
-    fileprivate var pingClinet: Ping?
+    fileprivate var pingClinet = Ping(hostName: "speedtest1.vtn.com.vn")
     fileprivate var dateReference: Date?
 
     // Properties url session
@@ -33,20 +36,34 @@ class NetworkServices: NSObject {
     
     private var downloadStartTime = Date()
     private var uploadStartTime = Date()
-    var downloadSpeed : Float = 0.0 {
+    var downloadSpeed : Double = 0.0 {
         didSet {
-            NotificationCenter.default.post(name: NotificationName.updateDownloadSpeed, object: nil)
+            delegate?.networkServices(self, updateDownloadSpeed: downloadSpeed)
         }
     }
     
-    var uploadSpeed: Float = 0.0 {
+    var uploadSpeed: Double = 0.0 {
         didSet {
-            NotificationCenter.default.post(name: NotificationName.updateUploadSpeed, object: nil)
+            delegate?.networkServices(self, updateUploadSpeed: uploadSpeed)
         }
     }
-   
-    var isDownloading: Bool = false
-    var isUploading: Bool = false
+    
+    var latency: Double? = 0.0 {
+        didSet {
+            delegate?.networkServices(self, updatelatency: latency)
+        }
+    }
+    
+    // Init
+    private override init() {
+        super.init()
+        let backgroundSessionConfiguration = URLSessionConfiguration.background(withIdentifier: "backgroundSession")
+        backgroundSessionConfiguration.timeoutIntervalForResource = TimeInterval(10)
+        backgroundSession = URLSession(configuration: backgroundSessionConfiguration, delegate: self, delegateQueue: OperationQueue.main)
+        
+        pingClinet.delegate = self
+    }
+    
     
     // Download
     func startDownload() {
@@ -78,72 +95,53 @@ class NetworkServices: NSObject {
     }
     
     // Ping
-    public static func pingHostname(hostname: String, andResultCallback callback: PingClientCallback?) {
-        shared.pingHostname(hostname: hostname, andResultCallback: callback)
-    }
     
-    public func pingHostname(hostname: String, andResultCallback callback:  PingClientCallback?) {
-        resultCallback = callback
-        pingClinet = Ping(hostName: hostname)
-        pingClinet?.delegate = self
-        pingClinet?.start()
+    func ping() {
+        pingClinet.start()
     }
     
     func stopPing(pinger: Ping, latency:Double? = nil) {
-        startDownload()
         pinger.stop()
-        if latency != nil {
-            resultCallback?(String(format: "%.f ms", latency!))
-        } else {
-            resultCallback?(String(format: "error", latency!))
-        }
+        self.latency = latency
+        startDownload()
     }
     
     public func stopAllTest() {
-        pingClinet?.stop()
-        resultCallback = nil
+        pingClinet.stop()
         downloadTask?.cancel()
         uploadTask?.cancel()
     }
 }
 // MARK: - URLSessionDownloadDelegate
 extension NetworkServices: URLSessionDownloadDelegate {
-    func urlSession(_ session: URLSession,
-                    downloadTask: URLSessionDownloadTask,
-                    didFinishDownloadingTo location: URL) {
-        os_log("did Finish Downloading To", log: OSLog.default, type: .info)
-        NotificationCenter.default.post(name: NotificationName.didFinishTestDownload, object: nil)
-    }
     
     func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask,
                     didWriteData bytesWritten: Int64, totalBytesWritten: Int64,
                     totalBytesExpectedToWrite: Int64) {
         DispatchQueue.main.async {[unowned self] in
-            let downloadDuration = Float(Date().timeIntervalSince(self.downloadStartTime))
-            self.downloadSpeed =  Float(totalBytesWritten) / downloadDuration * 8
+            let downloadDuration = Double(Date().timeIntervalSince(self.downloadStartTime))
+            self.downloadSpeed =  Double(totalBytesWritten) / downloadDuration * 8
         }
+    }
+    func urlSession(_ session: URLSession,
+                    downloadTask: URLSessionDownloadTask,
+                    didFinishDownloadingTo location: URL) {
+
+        delegate?.didFinishDownload()
+        downloadTask.cancel()
+
     }
     
     func urlSession(_ session: URLSession,
                     task: URLSessionTask,
                     didCompleteWithError error: Error?){
-        
-        guard error == nil else {
-            print(error!.localizedDescription)
-            if task is URLSessionDownloadTask {
-                NotificationCenter.default.post(name: NotificationName.didFinishTestDownload, object: nil)
-            }
-            if task is URLSessionUploadTask {
-                NotificationCenter.default.post(name: NotificationName.didFinishTestUpload, object: nil)
+        if task is URLSessionDownloadTask {
+            delegate?.didFinishDownload()
+        } else if task is URLSessionUploadTask {
+            delegate?.didFinishUpload()
+        }
+        task.cancel()
 
-            }
-            
-            return
-        }
-        if task is URLSessionUploadTask {
-            NotificationCenter.default.post(name: NotificationName.didFinishTestUpload, object: nil)
-            GoogleAdMob.sharedInstance.showInterstitial()
-        }
     }
 }
 // MARK: - URLSessionTaskDelegate
@@ -151,8 +149,8 @@ extension NetworkServices : URLSessionTaskDelegate {
     
     func urlSession(_ session: URLSession, task: URLSessionTask, didSendBodyData bytesSent: Int64, totalBytesSent: Int64, totalBytesExpectedToSend: Int64) {
         DispatchQueue.main.async {[unowned self] in
-            let uploadDuration =  Float(Date().timeIntervalSince(self.uploadStartTime))
-            self.uploadSpeed = Float(totalBytesSent)/uploadDuration * 8
+            let uploadDuration =  Double(Date().timeIntervalSince(self.uploadStartTime))
+            self.uploadSpeed = Double(totalBytesSent)/uploadDuration * 8
         }
     }
     
