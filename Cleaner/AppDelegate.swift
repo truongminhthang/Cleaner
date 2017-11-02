@@ -21,6 +21,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
         return UIApplication.shared.delegate as! AppDelegate
     }()
     
+    var photoService : PhotoServices?
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
@@ -82,7 +84,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
     
     func applicationDidBecomeActive(_ application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-        GoogleAdMob.sharedInstance.showInterstitial()
+        if photoService == nil {
+            GoogleAdMob.sharedInstance.showInterstitial()
+        } else {
+            if photoService!.isDeleting == false {
+                GoogleAdMob.sharedInstance.showInterstitial()
+            }
+        }
     }
     
     func applicationWillTerminate(_ application: UIApplication) {

@@ -21,9 +21,15 @@ class SortFileTableVC: UITableViewController {
    
     override func viewDidLoad() {
         super.viewDidLoad()
+        initPhotoServicesIfNeed()
         freeSize = SystemServices.shared.diskSpaceUsage(inPercent: false).freeDiskSpace
         addMoreFreeDiskLabel.alpha = 0
         registerNotification()
+    }
+    
+    func initPhotoServicesIfNeed() {
+        guard AppDelegate.shared.photoService == nil else {return}
+        AppDelegate.shared.photoService = PhotoServices()
     }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
@@ -124,12 +130,12 @@ class SortFileTableVC: UITableViewController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return PhotoServices.shared.displayedAssets.count
+        return AppDelegate.shared.photoService!.displayedAssets.count
     }
     
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cleanerAsset = PhotoServices.shared.displayedAssets[indexPath.row]
+        let cleanerAsset = AppDelegate.shared.photoService!.displayedAssets[indexPath.row]
         let cellIdentifier = cleanerAsset.asset.duration == 0 ? "ImageCell" : "videoCell"
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! TableViewCell
         
@@ -160,13 +166,13 @@ class SortFileTableVC: UITableViewController {
             guard let destination = segue.destination as? VideoViewController
                 else { fatalError("unexpected view controller for segue") }
             if let selectedIndexPath = tableView.indexPathForSelectedRow  {
-                destination.cleanerAsset = PhotoServices.shared.displayedAssets[selectedIndexPath.row]
+                destination.cleanerAsset = AppDelegate.shared.photoService!.displayedAssets[selectedIndexPath.row]
             }
         case "show photo details":
             guard let destination = segue.destination as? DetailImageVC
                 else { fatalError("unexpected view controller for segue") }
             if let selectedIndexPath = tableView.indexPathForSelectedRow  {
-                destination.cleanerAsset = PhotoServices.shared.displayedAssets[selectedIndexPath.row]
+                destination.cleanerAsset = AppDelegate.shared.photoService!.displayedAssets[selectedIndexPath.row]
             }
         default:
             return
@@ -176,7 +182,7 @@ class SortFileTableVC: UITableViewController {
     // MARK: - Handle add and remove asset
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        let asset = PhotoServices.shared.displayedAssets[indexPath.row]
+        let asset = AppDelegate.shared.photoService!.displayedAssets[indexPath.row]
         if editingStyle == .delete {
             asset.remove(completionHandler: didFinishRemoveAsset)
             addMoreFreeSize = Double(asset.fileSize)
@@ -196,7 +202,7 @@ class SortFileTableVC: UITableViewController {
         if sender.source is DetailVC{
             if let selectedIndexPath = tableView.indexPathForSelectedRow {
                 // Update an existing meal.
-                let asset = PhotoServices.shared.displayedAssets[selectedIndexPath.row]
+                let asset = AppDelegate.shared.photoService!.displayedAssets[selectedIndexPath.row]
                 asset.remove(completionHandler: didFinishRemoveAsset)
                 addMoreFreeSize = Double(asset.fileSize)
             }

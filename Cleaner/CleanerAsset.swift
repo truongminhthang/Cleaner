@@ -47,10 +47,13 @@ class CleanerAsset: Equatable {
                                               options: nil)
         { image, info in
             if let image = image {
+                guard let photoService = AppDelegate.shared.photoService else {
+                    return
+                }
                 if self.representedAssetIdentifier == self.asset.localIdentifier {
                     self.thumbnail = image
                     self.thumbnailStatus = .goodToGo
-                    if !PhotoServices.shared.isFetching {
+                    if !photoService.isFetching {
                         NotificationCenter.default.post(name: NotificationName.didFinishFetchPHAsset, object: nil)
 
                     }
@@ -85,8 +88,10 @@ class CleanerAsset: Equatable {
     }
     
     func remove(completionHandler: ((Bool, Int, Error?) -> Void)? = nil) {
-       
-        PhotoServices.shared.removeCleanerAsset(self, completionHandler: completionHandler)
+        guard let photoService = AppDelegate.shared.photoService else {
+            return
+        }
+        photoService.removeCleanerAsset(self, completionHandler: completionHandler)
     }
     
     public static func ==(lhs: CleanerAsset, rhs: CleanerAsset) -> Bool {

@@ -100,7 +100,6 @@ class GoogleAdMob: NSObject, GADInterstitialDelegate {
     
     func showInterstitial() {
         guard !isTestMode else {return}
-        guard !PhotoServices.shared.isDeleting else {return}
         guard isConnectionAvailable() else {return}
 
         if interstitialAds.isReady {

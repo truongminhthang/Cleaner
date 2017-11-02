@@ -10,7 +10,6 @@ import UIKit
 import Photos
 
 class PhotoServices : NSObject, PHPhotoLibraryChangeObserver {
-    static let shared : PhotoServices = PhotoServices()
     var isFetching : Bool = false
     fileprivate let concurrentCleanerAssetQueue =
         DispatchQueue(
@@ -70,7 +69,6 @@ class PhotoServices : NSObject, PHPhotoLibraryChangeObserver {
         super.init()
         reqestAuthorization()
         PHPhotoLibrary.shared().register(self)
-        
     }
     
     deinit {
