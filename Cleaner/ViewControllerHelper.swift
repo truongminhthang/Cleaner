@@ -44,7 +44,7 @@ func showAlertToAccessAppFolder( title:String, message: String) {
 func showAlert(title:String, message: String) {
     let alertController = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
     let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.cancel) { (result : UIAlertAction) -> Void in
-        GoogleAdMob.sharedInstance.showInterstitial()
+
     }
     alertController.addAction(okAction)
     if let rootVC = UIApplication.shared.keyWindow?.rootViewController {
@@ -63,7 +63,6 @@ func showAlertCompelete(title:String, message: String, settingUrl: String) {
         }
     }
     let okAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel) { (result : UIAlertAction) -> Void in
-        GoogleAdMob.sharedInstance.showInterstitial()
     }
     alertController.addAction(settingAction)
     alertController.addAction(okAction)
