@@ -32,7 +32,7 @@ class GoogleAdMob: NSObject, GADInterstitialDelegate {
     private var interstitialAds: GADInterstitial!
     private var bannerView: GADBannerView?
     
-    var isTestMode = false
+    var isTestMode = true
     //MARK: - Variable
     var isBannerDisplay = false {
         didSet {

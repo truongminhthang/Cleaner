@@ -88,6 +88,17 @@ class NetworkServices: NSObject {
         pingClinet?.delegate = self
         pingClinet?.start()
     }
+    
+    func stopPing(pinger: Ping, latency:Double? = nil) {
+        startDownload()
+        pinger.stop()
+        if latency != nil {
+            resultCallback?(String(format: "%.f ms", latency!))
+        } else {
+            resultCallback?(String(format: "error", latency!))
+        }
+    }
+    
     public func stopAllTest() {
         pingClinet?.stop()
         resultCallback = nil
@@ -155,23 +166,21 @@ extension NetworkServices: PingDelegate {
         pinger.send(with: nil)
     }
     public func ping(_ pinger: Ping, didFailWithError error: Error) {
-        resultCallback?(nil)
+        stopPing(pinger: pinger)
+        
     }
     public func ping(_ pinger: Ping, didReceiveUnexpectedPacket packet: Data) {
-        pinger.stop()
-        resultCallback?(nil)
+        stopPing(pinger: pinger)
     }
     public func ping(_ pinger: Ping, didReceivePingResponsePacket packet: Data, sequenceNumber: UInt16) {
-        pinger.stop()
         guard let dateReference = dateReference else { return }
-
         //timeIntervalSinceDate returns seconds, so we convert to milis
         let latency = Date().timeIntervalSince(dateReference) * 1000
-        resultCallback?(String(format: "%.f", latency))
+        stopPing(pinger: pinger, latency: latency)
     }
     public func ping(_ pinger: Ping, didFailToSendPacket packet: Data, sequenceNumber: UInt16, error: Error) {
-        pinger.stop()
-        resultCallback?(nil)
+        stopPing(pinger: pinger)
+
     }
 }
 
