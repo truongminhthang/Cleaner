@@ -31,7 +31,7 @@ class ContainerVC: UIViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        isSideMenuOpen = false
+        isSideMenuOpen = true
     }
 
     override func didReceiveMemoryWarning() {
