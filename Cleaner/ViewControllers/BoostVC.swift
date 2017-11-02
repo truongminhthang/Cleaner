@@ -11,10 +11,8 @@ import GoogleMobileAds
 class BoostVC: UIViewController {
     
     // - Mark : Properties
-    @IBOutlet weak var gaugeView: GaugeView!
-    @IBOutlet weak var displayPieChartView: PieChartView!
+    @IBOutlet weak var gauge: Gauge!
     @IBOutlet weak var displayedInfoCircle: GradientView!
-    @IBOutlet weak var diplayedInfoCircleContainer: PieChartView!
     @IBOutlet weak var infoStageLabel: UILabel!
     @IBOutlet weak var boostButton: Button!
     @IBOutlet weak var percentLabel: UILabel!
@@ -44,6 +42,7 @@ class BoostVC: UIViewController {
             self.subinfoFreeMemoryLabel.text = ByteCountFormatter.string(fromByteCount: Int64(freeMemory), countStyle: .file)
             self.subInfoUsedMemoryPercentLabel.text = "\(usedMemoryPercent.rounded(toPlaces: 2)) %"
             self.subinfoUsedMemoryLabel.text = ByteCountFormatter.string(fromByteCount: Int64(usedMemoryDisplay), countStyle: .file)
+            self.gauge.rate = CGFloat(usedMemoryPercent / 10)
         }
     }
     var isRunning:Bool = true {
@@ -55,17 +54,12 @@ class BoostVC: UIViewController {
                 percentLabel.textColor = UIColor.gray
                 self.boostButton.isEnabled = !isRunning
                 self.runningEffectView.isHidden = !isRunning
-                displayPieChartView.isHidden = true
-                diplayedInfoCircleContainer.isHidden = false
             } else {
                 infoStageLabel.text = "MEMORY USAGE"
                 infoStageLabel.textColor = UIColor.blue
                 infoUsedMemoryPercentLabel.textColor = UIColor.blue
                 percentLabel.textColor = UIColor.blue
-                let usedMemoryPercent = usedMemoryDisplay / memoryState.totalMemory * 100
-                self.diplayedInfoCircleContainer.addItem(value: Float(usedMemoryPercent), color: UIColor.blue)
-                self.diplayedInfoCircleContainer.addItem(value: Float(100 - usedMemoryPercent), color: UIColor.white)
-                self.diplayedInfoCircleContainer.setNeedsDisplay()
+//                let usedMemoryPercent = usedMemoryDisplay / memoryState.totalMemory * 100
             }
         }
     }
@@ -86,14 +80,12 @@ class BoostVC: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        gaugeView.percentage = Float(value)
         setupRunningEffectView()
         memoryShouldClear = isFirstTimeMode ? Double(arc4random() %  UInt32(memoryState.memoryUsed * 0.3)) : Double(arc4random() %  UInt32(memoryState.memoryFree * 0.05))
         usedMemoryDisplay = memoryUsageFake
         let usedMemoryPercent = usedMemoryDisplay / memoryState.totalMemory * 100
-        displayPieChartView.addItem(value: Float(usedMemoryPercent), color: UIColor.red)
-        displayPieChartView.addItem(value: Float(100 - usedMemoryPercent), color: UIColor.white)
-        displayPieChartView.setNeedsDisplay()
+        gauge.rate = CGFloat(usedMemoryPercent / 10)
+
     }
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
@@ -120,7 +112,7 @@ class BoostVC: UIViewController {
     @IBAction func clickAndRunBoost(_ sender: UIButton) {
         if sender.currentTitle == "BOOST MEMORY"
         {
-            timers = Timer.scheduledTimer(timeInterval: 2, target: self, selector:#selector(repeatFire), userInfo: nil, repeats: true)
+//            timers = Timer.scheduledTimer(timeInterval: 2, target: self, selector:#selector(repeatFire), userInfo: nil, repeats: true)
             isRunning = true
             showRunningEffect()
             timer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(fakeReduceMemory), userInfo: nil, repeats: true)
@@ -147,7 +139,6 @@ class BoostVC: UIViewController {
         }
     }
     @objc func boostFinish() {
-        gaugeView.isHidden = true
         timer?.invalidate()
         timer = nil
         runningEffectView.removeFromSuperview()
@@ -161,26 +152,5 @@ class BoostVC: UIViewController {
         isFirstTimeMode = false
         boostButton.setTitle("RUN AGAIN", for: .normal)
     }
-    // create repeat view
-    @objc func repeatFire(){
-        if valueAdd > 0 {
-            valueAdd -= 1
-            UIView.animate(withDuration: 1 , delay: 1, options: .curveLinear, animations: {
-                self.valueUp(view: self.gaugeView)
-            }) { (_) in
-                self.valueDown(view: self.gaugeView)
-            }
-            
-        } else {
-            timer?.invalidate()
-        }
-    }
-    func valueUp(view: GaugeView) {
-        view.percentage += 100
-    }
-    func valueDown(view : GaugeView) {
-        view.percentage += 0
-    }
-    
 }
 
