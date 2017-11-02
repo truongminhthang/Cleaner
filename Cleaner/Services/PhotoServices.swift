@@ -23,7 +23,6 @@ class PhotoServices : NSObject, PHPhotoLibraryChangeObserver {
         }
     }
     
-    var shouldShowActivity = true
    
     var displayedAssets : [CleanerAsset] {
         get {
@@ -90,7 +89,9 @@ class PhotoServices : NSObject, PHPhotoLibraryChangeObserver {
         }
     }
     
-    
+    // MARK: Request fetch and update asset
+    var shouldShowActivity = true
+
     func fetchAsset() {
         let allPhotosOptions = PHFetchOptions()
         allPhotosOptions.sortDescriptors = [NSSortDescriptor(key: "duration", ascending: false)]

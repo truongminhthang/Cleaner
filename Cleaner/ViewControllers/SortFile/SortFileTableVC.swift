@@ -22,6 +22,7 @@ class SortFileTableVC: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         initPhotoServicesIfNeed()
+        AppDelegate.shared.photoService?.shouldShowActivity = true
         freeSize = SystemServices.shared.diskSpaceUsage(inPercent: false).freeDiskSpace
         addMoreFreeDiskLabel.alpha = 0
         registerNotification()
@@ -34,6 +35,8 @@ class SortFileTableVC: UITableViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         ActivityIndicator.shared.hideActivity()
+        AppDelegate.shared.photoService?.shouldShowActivity = false
+
     }
     
     func registerNotification() {
