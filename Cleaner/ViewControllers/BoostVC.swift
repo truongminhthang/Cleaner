@@ -59,6 +59,7 @@ class BoostVC: UIViewController {
                 infoStageLabel.textColor = UIColor.blue
                 infoUsedMemoryPercentLabel.textColor = UIColor.blue
                 percentLabel.textColor = UIColor.blue
+                self.gauge.startColor = UIColor.blue
 //                let usedMemoryPercent = usedMemoryDisplay / memoryState.totalMemory * 100
             }
         }
