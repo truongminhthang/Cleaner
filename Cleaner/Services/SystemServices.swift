@@ -8,8 +8,19 @@
 
 import UIKit
 
-typealias MemoryState = (memoryFree: Double, memoryUsed: Double, totalMemory: Double)
-typealias DiskUsage = (memoryFree: Double, memoryUsed: Double, totalMemory: Double)
+struct Usage {
+    var free: Double = 0
+    var used: Double {
+        return total - free
+    }
+    var total: Double = 0
+    var freePercent: Double {
+        return free / total * 100
+    }
+    var usedPercent: Double {
+        return 100 - freePercent
+    }
+}
 
 class SystemServices {
     static let shared: SystemServices = SystemServices()
@@ -73,10 +84,10 @@ class SystemServices {
     }
     
     // MARK: Memory
-    var memoryState : MemoryState = (0,0,0)
+    var memory = Usage()
     func updateMemoryUsage() {
         let PAGE_SIZE : Double = Double(vm_kernel_page_size)
-        let totalMemory: Double = Double(ProcessInfo.processInfo.physicalMemory)
+        memory.total = Double(ProcessInfo.processInfo.physicalMemory)
         let hostInfo: vm_statistics64 = {
                 var size: mach_msg_type_number_t = UInt32(MemoryLayout<vm_statistics64_data_t>.size / MemoryLayout<integer_t>.size)
                 var hostInfo = vm_statistics64()
@@ -96,51 +107,25 @@ class SystemServices {
         }()
         
         let free = Double(hostInfo.free_count) * PAGE_SIZE
-        let active = Double(hostInfo.active_count) * PAGE_SIZE
         let inactive = Double(hostInfo.inactive_count) * PAGE_SIZE
-        let wired = Double(hostInfo.wire_count) * PAGE_SIZE
-        let compressed = Double(hostInfo.compressor_page_count) * PAGE_SIZE
-        let memoryUsed = active + compressed + wired
-        let memoryFree = free + inactive
-        memoryState = (memoryFree, memoryUsed, totalMemory)
+        memory.free = free + inactive
     }
 
     // MARK: Disk Space
-    func diskSpaceUsage(inPercent: Bool) -> (diskSpace: Double, useDiskSpace: Double, freeDiskSpace: Double) {
-        var totalUseDiskSpace: Double = 0.0
-        var totalFreeDisk: Double = 0.0
-        var totaldiskSpace: Double  {
-            let totaldiskSpace: Double = 0
-            let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
-            if let dictionary = try? FileManager.default.attributesOfFileSystem(forPath: paths.last!) {
-                if let freeSize = dictionary[FileAttributeKey.systemSize] as? NSNumber {
-                    return freeSize.doubleValue
-                }
-            }   else{
+    var diskSpace: Usage
+    func diskSpaceUsage(inPercent: Bool) {
+        let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
+        guard  let dictionary = try? FileManager.default.attributesOfFileSystem(forPath: paths.last!) else {
+            return
                 print("Error Obtaining System Memory Info:")
-            }
-            return totaldiskSpace
+
         }
-        var totalFreeDiskSpace: Double {
-            let totalFreeDiskSpace:Double = 0
-            let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
-            if let dictionary = try? FileManager.default.attributesOfFileSystem(forPath: paths.last!) {
-                if let freeSize = dictionary[FileAttributeKey.systemFreeSize] as? NSNumber {
-                    return freeSize.doubleValue
-                }
-            }else{
-                print("Error Obtaining System Memory Info:")
-            }
-            return totalFreeDiskSpace
+        if let totalSize = dictionary[FileAttributeKey.systemSize] as? NSNumber {
+            diskSpace.total = totalSize.doubleValue
         }
-        if inPercent {
-            totalUseDiskSpace = (totaldiskSpace - totalFreeDiskSpace) * 100 / totaldiskSpace
-            totalFreeDisk = 100 - totalUseDiskSpace
-        } else {
-            totalUseDiskSpace = totaldiskSpace - totalFreeDiskSpace
-            totalFreeDisk = totalFreeDiskSpace
+        if let freeSize = dictionary[FileAttributeKey.systemFreeSize] as? NSNumber {
+            diskSpace.free = freeSize.doubleValue
         }
-        return (totaldiskSpace.rounded(toPlaces: 2), totalUseDiskSpace.rounded(toPlaces: 2), totalFreeDisk.rounded(toPlaces: 2))
     }
 }
 extension Double {
