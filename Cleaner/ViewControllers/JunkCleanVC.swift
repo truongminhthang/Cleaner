@@ -53,10 +53,10 @@ class JunkCleanVC: UIViewController,CAAnimationDelegate {
             gradient.add(colorChangeAnimation, forKey: "color")
         }
     }
-    var controlPieChartView: Double = 0 {
+    var controlPieChartDouble: Double = 0 {
         didSet {
-            displayPieChartView.addItem(value: 100 - Float(controlPieChartView), color: UIColor.red)
-            displayPieChartView.addItem(value: Float(controlPieChartView), color: UIColor.white)
+            displayPieChartView.addItem(value: 100 - Float(controlPieChartDouble), color: UIColor.red)
+            displayPieChartView.addItem(value: Float(controlPieChartDouble), color: UIColor.white)
             displayPieChartView.setNeedsDisplay()
 
         }
@@ -66,10 +66,10 @@ class JunkCleanVC: UIViewController,CAAnimationDelegate {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         gaugeView.percentage = Float(value)
-        self.freeDiskLabel.text  = ByteCountFormatter.string(fromByteCount: Int64(SystemServices.shared.diskSpaceUsage(inPercent: false).freeDiskSpace), countStyle: .binary)
-        storeageReduce = SystemServices.shared.diskSpaceUsage(inPercent: false).freeDiskSpace
+        self.freeDiskLabel.text  = SystemServices.shared.diskSpace.free.fileSizeString
+        storeageReduce = SystemServices.shared.diskSpace.free
         middleView.backgroundColor = UIColor.clear
-        controlPieChartView = SystemServices.shared.diskSpaceUsage(inPercent: true).freeDiskSpace
+        controlPieChartDouble = SystemServices.shared.diskSpace.freePercent
     }
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
@@ -100,18 +100,18 @@ class JunkCleanVC: UIViewController,CAAnimationDelegate {
                 boostCleanButton.isEnabled = false
                 self.displayPieChartView.isHidden = true
             } else {
-                let systemChange = SystemServices.shared.diskSpaceUsage(inPercent: false).freeDiskSpace > storeageReduce ? SystemServices.shared.diskSpaceUsage(inPercent: false).freeDiskSpace - storeageReduce : storeageReduce - SystemServices.shared.diskSpaceUsage(inPercent: false).freeDiskSpace
+                let systemChange = SystemServices.shared.diskSpace.free > storeageReduce ? SystemServices.shared.diskSpace.free - storeageReduce : storeageReduce - SystemServices.shared.diskSpace.free
                 let systemReduce = ByteCountFormatter.string(fromByteCount: Int64(systemChange), countStyle: .binary)
-                let storageChange = SystemServices.shared.diskSpaceUsage(inPercent: false).freeDiskSpace > storeageReduce ? SystemServices.shared.diskSpaceUsage(inPercent: false).freeDiskSpace :
+                let storageChange = SystemServices.shared.diskSpace.free > storeageReduce ? SystemServices.shared.diskSpace.free :
                 storeageReduce
                 self.freeDiskLabel.alpha = 1
                 self.displayInfoLabel.text = " Complete"
                 self.freeDiskLabel.text  = ByteCountFormatter.string(fromByteCount: Int64(storageChange), countStyle: .binary)
                 self.SpaceLabel.isHidden = false
                 self.availableLabel.isHidden = false
-                let freeDiskSpacePercent = SystemServices.shared.diskSpaceUsage(inPercent: true).freeDiskSpace
+                let freeDiskSpacePercent = SystemServices.shared.diskSpace.freePercent
                 self.middleView.addItem(value: 100 - Float(freeDiskSpacePercent), color: UIColor.red)
-                self.middleView.addItem(value: Float(SystemServices.shared.diskSpaceUsage(inPercent: true).freeDiskSpace), color: UIColor.white)
+                self.middleView.addItem(value: Float(SystemServices.shared.diskSpace.freePercent), color: UIColor.white)
                 middleView.setNeedsDisplay()
                 boostCleanButton.isEnabled = true
                 boostCleanButton.setTitle("FINISH", for: .normal)

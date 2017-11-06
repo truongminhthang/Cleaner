@@ -17,16 +17,16 @@ class DashboardVC: UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        
-        let deviceServices = DeviceServices()
-        pieChartView.addItem(value: 100 - Float(deviceServices.diskFreePercent) , color: UIColor.red)
-        pieChartView.addItem(value: Float(deviceServices.diskFreePercent) , color: UIColor.clear)
-        freePercentLabel.text = "\(Int(deviceServices.diskFreePercent)) %"
-        let freeSize = ByteCountFormatter.string(fromByteCount: Int64(deviceServices.diskFree), countStyle: .file)
-        freeSpaceLabel.text = "\(freeSize)"
+       
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        SystemServices.shared.updateAll()
+        pieChartView.removeAllItem()
+        pieChartView.addItem(value: Float(SystemServices.shared.diskSpace.usedPercent) , color: UIColor.red)
+        pieChartView.addItem(value: Float(SystemServices.shared.diskSpace.freePercent) , color: UIColor.clear)
+        freePercentLabel.text = "\(SystemServices.shared.diskSpace.freePercent) %"
+        freeSpaceLabel.text = SystemServices.shared.diskSpace.free.fileSizeString
         clearButton.isSelected = true
         GoogleAdMob.sharedInstance.isBannerDisplay = false
         AppDelegate.shared.isDashboardDisplay = true

@@ -39,6 +39,9 @@ class PieChartView: UIView {
         items.append(item)
         sum += value
     }
+    func removeAllItem() {
+        items.removeAll()
+    }
     
     override func draw(_ rect: CGRect) {
         

@@ -23,7 +23,7 @@ class SortFileTableVC: UITableViewController {
         super.viewDidLoad()
         initPhotoServicesIfNeed()
         AppDelegate.shared.photoService?.shouldShowActivity = true
-        freeSize = SystemServices.shared.diskSpaceUsage(inPercent: false).freeDiskSpace
+        freeSize = SystemServices.shared.diskSpace.free
         addMoreFreeDiskLabel.alpha = 0
         registerNotification()
     }
@@ -60,7 +60,7 @@ class SortFileTableVC: UITableViewController {
     @objc func didFinishSortedFile() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             self.tableView.reloadData()
-            self.freeSize = SystemServices.shared.diskSpaceUsage(inPercent: false).freeDiskSpace
+            self.freeSize = SystemServices.shared.diskSpace.free
         }
     }
     

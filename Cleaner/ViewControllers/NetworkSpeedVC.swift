@@ -85,11 +85,8 @@ class NetworkSpeedVC: UIViewController ,SimplePingDelegate, NetworkServicesToVCP
         DispatchQueue.main.async {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.7) {
                 self.reset(completeHandler: {
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-                        self.indicatorFlag = true
-                        NetworkServices.shared.startUpload()
-                        
-                    }
+                    self.indicatorFlag = true
+                    NetworkServices.shared.startUpload()
                 })
             }
             

@@ -15,7 +15,6 @@ class BoostVC: UIViewController {
     @IBOutlet weak var displayedInfoCircle: GradientView!
     @IBOutlet weak var infoStageLabel: UILabel!
     @IBOutlet weak var boostButton: Button!
-    @IBOutlet weak var percentLabel: UILabel!
     @IBOutlet weak var infoUsedMemoryPercentLabel: UILabel!
     @IBOutlet weak var subinfoFreeMemoryLabel: UILabel!
     @IBOutlet weak var subinfoUsedMemoryLabel: UILabel!
@@ -27,40 +26,31 @@ class BoostVC: UIViewController {
     var value = 0
     var valueAdd = 150
     var currentColorSet: Int!
-    var memoryState : MemoryState = {
-        SystemServices.shared.updateMemoryUsage()
-        return SystemServices.shared.memoryState
-    }()
-    var usedMemoryDisplay = 0.0 {
+
+    var memoryDisplay = Usage() {
         didSet {
-            let totalMemory = memoryState.totalMemory
-            let usedMemoryPercent = usedMemoryDisplay / totalMemory * 100
-            let freeMemory = totalMemory - usedMemoryDisplay
-            let freeMemoryPercent = 100.0 - usedMemoryPercent
-            self.infoUsedMemoryPercentLabel.text = "\(usedMemoryPercent.rounded(toPlaces: 2))"
-            self.subinfoFreeMemoryPercentLabel.text = "\(freeMemoryPercent.rounded(toPlaces: 2)) %"
-            self.subinfoFreeMemoryLabel.text = ByteCountFormatter.string(fromByteCount: Int64(freeMemory), countStyle: .file)
-            self.subInfoUsedMemoryPercentLabel.text = "\(usedMemoryPercent.rounded(toPlaces: 2)) %"
-            self.subinfoUsedMemoryLabel.text = ByteCountFormatter.string(fromByteCount: Int64(usedMemoryDisplay), countStyle: .file)
-            self.gauge.rate = CGFloat(usedMemoryPercent / 10)
+            self.infoUsedMemoryPercentLabel.text = "\(memoryDisplay.freePercent)%"
+            self.subinfoFreeMemoryPercentLabel.text = "\(memoryDisplay.freePercent) %"
+            self.subinfoFreeMemoryLabel.text = memoryDisplay.free.fileSizeString
+            self.subInfoUsedMemoryPercentLabel.text = "\(memoryDisplay.usedPercent) %"
+            self.subinfoUsedMemoryLabel.text = memoryDisplay.used.fileSizeString
+            self.gauge.rate = CGFloat(memoryDisplay.usedPercent / 10)
         }
     }
-    var isRunning:Bool = true {
+
+    var isRunning:Bool = false {
         didSet {
             if isRunning {
                 infoStageLabel.text = "⇊MEMORY DOWN⇊"
                 infoStageLabel.textColor = UIColor.gray
                 infoUsedMemoryPercentLabel.textColor = UIColor.gray
-                percentLabel.textColor = UIColor.gray
                 self.boostButton.isEnabled = !isRunning
                 self.runningEffectView.isHidden = !isRunning
             } else {
                 infoStageLabel.text = "MEMORY USAGE"
                 infoStageLabel.textColor = UIColor.blue
                 infoUsedMemoryPercentLabel.textColor = UIColor.blue
-                percentLabel.textColor = UIColor.blue
                 self.gauge.startColor = UIColor.blue
-//                let usedMemoryPercent = usedMemoryDisplay / memoryState.totalMemory * 100
             }
         }
     }
@@ -74,23 +64,27 @@ class BoostVC: UIViewController {
     }
     var timer : Timer?
     
-    var memoryShouldClear: Double = 0.0
-    
-    var memoryUsageFake: Double {
-        return memoryState.memoryUsed + memoryShouldClear
+    var memoryShouldClear: Double = 0.0 {
+        didSet {
+            memoryDisplay = Usage(free: SystemServices.shared.memory.free - memoryShouldClear, total: SystemServices.shared.memory.total)
+        }
     }
+    var clearnMemoryCount : Double = 0.0
+   
     override func viewDidLoad() {
         super.viewDidLoad()
+        SystemServices.shared.updateMemoryUsage()
         setupRunningEffectView()
-        memoryShouldClear = isFirstTimeMode ? Double(arc4random() %  UInt32(memoryState.memoryUsed * 0.3)) : Double(arc4random() %  UInt32(memoryState.memoryFree * 0.05))
-        usedMemoryDisplay = memoryUsageFake
-        let usedMemoryPercent = usedMemoryDisplay / memoryState.totalMemory * 100
-        gauge.rate = CGFloat(usedMemoryPercent / 10)
+        updateMemoryShouldClear()
+        memoryDisplay = Usage(free: SystemServices.shared.memory.free - memoryShouldClear, total: SystemServices.shared.memory.total)
+    }
+    func updateMemoryShouldClear() {
+        let percentMemoryShouldClear = isFirstTimeMode ?  0.3 : 0.1
+        memoryShouldClear = Double(arc4random() %  UInt32(SystemServices.shared.memory.free * percentMemoryShouldClear))
+        clearnMemoryCount = memoryShouldClear
 
     }
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
-    }
+    
     func setupRunningEffectView() {
         runningEffectView.frame = CGRect(x: 0, y: 0, width: 500, height: 100)
         displayedInfoCircle.insertSubview(runningEffectView, at: 0)
@@ -113,7 +107,6 @@ class BoostVC: UIViewController {
     @IBAction func clickAndRunBoost(_ sender: UIButton) {
         if sender.currentTitle == "BOOST MEMORY"
         {
-//            timers = Timer.scheduledTimer(timeInterval: 2, target: self, selector:#selector(repeatFire), userInfo: nil, repeats: true)
             isRunning = true
             showRunningEffect()
             timer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(fakeReduceMemory), userInfo: nil, repeats: true)
@@ -124,15 +117,15 @@ class BoostVC: UIViewController {
         }
     }
     @objc func fakeReduceMemory() {
-        let jumpStep = 525000.0
-        guard usedMemoryDisplay > memoryState.memoryUsed + jumpStep else {
-            boostFinish()
+        let jumpStep = 200000.0
+        guard self.memoryShouldClear > 0 else {
+            memoryShouldClear = 0.0
+            self.boostFinish()
             return
         }
-        DispatchQueue.main.async {
-            self.usedMemoryDisplay -= jumpStep
-        }
+        self.memoryShouldClear -= jumpStep
     }
+    
     func showRunningEffect() {
         setupRunningEffectView()
         UIView.animate(withDuration: 3.0, delay: 0, options: [.repeat, .curveLinear] , animations: {
@@ -146,11 +139,8 @@ class BoostVC: UIViewController {
         timer = nil
         runningEffectView.removeFromSuperview()
         boostButton.isEnabled = true
-        usedMemoryDisplay = memoryState.memoryUsed
         isRunning = false
-        let clearnMemoryCount = memoryShouldClear
-        let memoryOut = ByteCountFormatter.string(fromByteCount: Int64(clearnMemoryCount), countStyle: .binary)
-        showAlert(title: "Complete", message: "We have liberate \(memoryOut) in memory", completeHandler: {
+        showAlert(title: "Complete", message: "We have liberate \(clearnMemoryCount.fileSizeString) in memory", completeHandler: {
             GoogleAdMob.sharedInstance.showInterstitial()
         })
         memoryShouldClear = 0

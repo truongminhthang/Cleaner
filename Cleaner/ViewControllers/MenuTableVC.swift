@@ -18,10 +18,14 @@ class MenuTableVC: UITableViewController {
         
     override func viewDidLoad() {
         super.viewDidLoad()
-        SystemServices.shared.updateMemoryUsage()
-        memoryLabel.text = "\((SystemServices.shared.memoryState.memoryUsed / SystemServices.shared.memoryState.totalMemory * 100).rounded(toPlaces: 2)) %"
-        storageLabel.text = "\(SystemServices.shared.diskSpaceUsage(inPercent: true).useDiskSpace) %"
-        cpuLabel.text = "\(SystemServices.shared.cpuUsage()) %"
+        
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        SystemServices.shared.updateAll()
+        memoryLabel.text = "\(SystemServices.shared.memory.freePercent) %"
+        storageLabel.text = "\(SystemServices.shared.diskSpace.freePercent) %"
+        cpuLabel.text = "\(SystemServices.shared.cpuUsage) %"
     }
 
     override func didReceiveMemoryWarning() {
