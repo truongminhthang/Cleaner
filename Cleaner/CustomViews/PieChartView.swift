@@ -1,9 +1,9 @@
 //
-//  File1.swift
-//  Cleaner
+//  ExtentionPieChart.swift
+//  DemoPieChart
 //
-//  Created by Hao on 10/2/17.
-//  Copyright © 2017 BaBaBiBo. All rights reserved.
+//  Created by Chung Sama on 10/1/17.
+//  Copyright © 2017 Chung Sama. All rights reserved.
 //
 
 import UIKit
@@ -20,18 +20,18 @@ class PieChartItem {
 
 @IBDesignable
 class PieChartView: UIView {
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        if cornerRadius == -1 {
-            self.layer.cornerRadius = self.bounds.width < self.bounds.height ? self.bounds.width * 0.5 : self.bounds.height * 0.5
-        }
-    }
+    
     @IBInspectable var colorCenterCircle: UIColor = UIColor.clear
     @IBInspectable var centerRadius: CGFloat = 0
-    var startDeg: Float = 0
-    var endDeg: Float = 0
-    var items: [PieChartItem] = []
-    var sum: Float = 0
+    private var startDeg: Float = 0
+    private var endDeg: Float = 0
+    private var items: [PieChartItem] = []
+    private var sum: Float = 0
+    
+    func reDraw() {
+        items.removeAll()
+        sum = 0
+    }
     
     // Add Item Circle
     func addItem(value: Float, color: UIColor) {
@@ -39,16 +39,13 @@ class PieChartView: UIView {
         items.append(item)
         sum += value
     }
-    func removeAllItem() {
-        items.removeAll()
-    }
-    
     override func draw(_ rect: CGRect) {
+        super.draw(rect)
+        self.clearsContextBeforeDrawing = true
         
         UIColor.clear.setFill()
         let outerPath = UIBezierPath(ovalIn: rect)
         outerPath.fill()
-        
         let center = CGPoint(x: rect.width / 2, y: rect.height / 2)
         let centerCircleRadius = (rect.width / 2) * centerRadius
         let radius: CGFloat = (self.bounds.size.width > self.bounds.size.height ? self.bounds.size.height : self.bounds.size.width)/2
@@ -90,5 +87,3 @@ class PieChartView: UIView {
         centerPath.fill()
     }
 }
-
-

@@ -22,7 +22,7 @@ class DashboardVC: UIViewController{
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         SystemServices.shared.updateAll()
-        pieChartView.removeAllItem()
+        pieChartView.reDraw()
         pieChartView.addItem(value: Float(SystemServices.shared.diskSpace.usedPercent) , color: UIColor.red)
         pieChartView.addItem(value: Float(SystemServices.shared.diskSpace.freePercent) , color: UIColor.clear)
         freePercentLabel.text = "\(SystemServices.shared.diskSpace.freePercent) %"
