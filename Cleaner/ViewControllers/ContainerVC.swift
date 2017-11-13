@@ -32,7 +32,8 @@ class ContainerVC: UIViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
+        self.leftSideMenuConstraint.constant = self.isSideMenuOpen ? -30 : -self.sideMenu.bounds.width
+
     }
 
     override func didReceiveMemoryWarning() {
